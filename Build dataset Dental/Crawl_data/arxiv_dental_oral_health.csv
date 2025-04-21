@@ -1,0 +1,914 @@
+title,authors,summary,published,link,keyword_used
+"OralCam: Enabling Self-Examination and Awareness of Oral Health Using a
+  Smartphone Camera","Yuan Liang, Hsuan-Wei Fan, Zhujun Fang, Leiying Miao, Wen Li, Xuan Zhang, Weibin Sun, Kun Wang, Lei He, Xiang Anthony Chen","Due to a lack of medical resources or oral health awareness, oral diseases
+are often left unexamined and untreated, affecting a large population
+worldwide. With the advent of low-cost, sensor-equipped smartphones, mobile
+apps offer a promising possibility for promoting oral health. However, to the
+best of our knowledge, no mobile health (mHealth) solutions can directly
+support a user to self-examine their oral health condition. This paper presents
+OralCam, the first interactive app that enables end-users' self-examination of
+five common oral conditions (diseases or early disease signals) by taking
+smartphone photos of one's oral cavity. OralCam allows a user to annotate
+additional information (e.g. living habits, pain, and bleeding) to augment the
+input image, and presents the output hierarchically, probabilistically and with
+visual explanations to help a laymen user understand examination results.
+Developed on our in-house dataset that consists of 3,182 oral photos annotated
+by dental experts, our deep learning based framework achieved an average
+detection sensitivity of 0.787 over five conditions with high localization
+accuracy. In a week-long in-the-wild user study (N=18), most participants had
+no trouble using OralCam and interpreting the examination results. Two expert
+interviews further validate the feasibility of OralCam for promoting users'
+awareness of oral health.",2020-01-16T02:54:47Z,http://arxiv.org/abs/2001.05621v2,oral health
+"American Twitter Users Revealed Social Determinants-related Oral Health
+  Disparities amid the COVID-19 Pandemic","Yangxin Fan, Hanjia Lyu, Jin Xiao, Jiebo Luo","Objectives: To assess self-reported population oral health conditions amid
+COVID-19 pandemic using user reports on Twitter. Method and Material: We
+collected oral health-related tweets during the COVID-19 pandemic from 9,104
+Twitter users across 26 states (with sufficient samples) in the United States
+between November 12, 2020 and June 14, 2021. We inferred user demographics by
+leveraging the visual information from the user profile images. Other
+characteristics including income, population density, poverty rate, health
+insurance coverage rate, community water fluoridation rate, and relative change
+in the number of daily confirmed COVID-19 cases were acquired or inferred based
+on retrieved information from user profiles. We performed logistic regression
+to examine whether discussions vary across user characteristics. Results:
+Overall, 26.70% of the Twitter users discuss wisdom tooth pain/jaw hurt, 23.86%
+tweet about dental service/cavity, 18.97% discuss chipped tooth/tooth break,
+16.23% talk about dental pain, and the rest are about tooth decay/gum bleeding.
+Women and younger adults (19-29) are more likely to talk about oral health
+problems. Health insurance coverage rate is the most significant predictor in
+logistic regression for topic prediction. Conclusion: Tweets inform social
+disparities in oral health during the pandemic. For instance, people from
+counties at a higher risk of COVID-19 talk more about tooth decay/gum bleeding
+and chipped tooth/tooth break. Older adults, who are vulnerable to COVID-19,
+are more likely to discuss dental pain. Topics of interest vary across user
+characteristics. Through the lens of social media, our findings may provide
+insights for oral health practitioners and policy makers.",2021-09-16T01:10:06Z,http://arxiv.org/abs/2109.07652v2,oral health
+"Quantifying a qualitative framework of patients perceptions, attitudes
+  and behavior relevant to oral health related quality of life","Angelo Passalacqua, Stephen Dunne, Tim J Newton, Nairn HF Wilson, Ana Nora Donaldson","In a qualitative study, Gregory, Gibson and Robinson proposed a framework of
+items grouped in seven dimensions reflecting oral health related perceptions,
+attitudes and behavior to encompass what is relevant when patients assess their
+own oral health related quality of life (OHRQOL). The aim of this study is to
+quantify the dimensions of Gregory relevance framework and confirm, or
+otherwise, the influence on the change in the OHIP-14, an instrument widely
+used to measure OHRQOL. The study was observational and longitudinal with the
+OHIP-14 measured before a tooth extraction, and two and four weeks thereafter.
+Statistical methods of analysis consisted of generalised estimating equations.
+Responsiveness (or sensitivity to change) of the OHIP-14 was established in our
+patient population. The dimensions of Gregory relevance framework featured
+significantly in the models. Patients trust in dental products, perception of
+own oral health as normal in relation to the average person, preference for
+natural teeth, character bias in judgement and control by adherence to dentists
+instructions, were all found to be significant factors in the longitudinal
+change of the OHIP-14. Borderline significance was found in terms of dental
+anxiety and symptoms. Perceptions, behaviour and attitudes, rather than
+socio-demographic characteristics or oral health related knowledge, influence
+change in OHRQOL. Trusting that the dentist values the patient as a person and
+the importance the patient gives to having good oral health, are not found
+significant, yet adhering to dentists advice has a beneficial effect on OHRQOL.",2017-12-12T16:13:49Z,http://arxiv.org/abs/1712.04784v1,oral health
+"Enhancing Automated Decision Support across Medical and Oral Health
+  Domains with Semantic Web Technologies","Tejal Shah, Fethi Rabhi, Pradeep Ray, Kerry Taylor","Research has shown that the general health and oral health of an individual
+are closely related. Accordingly, current practice of isolating the information
+base of medical and oral health domains can be dangerous and detrimental to the
+health of the individual. However, technical issues such as heterogeneous data
+collection and storage formats, limited sharing of patient information and lack
+of decision support over the shared information are the principal reasons for
+the current state of affairs. To address these issues, the following research
+investigates the development and application of a cross-domain ontology and
+rules to build an evidence-based and reusable knowledge base consisting of the
+inter-dependent conditions from the two domains. Through example implementation
+of the knowledge base in Protege, we demonstrate the effectiveness of our
+approach in reasoning over and providing decision support for cross-domain
+patient information.",2014-03-30T14:20:22Z,http://arxiv.org/abs/1403.7766v1,oral health
+A review of dental informatics : current trends and future directions,"Prabath Jayatissa, Roshan Hewapathirane","Dental informatics is a rapidly evolving field that combines dentistry with
+information technology to improve oral health care delivery, research, and
+education. Electronic health records (EHRs), telehealth, digital imaging, and
+other digital tools have revolutionised how dental professionals diagnose,
+treat, and manage oral health conditions. In this review article, we will
+explore dental informatics's current trends and future directions, focusing on
+its impact on clinical practice, research, and education. We will also discuss
+the challenges and opportunities associated with implementing dental
+informatics and highlight fundamental research studies and innovations in the
+field.",2023-06-29T11:27:38Z,http://arxiv.org/abs/2307.03686v1,oral health
+Mobile Application for Oral Disease Detection using Federated Learning,"Shankara Narayanan V, Sneha Varsha M, Syed Ashfaq Ahmed, Guruprakash J","The mouth, often regarded as a window to the internal state of the body,
+plays an important role in reflecting one's overall health. Poor oral hygiene
+has far-reaching consequences, contributing to severe conditions like heart
+disease, cancer, and diabetes, while inadequate care leads to discomfort, pain,
+and costly treatments. Federated Learning (FL) for object detection can be
+utilized for this use case due to the sensitivity of the oral image data of the
+patients. FL ensures data privacy by storing the images used for object
+detection on the local device and trains the model on the edge. The updated
+weights are federated to a central server where all the collected weights are
+updated via The Federated Averaging algorithm. Finally, we have developed a
+mobile app named OralH which provides user-friendly solutions, allowing people
+to conduct self-assessments through mouth scans and providing quick oral health
+insights. Upon detection of the issues, the application alerts the user about
+potential oral health concerns or diseases and provides details about dental
+clinics in the user's locality. Designed as a Progressive Web Application
+(PWA), the platform ensures ubiquitous access, catering to users across devices
+for a seamless experience. The application aims to provide state-of-the-art
+segmentation and detection techniques, leveraging the YOLOv8 object detection
+model to identify oral hygiene issues and diseases. This study deals with the
+benefits of leveraging FL in healthcare with promising real-world results.",2023-10-27T16:41:29Z,http://arxiv.org/abs/2403.12044v1,oral health
+"Dental Severity Assessment through Few-shot Learning and SBERT
+  Fine-tuning",Mohammad Dehghani,"Dental diseases have a significant impact on a considerable portion of the
+population, leading to various health issues that can detrimentally affect
+individuals' overall well-being. The integration of automated systems in oral
+healthcare has become increasingly crucial. Machine learning approaches offer a
+viable solution to address challenges such as diagnostic difficulties,
+inefficiencies, and errors in oral disease diagnosis. These methods prove
+particularly useful when physicians struggle to predict or diagnose diseases at
+their early stages. In this study, thirteen different machine learning, deep
+learning, and large language models were employed to determine the severity
+level of oral health issues based on radiologists' reports. The results
+revealed that the Few-shot learning with SBERT and Multi-Layer Perceptron model
+outperformed all other models across various experiments, achieving an
+impressive accuracy of 94.1% as the best result. Consequently, this model
+exhibits promise as a reliable tool for evaluating the severity of oral
+diseases, enabling patients to receive more effective treatment and aiding
+healthcare professionals in making informed decisions regarding resource
+allocation and the management of high-risk patients.",2024-02-24T08:02:19Z,http://arxiv.org/abs/2402.15755v2,oral health
+The oral tolerance as a complex network phenomenon,"Pedro J. Miranda, Murilo Delgobo, Giovanni M. Favero, Kátia S. Paludo, Murilo S. Baptista, Sandro E. de S. Pinto","The phenomenon of oral tolerance refers to a local and systemic state of
+tolerance, induced in the gut associated lymphoid tissues, after its exposure
+to innocuous antigens, such as food proteins. While recent findings shed light
+in the cellular and molecular basis of oral tolerance, the network of
+interactions between the components mediating oral tolerance has not been
+investigated yet. Our work brings a complex systems theory approach, aiming to
+identify the contribution of each element in an oral tolerance network. We also
+propose a model that allows dynamical plus topological quantifying which must
+encompass functional responses as the local host involved on the oral
+tolerance. To keep track of reality of our model, we test knockout (KO) of
+immunological components (i. e. silencing a vertex) and see how it diverges
+when the system is topologically health. The results from these simulated KO's
+are then compared to real molecular knock-outs. To infer from these processing
+we apply a new implementation of a random walk algorithm for directed graphs,
+which ultimately generate statistical quantities provided by the dynamical
+behaviour of the simulated KO's. It was observed that the a specifics KO caused
+the greatest impact on network standard flux. In a brief analysis, the results
+obtained correspond to biological data. Our model addresses both topological
+proprieties and dynamical relations. The construction of a qualitative dynamic
+model for oral tolerance could reflect empirical observations, through the
+standard flux results and relative error based on individual knockout.",2013-11-13T18:16:28Z,http://arxiv.org/abs/1311.3237v1,oral health
+"Automated Process Incorporating Machine Learning Segmentation and
+  Correlation of Oral Diseases with Systemic Health","Gregory Yauney, Aman Rana, Lawrence C. Wong, Perikumar Javia, Ali Muftu, Pratik Shah","Imaging fluorescent disease biomarkers in tissues and skin is a non-invasive
+method to screen for health conditions. We report an automated process that
+combines intraoral fluorescent porphyrin biomarker imaging, clinical
+examinations and machine learning for correlation of systemic health conditions
+with periodontal disease. 1215 intraoral fluorescent images, from 284
+consenting adults aged 18-90, were analyzed using a machine learning classifier
+that can segment periodontal inflammation. The classifier achieved an AUC of
+0.677 with precision and recall of 0.271 and 0.429, respectively, indicating a
+learned association between disease signatures in collected images. Periodontal
+diseases were more prevalent among males (p=0.0012) and older subjects
+(p=0.0224) in the screened population. Physicians independently examined the
+collected images, assigning localized modified gingival indices (MGIs). MGIs
+and periodontal disease were then cross-correlated with responses to a medical
+history questionnaire, blood pressure and body mass index measurements, and
+optic nerve, tympanic membrane, neurological, and cardiac rhythm imaging
+examinations. Gingivitis and early periodontal disease were associated with
+subjects diagnosed with optic nerve abnormalities (p <0.0001) in their retinal
+scans. We also report significant co-occurrences of periodontal disease in
+subjects reporting swollen joints (p=0.0422) and a family history of eye
+disease (p=0.0337). These results indicate cross-correlation of poor
+periodontal health with systemic health outcomes and stress the importance of
+oral health screenings at the primary care level. Our screening process and
+analysis method, using images and machine learning, can be generalized for
+automated diagnoses and systemic health screenings for other diseases.",2018-10-25T00:42:20Z,http://arxiv.org/abs/1810.10664v1,oral health
+"Reward Design For An Online Reinforcement Learning Algorithm Supporting
+  Oral Self-Care","Anna L. Trella, Kelly W. Zhang, Inbal Nahum-Shani, Vivek Shetty, Finale Doshi-Velez, Susan A. Murphy","Dental disease is one of the most common chronic diseases despite being
+largely preventable. However, professional advice on optimal oral hygiene
+practices is often forgotten or abandoned by patients. Therefore patients may
+benefit from timely and personalized encouragement to engage in oral self-care
+behaviors. In this paper, we develop an online reinforcement learning (RL)
+algorithm for use in optimizing the delivery of mobile-based prompts to
+encourage oral hygiene behaviors. One of the main challenges in developing such
+an algorithm is ensuring that the algorithm considers the impact of the current
+action on the effectiveness of future actions (i.e., delayed effects),
+especially when the algorithm has been made simple in order to run stably and
+autonomously in a constrained, real-world setting (i.e., highly noisy, sparse
+data). We address this challenge by designing a quality reward which maximizes
+the desired health outcome (i.e., high-quality brushing) while minimizing user
+burden. We also highlight a procedure for optimizing the hyperparameters of the
+reward by building a simulation environment test bed and evaluating candidates
+using the test bed. The RL algorithm discussed in this paper will be deployed
+in Oralytics, an oral self-care app that provides behavioral strategies to
+boost patient engagement in oral hygiene practices.",2022-08-15T18:47:09Z,http://arxiv.org/abs/2208.07406v3,oral health
+"A Novel Approach using CapsNet and Deep Belief Network for Detection and
+  Identification of Oral Leukopenia","Hirthik Mathesh GV, Kavin Chakravarthy M, Sentil Pandi S","Oral cancer constitutes a significant global health concern, resulting in
+277,484 fatalities in 2023, with the highest prevalence observed in low- and
+middle-income nations. Facilitating automation in the detection of possibly
+malignant and malignant lesions in the oral cavity could result in
+cost-effective and early disease diagnosis. Establishing an extensive
+repository of meticulously annotated oral lesions is essential. In this
+research photos are being collected from global clinical experts, who have been
+equipped with an annotation tool to generate comprehensive labelling. This
+research presents a novel approach for integrating bounding box annotations
+from various doctors. Additionally, Deep Belief Network combined with CAPSNET
+is employed to develop automated systems that extracted intricate patterns to
+address this challenging problem. This study evaluated two deep learning-based
+computer vision methodologies for the automated detection and classification of
+oral lesions to facilitate the early detection of oral cancer: image
+classification utilizing CAPSNET. Image classification attained an F1 score of
+94.23% for detecting photos with lesions 93.46% for identifying images
+necessitating referral. Object detection attained an F1 score of 89.34% for
+identifying lesions for referral. Subsequent performances are documented about
+classification based on the sort of referral decision. Our preliminary findings
+indicate that deep learning possesses the capability to address this complex
+problem.",2025-01-01T15:45:00Z,http://arxiv.org/abs/2501.00876v1,oral health
+"TIFTI: A Framework for Extracting Drug Intervals from Longitudinal
+  Clinic Notes","Monica Agrawal, Griffin Adams, Nathan Nussbaum, Benjamin Birnbaum","Oral drugs are becoming increasingly common in oncology care. In contrast to
+intravenous chemotherapy, which is administered in the clinic and carefully
+tracked via structure electronic health records (EHRs), oral drug treatment is
+self-administered and therefore not tracked as well. Often, the details of oral
+cancer treatment occur only in unstructured clinic notes. Extracting this
+information is critical to understanding a patient's treatment history. Yet,
+this a challenging task because treatment intervals must be inferred
+longitudinally from both explicit mentions in the text as well as from document
+timestamps. In this work, we present TIFTI (Temporally Integrated Framework for
+Treatment Intervals), a robust framework for extracting oral drug treatment
+intervals from a patient's unstructured notes. TIFTI leverages distinct sources
+of temporal information by breaking the problem down into two separate
+subtasks: document-level sequence labeling and date extraction. On a labeled
+dataset of metastatic renal-cell carcinoma (RCC) patients, it exactly matched
+the labeled start date in 46% of the examples (86% of the examples within 30
+days), and it exactly matched the labeled end date in 52% of the examples (78%
+of the examples within 30 days). Without retraining, the model achieved a
+similar level of performance on a labeled dataset of advanced non-small-cell
+lung cancer (NSCLC) patients.",2018-11-30T13:50:15Z,http://arxiv.org/abs/1811.12793v2,oral health
+"A Deployed Online Reinforcement Learning Algorithm In An Oral Health
+  Clinical Trial","Anna L. Trella, Kelly W. Zhang, Hinal Jajal, Inbal Nahum-Shani, Vivek Shetty, Finale Doshi-Velez, Susan A. Murphy","Dental disease is a prevalent chronic condition associated with substantial
+financial burden, personal suffering, and increased risk of systemic diseases.
+Despite widespread recommendations for twice-daily tooth brushing, adherence to
+recommended oral self-care behaviors remains sub-optimal due to factors such as
+forgetfulness and disengagement. To address this, we developed Oralytics, a
+mHealth intervention system designed to complement clinician-delivered
+preventative care for marginalized individuals at risk for dental disease.
+Oralytics incorporates an online reinforcement learning algorithm to determine
+optimal times to deliver intervention prompts that encourage oral self-care
+behaviors. We have deployed Oralytics in a registered clinical trial. The
+deployment required careful design to manage challenges specific to the
+clinical trials setting in the U.S. In this paper, we (1) highlight key design
+decisions of the RL algorithm that address these challenges and (2) conduct a
+re-sampling analysis to evaluate algorithm design decisions. A second phase
+(randomized control trial) of Oralytics is planned to start in spring 2025.",2024-09-03T17:16:01Z,http://arxiv.org/abs/2409.02069v2,oral health
+"Modelling disease progression with multi-level electronic health records
+  data and informative observation times: an application to treating iron
+  deficiency anaemia in primary care of the UK","Li Su, Yafeng Cheng, Dora I. A. Pereira, Jonathan J. Powell","Modelling disease progression of iron deficiency anaemia (IDA) following oral
+iron supplement prescriptions is a prerequisite for evaluating the
+cost-effectiveness of oral iron supplements. Electronic health records (EHRs)
+from the Clinical Practice Research Datalink (CPRD) provide rich longitudinal
+data on IDA disease progression in patients registered with 663 General
+Practitioner (GP) practices in the UK, but they also create challenges in
+statistical analyses. First, the CPRD data are clustered at multi-levels (i.e.,
+GP practices and patients), but their large volume makes it computationally
+difficult to implement estimation of standard random effects models for
+multi-level data. Second, observation times in the CPRD data are irregular and
+could be informative about the disease progression. For example, shorter/longer
+gap times between GP visits could be associated with deteriorating/improving
+IDA. Existing methods to address informative observation times are mostly based
+on complex joint models, which adds more computational burden. To tackle these
+challenges, we develop a computationally efficient approach to modelling
+disease progression with EHRs data while accounting for variability at
+multi-level clusters and informative observation times. We apply the proposed
+method to the CPRD data to investigate IDA improvement and treatment
+intolerance following oral iron prescriptions in primary care of the UK.",2021-07-29T13:34:55Z,http://arxiv.org/abs/2107.13956v1,oral health
+Replicable Bandits for Digital Health Interventions,"Kelly W. Zhang, Nowell Closser, Anna L. Trella, Susan A. Murphy","Adaptive treatment assignment algorithms, such as bandit and reinforcement
+learning algorithms, are increasingly used in digital health intervention
+clinical trials. Causal inference and related data analyses are critical for
+evaluating digital health interventions, deciding how to refine the
+intervention, and deciding whether to roll-out the intervention more broadly.
+However the replicability of these analyses has received relatively little
+attention. This work investigates the replicability of statistical analyses
+from trials deploying adaptive treatment assignment algorithms. We demonstrate
+that many standard statistical estimators can be inconsistent and fail to be
+replicable across repetitions of the clinical trial, even as the sample size
+grows large. We show that this non-replicability is intimately related to
+properties of the adaptive algorithm itself. We introduce a formal definition
+of a ""replicable bandit algorithm"" and prove that under such algorithms, a wide
+variety of common statistical analyses are guaranteed to be consistent. We
+present both theoretical results and simulation studies based on a mobile
+health oral health self-care intervention. Our findings underscore the
+importance of designing adaptive algorithms with replicability in mind,
+especially for settings like digital health where deployment decisions rely
+heavily on replicated evidence. We conclude by discussing open questions on the
+connections between algorithm design, statistical inference, and experimental
+replicability.",2024-07-22T04:57:51Z,http://arxiv.org/abs/2407.15377v2,oral health
+"A reference-invariant health disparity index based on Rényi
+  divergence",Makram Talih,"One of four overarching goals of Healthy People 2020 (HP2020) is to achieve
+health equity, eliminate disparities, and improve the health of all groups. In
+health disparity indices (HDIs) such as the mean log deviation (MLD) and Theil
+index (TI), disparities are relative to the population average, whereas in the
+index of disparity (IDisp) the reference is the group with the least adverse
+health outcome. Although the latter may be preferable, identification of a
+reference group can be affected by statistical reliability. To address this
+issue, we propose a new HDI, the R\'{e}nyi index (RI), which is
+reference-invariant. When standardized, the RI extends the Atkinson index,
+where a disparity aversion parameter can incorporate societal values associated
+with health equity. In addition, both the MLD and TI are limiting cases of the
+RI. Also, a symmetrized R\'{e}nyi index (SRI) can be constructed, resulting in
+a symmetric measure in the two distributions whose relative entropy is being
+evaluated. We discuss alternative symmetric and reference-invariant HDIs
+derived from the generalized entropy (GE) class and the Bregman divergence, and
+argue that the SRI is more robust than its GE-based counterpart to small
+changes in the distribution of the adverse health outcome. We evaluate the
+design-based standard errors and bootstrapped sampling distributions for the
+SRI, and illustrate the proposed methodology using data from the National
+Health and Nutrition Examination Survey (NHANES) on the 2001-04 prevalence of
+moderate or severe periodontitis among adults aged 45-74, which track Oral
+Health objective OH-5 in HP2020. Such data, which use a binary individual-level
+outcome variable, are typical of HP2020 data.",2013-12-09T10:08:09Z,http://arxiv.org/abs/1312.2363v1,oral health
+"AI-Dentify: Deep learning for proximal caries detection on bitewing
+  x-ray -- HUNT4 Oral Health Study","Javier Pérez de Frutos, Ragnhild Holden Helland, Shreya Desai, Line Cathrine Nymoen, Thomas Langø, Theodor Remman, Abhijit Sen","Background: Dental caries diagnosis requires the manual inspection of
+diagnostic bitewing images of the patient, followed by a visual inspection and
+probing of the identified dental pieces with potential lesions. Yet the use of
+artificial intelligence, and in particular deep-learning, has the potential to
+aid in the diagnosis by providing a quick and informative analysis of the
+bitewing images.
+  Methods: A dataset of 13,887 bitewings from the HUNT4 Oral Health Study were
+annotated individually by six different experts, and used to train three
+different object detection deep-learning architectures: RetinaNet (ResNet50),
+YOLOv5 (M size), and EfficientDet (D0 and D1 sizes). A consensus dataset of 197
+images, annotated jointly by the same six dentist, was used for evaluation. A
+five-fold cross validation scheme was used to evaluate the performance of the
+AI models.
+  Results: he trained models show an increase in average precision and
+F1-score, and decrease of false negative rate, with respect to the dental
+clinicians. When compared against the dental clinicians, the YOLOv5 model shows
+the largest improvement, reporting 0.647 mean average precision, 0.548 mean
+F1-score, and 0.149 mean false negative rate. Whereas the best annotators on
+each of these metrics reported 0.299, 0.495, and 0.164 respectively.
+  Conclusion: Deep-learning models have shown the potential to assist dental
+professionals in the diagnosis of caries. Yet, the task remains challenging due
+to the artifacts natural to the bitewing images.",2023-09-30T12:17:36Z,http://arxiv.org/abs/2310.00354v3,oral health
+"Question Answering for Complex Electronic Health Records Database using
+  Unified Encoder-Decoder Architecture","Seongsu Bae, Daeyoung Kim, Jiho Kim, Edward Choi","An intelligent machine that can answer human questions based on electronic
+health records (EHR-QA) has a great practical value, such as supporting
+clinical decisions, managing hospital administration, and medical chatbots.
+Previous table-based QA studies focusing on translating natural questions into
+table queries (NLQ2SQL), however, suffer from the unique nature of EHR data due
+to complex and specialized medical terminology, hence increased decoding
+difficulty. In this paper, we design UniQA, a unified encoder-decoder
+architecture for EHR-QA where natural language questions are converted to
+queries such as SQL or SPARQL. We also propose input masking (IM), a simple and
+effective method to cope with complex medical terms and various typos and
+better learn the SQL/SPARQL syntax. Combining the unified architecture with an
+effective auxiliary training objective, UniQA demonstrated a significant
+performance improvement against the previous state-of-the-art model for
+MIMICSQL* (14.2% gain), the most complex NLQ2SQL dataset in the EHR domain, and
+its typo-ridden versions (approximately 28.8% gain). In addition, we confirmed
+consistent results for the graph-based EHR-QA dataset, MIMICSPARQL*.",2021-11-14T05:01:38Z,http://arxiv.org/abs/2111.14703v1,oral health
+Oral squamous cell detection using deep learning,Samrat Kumar Dev Sharma,"Oral squamous cell carcinoma (OSCC) represents a significant global health
+concern, with increasing incidence rates and challenges in early diagnosis and
+treatment planning. Early detection is crucial for improving patient outcomes
+and survival rates. Deep learning, a subset of machine learning, has shown
+remarkable progress in extracting and analyzing crucial information from
+medical imaging data.EfficientNetB3, an advanced convolutional neural network
+architecture, has emerged as a leading model for image classification tasks,
+including medical imaging. Its superior performance, characterized by high
+accuracy, precision, and recall, makes it particularly promising for OSCC
+detection and diagnosis. EfficientNetB3 achieved an accuracy of 0.9833,
+precision of 0.9782, and recall of 0.9782 in our analysis. By leveraging
+EfficientNetB3 and other deep learning technologies, clinicians can potentially
+improve the accuracy and efficiency of OSCC diagnosis, leading to more timely
+interventions and better patient outcomes. This article also discusses the role
+of deep learning in advancing precision medicine for OSCC and provides insights
+into prospects and challenges in leveraging this technology for enhanced cancer
+care.",2024-08-16T14:34:57Z,http://arxiv.org/abs/2408.08939v1,oral health
+"Exploring the Role of Convolutional Neural Networks (CNN) in Dental
+  Radiography Segmentation: A Comprehensive Systematic Literature Review","Walid Brahmi, Imen Jdey, Fadoua Drira","In the field of dentistry, there is a growing demand for increased precision
+in diagnostic tools, with a specific focus on advanced imaging techniques such
+as computed tomography, cone beam computed tomography, magnetic resonance
+imaging, ultrasound, and traditional intra-oral periapical X-rays. Deep
+learning has emerged as a pivotal tool in this context, enabling the
+implementation of automated segmentation techniques crucial for extracting
+essential diagnostic data. This integration of cutting-edge technology
+addresses the urgent need for effective management of dental conditions, which,
+if left undetected, can have a significant impact on human health. The
+impressive track record of deep learning across various domains, including
+dentistry, underscores its potential to revolutionize early detection and
+treatment of oral health issues. Objective: Having demonstrated significant
+results in diagnosis and prediction, deep convolutional neural networks (CNNs)
+represent an emerging field of multidisciplinary research. The goals of this
+study were to provide a concise overview of the state of the art, standardize
+the current debate, and establish baselines for future research. Method: In
+this study, a systematic literature review is employed as a methodology to
+identify and select relevant studies that specifically investigate the deep
+learning technique for dental imaging analysis. This study elucidates the
+methodological approach, including the systematic collection of data,
+statistical analysis, and subsequent dissemination of outcomes. Conclusion:
+This work demonstrates how Convolutional Neural Networks (CNNs) can be employed
+to analyze images, serving as effective tools for detecting dental pathologies.
+Although this research acknowledged some limitations, CNNs utilized for
+segmenting and categorizing teeth exhibited their highest level of performance
+overall.",2024-01-17T13:00:57Z,http://arxiv.org/abs/2401.09190v1,oral health
+"Using artificial intelligence to detect chest X-rays with no significant
+  findings in a primary health care setting in Oulu, Finland","Tommi Keski-Filppula, Marko Nikki, Marianne Haapea, Naglis Ramanauskas, Osmo Tervonen","Objectives: To assess the use of artificial intelligence-based software in
+ruling out chest X-ray cases, with no significant findings in a primary health
+care setting.
+  Methods: In this retrospective study, a commercially available artificial
+intelligence (AI) software was used to analyse 10 000 chest X-rays of Finnish
+primary health care patients. In studies with a mismatch between an AI normal
+report and the original radiologist report, a consensus read by two
+board-certified radiologists was conducted to make the final diagnosis.
+  Results: After the exclusion of cases not meeting the study criteria, 9579
+cases were analysed by AI. Of these cases, 4451 were considered normal in the
+original radiologist report and 4644 after the consensus reading. The number of
+cases correctly found nonsignificant by AI was 1692 (17.7% of all studies and
+36.4% of studies with no significant findings). After the consensus read, there
+were nine confirmed false-negative studies. These studies included four cases
+of slightly enlarged heart size, four cases of slightly increased pulmonary
+opacification and one case with a small unilateral pleural effusion. This gives
+the AI a sensitivity of 99.8% (95% CI= 99.65-99.92) and specificity of 36.4 %
+(95% CI= 35.05-37.84) for recognising significant pathology on a chest X-ray.
+  Conclusions: AI was able to correctly rule out 36.4% of chest X-rays with no
+significant findings of primary health care patients, with a minimal number of
+false negatives that would lead to effectively no compromise on patient safety.
+No critical findings were missed by the software.",2022-05-17T06:48:01Z,http://arxiv.org/abs/2205.08123v1,oral health
+"Figurative-cum-Commonsense Knowledge Infusion for Multimodal Mental
+  Health Meme Classification","Abdullah Mazhar, Zuhair hasan shaik, Aseem Srivastava, Polly Ruhnke, Lavanya Vaddavalli, Sri Keshav Katragadda, Shweta Yadav, Md Shad Akhtar","The expression of mental health symptoms through non-traditional means, such
+as memes, has gained remarkable attention over the past few years, with users
+often highlighting their mental health struggles through figurative intricacies
+within memes. While humans rely on commonsense knowledge to interpret these
+complex expressions, current Multimodal Language Models (MLMs) struggle to
+capture these figurative aspects inherent in memes. To address this gap, we
+introduce a novel dataset, AxiOM, derived from the GAD anxiety questionnaire,
+which categorizes memes into six fine-grained anxiety symptoms. Next, we
+propose a commonsense and domain-enriched framework, M3H, to enhance MLMs'
+ability to interpret figurative language and commonsense knowledge. The
+overarching goal remains to first understand and then classify the mental
+health symptoms expressed in memes. We benchmark M3H against 6 competitive
+baselines (with 20 variations), demonstrating improvements in both quantitative
+and qualitative metrics, including a detailed human evaluation. We observe a
+clear improvement of 4.20% and 4.66% on weighted-F1 metric. To assess the
+generalizability, we perform extensive experiments on a public dataset,
+RESTORE, for depressive symptom identification, presenting an extensive
+ablation study that highlights the contribution of each module in both
+datasets. Our findings reveal limitations in existing models and the advantage
+of employing commonsense to enhance figurative understanding.",2025-01-25T20:36:21Z,http://arxiv.org/abs/2501.15321v1,oral health
+"Let it shine: Autofluorescence of Papanicolaou-stain improves AI-based
+  cytological oral cancer detection","Wenyi Lian, Joakim Lindblad, Christina Runow Stark, Jan-Michaél Hirsch, Nataša Sladoje","Oral cancer is a global health challenge. It is treatable if detected early,
+but it is often fatal in late stages. There is a shift from the invasive and
+time-consuming tissue sampling and histological examination, toward
+non-invasive brush biopsies and cytological examination. Reliable
+computer-assisted methods are essential for cost-effective and accurate
+cytological analysis, but the lack of detailed cell-level annotations impairs
+model effectiveness. This study aims to improve AI-based oral cancer detection
+using multimodal imaging and deep fusion. We combine brightfield and
+fluorescence whole slide microscopy imaging to analyze Papanicolaou-stained
+liquid-based cytology slides of brush biopsies collected from both healthy and
+cancer patients. Due to limited cytological annotations, we utilize a weakly
+supervised deep learning approach using only patient-level labels. We evaluate
+various multimodal fusion strategies, including early, late, and three recent
+intermediate fusion methods. Our results show: (i) fluorescence imaging of
+Papanicolaou-stained samples provides substantial diagnostic information; (ii)
+multimodal fusion enhances classification and cancer detection accuracy over
+single-modality methods. Intermediate fusion is the leading method among the
+studied approaches. Specifically, the Co-Attention Fusion Network (CAFNet)
+model excels with an F1 score of 83.34% and accuracy of 91.79%, surpassing
+human performance on the task. Additional tests highlight the need for precise
+image registration to optimize multimodal analysis benefits. This study
+advances cytopathology by combining deep learning and multimodal imaging to
+enhance early, non-invasive detection of oral cancer, improving diagnostic
+accuracy and streamlining clinical workflows. The developed pipeline is also
+applicable in other cytological settings. Our codes and dataset are available
+online for further research.",2024-07-02T01:05:35Z,http://arxiv.org/abs/2407.01869v2,oral health
+Fuzzy Based Wellness Analyzer,"Rohit Ner, Dibya Prakash Das, Rishabh Kumar, Shubhika Garg","Social health and emotional wellness is a matter of concern in today's urban
+world. Being the part of a metropolis has an effect on mental health through
+the influence of increased stressors and factors such as overcrowded and
+polluted environment, high levels of violence, and reduced social support. It
+is important to realize that only healthy citizens can constitute together a
+smart city. In this paper, we present a fuzzy-based approach for analyzing the
+well being of a person. We track the general day to day activities of a person
+and analyze its performance. To do so, we divide the factors affecting the
+wellness of a person into three components which are the physical, productive
+and social. Using these parameters, we output a coefficient for the overall
+well being of a person.",2018-09-19T15:29:15Z,http://arxiv.org/abs/1809.07245v2,oral health
+Understanding Client Reactions in Online Mental Health Counseling,"Anqi Li, Lizhi Ma, Yaling Mei, Hongliang He, Shuai Zhang, Huachuan Qiu, Zhenzhong Lan","Communication success relies heavily on reading participants' reactions. Such
+feedback is especially important for mental health counselors, who must
+carefully consider the client's progress and adjust their approach accordingly.
+However, previous NLP research on counseling has mainly focused on studying
+counselors' intervention strategies rather than their clients' reactions to the
+intervention. This work aims to fill this gap by developing a theoretically
+grounded annotation framework that encompasses counselors' strategies and
+client reaction behaviors. The framework has been tested against a large-scale,
+high-quality text-based counseling dataset we collected over the past two years
+from an online welfare counseling platform. Our study shows how clients react
+to counselors' strategies, how such reactions affect the final counseling
+outcomes, and how counselors can adjust their strategies in response to these
+reactions. We also demonstrate that this study can help counselors
+automatically predict their clients' states.",2023-06-27T09:39:54Z,http://arxiv.org/abs/2306.15334v1,oral health
+"RAM-EHR: Retrieval Augmentation Meets Clinical Predictions on Electronic
+  Health Records","Ran Xu, Wenqi Shi, Yue Yu, Yuchen Zhuang, Bowen Jin, May D. Wang, Joyce C. Ho, Carl Yang","We present RAM-EHR, a Retrieval AugMentation pipeline to improve clinical
+predictions on Electronic Health Records (EHRs). RAM-EHR first collects
+multiple knowledge sources, converts them into text format, and uses dense
+retrieval to obtain information related to medical concepts. This strategy
+addresses the difficulties associated with complex names for the concepts.
+RAM-EHR then augments the local EHR predictive model co-trained with
+consistency regularization to capture complementary information from patient
+visits and summarized knowledge. Experiments on two EHR datasets show the
+efficacy of RAM-EHR over previous knowledge-enhanced baselines (3.4% gain in
+AUROC and 7.2% gain in AUPR), emphasizing the effectiveness of the summarized
+knowledge from RAM-EHR for clinical prediction tasks. The code will be
+published at \url{https://github.com/ritaranx/RAM-EHR}.",2024-02-25T23:10:20Z,http://arxiv.org/abs/2403.00815v3,oral health
+"FineEHR: Refine Clinical Note Representations to Improve Mortality
+  Prediction","Jun Wu, Xuesong Ye, Chengjie Mou, Weinan Dai","Monitoring the health status of patients in the Intensive Care Unit (ICU) is
+a critical aspect of providing superior care and treatment. The availability of
+large-scale electronic health records (EHR) provides machine learning models
+with an abundance of clinical text and vital sign data, enabling them to make
+highly accurate predictions. Despite the emergence of advanced Natural Language
+Processing (NLP) algorithms for clinical note analysis, the complex textual
+structure and noise present in raw clinical data have posed significant
+challenges. Coarse embedding approaches without domain-specific refinement have
+limited the accuracy of these algorithms. To address this issue, we propose
+FINEEHR, a system that utilizes two representation learning techniques, namely
+metric learning and fine-tuning, to refine clinical note embeddings, while
+leveraging the intrinsic correlations among different health statuses and note
+categories. We evaluate the performance of FINEEHR using two metrics, namely
+Area Under the Curve (AUC) and AUC-PR, on a real-world MIMIC III dataset. Our
+experimental results demonstrate that both refinement approaches improve
+prediction accuracy, and their combination yields the best results. Moreover,
+our proposed method outperforms prior works, with an AUC improvement of over
+10%, achieving an average AUC of 96.04% and an average AUC-PR of 96.48% across
+various classifiers.",2023-04-24T02:42:52Z,http://arxiv.org/abs/2304.11794v2,oral health
+Large-Scale Study of Temporal Shift in Health Insurance Claims,"Christina X Ji, Ahmed M Alaa, David Sontag","Most machine learning models for predicting clinical outcomes are developed
+using historical data. Yet, even if these models are deployed in the near
+future, dataset shift over time may result in less than ideal performance. To
+capture this phenomenon, we consider a task--that is, an outcome to be
+predicted at a particular time point--to be non-stationary if a historical
+model is no longer optimal for predicting that outcome. We build an algorithm
+to test for temporal shift either at the population level or within a
+discovered sub-population. Then, we construct a meta-algorithm to perform a
+retrospective scan for temporal shift on a large collection of tasks. Our
+algorithms enable us to perform the first comprehensive evaluation of temporal
+shift in healthcare to our knowledge. We create 1,010 tasks by evaluating 242
+healthcare outcomes for temporal shift from 2015 to 2020 on a health insurance
+claims dataset. 9.7% of the tasks show temporal shifts at the population level,
+and 93.0% have some sub-population affected by shifts. We dive into case
+studies to understand the clinical implications. Our analysis highlights the
+widespread prevalence of temporal shifts in healthcare.",2023-05-08T23:08:18Z,http://arxiv.org/abs/2305.05087v2,oral health
+"Integrating complex selection rules into the latent overlapping group
+  Lasso for constructing coherent prediction models","Guanbo Wang, Sylvie Perreault, Robert W. Platt, Rui Wang, Marc Dorais, Mireille E. Schnitzer","The construction of coherent prediction models holds great importance in
+medical research as such models enable health researchers to gain deeper
+insights into disease epidemiology and clinicians to identify patients at
+higher risk of adverse outcomes. One commonly employed approach to developing
+prediction models is variable selection through penalized regression
+techniques. Integrating natural variable structures into this process not only
+enhances model interpretability but can also %increase the likelihood of
+recovering the true underlying model and boost prediction accuracy. However, a
+challenge lies in determining how to effectively integrate potentially complex
+selection dependencies into the penalized regression. In this work, we
+demonstrate how to represent selection dependencies mathematically, provide
+algorithms for deriving the complete set of potential models, and offer a
+structured approach for integrating complex rules into variable selection
+through the latent overlapping group Lasso. To illustrate our methodology, we
+applied these techniques to construct a coherent prediction model for major
+bleeding in hypertensive patients recently hospitalized for atrial fibrillation
+and subsequently prescribed oral anticoagulants. In this application, we
+account for a proxy of anticoagulant adherence and its interaction with dosage
+and the type of oral anticoagulants in addition to drug-drug interactions.",2022-06-10T19:57:00Z,http://arxiv.org/abs/2206.05337v2,oral health
+"World Trade Center responders in their own words: Predicting PTSD
+  symptom trajectories with AI-based language analyses of interviews","Youngseo Son, Sean A. P. Clouston, Roman Kotov, Johannes C. Eichstaedt, Evelyn J. Bromet, Benjamin J. Luft, H Andrew Schwartz","Background: Oral histories from 9/11 responders to the World Trade Center
+(WTC) attacks provide rich narratives about distress and resilience. Artificial
+Intelligence (AI) models promise to detect psychopathology in natural language,
+but they have been evaluated primarily in non-clinical settings using social
+media. This study sought to test the ability of AI-based language assessments
+to predict PTSD symptom trajectories among responders. Methods: Participants
+were 124 responders whose health was monitored at the Stony Brook WTC Health
+and Wellness Program who completed oral history interviews about their initial
+WTC experiences. PTSD symptom severity was measured longitudinally using the
+PTSD Checklist (PCL) for up to 7 years post-interview. AI-based indicators were
+computed for depression, anxiety, neuroticism, and extraversion along with
+dictionary-based measures of linguistic and interpersonal style. Linear
+regression and multilevel models estimated associations of AI indicators with
+concurrent and subsequent PTSD symptom severity (significance adjusted by false
+discovery rate). Results: Cross-sectionally, greater depressive language
+(beta=0.32; p=0.043) and first-person singular usage (beta=0.31; p=0.044) were
+associated with increased symptom severity. Longitudinally, anxious language
+predicted future worsening in PCL scores (beta=0.31; p=0.031), whereas
+first-person plural usage (beta=-0.37; p=0.007) and longer words usage
+(beta=-0.36; p=0.007) predicted improvement. Conclusions: This is the first
+study to demonstrate the value of AI in understanding PTSD in a vulnerable
+population. Future studies should extend this application to other trauma
+exposures and to other demographic groups, especially under-represented
+minorities.",2020-11-12T15:57:23Z,http://arxiv.org/abs/2011.06457v1,oral health
+"Bayesian Variable Selection for Multivariate Zero-Inflated Models:
+  Application to Microbiome Count Data","Kyu Ha Lee, Brent A. Coull, Anna-Barbara Moscicki, Bruce J. Paster, Jacqueline R. Starr","Microorganisms play critical roles in human health and disease. It is well
+known that microbes live in diverse communities in which they interact
+synergistically or antagonistically. Thus for estimating microbial associations
+with clinical covariates, multivariate statistical models are preferred.
+Multivariate models allow one to estimate and exploit complex interdependencies
+among multiple taxa, yielding more powerful tests of exposure or treatment
+effects than application of taxon-specific univariate analyses. In addition,
+the analysis of microbial count data requires special attention because data
+commonly exhibit zero inflation. To meet these needs, we developed a Bayesian
+variable selection model for multivariate count data with excess zeros that
+incorporates information on the covariance structure of the outcomes (counts
+for multiple taxa), while estimating associations with the mean levels of these
+outcomes. Although there has been a great deal of effort in zero-inflated
+models for longitudinal data, little attention has been given to
+high-dimensional multivariate zero-inflated data modeled via a general
+correlation structure. Through simulation, we compared performance of the
+proposed method to that of existing univariate approaches, for both the binary
+and count parts of the model. When outcomes were correlated the proposed
+variable selection method maintained type I error while boosting the ability to
+identify true associations in the binary component of the model. For the count
+part of the model, in some scenarios the the univariate method had higher power
+than the multivariate approach. This higher power was at a cost of a highly
+inflated false discovery rate not observed with the proposed multivariate
+method. We applied the approach to oral microbiome data from the Pediatric
+HIV/AIDS Cohort Oral Health Study and identified five species (of 44)
+associated with HIV infection.",2017-11-01T01:34:02Z,http://arxiv.org/abs/1711.00157v3,oral health
+"Beyond Low Earth Orbit: Biomonitoring, Artificial Intelligence, and
+  Precision Space Health","Ryan T. Scott, Erik L. Antonsen, Lauren M. Sanders, Jaden J. A. Hastings, Seung-min Park, Graham Mackintosh, Robert J. Reynolds, Adrienne L. Hoarfrost, Aenor Sawyer, Casey S. Greene, Benjamin S. Glicksberg, Corey A. Theriot, Daniel C. Berrios, Jack Miller, Joel Babdor, Richard Barker, Sergio E. Baranzini, Afshin Beheshti, Stuart Chalk, Guillermo M. Delgado-Aparicio, Melissa Haendel, Arif A. Hamid, Philip Heller, Daniel Jamieson, Katelyn J. Jarvis, John Kalantari, Kia Khezeli, Svetlana V. Komarova, Matthieu Komorowski, Prachi Kothiyal, Ashish Mahabal, Uri Manor, Hector Garcia Martin, Christopher E. Mason, Mona Matar, George I. Mias, Jerry G. Myers, Jr., Charlotte Nelson, Jonathan Oribello, Patricia Parsons-Wingerter, R. K. Prabhu, Amina Ann Qutub, Jon Rask, Amanda Saravia-Butler, Suchi Saria, Nitin Kumar Singh, Frank Soboczenski, Michael Snyder, Karthik Soman, David Van Valen, Kasthuri Venkateswaran, Liz Warren, Liz Worthey, Jason H. Yang, Marinka Zitnik, Sylvain V. Costes","Human space exploration beyond low Earth orbit will involve missions of
+significant distance and duration. To effectively mitigate myriad space health
+hazards, paradigm shifts in data and space health systems are necessary to
+enable Earth-independence, rather than Earth-reliance. Promising developments
+in the fields of artificial intelligence and machine learning for biology and
+health can address these needs. We propose an appropriately autonomous and
+intelligent Precision Space Health system that will monitor, aggregate, and
+assess biomedical statuses; analyze and predict personalized adverse health
+outcomes; adapt and respond to newly accumulated data; and provide preventive,
+actionable, and timely insights to individual deep space crew members and
+iterative decision support to their crew medical officer. Here we present a
+summary of recommendations from a workshop organized by the National
+Aeronautics and Space Administration, on future applications of artificial
+intelligence in space biology and health. In the next decade, biomonitoring
+technology, biomarker science, spacecraft hardware, intelligent software, and
+streamlined data management must mature and be woven together into a Precision
+Space Health system to enable humanity to thrive in deep space.",2021-12-22T05:33:15Z,http://arxiv.org/abs/2112.12554v1,oral health
+"Efficient Estimation of Mixture Cure Frailty Model for Clustered Current
+  Status Data","Tong Wang, Kejun He, Wei Ma, Dipankar Bandyopadhyay, Samiran Sinha","Current status data abounds in the field of epidemiology and public health,
+where the only observable data for a subject is the random inspection time and
+the event status at inspection. Motivated by such a current status data from a
+periodontal study where data are inherently clustered, we propose a unified
+methodology to analyze such complex data. We allow the time-to-event to follow
+the semiparametric GOR model with a cure fraction, and develop a unified
+estimation scheme powered by the EM algorithm. The within-subject correlation
+is accounted for by a random (frailty) effect, and the non-parametric component
+of the GOR model is approximated via penalized splines, with a set of knot
+points that increases with the sample size. Proposed methodology is accompanied
+by a rigorous asymptotic theory, and the related semiparametric efficiency. The
+finite sample performance of our model parameters are assessed via simulation
+studies. Furthermore, the proposed methodology is illustrated via application
+to the oral health data, accompanied by diagnostic checks to identify
+influential observations. An easy to use R package CRFCSD is also available for
+implementation.",2019-12-01T00:41:22Z,http://arxiv.org/abs/1912.00295v3,oral health
+"Targeted Estimation of Heterogeneous Treatment Effect in Observational
+  Survival Analysis","Jie Zhu, Blanca Gallego","The aim of clinical effectiveness research using repositories of electronic
+health records is to identify what health interventions 'work best' in
+real-world settings. Since there are several reasons why the net benefit of
+intervention may differ across patients, current comparative effectiveness
+literature focuses on investigating heterogeneous treatment effect and
+predicting whether an individual might benefit from an intervention. The
+majority of this literature has concentrated on the estimation of the effect of
+treatment on binary outcomes. However, many medical interventions are evaluated
+in terms of their effect on future events, which are subject to loss to
+follow-up. In this study, we describe a framework for the estimation of
+heterogeneous treatment effect in terms of differences in time-to-event
+(survival) probabilities. We divide the problem into three phases: (1)
+estimation of treatment effect conditioned on unique sets of the covariate
+vector; (2) identification of features important for heterogeneity using an
+ensemble of non-parametric variable importance methods; and (3) estimation of
+treatment effect on the reference classes defined by the previously selected
+features, using one-step Targeted Maximum Likelihood Estimation. We conducted a
+series of simulation studies and found that this method performs well when
+either sample size or event rate is high enough and the number of covariates
+contributing to the effect heterogeneity is moderate. An application of this
+method to a clinical case study was conducted by estimating the effect of oral
+anticoagulants on newly diagnosed non-valvular atrial fibrillation patients
+using data from the UK Clinical Practice Research Datalink.",2019-10-20T02:27:45Z,http://arxiv.org/abs/1910.08877v2,oral health
+"Automatic Recommendation of Strategies for Minimizing Discomfort in
+  Virtual Environments","Thiago Porcino, Esteban Clua, Daniela Trevisan, Érick Rodrigues, Alexandre Silva","Virtual reality (VR) is an imminent trend in games, education, entertainment,
+military, and health applications, as the use of head-mounted displays is
+becoming accessible to the mass market. Virtual reality provides immersive
+experiences but still does not offer an entirely perfect situation, mainly due
+to Cybersickness (CS) issues. In this work, we first present a detailed review
+about possible causes of CS. Following, we propose a novel CS prediction
+solution. Our system is able to suggest if the user may be entering in the next
+moments of the application into an illness situation. We use Random Forest
+classifiers, based on a dataset we have produced. The CSPQ (Cybersickness
+Profile Questionnaire) is also proposed, which is used to identify the player's
+susceptibility to CS and the dataset construction. In addition, we designed two
+immersive environments for empirical studies where participants are asked to
+complete the questionnaire and describe (orally) the degree of discomfort
+during their gaming experience. Our data was achieved through 84 individuals on
+different days, using VR devices. Our proposal also allows us to identify which
+are the most frequent attributes (causes) in the observed discomfort
+situations.",2020-06-27T19:28:48Z,http://arxiv.org/abs/2006.15432v1,oral health
+"Towards an unifying perspective of the fundamental properties and
+  structural principles governing the immune system","Paolo Tieri, Gastone C. Castellani, Claudio Franceschi","In the study of the basic properties observed in the immune system and, in a
+broader view, in biological systems, several concepts have already been
+mathematically formulated or treated in an analytical perspective, such as
+degeneracy, robustness, noise, and bow tie architecture. These properties,
+among others, seem to rule many aspects of the system functioning, and share
+among themselvesseveral characteristics, intersecting each other, and often
+becoming one the indivisible part of the other. According to Kitano, systems
+biology needs solid theoretical and methodological foundation of principles and
+properties, able to lead towards a unified perspective. An effort in unifying
+the formalization and analysis of these principles can be now timely attempted.",2008-01-15T14:05:56Z,http://arxiv.org/abs/0801.2302v1,oral health
+"Relationship between Periodontal disease and Asthma among
+  overweight/obese adults","Roberto Rivera, Oelisoa M. Andriankaja, Cynthia M. Perez, Kaumudi Joshipura","Aim: To assess the relationship between oral health and asthma. Methods: Data
+from 1,315 overweight or obese individuals, aged 40-65 years was used. Asthma
+was self-reported, while periodontitis, bleeding on probing (BOP), and plaque
+index were determined by clinical examinations. Results: Using logistic
+regression adjusting for gender, smoking status, age, body mass index, family
+history of asthma, and income level, revealed that the odds ratio (OR) of
+asthma for a participant with severe periodontitis was 0.44 (95% confidence
+interval: 0.27, 0.70) that of a participant with none/mild periodontitis . On
+the other hand, proportion of BOP sites, and plaque index were not
+statistically significant. For a participant with severe periodontitis, the OR
+of taking asthma medication was 0.20 (95% confidence interval: 0.09, 0.43) that
+of a participant with none/mild periodontitis. Moreover, proportion of BOP
+sites was statistically associated to use of asthma medication while plaque
+index still remained non-significant. Conclusion: Participants with severe
+periodontitis were less likely to have asthma. Stronger evidence of an inverse
+association was found when using asthma medication as outcome. Keywords:
+asthma; periodontal disease; asthma medication; periodontitis; hygiene
+hypothesis",2016-05-07T01:38:27Z,http://arxiv.org/abs/1606.00261v1,oral health
+"An Investigation of Recurrent Neural Architectures for Drug Name
+  Recognition","Raghavendra Chalapathy, Ehsan Zare Borzeshi, Massimo Piccardi","Drug name recognition (DNR) is an essential step in the Pharmacovigilance
+(PV) pipeline. DNR aims to find drug name mentions in unstructured biomedical
+texts and classify them into predefined categories. State-of-the-art DNR
+approaches heavily rely on hand crafted features and domain specific resources
+which are difficult to collect and tune. For this reason, this paper
+investigates the effectiveness of contemporary recurrent neural architectures -
+the Elman and Jordan networks and the bidirectional LSTM with CRF decoding - at
+performing DNR straight from the text. The experimental results achieved on the
+authoritative SemEval-2013 Task 9.1 benchmarks show that the bidirectional
+LSTM-CRF ranks closely to highly-dedicated, hand-crafted systems.",2016-09-24T08:45:17Z,http://arxiv.org/abs/1609.07585v1,oral health
+"A Sequential Density-Based Empirical Likelihood Ratio Test for Treatment
+  Effects","Li Zou, Albert Vexler, Jihnhee Yu, Hongzhi Wan","In health-related experiments, treatment effects can be identified using
+paired data that consist of pre- and post-treatment measurements. In this
+framework, sequential testing strategies are widely accepted statistical tools
+in practice. Since performances of parametric sequential testing procedures
+vitally depend on the validity of the parametric assumptions regarding
+underlying data distributions, we focus on distribution-free mechanisms for
+sequentially evaluating treatment effects. In fixed sample size designs, the
+density-based empirical likelihood (DBEL) methods provide powerful
+nonparametric approximations to optimal Neyman-Pearson type statistics. In this
+article, we extend the DBEL methodology to develop a novel sequential DBEL
+testing procedure for detecting treatment effects based on paired data. The
+asymptotic consistency of the proposed test is shown. An extensive Monte Carlo
+study confirms that the proposed test outperforms the conventional sequential
+Wilcoxon signed-rank test across a variety of alternatives. The excellent
+applicability of the proposed method is exemplified using the
+ventilator-associated pneumonia study that evaluates the effect of
+Chlorhexidine Gluconate treatment in reducing oral colonization by pathogens in
+ventilated patients.",2018-12-20T20:09:58Z,http://arxiv.org/abs/1812.08824v1,oral health
+"The unreasonable effectiveness of Batch-Norm statistics in addressing
+  catastrophic forgetting across medical institutions","Sharut Gupta, Praveer Singh, Ken Chang, Mehak Aggarwal, Nishanth Arun, Liangqiong Qu, Katharina Hoebel, Jay Patel, Mishka Gidwani, Ashwin Vaswani, Daniel L Rubin, Jayashree Kalpathy-Cramer","Model brittleness is a primary concern when deploying deep learning models in
+medical settings owing to inter-institution variations, like patient
+demographics and intra-institution variation, such as multiple scanner types.
+While simply training on the combined datasets is fraught with data privacy
+limitations, fine-tuning the model on subsequent institutions after training it
+on the original institution results in a decrease in performance on the
+original dataset, a phenomenon called catastrophic forgetting. In this paper,
+we investigate trade-off between model refinement and retention of previously
+learned knowledge and subsequently address catastrophic forgetting for the
+assessment of mammographic breast density. More specifically, we propose a
+simple yet effective approach, adapting Elastic weight consolidation (EWC)
+using the global batch normalization (BN) statistics of the original dataset.
+The results of this study provide guidance for the deployment of clinical deep
+learning models where continuous learning is needed for domain expansion.",2020-11-16T16:57:05Z,http://arxiv.org/abs/2011.08096v1,oral health
+"Transparent Classification with Multilayer Logical Perceptrons and
+  Random Binarization","Zhuo Wang, Wei Zhang, Ning Liu, Jianyong Wang","Models with transparent inner structure and high classification performance
+are required to reduce potential risk and provide trust for users in domains
+like health care, finance, security, etc. However, existing models are hard to
+simultaneously satisfy the above two properties. In this paper, we propose a
+new hierarchical rule-based model for classification tasks, named Concept Rule
+Sets (CRS), which has both a strong expressive ability and a transparent inner
+structure. To address the challenge of efficiently learning the
+non-differentiable CRS model, we propose a novel neural network architecture,
+Multilayer Logical Perceptron (MLLP), which is a continuous version of CRS.
+Using MLLP and the Random Binarization (RB) method we proposed, we can search
+the discrete solution of CRS in continuous space using gradient descent and
+ensure the discrete CRS acts almost the same as the corresponding continuous
+MLLP. Experiments on 12 public data sets show that CRS outperforms the
+state-of-the-art approaches and the complexity of the learned CRS is close to
+the simple decision tree. Source code is available at
+https://github.com/12wang3/mllp.",2019-12-10T14:13:09Z,http://arxiv.org/abs/1912.04695v2,oral health
+"SupWMA: Consistent and Efficient Tractography Parcellation of
+  Superficial White Matter with Deep Learning","Tengfei Xue, Fan Zhang, Chaoyi Zhang, Yuqian Chen, Yang Song, Nikos Makris, Yogesh Rathi, Weidong Cai, Lauren J. O'Donnell","White matter parcellation classifies tractography streamlines into clusters
+or anatomically meaningful tracts to enable quantification and visualization.
+Most parcellation methods focus on the deep white matter (DWM), while fewer
+methods address the superficial white matter (SWM) due to its complexity. We
+propose a deep-learning-based framework, Superficial White Matter Analysis
+(SupWMA), that performs an efficient and consistent parcellation of 198 SWM
+clusters from whole-brain tractography. A point-cloud-based network is modified
+for our SWM parcellation task, and supervised contrastive learning enables more
+discriminative representations between plausible streamlines and outliers. We
+perform evaluation on a large tractography dataset with ground truth labels and
+on three independently acquired testing datasets from individuals across ages
+and health conditions. Compared to several state-of-the-art methods, SupWMA
+obtains a highly consistent and accurate SWM parcellation result. In addition,
+the computational speed of SupWMA is much faster than other methods.",2022-01-29T08:42:03Z,http://arxiv.org/abs/2201.12528v1,oral health
+Moving Metric Detection and Alerting System at eBay,"Zezhong Zhang, Keyu Nie, Ted Tao Yuan","At eBay, there are thousands of product health metrics for different domain
+teams to monitor. We built a two-phase alerting system to notify users with
+actionable alerts based on anomaly detection and alert retrieval. In the first
+phase, we developed an efficient anomaly detection algorithm, called Moving
+Metric Detector (MMD), to identify potential alerts among metrics with
+distribution agnostic criteria. In the second alert retrieval phase, we built
+additional logic with feedbacks to select valid actionable alerts with
+point-wise ranking model and business rules. Compared with other trend and
+seasonality decomposition methods, our decomposer is faster and better to
+detect anomalies in unsupervised cases. Our two-phase approach dramatically
+improves alert precision and avoids alert spamming in eBay production.",2020-04-06T00:28:39Z,http://arxiv.org/abs/2004.02360v2,oral health
+"A Data-Driven Compressive Sensing Framework Tailored For
+  Energy-Efficient Wearable Sensing","Kai Xu, Yixing Li, Fengbo Ren","Compressive sensing (CS) is a promising technology for realizing
+energy-efficient wireless sensors for long-term health monitoring. However,
+conventional model-driven CS frameworks suffer from limited compression ratio
+and reconstruction quality when dealing with physiological signals due to
+inaccurate models and the overlook of individual variability. In this paper, we
+propose a data-driven CS framework that can learn signal characteristics and
+personalized features from any individual recording of physiologic signals to
+enhance CS performance with a minimized number of measurements. Such
+improvements are accomplished by a co-training approach that optimizes the
+sensing matrix and the dictionary towards improved restricted isometry property
+and signal sparsity, respectively. Experimental results upon ECG signals show
+that the proposed method, at a compression ratio of 10x, successfully reduces
+the isometry constant of the trained sensing matrices by 86% against random
+matrices and improves the overall reconstructed signal-to-noise ratio by 15dB
+over conventional model-driven approaches.",2016-12-15T00:10:19Z,http://arxiv.org/abs/1612.04887v2,oral health
+"Comparing Suicide Risk Insights derived from Clinical and Social Media
+  data","Rohith K. Thiruvalluru, Manas Gaur, Krishnaprasad Thirunarayan, Amit Sheth, Jyotishman Pathak","Suicide is the 10th leading cause of death in the US and the 2nd leading
+cause of death among teenagers. Clinical and psychosocial factors contribute to
+suicide risk (SRFs), although documentation and self-expression of such factors
+in EHRs and social networks vary. This study investigates the degree of
+variance across EHRs and social networks. We performed subjective analysis of
+SRFs, such as self-harm, bullying, impulsivity, family violence/discord, using
+>13.8 Million clinical notes on 123,703 patients with mental health conditions.
+We clustered clinical notes using semantic embeddings under a set of SRFs.
+Likewise, we clustered 2180 suicidal users on r/SuicideWatch (~30,000 posts)
+and performed comparative analysis. Top-3 SRFs documented in EHRs were
+depressive feelings (24.3%), psychological disorders (21.1%), drug abuse
+(18.2%). In r/SuicideWatch, gun-ownership (17.3%), self-harm (14.6%), bullying
+(13.2%) were Top-3 SRFs. Mentions of Family violence, racial discrimination,
+and other important SRFs contributing to suicide risk were missing from both
+platforms.",2020-12-18T05:54:35Z,http://arxiv.org/abs/2012.11393v2,oral health
+"Predicting Opioid Use Disorder from Longitudinal Healthcare Data using
+  Multi-stream Transformer","Sajjad Fouladvand, Jeffery Talbert, Linda P. Dwoskin, Heather Bush, Amy Lynn Meadows, Lars E. Peterson, Ramakanth Kavuluru, Jin Chen","Opioid Use Disorder (OUD) is a public health crisis costing the US billions
+of dollars annually in healthcare, lost workplace productivity, and crime.
+Analyzing longitudinal healthcare data is critical in addressing many
+real-world problems in healthcare. Leveraging the real-world longitudinal
+healthcare data, we propose a novel multi-stream transformer model called MUPOD
+for OUD identification. MUPOD is designed to simultaneously analyze multiple
+types of healthcare data streams, such as medications and diagnoses, by
+attending to segments within and across these data streams. Our model tested on
+the data from 392,492 patients with long-term back pain problems showed
+significantly better performance than the traditional models and recently
+developed deep learning models.",2021-03-16T01:44:21Z,http://arxiv.org/abs/2103.08800v2,oral health
+Fine-grained Hand Gesture Recognition in Multi-viewpoint Hand Hygiene,"Huy Q. Vo, Tuong Do, Vi C. Pham, Duy Nguyen, An T. Duong, Quang D. Tran","This paper contributes a new high-quality dataset for hand gesture
+recognition in hand hygiene systems, named ""MFH"". Generally, current datasets
+are not focused on: (i) fine-grained actions; and (ii) data mismatch between
+different viewpoints, which are available under realistic settings. To address
+the aforementioned issues, the MFH dataset is proposed to contain a total of
+731147 samples obtained by different camera views in 6 non-overlapping
+locations. Additionally, each sample belongs to one of seven steps introduced
+by the World Health Organization (WHO). As a minor contribution, inspired by
+advances in fine-grained image recognition and distribution adaptation, this
+paper recommends using the self-supervised learning method to handle these
+preceding problems. The extensive experiments on the benchmarking MFH dataset
+show that the introduced method yields competitive performance in both the
+Accuracy and the Macro F1-score. The code and the MFH dataset are available at
+https://github.com/willogy-team/hand-gesture-recognition-smc2021.",2021-09-07T08:14:15Z,http://arxiv.org/abs/2109.02917v1,oral health
+"Extracting Biomedical Factual Knowledge Using Pretrained Language Model
+  and Electronic Health Record Context","Zonghai Yao, Yi Cao, Zhichao Yang, Vijeta Deshpande, Hong Yu","Language Models (LMs) have performed well on biomedical natural language
+processing applications. In this study, we conducted some experiments to use
+prompt methods to extract knowledge from LMs as new knowledge Bases (LMs as
+KBs). However, prompting can only be used as a low bound for knowledge
+extraction, and perform particularly poorly on biomedical domain KBs. In order
+to make LMs as KBs more in line with the actual application scenarios of the
+biomedical domain, we specifically add EHR notes as context to the prompt to
+improve the low bound in the biomedical domain. We design and validate a series
+of experiments for our Dynamic-Context-BioLAMA task. Our experiments show that
+the knowledge possessed by those language models can distinguish the correct
+knowledge from the noise knowledge in the EHR notes, and such distinguishing
+ability can also be used as a new metric to evaluate the amount of knowledge
+possessed by the model.",2022-08-26T00:01:26Z,http://arxiv.org/abs/2209.07859v2,oral health
+Generating Synthetic Population,"Bhavesh Neekhra, Kshitij Kapoor, Debayan Gupta","In this paper, we provide a method to generate synthetic population at
+various administrative levels for a country like India. This synthetic
+population is created using machine learning and statistical methods applied to
+survey data such as Census of India 2011, IHDS-II, NSS-68th round, GPW etc. The
+synthetic population defines individuals in the population with characteristics
+such as age, gender, height, weight, home and work location, household
+structure, preexisting health conditions, socio-economical status, and
+employment. We used the proposed method to generate the synthetic population
+for various districts of India. We also compare this synthetic population with
+source data using various metrics. The experiment results show that the
+synthetic data can realistically simulate the population for various districts
+of India.",2022-09-20T19:31:39Z,http://arxiv.org/abs/2209.09961v2,oral health
+"Self-Supervised Predictive Coding with Multimodal Fusion for Patient
+  Deterioration Prediction in Fine-grained Time Resolution","Kwanhyung Lee, John Won, Heejung Hyun, Sangchul Hahn, Edward Choi, Joohyung Lee","Accurate time prediction of patients' critical events is crucial in urgent
+scenarios where timely decision-making is important. Though many studies have
+proposed automatic prediction methods using Electronic Health Records (EHR),
+their coarse-grained time resolutions limit their practical usage in urgent
+environments such as the emergency department (ED) and intensive care unit
+(ICU). Therefore, in this study, we propose an hourly prediction method based
+on self-supervised predictive coding and multi-modal fusion for two critical
+tasks: mortality and vasopressor need prediction. Through extensive
+experiments, we prove significant performance gains from both multi-modal
+fusion and self-supervised predictive regularization, most notably in
+far-future prediction, which becomes especially important in practice. Our
+uni-modal/bi-modal/bi-modal self-supervision scored 0.846/0.877/0.897
+(0.824/0.855/0.886) and 0.817/0.820/0.858 (0.807/0.81/0.855) with mortality
+(far-future mortality) and with vasopressor need (far-future vasopressor need)
+prediction data in AUROC, respectively.",2022-10-29T13:34:55Z,http://arxiv.org/abs/2210.16598v2,oral health
