@@ -1,0 +1,883 @@
+title,authors,summary,published,link,keyword_used
+"PaXNet: Dental Caries Detection in Panoramic X-ray using Ensemble
+  Transfer Learning and Capsule Classifier","Arman Haghanifar, Mahdiyar Molahasani Majdabadi, Seok-Bum Ko","Dental caries is one of the most chronic diseases involving the majority of
+the population during their lifetime. Caries lesions are typically diagnosed by
+radiologists relying only on their visual inspection to detect via dental
+x-rays. In many cases, dental caries is hard to identify using x-rays and can
+be misinterpreted as shadows due to different reasons such as low image
+quality. Hence, developing a decision support system for caries detection has
+been a topic of interest in recent years. Here, we propose an automatic
+diagnosis system to detect dental caries in Panoramic images for the first
+time, to the best of authors' knowledge. The proposed model benefits from
+various pretrained deep learning models through transfer learning to extract
+relevant features from x-rays and uses a capsule network to draw prediction
+results. On a dataset of 470 Panoramic images used for features extraction,
+including 240 labeled images for classification, our model achieved an accuracy
+score of 86.05\% on the test set. The obtained score demonstrates acceptable
+detection performance and an increase in caries detection speed, as long as the
+challenges of using Panoramic x-rays of real patients are taken into account.
+Among images with caries lesions in the test set, our model acquired recall
+scores of 69.44\% and 90.52\% for mild and severe ones, confirming the fact
+that severe caries spots are more straightforward to detect and efficient mild
+caries detection needs a more robust and larger dataset. Considering the
+novelty of current research study as using Panoramic images, this work is a
+step towards developing a fully automated efficient decision support system to
+assist domain experts.",2020-12-26T03:00:35Z,http://arxiv.org/abs/2012.13666v1,dental caries
+ToMoBrush: Exploring Dental Health Sensing using a Sonic Toothbrush,"Kuang Yuan, Mohamed Ibrahim, Yiwen Song, Guoxiang Deng, Suvendra Vijayan, Robert Nerone, Akshay Gadre, Swarun Kumar","Early detection of dental disease is crucial to prevent adverse outcomes.
+Today, dental X-rays are currently the most accurate gold standard for dental
+disease detection. Unfortunately, regular X-ray exam is still a privilege for
+billions of people around the world. In this paper, we ask: ""Can we develop a
+low-cost sensing system that enables dental self-examination in the comfort of
+one's home?""
+  This paper presents ToMoBrush, a dental health sensing system that explores
+using off-the-shelf sonic toothbrushes for dental condition detection. Our
+solution leverages the fact that a sonic toothbrush produces rich acoustic
+signals when in contact with teeth, which contain important information about
+each tooth's status. ToMoBrush extracts tooth resonance signatures from the
+acoustic signals to characterize varied dental health conditions of the teeth.
+We evaluate ToMoBrush on 19 participants and dental-standard models for
+detecting common dental problems including caries, calculus, and food
+impaction, achieving a detection ROC-AUC of 0.90, 0.83, and 0.88 respectively.
+Interviews with dental experts validate ToMoBrush's potential in enhancing
+at-home dental healthcare.",2024-02-02T22:05:57Z,http://arxiv.org/abs/2402.01933v1,dental caries
+Detection of Tooth caries in Bitewing Radiographs using Deep Learning,"Muktabh Mayank Srivastava, Pratyush Kumar, Lalit Pradhan, Srikrishna Varadarajan","We develop a Computer Aided Diagnosis (CAD) system, which enhances the
+performance of dentists in detecting wide range of dental caries. The CAD
+System achieves this by acting as a second opinion for the dentists with way
+higher sensitivity on the task of detecting cavities than the dentists
+themselves. We develop annotated dataset of more than 3000 bitewing radiographs
+and utilize it for developing a system for automated diagnosis of dental
+caries. Our system consists of a deep fully convolutional neural network (FCNN)
+consisting 100+ layers, which is trained to mark caries on bitewing
+radiographs. We have compared the performance of our proposed system with three
+certified dentists for marking dental caries. We exceed the average performance
+of the dentists in both recall (sensitivity) and F1-Score (agreement with
+truth) by a very large margin. Working example of our system is shown in Figure
+1.",2017-11-20T14:12:32Z,http://arxiv.org/abs/1711.07312v2,dental caries
+A mathematical model for the progression of dental caries,"Rene Fabregas, Jacob Rubinstein","A model for the progression of dental caries is derived. The analysis starts
+at the microscopic reaction and diffusion process. The local equations are
+averaged to derive a set of macroscopic equations. The global system includes
+features such as anisotropic diffusion and local changes in the geometry due to
+the enamel melting. The equations are then solved numerically. The simulations
+highlight the effect of anisotropy. In addition we draw conclusions on the
+progression rate of caries, and discuss them in light of a number of
+experiments.",2025-01-13T16:12:07Z,http://arxiv.org/abs/2501.07619v1,dental caries
+"A Sequential Framework for Detection and Classification of Abnormal
+  Teeth in Panoramic X-rays","Tudor Dascalu, Shaqayeq Ramezanzade, Azam Bakhshandeh, Lars Bjorndal, Bulat Ibragimov","This paper describes our solution for the Dental Enumeration and Diagnosis on
+Panoramic X-rays Challenge at MICCAI 2023. Our approach consists of a
+multi-step framework tailored to the task of detecting and classifying abnormal
+teeth. The solution includes three sequential stages: dental instance
+detection, healthy instance filtering, and abnormal instance classification. In
+the first stage, we employed a Faster-RCNN model for detecting and identifying
+teeth. In subsequent stages, we designed a model that merged the encoding
+pathway of a pretrained U-net, optimized for dental lesion detection, with the
+Vgg16 architecture. The resulting model was first used for filtering out
+healthy teeth. Then, any identified abnormal teeth were categorized,
+potentially falling into one or more of the following conditions: embedded,
+periapical lesion, caries, deep caries. The model performing dental instance
+detection achieved an AP score of 0.49. The model responsible for identifying
+healthy teeth attained an F1 score of 0.71. Meanwhile, the model trained for
+multi-label dental disease classification achieved an F1 score of 0.76. The
+code is available at
+https://github.com/tudordascalu/2d-teeth-detection-challenge.",2023-08-31T13:47:01Z,http://arxiv.org/abs/2309.00027v2,dental caries
+"Design of quantum correlation based automatic focus detection system
+  during dental laser operation","Binh Xuan Cao, Duc An Pham","Dental laser has been developed recently and gradually replaced the
+conventional dental treatment methods, especially in dental caries removal. The
+utility of laser in dentistry contributes to reduce the pain during surgery and
+decrease the risk of sequelae after surgery. Although bringing about several
+beneficial properties such as excellent directionality, high speed, ultra-tiny
+active area and tunable energy concentration, laser is still quite limited in
+dental surgery because of the difficulty in real-time high precision detection
+of laser focus during the operation. In this study, a cutting-edge optical
+system for real-time focus detection during dental laser operation employing
+the quantum entanglement of photon pairs created via spontaneous parametric
+downconversion (SPDC) is presented. Defocusing distance of the specimen which
+is used as the sample tooth can be determined precisely through spatial
+correlation of photons arriving at the detectors. The proposed technique can be
+applied to design automatic focus detection system for use in dental laser
+operation.",2019-07-25T08:15:22Z,http://arxiv.org/abs/1908.07610v5,dental caries
+"Bayesian Hierarchical Spatial Model for Small Area Estimation with
+  Non-ignorable Nonresponses and Its Applications to the NHANES Dental Caries
+  Assessments","Ick Hoon Jin, Fang Liu, Evercita C. Eugenio, Kisung You, Suyu Liu","The National Health and Nutrition Examination Survey (NHANES) is a major
+program of the National Center for Health Statistics, designed to assess the
+health and nutritional status of adults and children in the United States. The
+analysis of NHANES dental caries data faces several challenges, including (1)
+the data were collected using a complex, multistage, stratified,
+unequal-probability sampling design; (2) the sample size of some primary
+sampling units (PSU), e.g., counties, is very small; (3) the measures of dental
+caries have complicated structure and correlation, and (4) there is a
+substantial percentage of nonresponses, for which the missing data are expected
+to be not missing at random or non-ignorable. We propose a Bayesian
+hierarchical spatial model to address these analysis challenges. We develop a
+two-level Potts model that closely resembles the caries evolution process and
+captures complicated spatial correlations between teeth and surfaces of the
+teeth. By adding Bayesian hierarchies to the Potts model, we account for the
+multistage survey sampling design and also enable information borrowing across
+PSUs for small area estimation. We incorporate sampling weights by including
+them as a covariate in the model and adopt flexible B-splines to achieve robust
+inference. We account for non-ignorable missing outcomes and covariates using
+the selection model. We use data augmentation coupled with the noisy exchange
+sampler to obtain the posterior of model parameters that involve
+doubly-intractable normalizing constants. Our analysis results show strong
+spatial associations between teeth and tooth surfaces and that dental hygienic
+factors, fluorosis and sealant reduce the risks of having dental diseases.",2018-10-12T00:18:24Z,http://arxiv.org/abs/1810.05297v3,dental caries
+"Interpretable and Interactive Deep Multiple Instance Learning for Dental
+  Caries Classification in Bitewing X-rays","Benjamin Bergner, Csaba Rohrer, Aiham Taleb, Martha Duchrau, Guilherme De Leon, Jonas Almeida Rodrigues, Falk Schwendicke, Joachim Krois, Christoph Lippert","We propose a simple and efficient image classification architecture based on
+deep multiple instance learning, and apply it to the challenging task of caries
+detection in dental radiographs. Technically, our approach contributes in two
+ways: First, it outputs a heatmap of local patch classification probabilities
+despite being trained with weak image-level labels. Second, it is amenable to
+learning from segmentation labels to guide training. In contrast to existing
+methods, the human user can faithfully interpret predictions and interact with
+the model to decide which regions to attend to. Experiments are conducted on a
+large clinical dataset of $\sim$38k bitewings ($\sim$316k teeth), where we
+achieve competitive performance compared to various baselines. When guided by
+an external caries segmentation model, a significant improvement in
+classification and localization performance is observed.",2021-12-17T14:09:27Z,http://arxiv.org/abs/2112.09694v2,dental caries
+"Object Detection for Caries or Pit and Fissure Sealing Requirement in
+  Children's First Permanent Molars","Chenyao Jiang, Shiyao Zhai, Hengrui Song, Yuqing Ma, Yachen Fan, Yancheng Fang, Dongmei Yu, Canyang Zhang, Sanyang Han, Runming Wang, Yong Liu, Jianbo Li, Peiwu Qin","Dental caries is one of the most common oral diseases that, if left
+untreated, can lead to a variety of oral problems. It mainly occurs inside the
+pits and fissures on the occlusal/buccal/palatal surfaces of molars and
+children are a high-risk group for pit and fissure caries in permanent molars.
+Pit and fissure sealing is one of the most effective methods that is widely
+used in prevention of pit and fissure caries. However, current detection of
+pits and fissures or caries depends primarily on the experienced dentists,
+which ordinary parents do not have, and children may miss the remedial
+treatment without timely detection. To address this issue, we present a method
+to autodetect caries and pit and fissure sealing requirements using oral photos
+taken by smartphones. We use the YOLOv5 and YOLOX models and adopt a tiling
+strategy to reduce information loss during image pre-processing. The best
+result for YOLOXs model with tiling strategy is 72.3 mAP.5, while the best
+result without tiling strategy is 71.2. YOLOv5s6 model with/without tiling
+attains 70.9/67.9 mAP.5, respectively. We deploy the pre-trained network to
+mobile devices as a WeChat applet, allowing in-home detection by parents or
+children guardian.",2023-08-31T08:43:21Z,http://arxiv.org/abs/2308.16551v1,dental caries
+"AI-Dentify: Deep learning for proximal caries detection on bitewing
+  x-ray -- HUNT4 Oral Health Study","Javier Pérez de Frutos, Ragnhild Holden Helland, Shreya Desai, Line Cathrine Nymoen, Thomas Langø, Theodor Remman, Abhijit Sen","Background: Dental caries diagnosis requires the manual inspection of
+diagnostic bitewing images of the patient, followed by a visual inspection and
+probing of the identified dental pieces with potential lesions. Yet the use of
+artificial intelligence, and in particular deep-learning, has the potential to
+aid in the diagnosis by providing a quick and informative analysis of the
+bitewing images.
+  Methods: A dataset of 13,887 bitewings from the HUNT4 Oral Health Study were
+annotated individually by six different experts, and used to train three
+different object detection deep-learning architectures: RetinaNet (ResNet50),
+YOLOv5 (M size), and EfficientDet (D0 and D1 sizes). A consensus dataset of 197
+images, annotated jointly by the same six dentist, was used for evaluation. A
+five-fold cross validation scheme was used to evaluate the performance of the
+AI models.
+  Results: he trained models show an increase in average precision and
+F1-score, and decrease of false negative rate, with respect to the dental
+clinicians. When compared against the dental clinicians, the YOLOv5 model shows
+the largest improvement, reporting 0.647 mean average precision, 0.548 mean
+F1-score, and 0.149 mean false negative rate. Whereas the best annotators on
+each of these metrics reported 0.299, 0.495, and 0.164 respectively.
+  Conclusion: Deep-learning models have shown the potential to assist dental
+professionals in the diagnosis of caries. Yet, the task remains challenging due
+to the artifacts natural to the bitewing images.",2023-09-30T12:17:36Z,http://arxiv.org/abs/2310.00354v3,dental caries
+"Modeling Zero-Inflated Correlated Dental Data through Gaussian Copulas
+  and Approximate Bayesian Computation","Anish Mukherjee, Jeremy T. Gaskins, Shoumi Sarkar, Steven Levy, Somnath Datta","We develop a new longitudinal count data regression model that accounts for
+zero-inflation and spatio-temporal correlation across responses. This project
+is motivated by an analysis of Iowa Fluoride Study (IFS) data, a longitudinal
+cohort study with data on caries (cavity) experience scores measured for each
+tooth across five time points. To that end, we use a hurdle model for
+zero-inflation with two parts: the presence model indicating whether a count is
+non-zero through logistic regression and the severity model that considers the
+non-zero counts through a shifted Negative Binomial distribution allowing
+overdispersion. To incorporate dependence across measurement occasion and
+teeth, these marginal models are embedded within a Gaussian copula that
+introduces spatio-temporal correlations. A distinct advantage of this
+formulation is that it allows us to determine covariate effects with
+population-level (marginal) interpretations in contrast to mixed model choices.
+Standard Bayesian sampling from such a model is infeasible, so we use
+approximate Bayesian computing for inference. This approach is applied to the
+IFS data to gain insight into the risk factors for dental caries and the
+correlation structure across teeth and time.",2024-10-17T18:18:52Z,http://arxiv.org/abs/2410.13949v2,dental caries
+"Bayesian semiparametric inference for multivariate
+  doubly-interval-censored data","Alejandro Jara, Emmanuel Lesaffre, Maria De Iorio, Fernando Quintana","Based on a data set obtained in a dental longitudinal study, conducted in
+Flanders (Belgium), the joint time to caries distribution of permanent first
+molars was modeled as a function of covariates. This involves an analysis of
+multivariate continuous doubly-interval-censored data since: (i) the emergence
+time of a tooth and the time it experiences caries were recorded yearly, and
+(ii) events on teeth of the same child are dependent. To model the joint
+distribution of the emergence times and the times to caries, we propose a
+dependent Bayesian semiparametric model. A major feature of the proposed
+approach is that survival curves can be estimated without imposing assumptions
+such as proportional hazards, additive hazards, proportional odds or
+accelerated failure time.",2011-01-07T12:07:59Z,http://arxiv.org/abs/1101.1415v1,dental caries
+Perturbation method to model enamel caries progress,"Katarzyna D. Lewandowska, Tadeusz Kosztolowicz","We develop a theoretical model of the carious lesion progress caused by acids
+diffusing into the tooth enamel from the dental plaque. The acids react with
+static hydroxyapatite, which leads to demineralization of the enamel, and
+consequently to the development of the carious lesion. The model utilizes the
+diffusion-reaction equations with one static and one mobile reactant where the
+reaction term is proportional to the product of concentrations of acids and of
+mineral. The changes of concentrations are calculated approximately by means of
+a perturbation method. The analytical approximate solutions are compared with
+the numerical ones and experimental data.",2007-07-02T11:10:19Z,http://arxiv.org/abs/0707.0194v2,dental caries
+Spline regression for zero-inflated models,"T. Opitz, P. Tramini, N. Molinari","We propose a regression model for count data when the classical generalized
+linear model approach is too rigid due to a high outcome of zero counts and a
+nonlinear influence of continuous covariates. Zero-Inflation is applied to take
+into account the presence of excess zeros with separate link functions for the
+zero and the nonzero component. Nonlinearity in covariates is captured by
+spline functions based on B-splines. Our algorithm relies on maximum-likelihood
+estimation and allows for adaptive box-constrained knots, thus improving the
+goodness of the spline fit and allowing for detection of sensitivity
+changepoints. A simulation study substantiates the numerical stability of the
+algorithm to infer such models. The AIC criterion is shown to serve well for
+model selection, in particular if nonlinearities are weak such that BIC tends
+to overly simplistic models. We fit the introduced models to real data of
+children's dental sanity, linking caries counts with the so-called
+Body-Mass-Index (BMI) and other socioeconomic factors. This reveals a puzzling
+nonmonotonic influence of BMI on caries counts which is yet to be explained by
+clinical experts.",2013-04-11T15:48:02Z,http://arxiv.org/abs/1304.3347v1,dental caries
+A Smartphone-based System for Real-time Early Childhood Caries Diagnosis,"Yipeng Zhang, Haofu Liao, Jin Xiao, Nisreen Al Jallad, Oriana Ly-Mapes, Jiebo Luo","Early childhood caries (ECC) is the most common, yet preventable chronic
+disease in children under the age of 6. Treatments on severe ECC are extremely
+expensive and unaffordable for socioeconomically disadvantaged families. The
+identification of ECC in an early stage usually requires expertise in the
+field, and hence is often ignored by parents. Therefore, early prevention
+strategies and easy-to-adopt diagnosis techniques are desired. In this study,
+we propose a multistage deep learning-based system for cavity detection. We
+create a dataset containing RGB oral images labeled manually by dental
+practitioners. We then investigate the effectiveness of different deep learning
+models on the dataset. Furthermore, we integrate the deep learning system into
+an easy-to-use mobile application that can diagnose ECC from an early stage and
+provide real-time results to untrained users.",2020-08-17T21:11:19Z,http://arxiv.org/abs/2008.07623v1,dental caries
+"Analyzing zero-inflated clustered longitudinal ordinal outcomes using
+  GEE-type models with an application to dental fluorosis studies","Shoumi Sarkar, Anish Mukherjee, Jeremy Gaskins, Steven Levy, Peihua Qiu, Somnath Datta","Motivated by the Iowa Fluoride Study (IFS) dataset, which comprises
+zero-inflated multi-level ordinal responses on tooth fluorosis, we develop an
+estimation scheme leveraging generalized estimating equations (GEEs) and
+James-Stein shrinkage. Previous analyses of this cohort study primarily focused
+on caries (count response) or employed a Bayesian approach to the ordinal
+fluorosis outcome. This study is based on the expanded dataset that now
+includes observations for age 23, whereas earlier works were restricted to ages
+9, 13, and/or 17 according to the participants' ages at the time of
+measurement. The adoption of a frequentist perspective enhances the
+interpretability to a broader audience. Over a choice of several covariance
+structures, separate models are formulated for the presence (zero versus
+non-zero score) and severity (non-zero ordinal scores) of fluorosis, which are
+then integrated through shared regression parameters. This comprehensive
+framework effectively identifies risk or protective effects of dietary and
+non-dietary factors on dental fluorosis.",2024-12-16T00:12:37Z,http://arxiv.org/abs/2412.11348v2,dental caries
+"Mediation Analysis for Count and Zero-Inflated Count Data without
+  Sequential Ignorability and Its Application in Dental Studies","Zijian Guo, Dylan S. Small, Stuart A. Gansky, Jing Cheng","Mediation analysis seeks to understand the mechanism by which a treatment
+affects an outcome. Count or zero-inflated count outcome are common in many
+studies in which mediation analysis is of interest. For example, in dental
+studies, outcomes such as decayed, missing and filled teeth are typically zero
+inflated. Existing mediation analysis approaches for count data assume
+sequential ignorability of the mediator. This is often not plausible because
+the mediator is not randomized so that there are unmeasured confounders
+associated with the mediator and the outcome. In this paper, we develop causal
+methods based on instrumental variable (IV) approaches for mediation analysis
+for count data possibly with a lot of zeros that do not require the assumption
+of sequential ignorability. We first define the direct and indirect effect
+ratios for those data, and then propose estimating equations and use empirical
+likelihood to estimate the direct and indirect effects consistently. A
+sensitivity analysis is proposed for violations of the IV exclusion restriction
+assumption. Simulation studies demonstrate that our method works well for
+different types of outcomes under different settings. Our method is applied to
+a randomized dental caries prevention trial and a study of the effect of a
+massive flood in Bangladesh on children's diarrhea.",2016-01-23T17:19:19Z,http://arxiv.org/abs/1601.06294v2,dental caries
+"Artificial Intelligence to Assess Dental Findings from Panoramic
+  Radiographs -- A Multinational Study","Yin-Chih Chelsea Wang, Tsao-Lun Chen, Shankeeth Vinayahalingam, Tai-Hsien Wu, Chu Wei Chang, Hsuan Hao Chang, Hung-Jen Wei, Mu-Hsiung Chen, Ching-Chang Ko, David Anssari Moin, Bram van Ginneken, Tong Xi, Hsiao-Cheng Tsai, Min-Huey Chen, Tzu-Ming Harry Hsu, Hye Chou","Dental panoramic radiographs (DPRs) are widely used in clinical practice for
+comprehensive oral assessment but present challenges due to overlapping
+structures and time constraints in interpretation.
+  This study aimed to establish a solid baseline for the AI-automated
+assessment of findings in DPRs by developing, evaluating an AI system, and
+comparing its performance with that of human readers across multinational data
+sets.
+  We analyzed 6,669 DPRs from three data sets (the Netherlands, Brazil, and
+Taiwan), focusing on 8 types of dental findings. The AI system combined object
+detection and semantic segmentation techniques for per-tooth finding
+identification. Performance metrics included sensitivity, specificity, and area
+under the receiver operating characteristic curve (AUC-ROC). AI
+generalizability was tested across data sets, and performance was compared with
+human dental practitioners.
+  The AI system demonstrated comparable or superior performance to human
+readers, particularly +67.9% (95% CI: 54.0%-81.9%; p < .001) sensitivity for
+identifying periapical radiolucencies and +4.7% (95% CI: 1.4%-8.0%; p = .008)
+sensitivity for identifying missing teeth. The AI achieved a macro-averaged
+AUC-ROC of 96.2% (95% CI: 94.6%-97.8%) across 8 findings. AI agreements with
+the reference were comparable to inter-human agreements in 7 of 8 findings
+except for caries (p = .024). The AI system demonstrated robust generalization
+across diverse imaging and demographic settings and processed images 79 times
+faster (95% CI: 75-82) than human readers.
+  The AI system effectively assessed findings in DPRs, achieving performance on
+par with or better than human experts while significantly reducing
+interpretation time. These results highlight the potential for integrating AI
+into clinical workflows to improve diagnostic efficiency and accuracy, and
+patient management.",2025-02-14T16:34:21Z,http://arxiv.org/abs/2502.10277v1,dental caries
+"Towards Earlier Detection of Oral Diseases On Smartphones Using Oral and
+  Dental RGB Images","Ayush Garg, Julia Lu, Anika Maji","Oral diseases such as periodontal (gum) diseases and dental caries (cavities)
+affect billions of people across the world today. However, previous
+state-of-the-art models have relied on X-ray images to detect oral diseases,
+making them inaccessible to remote monitoring, developing countries, and
+telemedicine. To combat this overuse of X-ray imagery, we propose a lightweight
+machine learning model capable of detecting calculus (also known as hardened
+plaque or tartar) in RGB images while running efficiently on low-end devices.
+The model, a modified MobileNetV3-Small neural network transfer learned from
+ImageNet, achieved an accuracy of 72.73% (which is comparable to
+state-of-the-art solutions) while still being able to run on mobile devices due
+to its reduced memory requirements and processing times. A ResNet34-based model
+was also constructed and achieved an accuracy of 81.82%. Both of these models
+were tested on a mobile app, demonstrating their potential to limit the number
+of serious oral disease cases as their predictions can help patients schedule
+appointments earlier without the need to go to the clinic.",2023-08-30T02:01:19Z,http://arxiv.org/abs/2308.15705v1,dental caries
+"Statistical validation of a deep learning algorithm for dental anomaly
+  detection in intraoral radiographs using paired data","Pieter Van Leemput, Johannes Keustermans, Wouter Mollemans","This article describes the clinical validation study setup, statistical
+analysis and results for a deep learning algorithm which detects dental
+anomalies in intraoral radiographic images, more specifically caries, apical
+lesions, root canal treatment defects, marginal defects at crown restorations,
+periodontal bone loss and calculus. The study compares the detection
+performance of dentists using the deep learning algorithm to the prior
+performance of these dentists evaluating the images without algorithmic
+assistance. Calculating the marginal profit and loss of performance from the
+annotated paired image data allows for a quantification of the hypothesized
+change in sensitivity and specificity. The statistical significance of these
+results is extensively proven using both McNemar's test and the binomial
+hypothesis test. The average sensitivity increases from $60.7\%$ to $85.9\%$,
+while the average specificity slightly decreases from $94.5\%$ to $92.7\%$. We
+prove that the increase of the area under the localization ROC curve (AUC) is
+significant (from $0.60$ to $0.86$ on average), while the average AUC is
+bounded by the $95\%$ confidence intervals ${[}0.54, 0.65{]}$ and ${[}0.82,
+0.90{]}$. When using the deep learning algorithm for diagnostic guidance, the
+dentist can be $95\%$ confident that the average true population sensitivity is
+bounded by the range $79.6\%$ to $91.9\%$. The proposed paired data setup and
+statistical analysis can be used as a blueprint to thoroughly test the effect
+of a modality change, like a deep learning based detection and/or segmentation,
+on radiographic images.",2024-02-01T13:46:36Z,http://arxiv.org/abs/2402.14022v1,dental caries
+"Teeth-SEG: An Efficient Instance Segmentation Framework for Orthodontic
+  Treatment based on Anthropic Prior Knowledge","Bo Zou, Shaofeng Wang, Hao Liu, Gaoyue Sun, Yajie Wang, FeiFei Zuo, Chengbin Quan, Youjian Zhao","Teeth localization, segmentation, and labeling in 2D images have great
+potential in modern dentistry to enhance dental diagnostics, treatment
+planning, and population-based studies on oral health. However, general
+instance segmentation frameworks are incompetent due to 1) the subtle
+differences between some teeth' shapes (e.g., maxillary first premolar and
+second premolar), 2) the teeth's position and shape variation across subjects,
+and 3) the presence of abnormalities in the dentition (e.g., caries and
+edentulism). To address these problems, we propose a ViT-based framework named
+TeethSEG, which consists of stacked Multi-Scale Aggregation (MSA) blocks and an
+Anthropic Prior Knowledge (APK) layer. Specifically, to compose the two
+modules, we design 1) a unique permutation-based upscaler to ensure high
+efficiency while establishing clear segmentation boundaries with 2) multi-head
+self/cross-gating layers to emphasize particular semantics meanwhile
+maintaining the divergence between token embeddings. Besides, we collect 3) the
+first open-sourced intraoral image dataset IO150K, which comprises over 150k
+intraoral photos, and all photos are annotated by orthodontists using a
+human-machine hybrid algorithm. Experiments on IO150K demonstrate that our
+TeethSEG outperforms the state-of-the-art segmentation models on dental image
+segmentation.",2024-04-01T09:34:51Z,http://arxiv.org/abs/2404.01013v1,dental caries
+"STS MICCAI 2023 Challenge: Grand challenge on 2D and 3D semi-supervised
+  tooth segmentation","Yaqi Wang, Yifan Zhang, Xiaodiao Chen, Shuai Wang, Dahong Qian, Fan Ye, Feng Xu, Hongyuan Zhang, Qianni Zhang, Chengyu Wu, Yunxiang Li, Weiwei Cui, Shan Luo, Chengkai Wang, Tianhao Li, Yi Liu, Xiang Feng, Huiyu Zhou, Dongyun Liu, Qixuan Wang, Zhouhao Lin, Wei Song, Yuanlin Li, Bing Wang, Chunshi Wang, Qiupu Chen, Mingqian Li","Computer-aided design (CAD) tools are increasingly popular in modern dental
+practice, particularly for treatment planning or comprehensive prognosis
+evaluation. In particular, the 2D panoramic X-ray image efficiently detects
+invisible caries, impacted teeth and supernumerary teeth in children, while the
+3D dental cone beam computed tomography (CBCT) is widely used in orthodontics
+and endodontics due to its low radiation dose. However, there is no open-access
+2D public dataset for children's teeth and no open 3D dental CBCT dataset,
+which limits the development of automatic algorithms for segmenting teeth and
+analyzing diseases. The Semi-supervised Teeth Segmentation (STS) Challenge, a
+pioneering event in tooth segmentation, was held as a part of the MICCAI 2023
+ToothFairy Workshop on the Alibaba Tianchi platform. This challenge aims to
+investigate effective semi-supervised tooth segmentation algorithms to advance
+the field of dentistry. In this challenge, we provide two modalities including
+the 2D panoramic X-ray images and the 3D CBCT tooth volumes. In Task 1, the
+goal was to segment tooth regions in panoramic X-ray images of both adult and
+pediatric teeth. Task 2 involved segmenting tooth sections using CBCT volumes.
+Limited labelled images with mostly unlabelled ones were provided in this
+challenge prompt using semi-supervised algorithms for training. In the
+preliminary round, the challenge received registration and result submission by
+434 teams, with 64 advancing to the final round. This paper summarizes the
+diverse methods employed by the top-ranking teams in the STS MICCAI 2023
+Challenge.",2024-07-18T08:00:08Z,http://arxiv.org/abs/2407.13246v1,dental caries
+"Crowdsourcing with Difficulty: A Bayesian Rating Model for Heterogeneous
+  Items","Seong Woo Han, Ozan Adıgüzel, Bob Carpenter","In applied statistics and machine learning, the ""gold standards"" used for
+training are often biased and almost always noisy. Dawid and Skene's
+justifiably popular crowdsourcing model adjusts for rater (coder, annotator)
+sensitivity and specificity, but fails to capture distributional properties of
+rating data gathered for training, which in turn biases training. In this
+study, we introduce a general purpose measurement-error model with which we can
+infer consensus categories by adding item-level effects for difficulty,
+discriminativeness, and guessability. We further show how to constrain the
+bimodal posterior of these models to avoid (or if necessary, allow) adversarial
+raters. We validate our model's goodness of fit with posterior predictive
+checks, the Bayesian analogue of $\chi^2$ tests. Dawid and Skene's model is
+rejected by goodness of fit tests, whereas our new model, which adjusts for
+item heterogeneity, is not rejected. We illustrate our new model with two
+well-studied data sets, binary rating data for caries in dental X-rays and
+implication in natural language.",2024-05-29T20:59:28Z,http://arxiv.org/abs/2405.19521v2,dental caries
+"Construction of unbiased dental template and parametric dental model for
+  precision digital dentistry","Lei Ma, Jingyang Zhang, Ke Deng, Peng Xue, Zhiming Cui, Yu Fang, Minhui Tang, Yue Zhao, Min Zhu, Zhongxiang Ding, Dinggang Shen","Dental template and parametric dental models are important tools for various
+applications in digital dentistry. However, constructing an unbiased dental
+template and accurate parametric dental models remains a challenging task due
+to the complex anatomical and morphological dental structures and also low
+volume ratio of the teeth. In this study, we develop an unbiased dental
+template by constructing an accurate dental atlas from CBCT images with
+guidance of teeth segmentation. First, to address the challenges, we propose to
+enhance the CBCT images and their segmentation images, including image
+cropping, image masking and segmentation intensity reassigning. Then, we
+further use the segmentation images to perform co-registration with the CBCT
+images to generate an accurate dental atlas, from which an unbiased dental
+template can be generated. By leveraging the unbiased dental template, we
+construct parametric dental models by estimating point-to-point correspondences
+between the dental models and employing Principal Component Analysis to
+determine shape subspaces of the parametric dental models. A total of 159 CBCT
+images of real subjects are collected to perform the constructions.
+Experimental results demonstrate effectiveness of our proposed method in
+constructing unbiased dental template and parametric dental model. The
+developed dental template and parametric dental models are available at
+https://github.com/Marvin0724/Teeth_template.",2023-04-07T09:39:03Z,http://arxiv.org/abs/2304.03556v1,dental caries
+Example Mining for Incremental Learning in Medical Imaging,"Pratyush Kumar, Muktabh Mayank Srivastava","Incremental Learning is well known machine learning approach wherein the
+weights of the learned model are dynamically and gradually updated to
+generalize on new unseen data without forgetting the existing knowledge.
+Incremental learning proves to be time as well as resource-efficient solution
+for deployment of deep learning algorithms in real world as the model can
+automatically and dynamically adapt to new data as and when annotated data
+becomes available. The development and deployment of Computer Aided Diagnosis
+(CAD) tools in medical domain is another scenario, where incremental learning
+becomes very crucial as collection and annotation of a comprehensive dataset
+spanning over multiple pathologies and imaging machines might take years.
+However, not much has so far been explored in this direction. In the current
+work, we propose a robust and efficient method for incremental learning in
+medical imaging domain. Our approach makes use of Hard Example Mining technique
+(which is commonly used as a solution to heavy class imbalance) to
+automatically select a subset of dataset to fine-tune the existing network
+weights such that it adapts to new data while retaining existing knowledge. We
+develop our approach for incremental learning of our already under test model
+for detecting dental caries. Further, we apply our approach to one publicly
+available dataset and demonstrate that our approach reaches the accuracy of
+training on entire dataset at once, while availing the benefits of incremental
+learning scenario.",2018-07-24T07:50:18Z,http://arxiv.org/abs/1807.08942v1,dental caries
+A review of dental informatics : current trends and future directions,"Prabath Jayatissa, Roshan Hewapathirane","Dental informatics is a rapidly evolving field that combines dentistry with
+information technology to improve oral health care delivery, research, and
+education. Electronic health records (EHRs), telehealth, digital imaging, and
+other digital tools have revolutionised how dental professionals diagnose,
+treat, and manage oral health conditions. In this review article, we will
+explore dental informatics's current trends and future directions, focusing on
+its impact on clinical practice, research, and education. We will also discuss
+the challenges and opportunities associated with implementing dental
+informatics and highlight fundamental research studies and innovations in the
+field.",2023-06-29T11:27:38Z,http://arxiv.org/abs/2307.03686v1,dental caries
+"Self-Supervised Learning with Masked Image Modeling for Teeth Numbering,
+  Detection of Dental Restorations, and Instance Segmentation in Dental
+  Panoramic Radiographs","Amani Almalki, Longin Jan Latecki","The computer-assisted radiologic informative report is currently emerging in
+dental practice to facilitate dental care and reduce time consumption in manual
+panoramic radiographic interpretation. However, the amount of dental
+radiographs for training is very limited, particularly from the point of view
+of deep learning. This study aims to utilize recent self-supervised learning
+methods like SimMIM and UM-MAE to increase the model efficiency and
+understanding of the limited number of dental radiographs. We use the Swin
+Transformer for teeth numbering, detection of dental restorations, and instance
+segmentation tasks. To the best of our knowledge, this is the first study that
+applied self-supervised learning methods to Swin Transformer on dental
+panoramic radiographs. Our results show that the SimMIM method obtained the
+highest performance of 90.4% and 88.9% on detecting teeth and dental
+restorations and instance segmentation, respectively, increasing the average
+precision by 13.4 and 12.8 over the random initialization baseline. Moreover,
+we augment and correct the existing dataset of panoramic radiographs. The code
+and the dataset are available at https://github.com/AmaniHAlmalki/DentalMIM.",2022-10-20T16:50:07Z,http://arxiv.org/abs/2210.11404v1,dental caries
+"Semantic decomposition Network with Contrastive and Structural
+  Constraints for Dental Plaque Segmentation","Jian Shi, Baoli Sun, Xinchen Ye, Zhihui Wang, Xiaolong Luo, Jin Liu, Heli Gao, Haojie Li","Segmenting dental plaque from images of medical reagent staining provides
+valuable information for diagnosis and the determination of follow-up treatment
+plan. However, accurate dental plaque segmentation is a challenging task that
+requires identifying teeth and dental plaque subjected to semantic-blur regions
+(i.e., confused boundaries in border regions between teeth and dental plaque)
+and complex variations of instance shapes, which are not fully addressed by
+existing methods. Therefore, we propose a semantic decomposition network
+(SDNet) that introduces two single-task branches to separately address the
+segmentation of teeth and dental plaque and designs additional constraints to
+learn category-specific features for each branch, thus facilitating the
+semantic decomposition and improving the performance of dental plaque
+segmentation. Specifically, SDNet learns two separate segmentation branches for
+teeth and dental plaque in a divide-and-conquer manner to decouple the
+entangled relation between them. Each branch that specifies a category tends to
+yield accurate segmentation. To help these two branches better focus on
+category-specific features, two constraint modules are further proposed: 1)
+contrastive constraint module (CCM) to learn discriminative feature
+representations by maximizing the distance between different category
+representations, so as to reduce the negative impact of semantic-blur regions
+on feature extraction; 2) structural constraint module (SCM) to provide
+complete structural information for dental plaque of various shapes by the
+supervision of an boundary-aware geometric constraint. Besides, we construct a
+large-scale open-source Stained Dental Plaque Segmentation dataset (SDPSeg),
+which provides high-quality annotations for teeth and dental plaque.
+Experimental results on SDPSeg datasets show SDNet achieves state-of-the-art
+performance.",2022-08-12T14:10:29Z,http://arxiv.org/abs/2208.06283v1,dental caries
+"Generative Adversarial Networks for Dental Patient Identity Protection
+  in Orthodontic Educational Imaging","Mingchuan Tian, Wilson Weixun Lu, Kelvin Weng Chiong Foong, Eugene Loh","Objectives: This research introduces a novel area-preserving Generative
+Adversarial Networks (GAN) inversion technique for effectively de-identifying
+dental patient images. This innovative method addresses privacy concerns while
+preserving key dental features, thereby generating valuable resources for
+dental education and research.
+  Methods: We enhanced the existing GAN Inversion methodology to maximize the
+preservation of dental characteristics within the synthesized images. A
+comprehensive technical framework incorporating several deep learning models
+was developed to provide end-to-end development guidance and practical
+application for image de-identification.
+  Results: Our approach was assessed with varied facial pictures, extensively
+used for diagnosing skeletal asymmetry and facial anomalies. Results
+demonstrated our model's ability to adapt the context from one image to
+another, maintaining compatibility, while preserving dental features essential
+for oral diagnosis and dental education. A panel of five clinicians conducted
+an evaluation on a set of original and GAN-processed images. The generated
+images achieved effective de-identification, maintaining the realism of
+important dental features and were deemed useful for dental diagnostics and
+education.
+  Clinical Significance: Our GAN model and the encompassing framework can
+streamline the de-identification process of dental patient images, enhancing
+efficiency in dental education. This method improves students' diagnostic
+capabilities by offering more exposure to orthodontic malocclusions.
+Furthermore, it facilitates the creation of de-identified datasets for broader
+2D image research at major research institutions.",2023-07-05T04:14:57Z,http://arxiv.org/abs/2307.02019v1,dental caries
+DArch: Dental Arch Prior-assisted 3D Tooth Instance Segmentation,"Liangdong Qiu, Chongjie Ye, Pei Chen, Yunbi Liu, Xiaoguang Han, Shuguang Cui","Automatic tooth instance segmentation on 3D dental models is a fundamental
+task for computer-aided orthodontic treatments. Existing learning-based methods
+rely heavily on expensive point-wise annotations. To alleviate this problem, we
+are the first to explore a low-cost annotation way for 3D tooth instance
+segmentation, i.e., labeling all tooth centroids and only a few teeth for each
+dental model. Regarding the challenge when only weak annotation is provided, we
+present a dental arch prior-assisted 3D tooth segmentation method, namely
+DArch. Our DArch consists of two stages, including tooth centroid detection and
+tooth instance segmentation. Accurately detecting the tooth centroids can help
+locate the individual tooth, thus benefiting the segmentation. Thus, our DArch
+proposes to leverage the dental arch prior to assist the detection.
+Specifically, we firstly propose a coarse-to-fine method to estimate the dental
+arch, in which the dental arch is initially generated by Bezier curve
+regression, and then a graph-based convolutional network (GCN) is trained to
+refine it. With the estimated dental arch, we then propose a novel Arch-aware
+Point Sampling (APS) method to assist the tooth centroid proposal generation.
+Meantime, a segmentor is independently trained using a patch-based training
+strategy, aiming to segment a tooth instance from a 3D patch centered at the
+tooth centroid. Experimental results on $4,773$ dental models have shown our
+DArch can accurately segment each tooth of a dental model, and its performance
+is superior to the state-of-the-art methods.",2022-04-25T18:30:01Z,http://arxiv.org/abs/2204.11911v1,dental caries
+"Enhanced Masked Image Modeling for Analysis of Dental Panoramic
+  Radiographs","Amani Almalki, Longin Jan Latecki","The computer-assisted radiologic informative report has received increasing
+research attention to facilitate diagnosis and treatment planning for dental
+care providers. However, manual interpretation of dental images is limited,
+expensive, and time-consuming. Another barrier in dental imaging is the limited
+number of available images for training, which is a challenge in the era of
+deep learning. This study proposes a novel self-distillation (SD) enhanced
+self-supervised learning on top of the masked image modeling (SimMIM)
+Transformer, called SD-SimMIM, to improve the outcome with a limited number of
+dental radiographs. In addition to the prediction loss on masked patches,
+SD-SimMIM computes the self-distillation loss on the visible patches. We apply
+SD-SimMIM on dental panoramic X-rays for teeth numbering, detection of dental
+restorations and orthodontic appliances, and instance segmentation tasks. Our
+results show that SD-SimMIM outperforms other self-supervised learning methods.
+Furthermore, we augment and improve the annotation of an existing dataset of
+panoramic X-rays.",2023-06-18T19:20:38Z,http://arxiv.org/abs/2306.10623v1,dental caries
+Haptic bilateral teleoperation system for free-hand dental procedures,"Lorenzo Pagliara, Enrico Ferrentino, Andrea Chiacchio, Giovanni Russo","Free-hand dental procedures are typically repetitive, time-consuming and
+require high precision and manual dexterity. Dental robots can play a key role
+in improving procedural accuracy and safety, enhancing patient comfort, and
+reducing operator workload. However, robotic solutions for free-hand procedures
+remain limited or completely lacking, and their acceptance is still low. To
+address this gap, we develop a haptic bilateral teleoperation system (HBTS) for
+free-hand dental procedures. The system includes a dedicated mechanical
+end-effector, compatible with standard clinical tools, and equipped with an
+endoscopic camera for improved visibility of the intervention site. By ensuring
+motion and force correspondence between the operator's actions and the robot's
+movements, monitored through visual feedback, we enhance the operator's sensory
+awareness and motor accuracy. Furthermore, recognizing the need to ensure
+procedural safety, we limit interaction forces by scaling the motion references
+provided to the admittance controller based solely on measured contact forces.
+This ensures effective force limitation in all contact states without requiring
+prior knowledge of the environment. The proposed HBTS is validated in a dental
+scaling procedure using a dental phantom. The results show that the system
+improves the naturalness, safety, and accuracy of teleoperation, highlighting
+its potential to enhance free-hand dental procedures.",2025-03-27T09:11:34Z,http://arxiv.org/abs/2503.21288v1,dental caries
+"Enhanced Pediatric Dental Segmentation Using a Custom SegUNet with VGG19
+  Backbone on Panoramic Radiographs","Md Ohiduzzaman Ovi, Maliha Sanjana, Fahad Fahad, Mahjabin Runa, Zarin Tasnim Rothy, Tanmoy Sarkar Pias, A. M. Tayeful Islam, Rumman Ahmed Prodhan","Pediatric dental segmentation is critical in dental diagnostics, presenting
+unique challenges due to variations in dental structures and the lower number
+of pediatric X-ray images. This study proposes a custom SegUNet model with a
+VGG19 backbone, designed explicitly for pediatric dental segmentation and
+applied to the Children's Dental Panoramic Radiographs dataset. The SegUNet
+architecture with a VGG19 backbone has been employed on this dataset for the
+first time, achieving state-of-the-art performance. The model reached an
+accuracy of 97.53%, a dice coefficient of 92.49%, and an intersection over
+union (IOU) of 91.46%, setting a new benchmark for this dataset. These results
+demonstrate the effectiveness of the VGG19 backbone in enhancing feature
+extraction and improving segmentation precision. Comprehensive evaluations
+across metrics, including precision, recall, and specificity, indicate the
+robustness of this approach. The model's ability to generalize across diverse
+dental structures makes it a valuable tool for clinical applications in
+pediatric dental care. It offers a reliable and efficient solution for
+automated dental diagnostics.",2025-03-08T19:32:25Z,http://arxiv.org/abs/2503.06321v1,dental caries
+"ToF-SIMS Investigations on Dental Implant Materials and Adsorbed Protein
+  Films",Falk Bernsmann,"In this work the two experimental dental implant materials FAT and FAW, made
+of fluoroapatite particles embedded in polymer matrices, and films of the
+proteins lysozyme, amylase and bovine serum albumin (BSA), adsorbed to the two
+dental implant materials, were investigated with time-of-flight secondary ion
+mass spectrometry (ToF-SIMS) and the multivariate data analysis technique
+discriminant principal component analysis (DPCA).",2011-06-23T07:21:11Z,http://arxiv.org/abs/1106.4644v1,dental caries
+Improving Formality Style Transfer with Context-Aware Rule Injection,"Zonghai Yao, Hong Yu","Models pre-trained on large-scale regular text corpora often do not work well
+for user-generated data where the language styles differ significantly from the
+mainstream text. Here we present Context-Aware Rule Injection (CARI), an
+innovative method for formality style transfer (FST). CARI injects multiple
+rules into an end-to-end BERT-based encoder and decoder model. It learns to
+select optimal rules based on context. The intrinsic evaluation showed that
+CARI achieved the new highest performance on the FST benchmark dataset. Our
+extrinsic evaluation showed that CARI can greatly improve the regular
+pre-trained models' performance on several tweet sentiment analysis tasks.",2021-06-01T03:59:07Z,http://arxiv.org/abs/2106.00210v1,dental caries
+"JSCDS: A Core Data Selection Method with Jason-Shannon Divergence for
+  Caries RGB Images-Efficient Learning","Peiliang Zhang, Yujia Tong, Chenghu Du, Chao Che, Yongjun Zhu","Deep learning-based RGB caries detection improves the efficiency of caries
+identification and is crucial for preventing oral diseases. The performance of
+deep learning models depends on high-quality data and requires substantial
+training resources, making efficient deployment challenging. Core data
+selection, by eliminating low-quality and confusing data, aims to enhance
+training efficiency without significantly compromising model performance.
+However, distance-based data selection methods struggle to distinguish
+dependencies among high-dimensional caries data. To address this issue, we
+propose a Core Data Selection Method with Jensen-Shannon Divergence (JSCDS) for
+efficient caries image learning and caries classification. We describe the core
+data selection criterion as the distribution of samples in different classes.
+JSCDS calculates the cluster centers by sample embedding representation in the
+caries classification network and utilizes Jensen-Shannon Divergence to compute
+the mutual information between data samples and cluster centers, capturing
+nonlinear dependencies among high-dimensional data. The average mutual
+information is calculated to fit the above distribution, serving as the
+criterion for constructing the core set for model training. Extensive
+experiments on RGB caries datasets show that JSCDS outperforms other data
+selection methods in prediction performance and time consumption. Notably,
+JSCDS exceeds the performance of the full dataset model with only 50% of the
+core data, with its performance advantage becoming more pronounced in the 70%
+of core data.",2024-06-29T08:19:25Z,http://arxiv.org/abs/2407.00362v2,dental caries
+Intergrated Segmentation and Detection Models for Dentex Challenge 2023,"Lanshan He, Yusheng Liu, Lisheng Wang","Dental panoramic x-rays are commonly used in dental diagnosing. With the
+development of deep learning, auto detection of diseases from dental panoramic
+x-rays can help dentists to diagnose diseases more efficiently.The Dentex
+Challenge 2023 is a competition for automatic detection of abnormal teeth along
+with their enumeration ids from dental panoramic x-rays. In this paper, we
+propose a method integrating segmentation and detection models to detect
+abnormal teeth as well as obtain their enumeration ids.Our codes are available
+at https://github.com/xyzlancehe/DentexSegAndDet.",2023-08-27T17:44:25Z,http://arxiv.org/abs/2308.14161v2,dental caries
+"In situ Measurement of Airborne Particle Concentration in a Real Dental
+  Office: Implications for Disease Transmission","Maryam Ravazi, Zahid Butt, Mark H. E. Lin, Helen Chen, Zhongchao Tan","Recent guidelines by WHO recommend delaying non-essential oral health care
+amid COVID-19 pandemic and call for research on aerosol generated during dental
+procedures. Thus, this study aims to assess the mechanisms of dental aerosol
+dispersion in dental offices and to provide recommendations based on a
+quantitative study to minimize infection transmission in dental offices. The
+spread and removal of aerosol particles generated from dental procedures in a
+dental office are measured near the source and at the corner of the office. We
+studied the effects of air purification (on/off), door condition (open/close),
+and particle sizes on the temporal concentration distribution of particles. The
+results show that in the worst-scenario scenario it takes 95 min for 0.5 um
+particles to settle, and that it takes a shorter time for the larger particles.
+The indoor air purifier tested expedited the removal time at least 6.3 times
+faster than the scenario air purifier off. Airborne particles may be
+transported from the source to the rest of the room, even when the particle
+concentrations in the generation zone return to the background level. These
+results are expected to be valuable to related policy making and technology
+development for infection disease control in dental offices and similar built
+environments.",2020-08-19T21:42:10Z,http://arxiv.org/abs/2008.10998v1,dental caries
+"Accurate 3D Prediction of Missing Teeth in Diverse Patterns for Precise
+  Dental Implant Planning","Lei Ma, Peng Xue, Yuning Gu, Yue Zhao, Min Zhu, Zhongxiang Ding, Dinggang Shen","In recent years, the demand for dental implants has surged, driven by their
+high success rates and esthetic advantages. However, accurate prediction of
+missing teeth for precise digital implant planning remains a challenge due to
+the intricate nature of dental structures and the variability in tooth loss
+patterns. This study presents a novel framework for accurate prediction of
+missing teeth in different patterns, facilitating digital implant planning. The
+proposed framework begins by estimating point-to-point correspondence among a
+dataset of dental mesh models reconstructed from CBCT images of healthy
+subjects. Subsequently, tooth dictionaries are constructed for each tooth type,
+encoding their position and shape information based on the established
+point-to-point correspondence. To predict missing teeth in a given dental mesh
+model, sparse coefficients are learned by sparsely representing adjacent teeth
+of the missing teeth using the corresponding tooth dictionaries. These
+coefficients are then applied to the dictionaries of the missing teeth to
+generate accurate predictions of their positions and shapes. The evaluation
+results on real subjects shows that our proposed framework achieves an average
+prediction error of 1.04mm for predictions of single missing tooth and an
+average prediction error of 1.33mm for the prediction of 14 missing teeth,
+which demonstrates its capability of accurately predicting missing teeth in
+various patterns. By accurately predicting missing teeth, dental professionals
+can improve the planning and placement of dental implants, leading to better
+esthetic and functional outcomes for patients undergoing dental implant
+procedures.",2023-07-16T05:52:37Z,http://arxiv.org/abs/2307.07953v1,dental caries
+"Masked Latent Transformer with the Random Masking Ratio to Advance the
+  Diagnosis of Dental Fluorosis","Yun Wu, Hao Xu, Maohua Gu, Zhongchuan Jiang, Jun Xu, Youliang Tian","Dental fluorosis is a chronic disease caused by long-term overconsumption of
+fluoride, which leads to changes in the appearance of tooth enamel. It is an
+important basis for early non-invasive diagnosis of endemic fluorosis. However,
+even dental professionals may not be able to accurately distinguish dental
+fluorosis and its severity based on tooth images. Currently, there is still a
+gap in research on applying deep learning to diagnosing dental fluorosis.
+Therefore, we construct the first open-source dental fluorosis image dataset
+(DFID), laying the foundation for deep learning research in this field. To
+advance the diagnosis of dental fluorosis, we propose a pioneering deep
+learning model called masked latent transformer with the random masking ratio
+(MLTrMR). MLTrMR introduces a mask latent modeling scheme based on Vision
+Transformer to enhance contextual learning of dental fluorosis lesion
+characteristics. Consisting of a latent embedder, encoder, and decoder, MLTrMR
+employs the latent embedder to extract latent tokens from the original image,
+whereas the encoder and decoder comprising the latent transformer (LT) block
+are used to process unmasked tokens and predict masked tokens, respectively. To
+mitigate the lack of inductive bias in Vision Transformer, which may result in
+performance degradation, the LT block introduces latent tokens to enhance the
+learning capacity of latent lesion features. Furthermore, we design an
+auxiliary loss function to constrain the parameter update direction of the
+model. MLTrMR achieves 80.19% accuracy, 75.79% F1, and 81.28% quadratic
+weighted kappa on DFID, making it state-of-the-art (SOTA).",2024-04-21T07:26:09Z,http://arxiv.org/abs/2404.13564v1,dental caries
+"Emerging basic, clinical and translational research fronts in dental
+  biomaterials R&D","David Fajardo-Ortiz, Pablo Jaramillo, Claudia Jaramillo, Raul Resendiz, Miguel Lara-Flores, Victor M. Castano","The current (2007-2007) structure and content of dental materials research
+has been investigated by identifying and describing the emergent research
+fronts which can be related to basic, translational and clinical observation
+research. By a combination of network analysis and text mining of the
+literature on dental materials indexed in the Web of Science, we have
+identified eleven emerging research fronts. These fronts are related to
+different dental materials applications which are at different levels in the
+knowledge translation and biomedical innovation process. We identified fronts
+related to dominant designs like titanium implants, competing technologies like
+ceramics and composites applications to prothesis and restauration, and
+disruptive technologies like nanomaterials and mineral trioxide aggregates. Our
+results suggest the possible relation between the technological complexity of
+the dental materials and the level of advance in terms of knowledge
+translation. This is the first time the structure and content of research on
+dental materials research is analyzed.",2017-11-30T00:30:24Z,http://arxiv.org/abs/1711.11168v1,dental caries
+Automatic Recognition of Landmarks on Digital Dental Models,"Brénainn Woodsend, Eirini Koufoudaki, Peter A. Mossey, Ping Lin","Fundamental to improving Dental and Orthodontic treatments is the ability to
+quantitatively assess and cross-compare their outcomes. Such assessments
+require calculating distances and angles from 3D coordinates of dental
+landmarks. The costly and repetitive task of hand-labelling dental models
+impedes studies requiring large sample size to penetrate statistical noise. We
+have developed techniques and software implementing these techniques to map out
+automatically, 3D dental scans. This process is divided into consecutive steps
+- determining a model's orientation, separating and identifying the individual
+tooth and finding landmarks on each tooth - described in this paper. Examples
+to demonstrate techniques and the software and discussions on remaining issues
+are provided as well. The software is originally designed to automate Modified
+Huddard Bodemham (MHB) landmarking for assessing cleft lip/palate patients.
+Currently only MHB landmarks are supported, but is extendable to any
+predetermined landmarks. This software, coupled with intra-oral scanning
+innovation, should supersede the arduous and error prone plaster model and
+caliper approach to Dental research and provide a stepping-stone towards
+automation of routine clinical assessments such as ""index of orthodontic
+treatment need"" (IOTN).",2020-12-23T20:14:00Z,http://arxiv.org/abs/2012.12946v1,dental caries
+"Dental CLAIRES: Contrastive LAnguage Image REtrieval Search for Dental
+  Research","Tanjida Kabir, Luyao Chen, Muhammad F Walji, Luca Giancardo, Xiaoqian Jiang, Shayan Shams","Learning about diagnostic features and related clinical information from
+dental radiographs is important for dental research. However, the lack of
+expert-annotated data and convenient search tools poses challenges. Our primary
+objective is to design a search tool that uses a user's query for oral-related
+research. The proposed framework, Contrastive LAnguage Image REtrieval Search
+for dental research, Dental CLAIRES, utilizes periapical radiographs and
+associated clinical details such as periodontal diagnosis, demographic
+information to retrieve the best-matched images based on the text query. We
+applied a contrastive representation learning method to find images described
+by the user's text by maximizing the similarity score of positive pairs (true
+pairs) and minimizing the score of negative pairs (random pairs). Our model
+achieved a hit@3 ratio of 96% and a Mean Reciprocal Rank (MRR) of 0.82. We also
+designed a graphical user interface that allows researchers to verify the
+model's performance with interactions.",2023-06-27T17:47:12Z,http://arxiv.org/abs/2306.15651v1,dental caries
+"Improving Dental Diagnostics: Enhanced Convolution with Spatial
+  Attention Mechanism","Shahriar Rezaie, Neda Saberitabar, Elnaz Salehi","Deep learning has emerged as a transformative tool in healthcare, offering
+significant advancements in dental diagnostics by analyzing complex imaging
+data. This paper presents an enhanced ResNet50 architecture, integrated with
+the SimAM attention module, to address the challenge of limited contrast in
+dental images and optimize deep learning performance while mitigating
+computational demands. The SimAM module, incorporated after the second ResNet
+block, refines feature extraction by capturing spatial dependencies and
+enhancing significant features. Our model demonstrates superior performance
+across various feature extraction techniques, achieving an F1 score of 0.676
+and outperforming traditional architectures such as VGG, EfficientNet,
+DenseNet, and AlexNet. This study highlights the effectiveness of our approach
+in improving classification accuracy and robustness in dental image analysis,
+underscoring the potential of deep learning to enhance diagnostic accuracy and
+efficiency in dental care. The integration of advanced AI models like ours is
+poised to revolutionize dental diagnostics, contributing to better patient
+outcomes and the broader adoption of AI in dentistry.",2024-07-11T01:12:30Z,http://arxiv.org/abs/2407.08114v1,dental caries
+"Development of a computer-aided design software for dental splint in
+  orthognathic surgery","Xiaojun Chen, Xing Li, Lu Xu, Yi Sun, Constantinus Politis, Jan Egger","In the orthognathic surgery, dental splints are important and necessary to
+help the surgeon reposition the maxilla or mandible. However, the traditional
+methods of manual design of dental splints are difficult and time-consuming.
+The research on computer-aided design software for dental splints is rarely
+reported. Our purpose is to develop a novel special software named EasySplint
+to design the dental splints conveniently and efficiently. The design can be
+divided into two steps, which are the generation of initial splint base and the
+Boolean operation between it and the maxilla-mandibular model. The initial
+splint base is formed by ruled surfaces reconstructed using the manually picked
+points. Then, a method to accomplish Boolean operation based on the distance
+filed of two meshes is proposed. The interference elimination can be conducted
+on the basis of marching cubes algorithm and Boolean operation. The accuracy of
+the dental splint can be guaranteed since the original mesh is utilized to form
+the result surface. Using EasySplint, the dental splints can be designed in
+about 10 minutes and saved as a stereo lithography (STL) file for 3D printing
+in clinical applications. Three phantom experiments were conducted and the
+efficiency of our method was demonstrated.",2017-03-09T09:45:30Z,http://arxiv.org/abs/1703.03199v1,dental caries
+"Multiclass Segmentation using Teeth Attention Modules for Dental X-ray
+  Images","Afnan Ghafoor, Seong-Yong Moon, Bumshik Lee","This paper proposed a cutting-edge multiclass teeth segmentation architecture
+that integrates an M-Net-like structure with Swin Transformers and a novel
+component named Teeth Attention Block (TAB). Existing teeth image segmentation
+methods have issues with less accurate and unreliable segmentation outcomes due
+to the complex and varying morphology of teeth, although teeth segmentation in
+dental panoramic images is essential for dental disease diagnosis. We propose a
+novel teeth segmentation model incorporating an M-Net-like structure with Swin
+Transformers and TAB. The proposed TAB utilizes a unique attention mechanism
+that focuses specifically on the complex structures of teeth. The attention
+mechanism in TAB precisely highlights key elements of teeth features in
+panoramic images, resulting in more accurate segmentation outcomes. The
+proposed architecture effectively captures local and global contextual
+information, accurately defining each tooth and its surrounding structures.
+Furthermore, we employ a multiscale supervision strategy, which leverages the
+left and right legs of the U-Net structure, boosting the performance of the
+segmentation with enhanced feature representation. The squared Dice loss is
+utilized to tackle the class imbalance issue, ensuring accurate segmentation
+across all classes. The proposed method was validated on a panoramic teeth
+X-ray dataset, which was taken in a real-world dental diagnosis. The
+experimental results demonstrate the efficacy of our proposed architecture for
+tooth segmentation on multiple benchmark dental image datasets, outperforming
+existing state-of-the-art methods in objective metrics and visual examinations.
+This study has the potential to significantly enhance dental image analysis and
+contribute to advances in dental applications.",2023-11-07T06:20:34Z,http://arxiv.org/abs/2311.03749v1,dental caries
+"Bayesian Nonparametric Policy Search with Application to Periodontal
+  Recall Intervals","Qian Guan, Brian J. Reich, Eric B. Laber, Dipankar Bandyopadhyay","Tooth loss from periodontal disease is a major public health burden in the
+United States. Standard clinical practice is to recommend a dental visit every
+six months; however, this practice is not evidence-based, and poor dental
+outcomes and increasing dental insurance premiums indicate room for
+improvement. We consider a tailored approach that recommends recall time based
+on patient characteristics and medical history to minimize disease progression
+without increasing resource expenditures. We formalize this method as a dynamic
+treatment regime which comprises a sequence of decisions, one per stage of
+intervention, that follow a decision rule which maps current patient
+information to a recommendation for their next visit time. The dynamics of
+periodontal health, visit frequency, and patient compliance are complex, yet
+the estimated optimal regime must be interpretable to domain experts if it is
+to be integrated into clinical practice. We combine non-parametric Bayesian
+dynamics modeling with policy-search algorithms to estimate the optimal dynamic
+treatment regime within an interpretable class of regimes. Both simulation
+experiments and application to a rich database of electronic dental records
+from the HealthPartners HMO shows that our proposed method leads to better
+dental health without increasing the average recommended recall time relative
+to competing methods.",2018-10-10T02:32:12Z,http://arxiv.org/abs/1810.04338v1,dental caries
+"A convolutional neural network for teeth margin detection on
+  3-dimensional dental meshes","Hu Chen, Hong Li, Bifu Hu, Kenan Ma, Yuchun Sun","We proposed a convolutional neural network for vertex classification on
+3-dimensional dental meshes, and used it to detect teeth margins. An expanding
+layer was constructed to collect statistic values of neighbor vertex features
+and compute new features for each vertex with convolutional neural networks. An
+end-to-end neural network was proposed to take vertex features, including
+coordinates, curvatures and distance, as input and output each vertex
+classification label. Several network structures with different parameters of
+expanding layers and a base line network without expanding layers were designed
+and trained by 1156 dental meshes. The accuracy, recall and precision were
+validated on 145 dental meshes to rate the best network structures, which were
+finally tested on another 144 dental meshes. All networks with our expanding
+layers performed better than baseline, and the best one achieved an accuracy of
+0.877 both on validation dataset and test dataset.",2021-07-07T06:16:17Z,http://arxiv.org/abs/2107.03030v1,dental caries
+"Developing a Novel Approach for Periapical Dental Radiographs
+  Segmentation","Elaheh Hatamimajoumerd, Farshad Tajeripour","Image processing techniques has been widely used in dental researches such as
+human identification and forensic dentistry, teeth numbering, dental carries
+detection and periodontal disease analysis. One of the most challenging parts
+in dental imaging is teeth segmentation and how to separate them from each
+other. In this paper, an automated method for teeth segmentation of Periapical
+dental x-ray images which contain at least one root-canalled tooth is proposed.
+The result of this approach can be used as an initial step in bone lesion
+detection. The proposed algorithm is made of two stages. The first stage is
+pre-processing. The second and main part of this algorithm calculated rotation
+degree and uses the integral projection method for tooth isolation.
+Experimental results show that this algorithm is robust and achieves high
+accuracy.",2021-11-13T17:25:35Z,http://arxiv.org/abs/2111.07156v2,dental caries
+"CTooth+: A Large-scale Dental Cone Beam Computed Tomography Dataset and
+  Benchmark for Tooth Volume Segmentation","Weiwei Cui, Yaqi Wang, Yilong Li, Dan Song, Xingyong Zuo, Jiaojiao Wang, Yifan Zhang, Huiyu Zhou, Bung san Chong, Liaoyuan Zeng, Qianni Zhang","Accurate tooth volume segmentation is a prerequisite for computer-aided
+dental analysis. Deep learning-based tooth segmentation methods have achieved
+satisfying performances but require a large quantity of tooth data with ground
+truth. The dental data publicly available is limited meaning the existing
+methods can not be reproduced, evaluated and applied in clinical practice. In
+this paper, we establish a 3D dental CBCT dataset CTooth+, with 22 fully
+annotated volumes and 146 unlabeled volumes. We further evaluate several
+state-of-the-art tooth volume segmentation strategies based on fully-supervised
+learning, semi-supervised learning and active learning, and define the
+performance principles. This work provides a new benchmark for the tooth volume
+segmentation task, and the experiment can serve as the baseline for future
+AI-based dental imaging research and clinical application development.",2022-08-02T09:13:23Z,http://arxiv.org/abs/2208.01643v1,dental caries
