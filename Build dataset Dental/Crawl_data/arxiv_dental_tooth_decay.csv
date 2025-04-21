@@ -1,0 +1,837 @@
+title,authors,summary,published,link,keyword_used
+"American Twitter Users Revealed Social Determinants-related Oral Health
+  Disparities amid the COVID-19 Pandemic","Yangxin Fan, Hanjia Lyu, Jin Xiao, Jiebo Luo","Objectives: To assess self-reported population oral health conditions amid
+COVID-19 pandemic using user reports on Twitter. Method and Material: We
+collected oral health-related tweets during the COVID-19 pandemic from 9,104
+Twitter users across 26 states (with sufficient samples) in the United States
+between November 12, 2020 and June 14, 2021. We inferred user demographics by
+leveraging the visual information from the user profile images. Other
+characteristics including income, population density, poverty rate, health
+insurance coverage rate, community water fluoridation rate, and relative change
+in the number of daily confirmed COVID-19 cases were acquired or inferred based
+on retrieved information from user profiles. We performed logistic regression
+to examine whether discussions vary across user characteristics. Results:
+Overall, 26.70% of the Twitter users discuss wisdom tooth pain/jaw hurt, 23.86%
+tweet about dental service/cavity, 18.97% discuss chipped tooth/tooth break,
+16.23% talk about dental pain, and the rest are about tooth decay/gum bleeding.
+Women and younger adults (19-29) are more likely to talk about oral health
+problems. Health insurance coverage rate is the most significant predictor in
+logistic regression for topic prediction. Conclusion: Tweets inform social
+disparities in oral health during the pandemic. For instance, people from
+counties at a higher risk of COVID-19 talk more about tooth decay/gum bleeding
+and chipped tooth/tooth break. Older adults, who are vulnerable to COVID-19,
+are more likely to discuss dental pain. Topics of interest vary across user
+characteristics. Through the lens of social media, our findings may provide
+insights for oral health practitioners and policy makers.",2021-09-16T01:10:06Z,http://arxiv.org/abs/2109.07652v2,tooth decay
+"ViSTooth: A Visualization Framework for Tooth Segmentation on Panoramic
+  Radiograph","Shenji Zhu, Miaoxin Hu, Tianya Pan, Yue Hong, Bin Li, Zhiguang Zhou, Ting Xu","Tooth segmentation is a key step for computer aided diagnosis of dental
+diseases. Numerous machine learning models have been employed for tooth
+segmentation on dental panoramic radiograph. However, it is a difficult task to
+achieve accurate tooth segmentation due to complex tooth shapes, diverse tooth
+categories and incomplete sample set for machine learning. In this paper, we
+propose ViSTooth, a visualization framework for tooth segmentation on dental
+panoramic radiograph. First, we employ Mask R-CNN to conduct preliminary tooth
+segmentation, and a set of domain metrics are proposed to estimate the accuracy
+of the segmented teeth, including tooth shape, tooth position and tooth angle.
+Then, we represent the teeth with high-dimensional vectors and visualize their
+distribution in a low-dimensional space, in which experts can easily observe
+those teeth with specific metrics. Further, we expand the sample set with the
+expert-specified teeth and train the tooth segmentation model iteratively.
+Finally, we conduct case study and expert study to demonstrate the
+effectiveness and usability of our ViSTooth, in aiding experts to implement
+accurate tooth segmentation guided by expert knowledge.",2024-05-14T13:10:54Z,http://arxiv.org/abs/2405.08573v1,tooth decay
+"Electrical Switching of Tristate Antiferromagnetic Néel Order in
+  $α$-Fe$_{2}$O$_{3}$ Epitaxial Films","Yang Cheng, Sisheng Yu, Menglin Zhu, Jinwoo Hwang, Fengyuan Yang","The ability to manipulate antiferromagnetic (AF) moments is a key requirement
+for the emerging field of antiferromagnetic spintronics. Electrical switching
+of bi-state AF moments has been demonstrated in metallic AFs, CuMnAs and
+Mn$_2$Au. Recently, current-induced ""saw-tooth"" shaped Hall resistance was
+reported in Pt/NiO bilayers, while its mechanism is under debate. Here, we
+report the first demonstration of convincing, non-decaying, step-like
+electrical switching of tri-state N\'eel order in Pt/$\alpha$-Fe$_2$O$_3$
+bilayers. Our experimental data, together with Monte-Carlo simulations, reveal
+the clear mechanism of the switching behavior of $\alpha$-Fe$_2$O$_3$ N\'eel
+order among three stable states. We also show that the observed ""saw-tooth""
+Hall resistance is due to an artifact of Pt, not AF switching, while the
+signature of AF switching is step-like Hall signals. This demonstration of
+electrical control of magnetic moments in AF insulator (AFI) films will greatly
+expand the scope of AF spintronics by leveraging the large family of AFIs.",2019-06-11T16:52:05Z,http://arxiv.org/abs/1906.04694v2,tooth decay
+Dense Representative Tooth Landmark/axis Detection Network on 3D Model,"Guangshun Wei, Zhiming Cui, Jie Zhu, Lei Yang, Yuanfeng Zhou, Pradeep Singh, Min Gu, Wenping Wang","Artificial intelligence (AI) technology is increasingly used for digital
+orthodontics, but one of the challenges is to automatically and accurately
+detect tooth landmarks and axes. This is partly because of sophisticated
+geometric definitions of them, and partly due to large variations among
+individual tooth and across different types of tooth. As such, we propose a
+deep learning approach with a labeled dataset by professional dentists to the
+tooth landmark/axis detection on tooth model that are crucial for orthodontic
+treatments. Our method can extract not only tooth landmarks in the form of
+point (e.g. cusps), but also axes that measure the tooth angulation and
+inclination. The proposed network takes as input a 3D tooth model and predicts
+various types of the tooth landmarks and axes. Specifically, we encode the
+landmarks and axes as dense fields defined on the surface of the tooth model.
+This design choice and a set of added components make the proposed network more
+suitable for extracting sparse landmarks from a given 3D tooth model. Extensive
+evaluation of the proposed method was conducted on a set of dental models
+prepared by experienced dentists. Results show that our method can produce
+tooth landmarks with high accuracy. Our method was examined and justified via
+comparison with the state-of-the-art methods as well as the ablation studies.",2021-11-08T00:42:22Z,http://arxiv.org/abs/2111.04212v2,tooth decay
+DArch: Dental Arch Prior-assisted 3D Tooth Instance Segmentation,"Liangdong Qiu, Chongjie Ye, Pei Chen, Yunbi Liu, Xiaoguang Han, Shuguang Cui","Automatic tooth instance segmentation on 3D dental models is a fundamental
+task for computer-aided orthodontic treatments. Existing learning-based methods
+rely heavily on expensive point-wise annotations. To alleviate this problem, we
+are the first to explore a low-cost annotation way for 3D tooth instance
+segmentation, i.e., labeling all tooth centroids and only a few teeth for each
+dental model. Regarding the challenge when only weak annotation is provided, we
+present a dental arch prior-assisted 3D tooth segmentation method, namely
+DArch. Our DArch consists of two stages, including tooth centroid detection and
+tooth instance segmentation. Accurately detecting the tooth centroids can help
+locate the individual tooth, thus benefiting the segmentation. Thus, our DArch
+proposes to leverage the dental arch prior to assist the detection.
+Specifically, we firstly propose a coarse-to-fine method to estimate the dental
+arch, in which the dental arch is initially generated by Bezier curve
+regression, and then a graph-based convolutional network (GCN) is trained to
+refine it. With the estimated dental arch, we then propose a novel Arch-aware
+Point Sampling (APS) method to assist the tooth centroid proposal generation.
+Meantime, a segmentor is independently trained using a patch-based training
+strategy, aiming to segment a tooth instance from a 3D patch centered at the
+tooth centroid. Experimental results on $4,773$ dental models have shown our
+DArch can accurately segment each tooth of a dental model, and its performance
+is superior to the state-of-the-art methods.",2022-04-25T18:30:01Z,http://arxiv.org/abs/2204.11911v1,tooth decay
+"Mandibular Teeth Movement Variations in Tipping Scenario: A Finite
+  Element Study on Several Patients","Torkan Gholamalizadeh, Sune Darkner, Paolo Maria Cattaneo, Peter Søndergaard, Kenny Erleben","Previous studies on computational modeling of tooth movement in orthodontic
+treatments are limited to a single model and fail in generalizing the
+simulation results to other patients. To this end, we consider multiple
+patients and focus on tooth movement variations under the identical load and
+boundary conditions both for intra- and inter-patient analyses. We introduce a
+novel computational analysis tool based on finite element models (FEMs)
+addressing how to assess initial tooth displacement in the mandibular dentition
+across different patients for uncontrolled tipping scenarios with different
+load magnitudes applied to the mandibular dentition. This is done by modeling
+the movement of each patient's tooth as a nonlinear function of both load and
+tooth size. As the size of tooth can affect the resulting tooth displacement, a
+combination of two clinical biomarkers obtained from the tooth anatomy, i.e.,
+crown height and root volume, is considered to make the proposed model
+generalizable to different patients and teeth.",2020-10-11T14:51:21Z,http://arxiv.org/abs/2010.05258v1,tooth decay
+Boundary feature fusion network for tooth image segmentation,"Dongping Zhang, Zheng Li, Fangao Zeng, Yutong Wei","Tooth segmentation is a critical technology in the field of medical image
+segmentation, with applications ranging from orthodontic treatment to human
+body identification and dental pathology assessment. Despite the development of
+numerous tooth image segmentation models by researchers, a common shortcoming
+is the failure to account for the challenges of blurred tooth boundaries.
+Dental diagnostics require precise delineation of tooth boundaries. This paper
+introduces an innovative tooth segmentation network that integrates boundary
+information to address the issue of indistinct boundaries between teeth and
+adjacent tissues. This network's core is its boundary feature extraction
+module, which is designed to extract detailed boundary information from
+high-level features. Concurrently, the feature cross-fusion module merges
+detailed boundary and global semantic information in a synergistic way,
+allowing for stepwise layer transfer of feature information. This method
+results in precise tooth segmentation. In the most recent STS Data Challenge,
+our methodology was rigorously tested and received a commendable overall score
+of 0.91. When compared to other existing approaches, this score demonstrates
+our method's significant superiority in segmenting tooth boundaries.",2024-09-06T02:12:21Z,http://arxiv.org/abs/2409.03982v1,tooth decay
+"Angular momentum removal by neutron and $γ$-ray emissions during
+  fission fragment decays","I. Stetcu, A. E. Lovell, P. Talou, T. Kawano, S. Marin, S. A. Pozzi, A. Bulgac","We investigate the angular momentum removal from fission fragments (FFs)
+through neutron and $\gamma$-ray emission, where we find that about half the
+neutrons are emitted with angular momenta $\ge 1.5\hbar$ and that the change in
+angular momentum after the emission of neutrons and statistical $\gamma$ rays
+is significant, contradicting usual assumptions. Per fission event, in our
+simulations, the neutron and statistical $\gamma$-ray emissions change the spin
+of the fragment by 3.5 -- 5~$\hbar$, with a large standard deviation comparable
+to the average value. Such wide angular momentum removal distributions can hide
+any underlying correlations in the fission fragment initial spin values. Within
+our model, we reproduce data on spin measurements from discrete transitions
+after neutron emissions, especially in the case of light FFs. The agreement
+further improves for the heavy fragments if one removes from the analysis the
+events that would produce isomeric states. Finally, we show that while in our
+model the initial FF spins do not follow a saw-tooth like behavior observed in
+recent measurements, the average FF spin computed after neutron and statistical
+$\gamma$ emissions exhibits a shape that resembles a saw tooth. This suggests
+that the average FF spin measured after statistical emissions is not
+necessarily connected with the scission mechanism as previously implied.",2021-08-09T20:54:03Z,http://arxiv.org/abs/2108.04347v2,tooth decay
+Tooth-shaped plasmonic waveguide filters with nanometeric sizes,"Xianshi Lin, Xuguang Huang","A novel nanometeric plasmonic filter in a tooth-shaped Metal-Insulator-Metal
+waveguide is proposed and demonstrated numerically. An analytic model based on
+the scattering matrix method is given. The result reveals that the single
+tooth-shaped filter has a wavelength filtering characteristic and an
+ultra-compact size in the length of a few hundred nanometers, compared to
+grating-like SPPs filters. Both analytic and simulation results show that the
+wavelength of the trough of the transmission has linear and nonlinear
+relationships with the tooth depth and the tooth width, respectively. The
+waveguide filter could be utilized to develop ultra-compact photonic filters
+for high integration.",2009-02-09T10:08:23Z,http://arxiv.org/abs/0902.1391v1,tooth decay
+Dental pathology detection in 3D cone-beam CT,"Adel Zakirov, Matvey Ezhov, Maxim Gusarev, Vladimir Alexandrovsky, Evgeny Shumilov","Cone-beam computed tomography (CBCT) is a valuable imaging method in dental
+diagnostics that provides information not available in traditional 2D imaging.
+However, interpretation of CBCT images is a time-consuming process that
+requires a physician to work with complicated software. In this work we propose
+an automated pipeline composed of several deep convolutional neural networks
+and algorithmic heuristics. Our task is two-fold: a) find locations of each
+present tooth inside a 3D image volume, and b) detect several common tooth
+conditions in each tooth. The proposed system achieves 96.3\% accuracy in tooth
+localization and an average of 0.94 AUROC for 6 common tooth conditions.",2018-10-24T12:04:11Z,http://arxiv.org/abs/1810.10309v1,tooth decay
+Multiscale modelling couples patches of nonlinear wave-like simulations,"Meng Cao, A. J. Roberts","The multiscale gap-tooth scheme is built from given microscale simulations of
+complicated physical processes to empower macroscale simulations. By coupling
+small patches of simulations over unsimulated physical gaps, large savings in
+computational time are possible. So far the gap-tooth scheme has been developed
+for dissipative systems, but wave systems are also of great interest. This
+article develops the gap-tooth scheme to the case of nonlinear microscale
+simulations of wave-like systems. Classic macroscale interpolation provides a
+generic coupling between patches that achieves arbitrarily high order
+consistency between the multiscale scheme and the underlying microscale
+dynamics. Eigen-analysis indicates that the resultant gap-tooth scheme empowers
+feasible computation of large scale simulations of wave-like dynamics with
+complicated underlying physics. As an pilot study, we implement numerical
+simulations of dam-breaking waves by the gap-tooth scheme. Comparison between a
+gap-tooth simulation, a microscale simulation over the whole domain, and some
+published experimental data on dam breaking, demonstrates that the gap-tooth
+scheme feasibly computes large scale wave-like dynamics with computational
+savings.",2014-04-25T04:44:34Z,http://arxiv.org/abs/1404.6317v1,tooth decay
+Multiscale modelling couples patches of two-layer thin fluid flow,"Meng Cao, A. J. Roberts","The multiscale gap-tooth scheme uses a given microscale simulator of
+complicated physical processes to enable macroscale simulations by computing
+only only small sparse patches. This article develops the gap-tooth scheme to
+the case of nonlinear microscale simulations of thin fluid flow. The microscale
+simulator is derived by artificially assuming the fluid film flow having two
+artificial layers but no distinguishing physical feature. Centre manifold
+theory assures that there exists a slow manifold in the two-layer fluid film
+flow. Eigenvalue analysis confirms the stability of the microscale simulator.
+This article uses the gap-tooth scheme to simulate the two-layer fluid film
+flow. Coupling conditions are developed by approximating the values at the
+edges of patches by neighbouring macroscale values. Numerical eigenvalue
+analysis suggests that the gap-tooth scheme with the developed two-layer
+microscale simulator empowers feasible computation of large scale simulations
+of fluid film flows. We also implement numerical simulations of the fluid film
+flow by the gap-tooth scheme. Comparison between a gap-tooth simulation and a
+microscale simulation over the whole domain demonstrates that the gap-tooth
+scheme feasibly computes fluid film flow dynamics with computational savings.",2014-05-28T00:17:27Z,http://arxiv.org/abs/1405.7093v1,tooth decay
+3D Tooth Mesh Segmentation with Simplified Mesh Cell Representation,"Ananya Jana, Hrebesh Molly Subhash, Dimitris N. Metaxas","Manual tooth segmentation of 3D tooth meshes is tedious and there is
+variations among dentists. %Manual tooth annotation of 3D tooth meshes is a
+tedious task. Several deep learning based methods have been proposed to perform
+automatic tooth mesh segmentation. Many of the proposed tooth mesh segmentation
+algorithms summarize the mesh cell as - the cell center or barycenter, the
+normal at barycenter, the cell vertices and the normals at the cell vertices.
+Summarizing of the mesh cell/triangle in this manner imposes an implicit
+structural constraint and makes it difficult to work with multiple resolutions
+which is done in many point cloud based deep learning algorithms. We propose a
+novel segmentation method which utilizes only the barycenter and the normal at
+the barycenter information of the mesh cell and yet achieves competitive
+performance. We are the first to demonstrate that it is possible to relax the
+implicit structural constraint and yet achieve superior segmentation
+performance",2023-01-25T11:43:56Z,http://arxiv.org/abs/2301.10531v1,tooth decay
+Study on Virtual Gear Hobbing Simulation and Gear Tooth Surface Accuracy,"Zhi Geng, Gang Li","This paper presents a digital simulation method for the hobbing process of
+cylindrical gears. Based on the gear generation principle, taking the
+professional software as the tool, the problem of virtual hobbing simulation on
+involute helical gears was studied, and the virtual hobbing simulation of
+hobbing on the whole gear was completed by using macros of CATIA V5. The
+validity of this method was validated by analyzing the tooth surface accuracy
+error of the model which was below 0.001 mm between the virtual tooth surface
+and the theoretical tooth surface and the possible factors that affected the
+tooth surface accuracy during manufacturing were also carried on the
+discussion. It offers a fictitious three-D platform for studying the principle
+of manufacture errors of a gear-cutting machine as well as the finite element
+analysis between the ideal tooth surface and the erroneous tooth surface.",2023-07-12T16:15:35Z,http://arxiv.org/abs/2307.06270v1,tooth decay
+"CTooth: A Fully Annotated 3D Dataset and Benchmark for Tooth Volume
+  Segmentation on Cone Beam Computed Tomography Images","Weiwei Cui, Yaqi Wang, Qianni Zhang, Huiyu Zhou, Dan Song, Xingyong Zuo, Gangyong Jia, Liaoyuan Zeng","3D tooth segmentation is a prerequisite for computer-aided dental diagnosis
+and treatment. However, segmenting all tooth regions manually is subjective and
+time-consuming. Recently, deep learning-based segmentation methods produce
+convincing results and reduce manual annotation efforts, but it requires a
+large quantity of ground truth for training. To our knowledge, there are few
+tooth data available for the 3D segmentation study. In this paper, we establish
+a fully annotated cone beam computed tomography dataset CTooth with tooth gold
+standard. This dataset contains 22 volumes (7363 slices) with fine tooth labels
+annotated by experienced radiographic interpreters. To ensure a relative even
+data sampling distribution, data variance is included in the CTooth including
+missing teeth and dental restoration. Several state-of-the-art segmentation
+methods are evaluated on this dataset. Afterwards, we further summarise and
+apply a series of 3D attention-based Unet variants for segmenting tooth
+volumes. This work provides a new benchmark for the tooth volume segmentation
+task. Experimental evidence proves that attention modules of the 3D UNet
+structure boost responses in tooth areas and inhibit the influence of
+background and noise. The best performance is achieved by 3D Unet with SKNet
+attention module, of 88.04 \% Dice and 78.71 \% IOU, respectively. The
+attention-based Unet framework outperforms other state-of-the-art methods on
+the CTooth dataset. The codebase and dataset are released.",2022-06-17T13:48:35Z,http://arxiv.org/abs/2206.08778v1,tooth decay
+"ToothInpaintor: Tooth Inpainting from Partial 3D Dental Model and 2D
+  Panoramic Image","Yuezhi Yang, Zhiming Cui, Changjian Li, Wenping Wang","In orthodontic treatment, a full tooth model consisting of both the crown and
+root is indispensable in making the treatment plan. However, acquiring tooth
+root information to obtain the full tooth model from CBCT images is sometimes
+restricted due to the massive radiation of CBCT scanning. Thus, reconstructing
+the full tooth shape from the ready-to-use input, e.g., the partial intra-oral
+scan and the 2D panoramic image, is an applicable and valuable solution. In
+this paper, we propose a neural network, called ToothInpaintor, that takes as
+input a partial 3D dental model and a 2D panoramic image and reconstructs the
+full tooth model with high-quality root(s). Technically, we utilize the
+implicit representation for both the 3D and 2D inputs, and learn a latent space
+of the full tooth shapes. At test time, given an input, we successfully project
+it to the learned latent space via neural optimization to obtain the full tooth
+model conditioned on the input. To help find the robust projection, a novel
+adversarial learning module is exploited in our pipeline. We extensively
+evaluate our method on a dataset collected from real-world clinics. The
+evaluation, comparison, and comprehensive ablation studies demonstrate that our
+approach produces accurate complete tooth models robustly and outperforms the
+state-of-the-art methods.",2022-11-25T18:15:22Z,http://arxiv.org/abs/2211.15502v1,tooth decay
+"Ammonia-Net: A Multi-task Joint Learning Model for Multi-class
+  Segmentation and Classification in Tooth-marked Tongue Diagnosis","Shunkai Shi, Yuqi Wang, Qihui Ye, Yanran Wang, Yiming Zhu, Muhammad Hassan, Aikaterini Melliou, Dongmei Yu","In Traditional Chinese Medicine, the tooth marks on the tongue, stemming from
+prolonged dental pressure, serve as a crucial indicator for assessing qi (yang)
+deficiency, which is intrinsically linked to visceral health. Manual diagnosis
+of tooth-marked tongue solely relies on experience. Nonetheless, the diversity
+in shape, color, and type of tooth marks poses a challenge to diagnostic
+accuracy and consistency. To address these problems, herein we propose a
+multi-task joint learning model named Ammonia-Net. This model employs a
+convolutional neural network-based architecture, specifically designed for
+multi-class segmentation and classification of tongue images. Ammonia-Net
+performs semantic segmentation of tongue images to identify tongue and tooth
+marks. With the assistance of segmentation output, it classifies the images
+into the desired number of classes: healthy tongue, light tongue, moderate
+tongue, and severe tongue. As far as we know, this is the first attempt to
+apply the semantic segmentation results of tooth marks for tooth-marked tongue
+classification. To train Ammonia-Net, we collect 856 tongue images from 856
+subjects. After a number of extensive experiments, the experimental results
+show that the proposed model achieves 99.06% accuracy in the two-class
+classification task of tooth-marked tongue identification and 80.02%. As for
+the segmentation task, mIoU for tongue and tooth marks amounts to 71.65%.",2023-10-05T11:28:32Z,http://arxiv.org/abs/2310.03472v1,tooth decay
+"Automatic Tooth Arrangement with Joint Features of Point and Mesh
+  Representations via Diffusion Probabilistic Models","Changsong Lei, Mengfei Xia, Shaofeng Wang, Yaqian Liang, Ran Yi, Yuhui Wen, Yongjin Liu","Tooth arrangement is a crucial step in orthodontics treatment, in which
+aligning teeth could improve overall well-being, enhance facial aesthetics, and
+boost self-confidence. To improve the efficiency of tooth arrangement and
+minimize errors associated with unreasonable designs by inexperienced
+practitioners, some deep learning-based tooth arrangement methods have been
+proposed. Currently, most existing approaches employ MLPs to model the
+nonlinear relationship between tooth features and transformation matrices to
+achieve tooth arrangement automatically. However, the limited datasets (which
+to our knowledge, have not been made public) collected from clinical practice
+constrain the applicability of existing methods, making them inadequate for
+addressing diverse malocclusion issues. To address this challenge, we propose a
+general tooth arrangement neural network based on the diffusion probabilistic
+model. Conditioned on the features extracted from the dental model, the
+diffusion probabilistic model can learn the distribution of teeth
+transformation matrices from malocclusion to normal occlusion by gradually
+denoising from a random variable, thus more adeptly managing real orthodontic
+data. To take full advantage of effective features, we exploit both mesh and
+point cloud representations by designing different encoding networks to extract
+the tooth (local) and jaw (global) features, respectively. In addition to
+traditional metrics ADD, PA-ADD, CSA, and ME_{rot}, we propose a new evaluation
+metric based on dental arch curves to judge whether the generated teeth meet
+the individual normal occlusion. Experimental results demonstrate that our
+proposed method achieves state-of-the-art tooth alignment results and
+satisfactory occlusal relationships between dental arches. We will publish the
+code and dataset.",2023-12-23T02:27:15Z,http://arxiv.org/abs/2312.15139v1,tooth decay
+Origin of the Arrow of Time in Quantum Mechanics,Nemanja Kaloper,"We point out that time's arrow is naturally induced by quantum mechanical
+evolution, whenever the systems have a very large number ${\cal N}$ of
+non-degenerate states and a Hamiltonian bounded from below. When ${\cal N}$ is
+finite, the arrow is imperfect, since evolution can resurrect past states. In
+the limit ${\cal N} \rightarrow \infty$ the arrow is fixed by the ""tooth of
+time"": the decay of excited states induced by {\it spontaneous emission} to the
+ground state, mediated by interactions and a large number of decay products
+which carry energy and information to infinity. This applies to individual
+isolated atoms, and does not require a coupling to a separate large heath bath.",2023-05-24T18:00:02Z,http://arxiv.org/abs/2305.15468v3,tooth decay
+"Tooth Instance Segmentation from Cone-Beam CT Images through Point-based
+  Detection and Gaussian Disentanglement","Jusang Lee, Minyoung Chung, Minkyung Lee, Yeong-Gil Shin","Individual tooth segmentation and identification from cone-beam computed
+tomography images are preoperative prerequisites for orthodontic treatments.
+Instance segmentation methods using convolutional neural networks have
+demonstrated ground-breaking results on individual tooth segmentation tasks,
+and are used in various medical imaging applications. While point-based
+detection networks achieve superior results on dental images, it is still a
+challenging task to distinguish adjacent teeth because of their similar
+topologies and proximate nature. In this study, we propose a point-based tooth
+localization network that effectively disentangles each individual tooth based
+on a Gaussian disentanglement objective function. The proposed network first
+performs heatmap regression accompanied by box regression for all the
+anatomical teeth. A novel Gaussian disentanglement penalty is employed by
+minimizing the sum of the pixel-wise multiplication of the heatmaps for all
+adjacent teeth pairs. Subsequently, individual tooth segmentation is performed
+by converting a pixel-wise labeling task to a distance map regression task to
+minimize false positives in adjacent regions of the teeth. Experimental results
+demonstrate that the proposed algorithm outperforms state-of-the-art approaches
+by increasing the average precision of detection by 9.1%, which results in a
+high performance in terms of individual tooth segmentation. The primary
+significance of the proposed method is two-fold: 1) the introduction of a
+point-based tooth detection framework that does not require additional
+classification and 2) the design of a novel loss function that effectively
+separates Gaussian distributions based on heatmap responses in the point-based
+detection framework.",2021-02-02T05:15:50Z,http://arxiv.org/abs/2102.01315v1,tooth decay
+Tooth morphometry using quasi-conformal theory,"Gary P. T. Choi, Hei Long Chan, Robin Yong, Sarbin Ranjitkar, Alan Brook, Grant Townsend, Ke Chen, Lok Ming Lui","Shape analysis is important in anthropology, bioarchaeology and forensic
+science for interpreting useful information from human remains. In particular,
+teeth are morphologically stable and hence well-suited for shape analysis. In
+this work, we propose a framework for tooth morphometry using quasi-conformal
+theory. Landmark-matching Teichm\""uller maps are used for establishing a 1-1
+correspondence between tooth surfaces with prescribed anatomical landmarks.
+Then, a quasi-conformal statistical shape analysis model based on the
+Teichm\""uller mapping results is proposed for building a tooth classification
+scheme. We deploy our framework on a dataset of human premolars to analyze the
+tooth shape variation among genders and ancestries. Experimental results show
+that our method achieves much higher classification accuracy with respect to
+both gender and ancestry when compared to the existing methods. Furthermore,
+our model reveals the underlying tooth shape difference between different
+genders and ancestries in terms of the local geometric distortion and
+curvatures.",2019-01-07T03:00:12Z,http://arxiv.org/abs/1901.01651v1,tooth decay
+"CTooth+: A Large-scale Dental Cone Beam Computed Tomography Dataset and
+  Benchmark for Tooth Volume Segmentation","Weiwei Cui, Yaqi Wang, Yilong Li, Dan Song, Xingyong Zuo, Jiaojiao Wang, Yifan Zhang, Huiyu Zhou, Bung san Chong, Liaoyuan Zeng, Qianni Zhang","Accurate tooth volume segmentation is a prerequisite for computer-aided
+dental analysis. Deep learning-based tooth segmentation methods have achieved
+satisfying performances but require a large quantity of tooth data with ground
+truth. The dental data publicly available is limited meaning the existing
+methods can not be reproduced, evaluated and applied in clinical practice. In
+this paper, we establish a 3D dental CBCT dataset CTooth+, with 22 fully
+annotated volumes and 146 unlabeled volumes. We further evaluate several
+state-of-the-art tooth volume segmentation strategies based on fully-supervised
+learning, semi-supervised learning and active learning, and define the
+performance principles. This work provides a new benchmark for the tooth volume
+segmentation task, and the experiment can serve as the baseline for future
+AI-based dental imaging research and clinical application development.",2022-08-02T09:13:23Z,http://arxiv.org/abs/2208.01643v1,tooth decay
+"A Critical Analysis of the Limitation of Deep Learning based 3D Dental
+  Mesh Segmentation Methods in Segmenting Partial Scans","Ananya Jana, Aniruddha Maiti, Dimitris N. Metaxas","Tooth segmentation from intraoral scans is a crucial part of digital
+dentistry. Many Deep Learning based tooth segmentation algorithms have been
+developed for this task. In most of the cases, high accuracy has been achieved,
+although, most of the available tooth segmentation techniques make an implicit
+restrictive assumption of full jaw model and they report accuracy based on full
+jaw models. Medically, however, in certain cases, full jaw tooth scan is not
+required or may not be available. Given this practical issue, it is important
+to understand the robustness of currently available widely used Deep Learning
+based tooth segmentation techniques. For this purpose, we applied available
+segmentation techniques on partial intraoral scans and we discovered that the
+available deep Learning techniques under-perform drastically. The analysis and
+comparison presented in this work would help us in understanding the severity
+of the problem and allow us to develop robust tooth segmentation technique
+without strong assumption of full jaw model.",2023-04-29T11:58:23Z,http://arxiv.org/abs/2305.00244v1,tooth decay
+"Weakly Supervised Object Detection for Automatic Tooth-marked Tongue
+  Recognition","Yongcun Zhang, Jiajun Xu, Yina He, Shaozi Li, Zhiming Luo, Huangwei Lei","Tongue diagnosis in Traditional Chinese Medicine (TCM) is a crucial
+diagnostic method that can reflect an individual's health status. Traditional
+methods for identifying tooth-marked tongues are subjective and inconsistent
+because they rely on practitioner experience. We propose a novel fully
+automated Weakly Supervised method using Vision transformer and Multiple
+instance learning WSVM for tongue extraction and tooth-marked tongue
+recognition. Our approach first accurately detects and extracts the tongue
+region from clinical images, removing any irrelevant background information.
+Then, we implement an end-to-end weakly supervised object detection method. We
+utilize Vision Transformer (ViT) to process tongue images in patches and employ
+multiple instance loss to identify tooth-marked regions with only image-level
+annotations. WSVM achieves high accuracy in tooth-marked tongue classification,
+and visualization experiments demonstrate its effectiveness in pinpointing
+these regions. This automated approach enhances the objectivity and accuracy of
+tooth-marked tongue diagnosis. It provides significant clinical value by
+assisting TCM practitioners in making precise diagnoses and treatment
+recommendations. Code is available at https://github.com/yc-zh/WSVM.",2024-08-29T11:31:28Z,http://arxiv.org/abs/2408.16451v1,tooth decay
+"Pose-Aware Instance Segmentation Framework from Cone Beam CT Images for
+  Tooth Segmentation","Minyoung Chung, Minkyung Lee, Jioh Hong, Sanguk Park, Jusang Lee, Jingyu Lee, Jeongjin Lee, Yeong-Gil Shin","Individual tooth segmentation from cone beam computed tomography (CBCT)
+images is an essential prerequisite for an anatomical understanding of
+orthodontic structures in several applications, such as tooth reformation
+planning and implant guide simulations. However, the presence of severe metal
+artifacts in CBCT images hinders the accurate segmentation of each individual
+tooth. In this study, we propose a neural network for pixel-wise labeling to
+exploit an instance segmentation framework that is robust to metal artifacts.
+Our method comprises of three steps: 1) image cropping and realignment by pose
+regressions, 2) metal-robust individual tooth detection, and 3) segmentation.
+We first extract the alignment information of the patient by pose regression
+neural networks to attain a volume-of-interest (VOI) region and realign the
+input image, which reduces the inter-overlapping area between tooth bounding
+boxes. Then, individual tooth regions are localized within a VOI realigned
+image using a convolutional detector. We improved the accuracy of the detector
+by employing non-maximum suppression and multiclass classification metrics in
+the region proposal network. Finally, we apply a convolutional neural network
+(CNN) to perform individual tooth segmentation by converting the pixel-wise
+labeling task to a distance regression task. Metal-intensive image augmentation
+is also employed for a robust segmentation of metal artifacts. The result shows
+that our proposed method outperforms other state-of-the-art methods, especially
+for teeth with metal artifacts. The primary significance of the proposed method
+is two-fold: 1) an introduction of pose-aware VOI realignment followed by a
+robust tooth detection and 2) a metal-robust CNN framework for accurate tooth
+segmentation.",2020-02-06T07:57:34Z,http://arxiv.org/abs/2002.02143v1,tooth decay
+"A new giant species of placented worm and the mechanism by which
+  onychophorans weave their nets (Onychophora: Peripatidae)","Bernal Morera-Brenes, Julián Monge-Nájera","Onychophorans, or velvet worms, are poorly known and rare animals. Here we
+report the discovery of a new species that is also the largest onychophoran
+found so far, a 22cm long female from the Caribbean coastal forest of Costa
+Rica. Specimens were examined with Scanning Electron Microscopy; Peripatus
+solorzanoi sp. nov., is diagnosed as follows: primary papillae convex and
+conical with rounded bases, with more than 18 scale ranks. Apical section
+large, spherical, with a basal diameter of at least 20 ranks. Apical piece with
+6-7 scale ranks. Outer blade 1 principal tooth, 1 accessory tooth, 1 vestigial
+accessory tooth (formula: 1/1/1); inner blade 1 principal tooth, 1 accessory
+tooth, 1 rudimentary accessory tooth, 9 to 10 denticles (formula: 1/1/1/9-10).
+Accessory tooth blunt in both blades. Four pads in the fourth and fifth
+oncopods; 4th. pad arched. The previously unknown mechanism by which
+onychophorans weave their adhesive is simple: muscular action produces a
+swinging movement of the adhesive-spelling organs; as a result, the streams
+cross in mid air, weaving the net. Like all onychophorans, P. solorzanoi is a
+rare species: active protection of the habitat of the largest onychophoran ever
+described, is considered urgent.",2015-11-03T16:58:53Z,http://arxiv.org/abs/1511.00983v1,tooth decay
+"Fully automatic integration of dental CBCT images and full-arch
+  intraoral impressions with stitching error correction via individual tooth
+  segmentation and identification","Tae Jun Jang, Hye Sun Yun, Chang Min Hyun, Jong-Eun Kim, Sang-Hwy Lee, Jin Keun Seo","We present a fully automated method of integrating intraoral scan (IOS) and
+dental cone-beam computerized tomography (CBCT) images into one image by
+complementing each image's weaknesses. Dental CBCT alone may not be able to
+delineate precise details of the tooth surface due to limited image resolution
+and various CBCT artifacts, including metal-induced artifacts. IOS is very
+accurate for the scanning of narrow areas, but it produces cumulative stitching
+errors during full-arch scanning. The proposed method is intended not only to
+compensate the low-quality of CBCT-derived tooth surfaces with IOS, but also to
+correct the cumulative stitching errors of IOS across the entire dental arch.
+Moreover, the integration provide both gingival structure of IOS and tooth
+roots of CBCT in one image. The proposed fully automated method consists of
+four parts; (i) individual tooth segmentation and identification module for IOS
+data (TSIM-IOS); (ii) individual tooth segmentation and identification module
+for CBCT data (TSIM-CBCT); (iii) global-to-local tooth registration between IOS
+and CBCT; and (iv) stitching error correction of full-arch IOS. The
+experimental results show that the proposed method achieved landmark and
+surface distance errors of 112.4 $\mu$m and 301.7 $\mu$m, respectively.",2021-12-03T08:37:52Z,http://arxiv.org/abs/2112.01784v2,tooth decay
+"Three-dimensional imaging and analysis of annual layers in tree trunk
+  and tooth cementum","Bert Müller, Muriel Stiefel, Griffin Rodgers, Mattia Humbel, Melissa Osterwalder, Jeannette von Jackowski, Gerhard Hotz, Adriana A. Velasco, Henry T. Bunn, Mario Scheel, Timm Weitkamp, Georg Schulz, Christine Tanner","The growth of plants, animals, and humans can give rise to layered structures
+associated with annual periodicity. Thickness variations are often correlated
+to nutrition supply and stress factors. The annual layers in a tree trunk with
+millimeter thickness can be directly counted, whereas the layers in tooth
+cementum with micrometer thickness are made visible using optical microscopy.
+These optical techniques rely on the surface evaluation or thin, optically
+transparent slices. Hard X-ray tomography with micrometer resolution, however,
+provides a three-dimensional view without physical slicing. We have developed a
+procedure to enhance the tomography data of annual layers in human and bovid
+tooth cementum. The analysis of a substantial part of an archeological human
+tooth demonstrated that the detected number of layers depended on the selected
+region and could vary between 13 and 27. The related average thickness of the
+annual layers was found to be (5.4 $\pm$ 1.9) $\mu$m for the human tooth,
+whereas the buffalo tooth exhibited a layer periodicity of 46 $\mu$m. The
+present study elucidates the potential of combining computational tools with
+high-quality micro computed tomography data to quantify the annual layers in
+tooth cementum for a variety of purposes including age-at-death determination.",2022-04-25T16:37:31Z,http://arxiv.org/abs/2205.01531v1,tooth decay
+"Automatic Tooth Segmentation from 3D Dental Model using Deep Learning: A
+  Quantitative Analysis of what can be learnt from a Single 3D Dental Model","Ananya Jana, Hrebesh Molly Subhash, Dimitris Metaxas","3D tooth segmentation is an important task for digital orthodontics. Several
+Deep Learning methods have been proposed for automatic tooth segmentation from
+3D dental models or intraoral scans. These methods require annotated 3D
+intraoral scans. Manually annotating 3D intraoral scans is a laborious task.
+One approach is to devise self-supervision methods to reduce the manual
+labeling effort. Compared to other types of point cloud data like scene point
+cloud or shape point cloud data, 3D tooth point cloud data has a very regular
+structure and a strong shape prior. We look at how much representative
+information can be learnt from a single 3D intraoral scan. We evaluate this
+quantitatively with the help of ten different methods of which six are generic
+point cloud segmentation methods whereas the other four are tooth segmentation
+specific methods. Surprisingly, we find that with a single 3D intraoral scan
+training, the Dice score can be as high as 0.86 whereas the full training set
+gives Dice score of 0.94. We conclude that the segmentation methods can learn a
+great deal of information from a single 3D tooth point cloud scan under
+suitable conditions e.g. data augmentation. We are the first to quantitatively
+evaluate and demonstrate the representation learning capability of Deep
+Learning methods from a single 3D intraoral scan. This can enable building
+self-supervision methods for tooth segmentation under extreme data limitation
+scenario by leveraging the available data to the fullest possible extent.",2022-09-16T19:03:10Z,http://arxiv.org/abs/2209.08132v1,tooth decay
+"On the two separate decay time scales of a detonation wave modelled by
+  the Burgers equation and their relation to its chaotic dynamics","S. SM. Lau-Chapdelaine, M. I. Radulescu","This study uses a simplified detonation model to investigate the behaviour of
+detonations with galloping-like pulsations. The reactive Burgers equation is
+used for the hydrodynamic equation, coupled to a pulsed source whereby all the
+shocked reactants are simultaneously consumed at fixed time intervals. The
+model mimics the short periodic amplifications of the shock front followed by
+relatively lengthy decays seen in galloping detonations. Numerical simulations
+reveal a saw tooth evolution of the front velocity with a period-averaged
+detonation speed equal to the Chapman-Jouguet velocity. The detonation velocity
+exhibits two distinct groups of decay time scales, punctuated by reaction
+pulses. At each pulse, a rarefaction wave is created at the reaction front's
+last position. A characteristic investigation reveals that characteristics
+originating from the head of this rarefaction take 1.57 periods to reach and
+attenuate the detonation front, while characteristics at the tail take an
+additional period. The leading characteristics are amplified twice, by passing
+through the reaction fronts of subsequent pulses, before arriving at the shock
+front, whilst the trailing characteristics are amplified three times. This
+leads to the two distinct groups of time scales seen in the detonation front
+speed.",2020-06-05T01:13:03Z,http://arxiv.org/abs/2006.03194v2,tooth decay
+Crystal Structure Studies of Human Dental Apatite as a Function of Age,"Th. Leventouri, A. Antonakos, A. Kyriacou, R. Venturelli, E. Liarokapis, V. Perdikatsis","Studies of the average crystal structure properties of human dental apatite
+as a function of the tooth-age in the range of 5-87 years are reported. The
+crystallinity of the dental hydroxyapatite decreases with the tooth-age. The
+a-lattice constant that is associated with the carbonate content in carbonate
+apatite decreases with the tooth-age in a systematic way, whereas the c-lattice
+constant does not change significantly. Thermogravimetric measurements
+demonstrate an increase of the carbonate content with the tooth-age. FTIR
+spectroscopy reveals both, B and A-type carbonate substitutions with the B-type
+greater than the A-type substitution by a factor up to ~5. An increase of the
+carbonate content as a function of the tooth-age can be deduced from the ratio
+of the v2 CO3 to the v1 PO4 IR modes.",2008-06-06T20:50:36Z,http://arxiv.org/abs/0806.1233v2,tooth decay
+"Trace element distribution in human teeth by x-ray fluorescence
+  spectrometry and multivariate statistical analysis","Cristiana Oprea, Pavel J. Szalanski, Marina V. Gustova, Ioan A. Oprea, Violeta L. Buzguta","X-ray fluorescence spectrometry (XRFS) was used as a multielement method of
+evaluation of individual whole human tooth or tooth tissues for their amounts
+of trace elements. Measurements were carried out on human enamel, dentine, and
+dental cementum, and some differences in tooth matrix composition were noted.
+In addition, the elemental concentrations determined in teeth from subjects of
+different ages, nutritional states, professions and gender, living under
+various environmental conditions and dietary habits, were included in a
+comparison by multivariate statistical analysis (MVSA) methods. By factor
+analysis it was established that inorganic components of human teeth varied
+consistently with their source in the tissue, with more in such tissue from
+females than in that from males, and more in tooth incisor than in tooth molar.",2014-06-14T21:57:23Z,http://arxiv.org/abs/1406.4387v1,tooth decay
+"Tooth Instance Segmentation on Panoramic Dental Radiographs Using U-Nets
+  and Morphological Processing","Selahattin Serdar Helli, Andac Hamamci","Automatic teeth segmentation in panoramic x-ray images is an important
+research subject of the image analysis in dentistry. In this study, we propose
+a post-processing stage to obtain a segmentation map in which the objects in
+the image are separated, and apply this technique to tooth instance
+segmentation with U-Net network. The post-processing consists of grayscale
+morphological and filtering operations, which are applied to the sigmoid output
+of the network before binarization. A dice overlap score of 95.4 - 0.3% is
+obtained in overall teeth segmentation. The proposed post-processing stages
+reduce the mean error of tooth count to 6.15%, whereas the error without
+post-processing is 26.81%. The performances of both segmentation and tooth
+counting are the highest in the literature, to our knowledge. Moreover, this is
+achieved by using a relatively small training dataset, which consists of 105
+images. Although the aim in this study is to segment tooth instances, the
+presented method is applicable to similar problems in other domains, such as
+separating the cell instances",2022-03-31T21:11:51Z,http://arxiv.org/abs/2204.00095v1,tooth decay
+Photoacoustic digital tooth and image reconstruction of tooth root,"Yuting Shen, Yiyun Wang, Chengxiao Liu, Niansong Ye, Feng Gao, Lunguo Xia, Bing Fang, Fei Gao","Imaging of teeth is very important to doctors in the diagnosis and treatment
+of dental diseases. The main imaging modality currently used is Cone-Beam
+Computed Tomography (CBCT), which however suffers from ionizing radiation
+causing potential damage to human body. In this work, photoacoustic imaging is
+proposed for the imaging of tooth, specifically the tooth root. A photoacoustic
+digital phantom of the tooth is generated based on clinical CBCT data. The
+roots encased by alveolar bone are imaged by using the realistic photoacoustic
+digital phantom in the simulation study. Several image reconstruction
+algorithms are used and compared to remove the artifacts caused by
+heterogeneous acoustic velocity distribution.",2023-04-12T04:49:19Z,http://arxiv.org/abs/2304.05607v1,tooth decay
+"Provable Optimality of the Square-Tooth Atomic Frequency Comb Quantum
+  Memory","Allen Zang, Martin Suchara, Tian Zhong","Atomic frequency comb (AFC) quantum memories are a promising technology for
+quantum repeater networks because they enable multi-mode, long-time, and
+high-fidelity storage of photons with on-demand retrieval. The optimization of
+the retrieval efficiency of an AFC memory is important because it strongly
+impacts the entanglement distribution rate in quantum networks. Despite initial
+theoretical analyses and recent experimental demonstrations, a rigorous proof
+of the universally optimal configuration for the highest AFC retrieval
+efficiency has not been presented. In this paper we present a simple analytical
+proof which shows that the optimized square tooth offers the highest retrieval
+efficiency among all tooth shapes, under the physical constraint of finite
+optical depth of an atomic ensemble. The optimality still holds when the
+non-zero background absorption and the finite optical linewidth of atoms are
+considered. We further compare square, Lorentzian and Gaussian tooth shapes to
+reinforce the practical advantage of the square-tooth AFC in retrieval
+efficiency. Our proof lays rigorous foundation for the recipe of creating
+optimal AFC under realistic experimental conditions.",2024-06-03T20:23:38Z,http://arxiv.org/abs/2406.01769v3,tooth decay
+"GT U-Net: A U-Net Like Group Transformer Network for Tooth Root
+  Segmentation","Yunxiang Li, Shuai Wang, Jun Wang, Guodong Zeng, Wenjun Liu, Qianni Zhang, Qun Jin, Yaqi Wang","To achieve an accurate assessment of root canal therapy, a fundamental step
+is to perform tooth root segmentation on oral X-ray images, in that the
+position of tooth root boundary is significant anatomy information in root
+canal therapy evaluation. However, the fuzzy boundary makes the tooth root
+segmentation very challenging. In this paper, we propose a novel end-to-end
+U-Net like Group Transformer Network (GT U-Net) for the tooth root
+segmentation. The proposed network retains the essential structure of U-Net but
+each of the encoders and decoders is replaced by a group Transformer, which
+significantly reduces the computational cost of traditional Transformer
+architectures by using the grouping structure and the bottleneck structure. In
+addition, the proposed GT U-Net is composed of a hybrid structure of
+convolution and Transformer, which makes it independent of pre-training
+weights. For optimization, we also propose a shape-sensitive Fourier Descriptor
+(FD) loss function to make use of shape prior knowledge. Experimental results
+show that our proposed network achieves the state-of-the-art performance on our
+collected tooth root segmentation dataset and the public retina dataset DRIVE.
+Code has been released at https://github.com/Kent0n-Li/GT-U-Net.",2021-09-30T02:39:07Z,http://arxiv.org/abs/2109.14813v1,tooth decay
+"TFormer: 3D Tooth Segmentation in Mesh Scans with Geometry Guided
+  Transformer","Huimin Xiong, Kunle Li, Kaiyuan Tan, Yang Feng, Joey Tianyi Zhou, Jin Hao, Zuozhu Liu","Optical Intra-oral Scanners (IOS) are widely used in digital dentistry,
+providing 3-Dimensional (3D) and high-resolution geometrical information of
+dental crowns and the gingiva. Accurate 3D tooth segmentation, which aims to
+precisely delineate the tooth and gingiva instances in IOS, plays a critical
+role in a variety of dental applications. However, segmentation performance of
+previous methods are error-prone in complicated tooth-tooth or tooth-gingiva
+boundaries, and usually exhibit unsatisfactory results across various patients,
+yet the clinically applicability is not verified with large-scale dataset. In
+this paper, we propose a novel method based on 3D transformer architectures
+that is evaluated with large-scale and high-resolution 3D IOS datasets. Our
+method, termed TFormer, captures both local and global dependencies among
+different teeth to distinguish various types of teeth with divergent anatomical
+structures and confusing boundaries. Moreover, we design a geometry guided loss
+based on a novel point curvature to exploit boundary geometric features, which
+helps refine the boundary predictions for more accurate and smooth
+segmentation. We further employ a multi-task learning scheme, where an
+additional teeth-gingiva segmentation head is introduced to improve the
+performance. Extensive experimental results in a large-scale dataset with
+16,000 IOS, the largest IOS dataset to our best knowledge, demonstrate that our
+TFormer can surpass existing state-of-the-art baselines with a large margin,
+with its utility in real-world scenarios verified by a clinical applicability
+test.",2022-10-29T15:20:54Z,http://arxiv.org/abs/2210.16627v1,tooth decay
+"T-Mamba: A unified framework with Long-Range Dependency in dual-domain
+  for 2D & 3D Tooth Segmentation","Jing Hao, Yonghui Zhu, Lei He, Moyun Liu, James Kit Hon Tsoi, Kuo Feng Hung","Tooth segmentation is a pivotal step in modern digital dentistry, essential
+for applications across orthodontic diagnosis and treatment planning. Despite
+its importance, this process is fraught with challenges due to the high noise
+and low contrast inherent in 2D and 3D tooth data. Both Convolutional Neural
+Networks (CNNs) and Transformers has shown promise in medical image
+segmentation, yet each method has limitations in handling long-range
+dependencies and computational complexity. To address this issue, this paper
+introduces T-Mamba, integrating frequency-based features and shared
+bi-positional encoding into vision mamba to address limitations in efficient
+global feature modeling. Besides, we design a gate selection unit to integrate
+two features in spatial domain and one feature in frequency domain adaptively.
+T-Mamba is the first work to introduce frequency-based features into vision
+mamba, and its flexibility allows it to process both 2D and 3D tooth data
+without the need for separate modules. Also, the TED3, a large-scale public
+tooth 2D dental X-ray dataset, has been presented in this paper. Extensive
+experiments demonstrate that T-Mamba achieves new SOTA results on a public
+tooth CBCT dataset and outperforms previous SOTA methods on TED3 dataset. The
+code and models are publicly available at: https://github.com/isbrycee/T-Mamba.",2024-04-01T11:57:40Z,http://arxiv.org/abs/2404.01065v2,tooth decay
+"Differentiable Collision-Supervised Tooth Arrangement Network with a
+  Decoupling Perspective","Zhihui He, Chengyuan Wang, Shidong Yang, Li Chen, Yanheng Zhou, Shuo Wang","Tooth arrangement is an essential step in the digital orthodontic planning
+process. Existing learning-based methods use hidden teeth features to directly
+regress teeth motions, which couples target pose perception and motion
+regression. It could lead to poor perceptions of three-dimensional
+transformation. They also ignore the possible overlaps or gaps between teeth of
+predicted dentition, which is generally unacceptable. Therefore, we propose
+DTAN, a differentiable collision-supervised tooth arrangement network,
+decoupling predicting tasks and feature modeling. DTAN decouples the tooth
+arrangement task by first predicting the hidden features of the final teeth
+poses and then using them to assist in regressing the motions between the
+beginning and target teeth. To learn the hidden features better, DTAN also
+decouples the teeth-hidden features into geometric and positional features,
+which are further supervised by feature consistency constraints. Furthermore,
+we propose a novel differentiable collision loss function for point cloud data
+to constrain the related gestures between teeth, which can be easily extended
+to other 3D point cloud tasks. We propose an arch-width guided tooth
+arrangement network, named C-DTAN, to make the results controllable. We
+construct three different tooth arrangement datasets and achieve drastically
+improved performance on accuracy and speed compared with existing methods.",2024-09-18T12:52:54Z,http://arxiv.org/abs/2409.11937v1,tooth decay
+Non-detection of the Tooth Fairy at Optical Wavelengths,Eve Armstrong,"We report a non-detection, to a limiting magnitude of V = 18.4 (9), of the
+elusive entity commonly described as the Tooth Fairy. We review various
+physical models and conclude that follow-up observations must precede an
+interpretation of our result.",2012-04-02T18:38:42Z,http://arxiv.org/abs/1204.0492v2,tooth decay
+"Numerical Conformal Mapping to One-Tooth Gear-Shaped Domains and
+  Applications","Philip R. Brown, R. Michael Porter","We study conformal mappings from the unit disk (or a rectangle) to one-tooth
+gear-shaped planar domains from the point of view of the Schwarzian derivative,
+with emphasis on numerical considerations. Applications are given to evaluation
+of a singular integral, mapping to the complement of an annular rectangle, and
+symmetric multitooth domains.",2015-03-03T18:25:15Z,http://arxiv.org/abs/1503.01041v1,tooth decay
+"Modified Lagrangian Formulation of Gear Tooth Crack Analysis using
+  Combined Approach of Variable Mode Decomposition (VMD) and Time Synchronous
+  Averaging (TSA)","Subrata Mukherjee, Vikash Kumar, Somnath Sarangi","This paper discusses the possible observation of an integrated gear tooth
+crack analysis procedure that employs the combined approach of variable mode
+decomposition (VMD) and time synchronous averaging (TSA) based on the coupled
+electromechanical gearbox (CEMG) system. This paper also incorporates the
+modified Lagrangian formulation to model the CEMG system by considering
+Rayleigh's dissipative potential. An analytical improved time-varying mesh
+stiffness (IAM-TVMS) with different levels of gear tooth crack depts is also
+incorporated into the CEMG system to inspect the influence of cracks on the
+system's dynamic behavior. Dynamic responses of the CEMG system with different
+tooth crack levels have been used for further investigations. For the first
+time, the integrated approach of variable mode decomposition (VMD) and
+time-synchronous averaging (TSA) has been presented to analyze the dynamic
+behaviour of CEMG systems at the different gear tooth cracks have been
+experienced as non-stationary and complex vibration signals with noise. Based
+on the integrated approach of VMD-TSA, two types of nonlinear features, i.e.,
+Lyapunov Exponent (LE) and Correlation Dimension (CD), were calculated to
+predict the level of chaotic vibration and complexity of the CEMG system at the
+different levels of gear tooth cracks. Also, the LE and CD are used as chaotic
+behaviour features to predict the gear tooth crack propagation level. The
+results of the proposed approach show significant improvements in the gear
+tooth crack analysis based on the chaotic features. Also, this is one of the
+first attempts to study the CEMG system using chaotic features based on the
+combined approach of VMD-TSA.",2023-08-29T06:10:33Z,http://arxiv.org/abs/2309.00641v1,tooth decay
+All-Optical Noise Quenching of An Integrated Frequency Comb,"Gregory Moille, Pradyoth Shandilya, Jordan Stone, Curtis Menyuk, Kartik Srinivasan","Integrated frequency combs promise transformation of lab-based metrology into
+disruptive real-world applications. These microcombs are, however, sensitive to
+stochastic thermal fluctuations of the integrated cavity refractive index, with
+its impact becoming more significant as the cavity size becomes smaller. This
+tradeoff between microcomb noise performance and footprint stands as a
+prominent obstacle to realizing applications beyond a controlled lab
+environment. Here, we demonstrate that small footprint and low noise become
+compatible through the all-optical Kerr-induced synchronization (KIS) method.
+Our study unveils that the phase-locking nature of the synchronization between
+the cavity soliton and the injected reference pump laser enables the microcomb
+to no longer be limited by internal noise sources. Instead, the microcomb noise
+is mostly limited by external sources, namely, the frequency noise of the two
+pumps that doubly pin the microcomb. First, we theoretically and experimentally
+show that the individual comb tooth linewidths of an octave-spanning microcomb
+remain within the same order-of-magnitude as the pump lasers, contrary to the
+single-pumped case that exhibits a more than two order-of-magnitude increase
+from the pump to the comb edge. Second, we theoretically show that intrinsic
+noise sources such as thermorefractive noise in KIS are quenched at the cavity
+decay rate, greatly decreasing its impact. Experimentally, we show that even
+with free-running lasers, the KIS microcomb can exhibit better repetition rate
+noise performance than the predicted thermorefractive noise limitation in
+absence of KIS.",2024-05-02T12:34:11Z,http://arxiv.org/abs/2405.01238v2,tooth decay
+"Quantum dynamics of frustrated Josephson junction arrays embedded in a
+  transmission line: an effective XX spin chain with long-range interaction","Benedikt J. P. Pernack, Mikhail V. Fistul, Ilya M. Eremin","We study theoretically a variety of collective quantum phases occurring in
+frustrated saw-tooth chains of Josephson junctions embedded in a
+dissipationless transmission line. The basic element of a system, i.e., the
+triangular superconducting cell, contains two $0$- and one $\pi$- Josephson
+junctions characterized by $E_J$ and $\alpha E_J$ Josephson energies,
+accordingly. In the frustrated regime the low energy quantum dynamics of a
+single cell is determined by anticlockwise or clockwise flowing persistent
+currents (vortex/antivortex). The direct embedding of $\pi$-Josephson junctions
+in a transmission line allows to establish a short/long-range interaction
+between (anti)vortices of well separated cells. By making use of the
+variational approach, we map the superconducting circuit Hamiltonian to an
+effective $XX$ spin model with an exchange spin-spin interaction decaying with
+the distance $x$ as $x^{-\beta}$, and the local $\hat \sigma_{x,n}$-terms
+corresponding to the coherent quantum beats between vortex and antivortex in a
+single cell. We obtain that in long arrays as $N \gg \ell_0 \simeq
+\sqrt{C/C_0}$, where $C$ and $C_0$ are capacitances of $0$-Josephson junction
+and transmission line, accordingly, the amplitude of quantum beats is strongly
+suppressed. By means of exact numerical diagonalization, we study the interplay
+between the coherent quantum beats and the exchange spin-spin interaction
+leading to the appearance of various collective quantum phases such as the
+paramagnetic ($P$), compressible superfluid ($CS$) and weakly compressible
+superfluid ($w$-$CS$) states.",2024-07-04T13:40:08Z,http://arxiv.org/abs/2407.03928v1,tooth decay
+"A comparative analysis of the geometrical surface texture of a real and
+  virtual model of a tooth flank of a cylindrical gear","Jacek Michalski, Leszek Skoczylas","The paper presents the methodology of modelling tooth flanks of cylindrical
+gears in the Cad environment. The modelling consists in a computer simulation
+of gear generation. A model of tooth flanks is an envelope curve of a family of
+envelopes that originate from the rolling motion of a solid tool model in
+relation to a solid model of the cylindrical gear. The surface stereometry and
+topography of the tooth flanks, hobbed and chiselled by Fellows method, are
+compared to their numerical models. Metrological measurements of the real gears
+were carried out using a coordinated measuring machine and a two - and a
+three-dimensional profilometer. A computer simulation of the gear generation
+was performed in the Mechanical Desktop environment.",2006-09-15T14:05:43Z,http://arxiv.org/abs/cs/0609087v1,tooth decay
+"Determining the geometry of noncircular gears for given transmission
+  function",Uwe Bäsel,"A pair of noncircular gears can be used to generate a strictly increasing
+continuous function $\psi(\varphi)$ whose derivative $\psi'(\varphi) =
+\mathrm{d}\psi(\varphi)/\mathrm{d}\varphi > 0$ is $2\pi/n$-periodic, where
+$\varphi$ and $\gamma = \psi(\varphi)$ are the angles of the opposite rotation
+directions of the drive gear and the driven gear, respectively, and $n \in
+\mathbb{N} \setminus \{0\}$. In this paper, we determine the geometry of both
+gears for given transmission function $\psi(\varphi)$ when manufacturing with a
+rack-cutter having fillets. All occurring functions are consistently derived as
+functions of the drive angle $\varphi$ and the function $\psi$. Throughout the
+paper, methods of complex algebra, including an external product, are used. An
+effective algorithm for the calculation of the tooth geometries - in general
+every tooth has its own shape - is presented which limits the required
+numerical integrations to a minimum. Simple criteria are developed for checking
+each tooth flank for undercut. The base curves of both gears are derived, and
+it is shown that the tooth flanks are indeed the involutes of the corresponding
+base curve. All formulas for both gears are ready to use.",2019-05-07T15:34:03Z,http://arxiv.org/abs/1905.02642v1,tooth decay
+"A new method for determining the filled point of the tooth by Bit-Plane
+  Algorithm","Zahra Alidousti, Maryam Taghizadeh Dehkordi","Up to now, researchers have applied segmentation techniques in their studies
+on teeth images, with construction on tooth root length and depth. In this
+paper, a new approach to the exact identification of the filled points of the
+tooth is proposed. In this method, the filled teeth are detection by applying
+the Bit-Plane algorithm on the OPG images. The novelty of the proposed method
+is that we can use it in medicine for the detection of dental filling and we
+calculate and present the area of the filled points which may help dentists to
+assess the filled point of the tooth. The experimental results, confirmed by
+the dentists, clearly indicate that this method is able to separate the filled
+points from the rest of healthy teeth completely.",2019-07-05T14:54:41Z,http://arxiv.org/abs/1907.02873v1,tooth decay
+ToothSegNet: Image Degradation meets Tooth Segmentation in CBCT Images,"Jiaxiang Liu, Tianxiang Hu, Yang Feng, Wanghui Ding, Zuozhu Liu","In computer-assisted orthodontics, three-dimensional tooth models are
+required for many medical treatments. Tooth segmentation from cone-beam
+computed tomography (CBCT) images is a crucial step in constructing the models.
+However, CBCT image quality problems such as metal artifacts and blurring
+caused by shooting equipment and patients' dental conditions make the
+segmentation difficult. In this paper, we propose ToothSegNet, a new framework
+which acquaints the segmentation model with generated degraded images during
+training. ToothSegNet merges the information of high and low quality images
+from the designed degradation simulation module using channel-wise cross fusion
+to reduce the semantic gap between encoder and decoder, and also refines the
+shape of tooth prediction through a structural constraint loss. Experimental
+results suggest that ToothSegNet produces more precise segmentation and
+outperforms the state-of-the-art medical image segmentation methods.",2023-07-05T01:41:24Z,http://arxiv.org/abs/2307.01979v1,tooth decay
+"A Multi-Stage Framework for 3D Individual Tooth Segmentation in Dental
+  CBCT","Chunshi Wang, Bin Zhao, Shuxue Ding","Cone beam computed tomography (CBCT) is a common way of diagnosing dental
+related diseases. Accurate segmentation of 3D tooth is of importance for the
+treatment. Although deep learning based methods have achieved convincing
+results in medical image processing, they need a large of annotated data for
+network training, making it very time-consuming in data collection and
+annotation. Besides, domain shift widely existing in the distribution of data
+acquired by different devices impacts severely the model generalization. To
+resolve the problem, we propose a multi-stage framework for 3D tooth
+segmentation in dental CBCT, which achieves the third place in the
+""Semi-supervised Teeth Segmentation"" 3D (STS-3D) challenge. The experiments on
+validation set compared with other semi-supervised segmentation methods further
+indicate the validity of our approach.",2024-07-15T04:23:28Z,http://arxiv.org/abs/2407.10433v1,tooth decay
+"GeoT: Geometry-guided Instance-dependent Transition Matrix for
+  Semi-supervised Tooth Point Cloud Segmentation","Weihao Yu, Xiaoqing Guo, Chenxin Li, Yifan Liu, Yixuan Yuan","Achieving meticulous segmentation of tooth point clouds from intra-oral scans
+stands as an indispensable prerequisite for various orthodontic applications.
+Given the labor-intensive nature of dental annotation, a significant amount of
+data remains unlabeled, driving increasing interest in semi-supervised
+approaches. One primary challenge of existing semi-supervised medical
+segmentation methods lies in noisy pseudo labels generated for unlabeled data.
+To address this challenge, we propose GeoT, the first framework that employs
+instance-dependent transition matrix (IDTM) to explicitly model noise in pseudo
+labels for semi-supervised dental segmentation. Specifically, to handle the
+extensive solution space of IDTM arising from tens of thousands of dental
+points, we introduce tooth geometric priors through two key components:
+point-level geometric regularization (PLGR) to enhance consistency between
+point adjacency relationships in 3D and IDTM spaces, and class-level geometric
+smoothing (CLGS) to leverage the fixed spatial distribution of tooth categories
+for optimal IDTM estimation. Extensive experiments performed on the public
+Teeth3DS dataset and private dataset demonstrate that our method can make full
+utilization of unlabeled data to facilitate segmentation, achieving performance
+comparable to fully supervised methods with only $20\%$ of the labeled data.",2025-03-21T09:43:57Z,http://arxiv.org/abs/2503.16976v1,tooth decay
