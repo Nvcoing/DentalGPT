@@ -1,0 +1,846 @@
+title,authors,summary,published,link,keyword_used
+"Towards Earlier Detection of Oral Diseases On Smartphones Using Oral and
+  Dental RGB Images","Ayush Garg, Julia Lu, Anika Maji","Oral diseases such as periodontal (gum) diseases and dental caries (cavities)
+affect billions of people across the world today. However, previous
+state-of-the-art models have relied on X-ray images to detect oral diseases,
+making them inaccessible to remote monitoring, developing countries, and
+telemedicine. To combat this overuse of X-ray imagery, we propose a lightweight
+machine learning model capable of detecting calculus (also known as hardened
+plaque or tartar) in RGB images while running efficiently on low-end devices.
+The model, a modified MobileNetV3-Small neural network transfer learned from
+ImageNet, achieved an accuracy of 72.73% (which is comparable to
+state-of-the-art solutions) while still being able to run on mobile devices due
+to its reduced memory requirements and processing times. A ResNet34-based model
+was also constructed and achieved an accuracy of 81.82%. Both of these models
+were tested on a mobile app, demonstrating their potential to limit the number
+of serious oral disease cases as their predictions can help patients schedule
+appointments earlier without the need to go to the clinic.",2023-08-30T02:01:19Z,http://arxiv.org/abs/2308.15705v1,gum disease
+"Oral-3D: Reconstructing the 3D Bone Structure of Oral Cavity from 2D
+  Panoramic X-ray","Weinan Song, Yuan Liang, Jiawei Yang, Kun Wang, Lei He","Panoramic X-ray (PX) provides a 2D picture of the patient's mouth in a
+panoramic view to help dentists observe the invisible disease inside the gum.
+However, it provides limited 2D information compared with cone-beam computed
+tomography (CBCT), another dental imaging method that generates a 3D picture of
+the oral cavity but with more radiation dose and a higher price. Consequently,
+it is of great interest to reconstruct the 3D structure from a 2D X-ray image,
+which can greatly explore the application of X-ray imaging in dental surgeries.
+In this paper, we propose a framework, named Oral-3D, to reconstruct the 3D
+oral cavity from a single PX image and prior information of the dental arch.
+Specifically, we first train a generative model to learn the cross-dimension
+transformation from 2D to 3D. Then we restore the shape of the oral cavity with
+a deformation module with the dental arch curve, which can be obtained simply
+by taking a photo of the patient's mouth. To be noted, Oral-3D can restore both
+the density of bony tissues and the curved mandible surface. Experimental
+results show that Oral-3D can efficiently and effectively reconstruct the 3D
+oral structure and show critical information in clinical applications, e.g.,
+tooth pulling and dental implants. To the best of our knowledge, we are the
+first to explore this domain transformation problem between these two imaging
+methods.",2020-03-18T18:02:57Z,http://arxiv.org/abs/2003.08413v4,gum disease
+"Investigating biomechanical determinants of endothelial permeability in
+  a modified hollow fibre bioreactor","Stephen G Gray, Peter D Weinberg","Effects of mechanical stress on the permeability of vascular endothelium are
+important to normal physiology and may be critical in the development of
+atherosclerosis, where they can account for the patchy arterial distribution of
+the disease. Such properties are frequently investigated in vitro. Here we
+evaluate and use the hollow fibre bioreactor for this purpose; in this system,
+endothelial cells form a confluent monolayer lining numerous plastic
+capillaries with porous walls, contained in a cartridge. The capillaries were
+perfused with a near-aortic waveform by an external pump, and permeability was
+assessed by the movement of rhodamine-labelled albumin from the intracapillary
+space to the extracapillary space. Confluence and quiescence of the cells was
+confirmed by electron microscopy and measurements of glucose consumption and
+permeability. The system was able to detect previously established influences
+on permeability: tracer transport was increased by acute application of shear
+stress and decreased by chronic shear stress compared to a static control, and
+was increased by thrombin or an NO synthase inhibitor under chronic shear.
+Increasing viscosity by addition of xanthan gum reduced permeability under both
+acute and chronic shear. Addition of damping chambers to reduce flow
+pulsatility increased permeability. Modifying the cartridge to allow chronic
+convection across the monolayer increased effective permeability more than
+could be explained the addition of convective transport alone, indicating that
+it caused an increase in permeability. The off-the-shelf hollow fibre
+bioreactor provides an excellent system for investigating the biomechanics of
+endothelial permeability and its potential is increased by simple
+modifications.",2023-03-02T18:27:58Z,http://arxiv.org/abs/2303.01466v1,gum disease
+Scatter broadening of pulsars in the direction of the Gum nebula,"D. Mitra, R. Ramachandran","We have measured the scatter broadening of pulsars in the direction of the
+Gum nebula. For the first time, our observations show clear variations of
+scattering properties across the Gum nebula. The IRAS-Vela shell is shown to be
+a high scattering region. Our revised estimations of distances to these pulsars
+are consistently less by a factor of 2--3, which has very important
+consequences for the deduced values of radio luminosity and transverse velocity
+of pulsars.",2001-05-04T14:23:19Z,http://arxiv.org/abs/astro-ph/0105076v1,gum disease
+The GAMBIT Universal Model Machine: from Lagrangians to Likelihoods,"Sanjay Bloor, Tomás E. Gonzalo, Pat Scott, Christopher Chang, Are Raklev, José Eliel Camargo-Molina, Anders Kvellestad, Janina J. Renk, Peter Athron, Csaba Balázs","We introduce the GAMBIT Universal Model Machine (GUM), a tool for
+automatically generating code for the global fitting software framework GAMBIT,
+based on Lagrangian-level inputs. GUM accepts models written symbolically in
+FeynRules and SARAH formats, and can use either tool along with MadGraph and
+CalcHEP to generate GAMBIT model, collider, dark matter, decay and spectrum
+code, as well as GAMBIT interfaces to corresponding versions of SPheno,
+micrOMEGAs, Pythia and Vevacious (C++). In this paper we describe the features,
+methods, usage, pathways, assumptions and current limitations of GUM. We also
+give a fully worked example, consisting of the addition of a Majorana fermion
+simplified dark matter model with a scalar mediator to GAMBIT via GUM, and
+carry out a corresponding fit.",2021-06-30T18:00:22Z,http://arxiv.org/abs/2107.00030v3,gum disease
+Superconductivity in Al-Nb-Ti-V-Zr multicomponent alloy,"Yuta Harayama, Jiro Kitagawa","The superconducting high-entropy alloys (HEAs) recently attract considerable
+attention due to their exciting properties, such as the robustness of
+superconductivity against atomic disorder and extremely high-pressure. The
+well-studied crystal structure of superconducting HEAs is body-centered-cubic
+(bcc) containing Nb, Ti, and Zr atoms. The same elements are contained in
+Al5Nb24Ti40V5Zr26, which is a recently discovered bcc HEA and shows a
+gum-metal-like behavior after cold rolling. The gum metal is also an
+interesting system, exhibiting superelasticity and low Young's modulus. If gum
+metals show superconductivity and can be used as a superconducting wire, the
+gum-metal HEA superconductors might be the next-generation superconducting wire
+materials. Aiming at a fundamental assessment of as-cast Al-Nb-Ti-V-Zr
+multicomponent alloys including Al5Nb24Ti40V5Zr26, we have investigated the
+structural and superconducting properties of the alloys. All alloys
+investigated show the superconductivity, and the valence electron concentration
+dependence of the superconducting critical temperature is very close to those
+of typical superconducting bcc HEAs.",2021-07-19T22:58:03Z,http://arxiv.org/abs/2107.09187v1,gum disease
+"Massive star formation in the Carina nebula complex and Gum 31 -- II. a
+  cloud-cloud collision in Gum 31","Shinji Fujita, Hidetoshi Sano, Rei Enokiya, Katsuhiro Hayashi, Mikito Kohno, Kisetsu Tsuge, Kengo Tachihara, Atsushi Nishimura, Akio Ohama, Yumiko Yamane, Takahiro Ohno, Rin I. Yamada, Yasuo Fukui","We present the results of analyses of the 12CO (J=1-0), 13CO (J=1-0), and
+12CO (J=2-1) emission data toward Gum 31. Three molecular clouds separated in
+velocity were detected at -25, -20, and -10 km/s . The velocity structure of
+the molecular clouds in Gum 31 cannot be interpreted as expanding motion. Two
+of them, the -25 km/s cloud and the -20 km/s cloud, are likely associated with
+Gum 31, because their 12CO (J=2-1)/12CO (J=1-0) intensity ratios are high. We
+found that these two clouds show the observational signatures of cloud-cloud
+collisions (CCCs): a complementary spatial distribution and a V-shaped
+structure (bridge features) in the position-velocity diagram. In addition,
+their morphology and velocity structures are very similar to the numerical
+simulations conducted by the previous studies. We propose a scenario that the
+-25 km/s cloud and the -20 km/s cloud were collided and triggered the formation
+of the massive star system HD 92206 in Gum 31. This scenario can explain the
+offset of the stars from the center and the morphology of Gum 31
+simultaneously. The timescale of the collision was estimated to be ~1 Myr by
+using the ratio between the path length of the collision and the assumed
+velocity separation. This is consistent with that of the CCCs in Carina Nebula
+Complex in our previous study.",2021-07-13T08:18:32Z,http://arxiv.org/abs/2107.06671v2,gum disease
+Monte Carlo uncertainty estimation for wavelength calibration,"Thang H. L., Nguyen D. D., Dung D. N.","CIPM published the Supplement I for GUM in 2008 as not only an alternative
+approach to estimate the uncertainty for a given calibration measurement but
+also as a proper uncertainty estimation one, whenever any of the conditions
+imposed in GUM which must be satisfied does not hold [1, 2]. Before the
+introduction of the new approach in the Supplement I, namely Monte Carlo (MC)
+method, the GUM rules have been always applied even if in cases where the
+mentioned conditions were not fulfilled. After or even before the official
+introduction of this MC method, a number of published papers in uncertainty
+estimation by using MC method had been shown up, giving more insight for the
+ways the uncertainties estimated and also for the specific calibration
+measurements under investigation themselves [3 - 16]. However, in most of those
+published papers, the application conditions required before a method selection
+should be analyzed, in fact, has been ignored. In our uncertainty study for
+wavelength calibration by using beat frequency technique, the application
+conditions have not been ignored but analyzed carefully and it was found that a
+GUM application condition was unsatisfactory. However, all the MC method
+conditions for this calibration problem have been well fulfilled. A computer
+program was then coded [17] following the steps in the Supplement I. The
+resultant outputs showed difference in statistical nature and suggested to
+replace the MC method to the GUM one as soon as possible for this case.",2010-12-13T05:14:36Z,http://arxiv.org/abs/1012.2631v2,gum disease
+Implications of MAX for CDM,"Mark Srednicki, Martin White, Douglas Scott, Emory T. Bunn","We analyze the Gamma Ursae Minoris (GUM) and Mu Pegasii (MuP) scans of the
+Millimeter-wave Anisotropy eXperiment in the context of cold dark matter (CDM)
+models of structure formation, paying particular attention to the
+two-dimensional nature of the GUM scan. If all of the structure in the
+(foreground subtracted) data is attributed to cosmic microwave background
+anisotropy, then there is a detection in each scan. For a standard CDM model,
+the amplitudes of the signals are individually compatible with the COsmic
+Background Explorer measurement, but marginally inconsistent with each other.",1993-09-01T23:24:35Z,http://arxiv.org/abs/astro-ph/9309006v1,gum disease
+Hadamard functions of inverse M-Matrices,"Claude Dellacherie, Servet Martinez, Jaime San Martin","We prove that the class of GUM matrices is the largest class of bi-potential
+matrices stable under Hadamard increasing functions. We also show that any
+power greater than 1, in the sense of Hadamard functions, of an inverse
+M-matrix is also inverse M-matrix showing a conjecture stated in Neumann 1998.
+We study the class of filtered matrices, which include naturally the GUM
+matrices, and present some sufficient conditions for a filtered matrix to be a
+bi-potential.",2006-01-27T21:21:15Z,http://arxiv.org/abs/math/0601688v1,gum disease
+From Univariate to Multivariate Uncertainty Calculation,Michael P. Krystek,"The Guide to the Expression of Uncertainty in Measurement (GUM) mainly deals
+with measurement models having only a single output quantity. However, in many
+cases more than one output quantity is required, where all of them are related
+to a common set of input quantities. In order to evaluate the measurement
+uncertainties associated with estimated expectations of these output
+quantities, the uncertainty propagation as treated in the GUM requires an
+appropriate extension. This article will introduce the concept of the
+multivariate uncertainty calculation as an extension of the univariate
+uncertainty calculation.",2010-08-16T16:02:22Z,http://arxiv.org/abs/1008.2700v2,gum disease
+Gum 48d: an evolved HII region with ongoing star formation,"J. L. Karr, P Manoj, N Ohashi","High mass star formation and the evolution of HII regions have a substantial
+impact on the morphology and star formation history of molecular clouds. The
+HII region Gum 48d, located in the Centaurus Arm at a distance of 3.5 kpc, is
+an old, well evolved HII region whose ionizing stars have moved off the main
+sequence. As such, it represents a phase in the evolution of HII regions that
+is less well studied than the earlier, more energetic, main sequence phase. In
+this paper we use multi-wavelength archive data from a variety of sources to
+perform a detailed study of this interesting region. Morphologically, Gum 48d
+displays a ring-like faint HII region associated with diffuse emission from the
+associated PDR, and is formed from part of a large, massive molecular cloud
+complex. There is extensive ongoing star formation in the region, at scales
+ranging from low to high mass, which is consistent with triggered star
+formation scenarios. We investigate the dynamical history and evolution of this
+region, and conclude that the original HII region was once larger and more
+energetic than the faint region currently seen. The proposed history of this
+molecular cloud complex is one of multiple, linked generations of star
+formation, over a period of 10 Myr. Gum 48d differs significantly in morphology
+and star formation that the other HII regions in the molecular cloud; these
+differences are likely the result of the advanced age of the region, and its
+different evolutionary status.",2009-03-05T09:03:12Z,http://arxiv.org/abs/0903.0934v1,gum disease
+"About the probability distribution of a quantity with given mean and
+  variance","Stefano Olivares, Matteo G. A. Paris","Supplement 1 to GUM (GUM-S1) recommends the use of maximum entropy principle
+(MaxEnt) in determining the probability distribution of a quantity having
+specified properties, e.g., specified central moments. When we only know the
+mean value and the variance of a variable, GUM-S1 prescribes a Gaussian
+probability distribution for that variable. When further information is
+available, in the form of a finite interval in which the variable is known to
+lie, we indicate how the distribution for the variable in this case can be
+obtained. A Gaussian distribution should only be used in this case when the
+standard deviation is small compared to the range of variation (the length of
+the interval). In general, when the interval is finite, the parameters of the
+distribution should be evaluated numerically, as suggested by I. Lira,
+Metrologia, 46 L27 (2009). Here we note that the knowledge of the range of
+variation is equivalent to a bias of the distribution toward a flat
+distribution in that range, and the principle of minimum Kullback entropy (mKE)
+should be used in the derivation of the probability distribution rather than
+the MaxEnt, thus leading to an exponential distribution with non Gaussian
+features. Furthermore, up to evaluating the distribution negentropy, we
+quantify the deviation of mKE distributions from MaxEnt ones and, thus, we
+rigorously justify the use of GUM-S1 recommendation also if we have further
+information on the range of variation of a quantity, namely, provided that its
+standard uncertainty is sufficiently small compared to the range.",2012-03-13T20:05:18Z,http://arxiv.org/abs/1203.2934v1,gum disease
+An Implicit Parametric Morphable Dental Model,"Congyi Zhang, Mohamed Elgharib, Gereon Fox, Min Gu, Christian Theobalt, Wenping Wang","3D Morphable models of the human body capture variations among subjects and
+are useful in reconstruction and editing applications. Current dental models
+use an explicit mesh scene representation and model only the teeth, ignoring
+the gum. In this work, we present the first parametric 3D morphable dental
+model for both teeth and gum. Our model uses an implicit scene representation
+and is learned from rigidly aligned scans. It is based on a component-wise
+representation for each tooth and the gum, together with a learnable latent
+code for each of such components. It also learns a template shape thus enabling
+several applications such as segmentation, interpolation, and tooth
+replacement. Our reconstruction quality is on par with the most advanced global
+implicit representations while enabling novel applications. Project page:
+https://vcai.mpi-inf.mpg.de/projects/DMM/",2022-11-21T12:23:54Z,http://arxiv.org/abs/2211.11402v1,gum disease
+"Unifying the Scope of Bridging Anaphora Types in English: Bridging
+  Annotations in ARRAU and GUM","Lauren Levine, Amir Zeldes","Comparing bridging annotations across coreference resources is difficult,
+largely due to a lack of standardization across definitions and annotation
+schemas and narrow coverage of disparate text domains across resources. To
+alleviate domain coverage issues and consolidate schemas, we compare guidelines
+and use interpretable predictive models to examine the bridging instances
+annotated in the GUM, GENTLE and ARRAU corpora. Examining these cases, we find
+that there is a large difference in types of phenomena annotated as bridging.
+Beyond theoretical results, we release a harmonized, subcategorized version of
+the test sets of GUM, GENTLE and the ARRAU Wall Street Journal data to promote
+meaningful and reliable evaluation of bridging resolution across domains.",2024-10-02T01:56:28Z,http://arxiv.org/abs/2410.01170v1,gum disease
+"Is the Gum Nebula an Important Interstellar Scattering Disk of
+  Background Pulsars?","Rui Wang, Zhen Yan, Zhiqiang Shen, KeJia Lee, Yajun Wu, Rongbing Zhao, Zhipeng Huang, Xiaowei Wang, Jie Liu","The Gum Nebula is a faint supernova remnant extending about 40 degrees across
+the southern sky, potentially affecting tens of background pulsars. Though the
+view that the Gum Nebula acts as a potential scattering screen for background
+pulsars has been recurrently mentioned over the past five decades, it has not
+been directly confirmed. We chose the strong background pulsar PSR~B0740$-$28
+as a probe and monitored its diffractive interstellar scintillation (DISS) at
+2.25~$\&$~8.60~GHz simultaneously for about two years using the Shanghai Tian
+Ma Radio Telescope (TMRT). DISS was detected at both frequencies and quantified
+by two-dimensional autocorrelation analysis. We calculated their scattering
+spectral index $\alpha$ and found that 9/21 of the observations followed the
+theoretical predictions, while 4/21 of them clearly showed $\alpha < 4$. This
+finding provides strong support for anomalous scattering along the pulsar line
+of sight, due to the large frequency lever arm and the simultaneous features of
+our dual-frequency observations. In comparison to the 2.25~GHz observations,
+scintillation arcs were observed in 10/21 of the secondary spectrum plots for
+8.60~GHz observations. Consequently, the highest frequency record for pulsar
+scintillation arc detection was updated to 8.60~GHz. Our fitting results were
+the most direct evidence for the view that the Gum Nebula acts as the
+scattering screen for background pulsars, because both the distance
+($245^{+69}_{-72}$~pc) and transverse speed ($22.4^{+4.1}_{-4.2}$~km/s) of the
+scintillation screen are comparable with related parameters of the Gum Nebula.
+Our findings indicated that anisotropic scattering provides a superior
+explanation for the annual modulation of scintillation arcs than isotropic
+scattering. Additionally, the orientation of its long axis was also fitted.",2024-10-11T08:47:18Z,http://arxiv.org/abs/2410.08628v1,gum disease
+"Tuning the shear and extensional rheology of semi-flexible
+  polyelectrolyte solutions","H. Moon, S. Yamani, G. H. McKinley, J. Lee","Semi-flexible polyelectrolytes are a group of biopolymers with a wide range
+of applications from drag reducing agents in turbulent flows to thickening
+agents in food and cosmetics. In this study, we investigate the rheology of
+aqueous solutions of xanthan gum as a canonical semi-flexible polyelectrolyte
+in steady shear and transient extensional flows via torsional rheometry and
+dripping-onto-substrate (DoS), respectively. The high molecular weight of the
+xanthan gum and the numerous charged groups on the side branches attached to
+the backbone allow the shear and extensional rheology of the xanthan gum
+solutions to be tuned over a wide range by changing the ionic strength of the
+solvent. In steady shear flow, increasing the xanthan gum concentration
+increases both the zero shear viscosity and the extent of shear-thinning of the
+solution. Conversely, increasing the ionic strength of the solvent by addition
+of sodium chloride (NaCl) decreases both the zero shear viscosity and the level
+of shear-thinning. In transient extensional flow, increasing the xanthan gum
+concentration changes the dynamics of the capillary thinning from an inelastic
+power-law (IP) response to an elastocapillary (EC) balance, from which an
+extensional relaxation time can be measured based on the rate of filament
+thinning. Increasing the NaCl concentration decreases the extensional
+relaxation time and the transient extensional viscosity of the viscoelastic
+solution. Based on the dynamics of capillary thinning observed in the DoS
+experiments, we provide a relationship for the smallest extensional relaxation
+time that can be measured using DoS. We suggest that the change in the dynamics
+of capillary thinning from an IP response to an EC response can be used as an
+easy and robust experimental method for identifying the rheologically effective
+overlap concentration of a semi-flexible polyelectrolyte solution, i.e., the
+critical concentration at which polymer molecules start to interact with each
+other to produce a viscoelastic strain-stiffening response (often perceived as
+""stringiness"") in transient extensional flows such as those involved in
+dripping, dispensing and filling operations.",2024-10-19T15:13:15Z,http://arxiv.org/abs/2410.15132v1,gum disease
+Non-linear regression models for behavioral and neural data analysis,"Vincent Adam, Alexandre Hyafil","Regression models are popular tools in empirical sciences to infer the
+influence of a set of variables onto a dependent variable given an experimental
+dataset. In neuroscience and cognitive psychology, Generalized Linear Models
+(GLMs) -including linear regression, logistic regression, and Poisson GLM- is
+the regression model of choice to study the factors that drive participant's
+choices, reaction times and neural activations. These methods are however
+limited as they only capture linear contributions of each regressors. Here, we
+introduce an extension of GLMs called Generalized Unrestricted Models (GUMs),
+which allows to infer a much richer set of contributions of the regressors to
+the dependent variable, including possible interactions between the regressors.
+In a GUM, each regressor is passed through a linear or nonlinear function, and
+the contribution of the different resulting transformed regressors can be
+summed or multiplied to generate a predictor for the dependent variable. We
+propose a Bayesian treatment of these models in which we endow functions with
+Gaussian Process priors, and we present two methods to compute a posterior over
+the functions given a dataset: the Laplace method and a sparse variational
+approach, which scales better for large dataset. For each method, we assess the
+quality of the model estimation and we detail how the hyperparameters (defining
+for example the expected smoothness of the function) can be fitted. Finally, we
+illustrate the power of the method on a behavioral dataset where subjects
+reported the average perceived orientation of a series of gratings. The method
+allows to recover the mapping of the grating angle onto perceptual evidence for
+each subject, as well as the impact of the grating based on its position.
+Overall, GUMs provides a very rich and flexible framework to run nonlinear
+regression analysis in neuroscience, psychology, and beyond.",2020-02-03T18:00:18Z,http://arxiv.org/abs/2002.00920v1,gum disease
+Young Stars near Cometary Globule CG 30 in the Tumultuous Gum Nebula,"Alexandra Yep, Russel J. White","We have conducted a high-dispersion ($R \sim$ 34,000) optical spectroscopic
+study of 10 young stars near the cometary gloule CG 30 in the Gum Nebula, a
+diffuse H \textsc{ii} region home to at least 32 cometary globules. All 10
+spectroscopically observed stars at the nebula's northern edge are of low mass
+(spectral types M4.5 - K5), have broad H$\alpha$ emission, and show spectral
+veiling. Eight of the 10 are classical T Tauri stars. We spectroscopically
+measure the photospheric properties of CG 30 IRS 4 inside CG 30. Though
+embedded, CG 30 IRS 4 is T Tauri-like, with relatively slow projected rotation
+and moderate veiling. Undepleted Li absorptions, strong H$\alpha$ emissions,
+and positions well above the main sequence on an HR diagram suggest the 10
+stars are $\lesssim$1 Myr old. Using our measurements, previous spectroscopy,
+and previous photometry of 11 other young stars in the area, we determine
+stellar, kinematic, and accretion properties of a total of 21 young stars.
+Shared radial velocities, proper motions, distances, and ages suggest 14 of the
+young stars (including CG 30 IRS 4) are kinematically related to CG 30. From
+\textit{Gaia} DR2 distances to 6 of these stars, we derive a distance of
+$358.1\pm2.2$ pc to the cometary globule complex CG 30/31/38. The CG 30
+association has an accretor fraction of $29\pm14$\%, low for quiescent clusters
+of similar age but consistent with other irradiated clusters. The Gum Nebula's
+moderate radiation environment ($G_0=6.6^{+3.2}_{-2.7}$ at CG 30) may be strong
+enough to shorten disk lifetimes.",2019-12-20T07:54:19Z,http://arxiv.org/abs/1912.09677v1,gum disease
+Answer Generation through Unified Memories over Multiple Passages,"Makoto Nakatsuji, Sohei Okui","Machine reading comprehension methods that generate answers by referring to
+multiple passages for a question have gained much attention in AI and NLP
+communities. The current methods, however, do not investigate the relationships
+among multiple passages in the answer generation process, even though topics
+correlated among the passages may be answer candidates. Our method, called
+neural answer Generation through Unified Memories over Multiple Passages
+(GUM-MP), solves this problem as follows. First, it determines which tokens in
+the passages are matched to the question. In particular, it investigates
+matches between tokens in positive passages, which are assigned to the
+question, and those in negative passages, which are not related to the
+question. Next, it determines which tokens in the passage are matched to other
+passages assigned to the same question and at the same time it investigates the
+topics in which they are matched. Finally, it encodes the token sequences with
+the above two matching results into unified memories in the passage encoders
+and learns the answer sequence by using an encoder-decoder with a
+multiple-pointer-generator mechanism. As a result, GUM-MP can generate answers
+by pointing to important tokens present across passages. Evaluations indicate
+that GUM-MP generates much more accurate results than the current models do.",2020-04-22T11:46:40Z,http://arxiv.org/abs/2004.13829v1,gum disease
+"Holocrine Secretion and Kino Flow in Angiosperms: Their Role and
+  Physiological Advantages in Plant Defence Mechanisms",Paulo Cabrita,"Kinos are plant exudates, rich in polyphenols, produced by several
+angiosperms in reaction to damage. They flow out of kino veins,
+schizolysigenous ducts composing an anatomically distinct continuous system of
+tangentially anastomosing lacunae produced by the vascular cambium, which
+encircle the plant. Kino is secreted holocrinously into the vein lumen by a
+cambiform epithelium lined by suberized cells that separate kino veins from the
+surrounding axial parenchyma. A model describing kino flow in eucalypts is
+presented to investigate how vein distribution and structure, as well as kino
+holocrine loading, crystallization, and viscosity affect flow. Considering
+viscosity, vein anatomy, and a time-dependent holocrine loading of kino, the
+unsteady Stokes equation was applied. Qualitatively, kino flow is similar to
+resin flow. There is an increase in flow towards the vein open end, and both
+pressure and flow depend on vein dimensions, kino properties and holocrine
+loading. However, kino veins present a much smaller specific resistance to flow
+compared to resin ducts. Also, unlike resin loading in conifers, holocrine kino
+loading is not pressure-driven. The pressure and pressure gradient required to
+drive an equally fast flow are smaller than what is observed on the resin ducts
+of conifers. These results agree with previous observations on some angiosperms
+and suggest that holocrinous gum flow may have lower metabolic energy costs;
+thus presenting physiological advantages and possibly constituting an
+evolutionary step of angiosperms in using internal secretory systems in plant
+defence mechanisms compared to resin flow in conifers. Understanding of how
+these physiological and morphological parameters affect kino flow might be
+useful for selecting species and developing more sustainable and economically
+viable methods of tapping gum and gum resin in angiosperms.",2019-02-20T13:08:19Z,http://arxiv.org/abs/1902.09308v2,gum disease
+Collision of Two Stellar Associations in the Nearby Gum Nebula,"Alexandra C. Yep, Russel J. White","Based on Gaia DR2 data and new CHIRON radial velocities, we have discovered
+that two nearby stellar associations UPK 535 (318.08 $\pm$ 0.29 pc,
+$25^{+15}_{-10}$ Myr, 174 stars) and Yep 3 (339.54 $\pm$ 0.25 pc ,
+$45^{+55}_{-20}$ Myr, 297 stars) in the Gum Nebula have recently collided. We
+project stars' current positions, motions, and measurement uncertainties
+backward and forward through time in a 10,000-trial Monte Carlo simulation. On
+average, the associations' centres of mass come within 18.89 $\pm$ 0.73 pc of
+each other 0.84 $\pm$ 0.03 Myr ago. A mode of 54 $\pm$ 7 close ($<$1 pc)
+stellar encounters occur during the collision. We cannot predict specific
+star-star close encounters with our current $\sim$7.6 pc distance precision and
+21.5-per-cent-complete radial velocity sample. Never the less, we find that two
+stars in UPK 535 and two stars in Yep 3 undergo a nonspecific close encounter
+in $>$70 per cent of trials and multiple close encounters in $\sim$30 per cent.
+On average, the closest approach of any two stars is 0.13 $\pm$ 0.06 pc, or
+27,000 $\pm$ 12,000 au. With impulse-tracing values up to $2.7^{+3.1}_{-1.1}$
+M$_{\odot}$ pc$^{-2}$ km$^{-1}$ s, such close encounters could perturb stars'
+Oort cloud comets (if present), cause heavy bombardment events for exoplanets
+(if present), and reshape solar system architectures. Finally, an expansion of
+our simulation suggests other associations in the region are also interacting.
+Association collisions may be commonplace, at least in the Gum Nebula
+straddling the Galactic plane, and may spur solar system evolution more than
+previously recognized.",2021-12-22T03:56:54Z,http://arxiv.org/abs/2112.11657v1,gum disease
+BIMA observations of possible microwave background sources,"Lawrence M. Chernin, Douglas Scott","We present sensitive upper limits on the 90 GHz flux of known radio and
+infrared sources in regions associated with possible cosmic microwave
+background fluctuations at 0.5--1 degree scales. Specifically we look at the
+MAX GUM region and the region of strongest fluctuation in the MSAM scan. None
+of the known sources can account for the levels of anisotropy seen.",1994-08-05T06:46:01Z,http://arxiv.org/abs/astro-ph/9408021v1,gum disease
+Discovering young stars in the Gum 31 region with infrared observations,"Henrike Ohlendorf, Thomas Preibisch, Benjamin Gaczkowski, Thorsten Ratzka, Judith Ngoumou, Veronica Roccatagliata, Rebekka Grellmann","Context. The Gum 31 bubble containing the stellar cluster NGC 3324 is a
+poorly-studied young region close to the Carina Nebula.
+  Aims. We are aiming to characterise the young stellar and protostellar
+population in and around Gum 31 and to investigate the star-formation process
+in this region.
+  Methods. We identify candidate young stellar objects from Spitzer, WISE, and
+Herschel data. Combining these, we analyse the spectral energy distributions of
+the candidate young stellar objects. With density and temperature maps obtained
+from Herschel data and comparisons to a 'collect and collapse' scenario for the
+region we are able to further constrain the characteristics of the region as a
+whole.
+  Results. 661 candidate young stellar objects are found from WISE data, 91
+protostar candidates are detected through Herschel observations in a 1.0 deg x
+1.1 deg area. Most of these objects are found in small clusters or are well
+aligned with the H II bubble. We also identify the sources of Herbig-Haro jets.
+The infrared morphology of the region suggests that it is part of the larger
+Carina Nebula complex.
+  Conclusions. The location of the candidate young stellar objects in the rim
+of the H II bubble is suggestive of their being triggered by a 'collect and
+collapse' scenario, which agrees well with the observed parameters of the
+region. Some candidate young stellar objects are found in the heads of pillars,
+which points towards radiative triggering of star formation. Thus, we find
+evidence that in the region different mechanisms of triggered star formation
+are at work. Correcting the number of candidate young stellar objects for
+contamination we find ~ 600 young stellar objects in Gum 31 above our
+completeness limit of about 1 M_sol. Extrapolating the intital mass function
+down to 0.1 M_sol, we estimate a total population of ~ 5000 young stars for the
+region.",2013-01-31T21:00:02Z,http://arxiv.org/abs/1302.0007v1,gum disease
+"On the evaluation of uncertainties for state estimation with the Kalman
+  filter","S. Eichstädt, N. Makarava, C. Elster","The Kalman filter is an established tool for the analysis of dynamic systems
+with normally distributed noise, and it has been successfully applied in
+numerous application areas. It provides sequentially calculated estimates of
+the system states along with a corresponding covariance matrix. For nonlinear
+systems, the extended Kalman filter is often used which is derived from the
+Kalman filter by linearization around the current estimate. A key issue in
+metrology is the evaluation of the uncertainty associated with the Kalman
+filter state estimates. The ""Guide to the Expression of Uncertainty in
+Measurements"" (GUM) and its supplements serve as the de facto standard for
+uncertainty evaluation in metrology. We explore the relationship between the
+covariance matrix produced by the Kalman filter and a GUM-compliant uncertainty
+analysis. In addition, also the results of a Bayesian analysis are considered.
+For the case of linear systems with known system matrices, we show that all
+three approaches are compatible. When the system matrices are not precisely
+known, however, or when the system is nonlinear, this equivalence breaks down
+and different results can be reached then. Though for precisely known nonlinear
+systems the result of the extended Kalman filter still corresponds to the
+linearized uncertainty propagation of GUM. The extended Kalman filter can
+suffer from linearization and convergence errors. These disadvantages can be
+avoided to some extent by applying Monte Carlo procedures, and we propose such
+a method which is GUM-compliant and can also be applied online during the
+estimation. We illustrate all procedures in terms of a two-dimensional dynamic
+system and compare the results with those obtained by particle filtering, which
+has been proposed for the approximate calculation of a Bayesian solution.
+Finally, we give some recommendations based on our findings.",2016-05-04T11:49:22Z,http://arxiv.org/abs/1605.01235v1,gum disease
+"The Carina Nebula and Gum 31 molecular complex: II. The distribution of
+  the atomic gas revealed in unprecedented detail","David Rebolledo, Anne J. Green, Michael Burton, Kate Brooks, Shari L. Breen, B. M. Gaensler, Yanett Contreras, Catherine Braiding, Cormac Purcell","We report high spatial resolution observations of the HI 21cm line in the
+Carina Nebula and the Gum 31 region obtained with the Australia Telescope
+Compact Array. The observations covered $\sim$ 12 deg$^2$ centred on $l=
+287.5\deg,b = -1\deg$, achieving an angular resolution of $\sim $ 35
+arcseconds. The HI map revealed complex filamentary structures across a wide
+range of velocities. Several ""bubbles"" are clearly identified in the Carina
+Nebula Complex, produced by the impact of the massive star clusters located in
+this region. An HI absorption profile obtained towards the strong extragalactic
+radio source PMN J1032--5917 showed the distribution of the cold component of
+the atomic gas along the Galactic disk, with the Sagittarius-Carina and Perseus
+spiral arms clearly distinguishable. Preliminary calculations of the optical
+depth and spin temperatures of the cold atomic gas show that the HI line is
+opaque ($\tau \gtrsim$ 2) at several velocities in the Sagittarius-Carina
+spiral arm. The spin temperature is $\sim100$ K in the regions with the highest
+optical depth, although this value might be lower for the saturated components.
+The atomic mass budget of Gum 31 is $\sim35 \%$ of the total gas mass. HI self
+absorption features have molecular counterparts and good spatial correlation
+with the regions of cold dust as traced by the infrared maps. We suggest that
+in Gum 31 regions of cold temperature and high density are where the atomic to
+molecular gas phase transition is likely to be occurring.",2017-08-09T15:08:05Z,http://arxiv.org/abs/1708.02864v1,gum disease
+"Kinematics of the Young Stellar Objects associated with the Cometary
+  Globules in the Gum Nebula","Rumpa Choudhury, H. C. Bhatt","An analysis of proper motion measurements of the Young Stellar Objects (YSOs)
+associated with the Cometary Globules (CGs) in the Gum Nebula is presented.
+While earlier studies based on the radial velocity measurements of the CGs
+suggested expansion of the system of the CGs, the observed proper motion of the
+YSOs shows no evidence for expansion. In particular the kinematics of two YSOs
+embedded in CGs is inconsistent with the supernova explosion of the companion
+of $\zeta$ Pup about 1.5 Myr ago as the cause of the expansion of the CG
+system. YSOs associated with the CGs share the average proper motion of the
+member stars of the Vela OB2 association. A few YSOs that have relatively large
+proper motions are found to show relatively low infrared excesses.",2008-11-26T18:19:52Z,http://arxiv.org/abs/0811.4389v1,gum disease
+Guided Upsampling Network for Real-Time Semantic Segmentation,Davide Mazzini,"Semantic segmentation architectures are mainly built upon an encoder-decoder
+structure. These models perform subsequent downsampling operations in the
+encoder. Since operations on high-resolution activation maps are
+computationally expensive, usually the decoder produces output segmentation
+maps by upsampling with parameters-free operators like bilinear or
+nearest-neighbor. We propose a Neural Network named Guided Upsampling Network
+which consists of a multiresolution architecture that jointly exploits
+high-resolution and large context information. Then we introduce a new module
+named Guided Upsampling Module (GUM) that enriches upsampling operators by
+introducing a learnable transformation for semantic maps. It can be plugged
+into any existing encoder-decoder architecture with little modifications and
+low additional computation cost. We show with quantitative and qualitative
+experiments how our network benefits from the use of GUM module. A
+comprehensive set of experiments on the publicly available Cityscapes dataset
+demonstrates that Guided Upsampling Network can efficiently process
+high-resolution images in real-time while attaining state-of-the art
+performances.",2018-07-19T14:40:14Z,http://arxiv.org/abs/1807.07466v1,gum disease
+"Elinvar effect in $β-$Ti simulated by on-the-fly trained moment
+  tensor potential","Alexander V. Shapeev, Evgeny V. Podryabinkin, Konstantin Gubaev, Ferenc Tasnádi, Igor A. Abrikosov","A combination of quantum mechanics calculations with machine learning (ML)
+techniques can lead to a paradigm shift in our ability to predict materials
+properties from first principles. Here we show that on-the-fly training of an
+interatomic potential described through moment tensors provides the same
+accuracy as state-of-the-art {\it ab inito} molecular dynamics in predicting
+high-temperature elastic properties of materials with two orders of magnitude
+less computational effort. Using the technique, we investigate high-temperature
+bcc phase of titanium and predict very weak, Elinvar, temperature dependence of
+its elastic moduli, similar to the behavior of the so-called GUM Ti-based
+alloys [T. Sato {\ it et al.}, Science {\bf 300}, 464 (2003)]. Given the fact
+that GUM alloys have complex chemical compositions and operate at room
+temperature, Elinvar properties of elemental bcc-Ti observed in the wide
+temperature interval 1100--1700 K is unique.",2020-05-09T06:10:34Z,http://arxiv.org/abs/2005.04375v1,gum disease
+"OntoGUM: Evaluating Contextualized SOTA Coreference Resolution on 12
+  More Genres","Yilun Zhu, Sameer Pradhan, Amir Zeldes","SOTA coreference resolution produces increasingly impressive scores on the
+OntoNotes benchmark. However lack of comparable data following the same scheme
+for more genres makes it difficult to evaluate generalizability to open domain
+data. This paper provides a dataset and comprehensive evaluation showing that
+the latest neural LM based end-to-end systems degrade very substantially out of
+domain. We make an OntoNotes-like coreference dataset called OntoGUM publicly
+available, converted from GUM, an English corpus covering 12 genres, using
+deterministic rules, which we evaluate. Thanks to the rich syntactic and
+discourse annotations in GUM, we are able to create the largest human-annotated
+coreference corpus following the OntoNotes guidelines, and the first to be
+evaluated for consistency with the OntoNotes scheme. Out-of-domain evaluation
+across 12 genres shows nearly 15-20% degradation for both deterministic and
+deep learning systems, indicating a lack of generalizability or covert
+overfitting in existing coreference resolution models.",2021-06-02T04:42:51Z,http://arxiv.org/abs/2106.00933v2,gum disease
+"Anatomy of OntoGUM--Adapting GUM to the OntoNotes Scheme to Evaluate
+  Robustness of SOTA Coreference Algorithms","Yilun Zhu, Sameer Pradhan, Amir Zeldes","SOTA coreference resolution produces increasingly impressive scores on the
+OntoNotes benchmark. However lack of comparable data following the same scheme
+for more genres makes it difficult to evaluate generalizability to open domain
+data. Zhu et al. (2021) introduced the creation of the OntoGUM corpus for
+evaluating geralizability of the latest neural LM-based end-to-end systems.
+This paper covers details of the mapping process which is a set of
+deterministic rules applied to the rich syntactic and discourse annotations
+manually annotated in the GUM corpus. Out-of-domain evaluation across 12 genres
+shows nearly 15-20% degradation for both deterministic and deep learning
+systems, indicating a lack of generalizability or covert overfitting in
+existing coreference resolution models.",2021-10-12T03:52:49Z,http://arxiv.org/abs/2110.05727v1,gum disease
+"Expressivity of Hidden Markov Chains vs. Recurrent Neural Networks from
+  a system theoretic viewpoint","François Desbouvries, Yohan Petetin, Achille Salaün","Hidden Markov Chains (HMC) and Recurrent Neural Networks (RNN) are two well
+known tools for predicting time series. Even though these solutions were
+developed independently in distinct communities, they share some similarities
+when considered as probabilistic structures. So in this paper we first consider
+HMC and RNN as generative models, and we embed both structures in a common
+generative unified model (GUM). We next address a comparative study of the
+expressivity of these models. To that end we assume that the models are
+furthermore linear and Gaussian. The probability distributions produced by
+these models are characterized by structured covariance series, and as a
+consequence expressivity reduces to comparing sets of structured covariance
+series, which enables us to call for stochastic realization theory (SRT). We
+finally provide conditions under which a given covariance series can be
+realized by a GUM, an HMC or an RNN.",2022-08-17T09:23:41Z,http://arxiv.org/abs/2208.08175v1,gum disease
+"Fine-tuning a Subtle Parsing Distinction Using a Probabilistic Decision
+  Tree: the Case of Postnominal ""that"" in Noun Complement Clauses vs. Relative
+  Clauses","Zineddine Tighidet, Nicolas Ballier","In this paper we investigated two different methods to parse relative and
+noun complement clauses in English and resorted to distinct tags for their
+corresponding that as a relative pronoun and as a complementizer. We used an
+algorithm to relabel a corpus parsed with the GUM Treebank using Universal
+Dependency. Our second experiment consisted in using TreeTagger, a
+Probabilistic Decision Tree, to learn the distinction between the two
+complement and relative uses of postnominal ""that"". We investigated the effect
+of the training set size on TreeTagger accuracy and how representative the GUM
+Treebank files are for the two structures under scrutiny. We discussed some of
+the linguistic and structural tenets of the learnability of this distinction.",2022-12-05T20:52:41Z,http://arxiv.org/abs/2212.02591v1,gum disease
+"Can we obtain significant success in RST discourse parsing by using
+  Large Language Models?","Aru Maekawa, Tsutomu Hirao, Hidetaka Kamigaito, Manabu Okumura","Recently, decoder-only pre-trained large language models (LLMs), with several
+tens of billion parameters, have significantly impacted a wide range of natural
+language processing (NLP) tasks. While encoder-only or encoder-decoder
+pre-trained language models have already proved to be effective in discourse
+parsing, the extent to which LLMs can perform this task remains an open
+research question. Therefore, this paper explores how beneficial such LLMs are
+for Rhetorical Structure Theory (RST) discourse parsing. Here, the parsing
+process for both fundamental top-down and bottom-up strategies is converted
+into prompts, which LLMs can work with. We employ Llama 2 and fine-tune it with
+QLoRA, which has fewer parameters that can be tuned. Experimental results on
+three benchmark datasets, RST-DT, Instr-DT, and the GUM corpus, demonstrate
+that Llama 2 with 70 billion parameters in the bottom-up strategy obtained
+state-of-the-art (SOTA) results with significant differences. Furthermore, our
+parsers demonstrated generalizability when evaluated on RST-DT, showing that,
+in spite of being trained with the GUM corpus, it obtained similar performances
+to those of existing parsers trained with RST-DT.",2024-03-08T05:34:29Z,http://arxiv.org/abs/2403.05065v1,gum disease
+"A metrological framework for uncertainty evaluation in machine learning
+  classification models","Samuel Bilson, Maurice Cox, Anna Pustogvar, Andrew Thompson","Machine learning (ML) classification models are increasingly being used in a
+wide range of applications where it is important that predictions are
+accompanied by uncertainties, including in climate and earth observation,
+medical diagnosis and bioaerosol monitoring. The output of an ML classification
+model is a type of categorical variable known as a nominal property in the
+International Vocabulary of Metrology (VIM). However, concepts related to
+uncertainty evaluation for nominal properties are not defined in the VIM, nor
+is such evaluation addressed by the Guide to the Expression of Uncertainty in
+Measurement (GUM). In this paper we propose a metrological conceptual
+uncertainty evaluation framework for ML classification, and illustrate its use
+in the context of two applications that exemplify the issues and have
+significant societal impact, namely, climate and earth observation and medical
+diagnosis. Our framework would enable an extension of the VIM and GUM to
+uncertainty for nominal properties, which would make both applicable to ML
+classification models.",2025-04-04T11:28:48Z,http://arxiv.org/abs/2504.03359v1,gum disease
+870 micron continuum observations of the bubble-shaped nebula Gum 31,"N. U. Duronea, J. Vasquez, L. Gómez, C. E. Cappa, V. Firpo, C. H. López-Carballo, M. Rubio","We are presenting here a study of the cold dust in the infrared ring nebula
+Gum 31. We aim at deriving the physical properties of the molecular gas and
+dust associated with the nebula, and investigating its correlation with the
+star formation in the region, that was probably triggered by the expansion of
+the ionization front. We use 870 micron data obtained with LABOCA to map the
+dust emission. The obtained LABOCA image was compared to archival IR,radio
+continuum, and optical images. The 870 micron emission follows the 8 micron
+(Spitzer), 250 micron, and 500 micron (Herschel) emission distributions showing
+the classical morphology of a spherical shell. We use the 870 micron and 250
+micron images to identify 60 dust clumps in the collected layers of molecular
+gas using the Gaussclumps algorithm. The clumps have effective deconvolved
+radii between 0.16 pc and 1.35 pc, masses between 70 Mo and 2800 Mo, and volume
+densities between 1.1x10^3 cm^-3 and 2.04x10^5 cm^-3. The total mass of the
+clumps is 37600 Mo. The dust temperature of the clumps is in the range from 21
+K to 32 K, while inside the HII region reaches ~ 40 K. The clump mass
+distribution is well-fitted by a power law dN/dlog(M/Mo) proportional to
+M^(-alpha), with alpha=0.93+/-0.28. The slope differs from those obtained for
+the stellar IMF in the solar neighborhood, suggesting that the clumps are not
+direct progenitors of single stars/protostars. The mass-radius relationship for
+the 41 clumps detected in the 870 microns emission shows that only 37% of them
+lie in or above the high-mass star formation threshold, most of them having
+candidate YSOs projected inside. A comparison of the dynamical age of the HII
+region with the fragmentation time, allowed us to conclude that the collect and
+collapse mechanism may be important for the star formation at the edge of Gum
+31, although other processes may also be acting.",2015-06-26T17:07:34Z,http://arxiv.org/abs/1506.08160v2,gum disease
+"The mechanism for the exceptionally high tear strength of carbon
+  black/Hevea natural rubber vulcanizates","G. Rong, J. Jiang, N. Schmitz, L. Jia, G. R. Hamed","Natural rubber vucanizates containing 0-50 phr of a fine carbon black
+(N115,d=27nm) were prepared and tensile strengths of normal (no pre-cut) and
+edge pre-cut specimens were determined. Normal tensile strengths of all
+vulcanizates were similar. At the relatively slow strain rate experienced
+wholesale by normal uncut specimens, all vulcanizates, prior to crack
+initiation, strain-crystallized sufficiently to be strong. However, pre-cut
+specimens experience increased strain rate at a cut tip. Magnification of the
+strain rate increases as cut depth c increases. Fracture in the gum NR and
+vulcanizates with up to 14 phr of black occurred by simple forward crack growth
+from a cut tip, and all exhibited a critical cut size, above which strength
+dropped abruptly. Furthermore, for these lightly filled samples, strength and
+critical cut size decreased with increased black content. This indicates less
+strain-crystalliation before rupture of pre-cut specimens, when levels of black
+are low. This effect is attributerd to rapid straining at a cut tip and
+hindering of the chain mobility necessary for crystallization. When black
+content was increased to 15 phr, with 1 mm<c<2 mm, about 50% of specimens
+retained simple lateral fracture and were weak, but the other 50% developed
+deviated cracks (knotty tearing) and were significantly stronger than
+corresponding pre-cut gum specimens, especially at large c. High strength with
+sufficient black levels are attributed to increased strain-crystallization and
+super-blunting (multiple cracks) at a cut tip. These inhibit forward crack
+growth. For carbon black to enhance strain-crystallization relative to the gum,
+it appears there must be enough of it to form a bound rubber/black network. If
+the black concentration is less than this percolation threshold,
+strain-crystallization is hindered at a cut tip.",2019-05-23T18:25:37Z,http://arxiv.org/abs/1905.09857v1,gum disease
+"The Carina Nebula and Gum 31 molecular complex: I. Molecular gas
+  distribution, column densities and dust temperatures","David Rebolledo, Michael Burton, Anne Green, Catherine Braiding, Sergio Molinari, Graeme Wong, Rebecca Blackwell, Davide Elia, Eugenio Schisano","We report high resolution observations of the $^{12}$CO$(1\rightarrow0)$ and
+$^{13}$CO$(1\rightarrow0)$ molecular lines in the Carina Nebula and the Gum 31
+region obtained with the 22-m Mopra telescope as part of the The Mopra Southern
+Galactic Plane CO Survey. We cover 8 deg$^2$ from $l = 285^{\circ}$ to
+290$^{\circ}$, and from $b = -1.5^{\circ}$ to +0.5$^{\circ}$. The molecular gas
+column density distributions from both tracers have a similar range of values.
+By fitting a grey-body function to the observed infrared spectral energy
+distribution from Herschel maps, we derive gas column densities and dust
+temperatures. The gas column density has values in the range from $6.3\times\
+10^{20}$ to $1.4\times 10^{23}$ cm$^{-2}$, while the dust temperature has
+values in the range from 17 to 43 K. The gas column density derived from the
+dust emission is approximately described by a log-normal function for a limited
+range of column densities. A high-column density tail is clearly evident for
+the gas column density distribution, which appears to be a common feature in
+regions with active star formation. There are regional variations in the
+fraction of the mass recovered by the CO emission lines with respect to the
+total mass traced by the dust emission. These variations may be related to
+changes in the radiation field strength, variation of the atomic to molecular
+gas fraction across the observed region, differences in the CO molecule
+abundance with respect to H$_{2}$, and evolutionary stage differences of the
+molecular clouds that compose the Carina Nebula-Gum 31 complex.",2015-11-24T00:01:50Z,http://arxiv.org/abs/1511.07513v1,gum disease
+"Dual origin of viscoelasticity in polymer-carbon black hydrogels: a
+  rheometry and electrical spectroscopy study","Gauthier Legrand, Sébastien Manneville, Gareth H. McKinley, Thibaut Divoux","Nanocomposites formed by mixing nanoparticles and polymers offer a limitless
+creative space for the design of functional advanced materials with a broad
+range of applications in materials and biological sciences. Here we focus on
+aqueous dispersions of hydrophobic colloidal soot particles, namely carbon
+black (CB) dispersed with a sodium salt of carboxymethylcellulose (CMC), a food
+additive known as cellulose gum that bears hydrophobic groups, which are liable
+to bind physically to CB particles. Varying the relative content of CB
+nanoparticles and cellulose gum allows us to explore a rich phase diagram that
+includes a gel phase. We investigate this hydrogel using rheometry and
+electrochemical impedance spectroscopy. CB-CMC hydrogels display two radically
+different types of mechanical behaviors that are separated by a critical
+CMC-to-CB mass ratio $r_c$. For $r<r_c$, i.e., for low CMC concentration, the
+gel is electrically conductive and shows a glassy-like viscoelastic spectrum,
+pointing to a microstructure composed of a percolated network of CB
+nanoparticles decorated by CMC. In contrast, gels with CMC concentration larger
+than $r_c$ are non-conductive, indicating that the CB nanoparticles are
+dispersed in the cellulose gum matrix as isolated clusters, and act as physical
+crosslinkers of the CMC network, hence providing mechanical rigidity to the
+composite. Moreover, in the concentration range, $r>r_c$ CB-CMC gels display a
+power-law viscoelastic spectrum that depends strongly on the CMC concentration.
+These relaxation spectra can be rescaled onto a master curve that exhibits a
+power-law scaling in the high-frequency limit, with an exponent that follows
+Zimm theory, showing that CMC plays a key role in the gel viscoelastic
+properties for $r>r_c$. Our results offer a characterization of CB-CMC
+dispersions that will be useful for designing nanocomposites based on
+hydrophobic interactions.",2022-10-07T15:04:10Z,http://arxiv.org/abs/2210.03606v1,gum disease
+Measurement uncertainty in surface flatness measurement,H. L. Thang,"Flatness of a plate is a parameter has been put under consideration for long
+time. Factors influencing the accuracy of this parameter have been recognized
+and examined carefully but placed scatterringly. Beside that those reports have
+not been always in harmonization with Guide for expression of uncertainty
+measurement (GUM). Furthermore, mathematical equations describing clearly the
+flatness measurement have not been seen in those reports also. We have
+collected those influencing factors for systematic reference purpose,
+re-written the equation describing the profile measurement of the plate
+topography, and proposed an equation for flatness determination. An
+illustrative numerical example will be also shown.",2011-11-29T10:43:31Z,http://arxiv.org/abs/1111.6758v1,gum disease
+"New Approach to translation of Isolated Units in English-Korean Machine
+  Translation","Kim Song Jon, An Hae Gum","It is the most effective way for quick translation of tremendous amount of
+explosively increasing science and technique information material to develop a
+practicable machine translation system and introduce it into translation
+practice. This essay treats problems arising from translation of isolated units
+on the basis of the practical materials and experiments obtained in the
+development and introduction of English-Korean machine translation system. In
+other words, this essay considers establishment of information for isolated
+units and their Korean equivalents and word order.",2015-06-23T08:26:50Z,http://arxiv.org/abs/1506.06904v1,gum disease
+"Study of visual processing techniques for dynamic speckles: a
+  comparative analysis","Amit Chatterjee, Jitendra Dhanotiya, Vimal Bhatia, Shashi Prakash","Main visual techniques used to obtain information from speckle patterns are
+Fujii method, generalized difference, weighted generalized difference, mean
+windowed difference, structural function (SF), modified SF, etc. In this work,
+a comparative analysis of major visual techniques for natural gum sample is
+carried out. Obtained results conclusively establish SF based method as an
+optimum tool for visual inspection of dynamic speckle data.",2021-06-16T13:15:04Z,http://arxiv.org/abs/2106.15507v1,gum disease
+GAMBIT: The Global and Modular BSM Inference Tool,Tomas E. Gonzalo,"In this conference paper I present GAMBIT , the Global and Modular BSM
+Inference Tool. I describe the various components of GAMBIT , its modules and
+interfaces to external tools, as well as a brief summary of the most recent
+results. In addition I introduce for the first time GUM , the GAMBIT Universal
+Model Machine, a tool created to auto-generate GAMBIT code for any BSM model
+from the most popular Lagrangian-level tools, FeynRules and SARAH.",2021-05-07T11:16:23Z,http://arxiv.org/abs/2105.03165v1,gum disease
+"Propagation of Measurement and Model Uncertainties through Multiline TRL
+  Calibration","Ziad Hatab, Michael Gadringer, Wolfgang Bösch","In this work, we present a linear uncertainty (LU) propagation treatment of
+measurement and model uncertainties in multiline thru-reflect-line (TRL)
+calibration. The proposed method is in accordance with the ISO Guide to the
+Expression of Uncertainty in Measurement (GUM). We demonstrate with numerical
+simulation based on the Monte Carlo (MC) method that our proposed LU method
+delivers identical uncertainty as the MC method but in a more efficient way.",2022-06-21T09:16:41Z,http://arxiv.org/abs/2206.10209v2,gum disease
+"GCDT: A Chinese RST Treebank for Multigenre and Multilingual Discourse
+  Parsing","Siyao Peng, Yang Janet Liu, Amir Zeldes","A lack of large-scale human-annotated data has hampered the hierarchical
+discourse parsing of Chinese. In this paper, we present GCDT, the largest
+hierarchical discourse treebank for Mandarin Chinese in the framework of
+Rhetorical Structure Theory (RST). GCDT covers over 60K tokens across five
+genres of freely available text, using the same relation inventory as
+contemporary RST treebanks for English. We also report on this dataset's
+parsing experiments, including state-of-the-art (SOTA) scores for Chinese RST
+parsing and RST parsing on the English GUM dataset, using cross-lingual
+training in Chinese and English with multilingual embeddings.",2022-10-19T10:27:41Z,http://arxiv.org/abs/2210.10449v1,gum disease
+New Young Star Candidates in CG4 and Sa101,"L. M. Rebull, C. H. Johnson, V. Hoette, J. S. Kim, S. Laine, M. Foster, R. Laher, M. Legassie, C. R. Mallory, K. McCarron, W. H. Sherry","The CG4 and Sa101 regions together cover a region of ~0.5 square degree in
+the vicinity of a ""cometary globule"" that is part of the Gum Nebula. There are
+seven previously identified young stars in this region; we have searched for
+new young stars using mid- and far-infrared data (3.6 to 70 microns) from the
+Spitzer Space Telescope, combined with ground-based optical data and
+near-infrared data from the Two-Micron All-Sky Survey (2MASS). We find infrared
+excesses in all 6 of the previously identified young stars in our maps, and we
+identify 16 more candidate young stars based on apparent infrared excesses.
+Most (73%) of the new young stars are Class II objects. There is a tighter
+grouping of young stars and young star candidates in the Sa101 region, in
+contrast to the CG4 region, where there are fewer young stars and young star
+candidates, and they are more dispersed. Few likely young objects are found in
+the ""fingers"" of the dust being disturbed by the ionization front from the
+heart of the Gum Nebula.",2011-05-05T21:36:15Z,http://arxiv.org/abs/1105.1180v1,gum disease
+Interstellar reddening towards six small areas in Puppis-Vela,G. A. P. Franco,"We investigate the distribution of the interstellar dust towards six small
+volumes of the sky in the region of the Gum nebula. New high-quality
+four-colour uvby and H\beta\ Str\""omgren photometry obtained for 352 stars in
+six selected areas of Kapteyn, complemented with data obtained in a previous
+investigation for two of these areas, were used to estimate the colour excess
+and distance to these objects. The obtained colour excess versus distance
+diagrams, complemented with other information, when available, were analysed in
+order to infer the properties of the interstellar medium permeating the
+observed volumes. On the basis of the overall standard deviation in the
+photometric measurements, we estimate that colour excesses and distances are
+determined with an accuracy of 0.010 mag and better than 30%, respectively, for
+a sample of 520 stars. A comparison with 37 stars in common with the new
+Hipparcos catalogue attests to the high quality of the photometric distance
+determination. The obtained colour excess versus distance diagrams testify to
+the low density volume towards the observed lines-of-sight. Very few stars out
+to distances of 1 kpc from the Sun have colour excesses larger than E(b-y) =
+0.1 mag. In spite of the low density character of the interstellar medium
+towards the Puppis-Vela direction, the obtained reddening as a function of the
+distance indicates that two or more interstellar structures are crossed towards
+the observed lines-of-sight. One of these structures may be associated with the
+very low density wall of the Local Cavity, which has a distance of 100-150 pc
+from the Sun. Another structure might be related to the Gum nebula, and if so,
+its front face would be located at about 350 pc from the Sun.",2012-05-17T10:49:49Z,http://arxiv.org/abs/1205.3901v1,gum disease
+"Chandra X-ray observation of the HII region Gum 31 in the Carina Nebula
+  complex","T. Preibisch, M. Mehlhorn, L. Townsley, P. Broos, T. Ratzka","(abridged) We used the Chandra observatory to perform a deep (70 ksec) X-ray
+observation of the Gum 31 region and detected 679 X-ray point sources. This
+extends and complements the X-ray survey of the central Carina nebula regions
+performed in the Chandra Carina Complex Project. Using deep near-infrared
+images from our recent VISTA survey of the Carina nebula complex, our Spitzer
+point-source catalog, and optical archive data, we identify counterparts for
+75% of these X-ray sources. Their spatial distribution shows two major
+concentrations, the central cluster NGC 3324 and a partly embedded cluster in
+the southern rim of the HII region, but majority of X-ray sources constitute a
+rather homogeneously distributed population of young stars. Our color-magnitude
+diagram analysis suggests ages of ~1-2 Myr for the two clusters, whereas the
+distributed population shows a wider age range up to ~10 Myr. We also identify
+previously unknown companions to two of the three O-type members of NGC 3324
+and detect diffuse X-ray emission in the region. Our results suggests that the
+observed region contains about 4000 young stars in total. The distributed
+population is probably part of the widely distributed population of ~ 1-10 Myr
+old stars, that was identified in the CCCP area. This implies that the global
+stellar configuration of the Carina nebula complex is a very extended stellar
+association, in which the (optically prominent) clusters contain only a
+minority of the stellar population.",2014-03-27T14:19:21Z,http://arxiv.org/abs/1403.7047v1,gum disease
+"Silicone incorporation into an esterquat based fabric softener in
+  presence of guar polymers","Evdokia K. Oikonomou, Camille Grandisson, Konstantin Golemanov, Ritu Ahuja, Jean-Franccois Berret","Fabric softeners are widely used to make clothes soft and impart nice smell.
+Household conditioners are water-based formulations consisting of quaternary
+ammonium surfactants assembled in vesicles. On the other hand, formulations
+used for textiles finishing are typically silicone oil emulsions. Here, these
+technologies are combined in a novel industrial formulation which contains both
+surfactant vesicles and silicone oil. In particular, we insert an
+amino-modified silicone oil into a recently developed softener comprising
+vesicles of an esterquat and guar polymers. Two strategies based on the use of
+esterquat or guar gum as stabilizers for the silicone incorporation in the
+fabric softener are proposed. Dynamic light scattering (DLS), cryogenic
+transmission electron microscopy (cryoTEM), optical and fluorescent microscopy
+are applied to study the stability and the insertion of the silicone oil into
+the softener. It is shown that silicone oil is stabilized by the surfactant and
+the guar gum in nano- or micro-metric droplets. The vesicles structure and
+properties are not affected by the silicone oil while the formulation stability
+is preserved. These findings suggest that the proposed route for adding
+silicone oil into a topical conditioner is a promising route for multipurpose
+fabric softener development.",2021-01-18T21:01:43Z,http://arxiv.org/abs/2101.07326v1,gum disease
+Modeling the systematic behavior at the micro and nano length scale,Danilo Quagliotti,"The brisk progression of the industrial digital innovation, leading to high
+degree of automation and big data transfer in manufacturing technologies,
+demands continuous development of appropriate off-line metrology methods to
+support processes' quality with a tolerable assessment of the measurement
+uncertainty. On the one hand specific-area references propose methods that are
+not yet well optimized to the changed background, and on the other,
+international general recommendations guide to effective uncertainty
+evaluation, but suggesting procedures that are not necessarily proven efficient
+at the micro- and nano-dimensional scale. The well-known GUM approach (i.e.
+frequentist statistics) was analyzed with the aim to test consistently its
+applicability to micro/nano dimensional and surface topography measurements.
+The investigation assessed three different clarifying situations, giving rise
+to consistent model equations, and to the achievement of the traceability. The
+choice of the cases provided a number of influence factors, which are typical
+liabilities at the micro and nano-length scale, and that have been related to
+the correction of the systematic behavior, viz. the amount of repeated
+measurements, the time sequence of the acquired micrographs and the instruments
+used. Such approach allowed the successful implementation of the GUM approach
+to micro/nano dimensional and topographic measurements, and also the appraisal
+of the level of efficacy of the method, its application limits and hints on
+possible future developments.",2021-07-27T20:25:48Z,http://arxiv.org/abs/2107.13075v1,gum disease
