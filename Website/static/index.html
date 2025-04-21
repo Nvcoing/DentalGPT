@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DentalGPT - Trợ lý Nha Khoa AI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Initial Interface -->
+    <div class="initial-interface" id="initialInterface">
+        <div class="container">
+            <h1>🦷 Chào bạn! Tôi là DentalGPT - Trợ lý ảo về Nha Khoa</h1>
+            
+            <div class="input-container">
+                <input type="text" id="initialInput" placeholder=" ">
+                <span class="send-icon" id="initialSendButton">➤</span>
+                <span class="placeholder">Nhập câu hỏi của bạn...</span>
+            </div>
+            
+            <div class="features">
+                <div class="feature">✅ Độ chính xác cao</div>
+                <div class="feature">🔒 Bảo mật tuyệt đối</div>
+                <div class="feature">⏱ Phản hồi nhanh</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Interface -->
+    <div class="chat-interface" id="chatInterface">
+        <div class="header">
+            <h1>DentalGPT</h1>
+        </div>
+        
+        <div class="chat-container" id="chatContainer"></div>
+        
+        <div class="input-area">
+            <input type="text" id="chatInput" placeholder="Nhập câu hỏi về nha khoa...">
+            <button id="chatSendButton">
+                <svg viewBox="0 0 24 24" width="24" height="24">
+                    <path fill="currentColor" d="M2 21l21-9L2 3v7l15 2-15 2v7z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

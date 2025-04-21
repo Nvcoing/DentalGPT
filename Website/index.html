@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trợ lý Nha Khoa AI</title>
+    <style>
+        /* Giao diện ban đầu */
+        .initial-interface {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+        
+        .container {
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+        }
+        
+        h1 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        
+        .input-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        
+        #initialInput {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            outline: none;
+        }
+        
+        .placeholder {
+            position: absolute;
+            left: 20px;
+            top: 15px;
+            color: #999;
+            pointer-events: none;
+            transition: all 0.2s;
+        }
+        
+        #initialInput:focus + .placeholder,
+        #initialInput:not(:placeholder-shown) + .placeholder {
+            top: -10px;
+            left: 15px;
+            font-size: 12px;
+            background-color: #f7f7f7;
+            padding: 0 5px;
+            color: #666;
+        }
+        
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: #555;
+        }
+        
+        .feature svg {
+            margin-right: 5px;
+            font-size: 16px;
+        }
+        
+        .send-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #10a37f;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        
+        .send-icon.visible {
+            opacity: 1;
+        }
+        
+        /* Giao diện chat */
+        .chat-interface {
+            display: none;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            flex-direction: column;
+            height: 100vh;
+            background-color: #fafafa;
+            color: #333333;
+        }
+        
+        :root {
+            --primary-color: #10a37f; /* Màu xanh nha khoa */
+            --user-bubble: #ffffff;
+            --bot-bubble: #f7f7f7;
+            --text-color: #333333;
+            --light-gray: #e5e5e5;
+        }
+        
+        .header {
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--light-gray);
+            text-align: center;
+            background-color: white;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .header h1::before {
+            content: "🦷";
+            font-size: 24px;
+        }
+        
+        .chat-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .message {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            line-height: 1.5;
+            position: relative;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .user-message {
+            align-self: flex-end;
+            background-color: var(--primary-color);
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+        
+        .bot-message {
+            align-self: flex-start;
+            background-color: var(--bot-bubble);
+            border-bottom-left-radius: 4px;
+        }
+        
+        .input-area {
+            padding: 15px 20px;
+            border-top: 1px solid var(--light-gray);
+            background-color: white;
+            display: flex;
+            gap: 10px;
+        }
+        
+        #chatInput {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: 24px;
+            font-size: 16px;
+            outline: none;
+            transition: border 0.2s;
+        }
+        
+        #chatInput:focus {
+            border-color: var(--primary-color);
+        }
+        
+        #chatSendButton {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        #chatSendButton:hover {
+            background-color: #0d8a6a;
+        }
+        
+        #chatSendButton svg {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .typing-indicator {
+            display: flex;
+            gap: 5px;
+            padding: 12px 16px;
+            background-color: var(--bot-bubble);
+            border-radius: 18px;
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+        
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #999;
+            border-radius: 50%;
+            animation: typingAnimation 1.4s infinite ease-in-out;
+        }
+        
+        .typing-dot:nth-child(1) { animation-delay: 0s; }
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+        
+        @keyframes typingAnimation {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-5px); }
+        }
+        
+        .quick-questions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+            justify-content: center;
+        }
+        
+        .quick-question {
+            padding: 8px 12px;
+            background-color: white;
+            border: 1px solid var(--light-gray);
+            border-radius: 16px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .quick-question:hover {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Giao diện ban đầu -->
+    <div class="initial-interface" id="initialInterface">
+        <div class="container">
+            <h1>Xin chào! Tôi là trợ lý ảo của Nha khoa DentalGPT. Tôi có thể giúp gì cho nụ cười của bạn hôm nay?</h1>
+            
+            <div class="input-container">
+                <input type="text" id="initialInput" placeholder=" ">
+                <span class="send-icon" id="initialSendButton">➤</span>
+                <span class="placeholder">Hỏi bất kỳ điều gì</span>
+            </div>
+            
+            <div class="features">
+                <div class="feature">
+                    <span>⚠️</span>
+                    <span>Tìm kiếm</span>
+                </div>
+                <div class="feature">
+                    <span>⚡️</span>
+                    <span>Suy luận</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Giao diện chat -->
+    <div class="chat-interface" id="chatInterface">
+        <div class="header">
+            <h1>Trợ lý Nha Khoa AI</h1>
+        </div>
+        
+        <div class="chat-container" id="chatContainer">
+            <!-- Các tin nhắn sẽ được thêm vào đây bằng JavaScript -->
+        </div>
+        
+        <div class="input-area">
+            <input type="text" id="chatInput" placeholder="Nhập câu hỏi của bạn về nha khoa...">
+            <button class="send-button" id="chatSendButton">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M22 2L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Phần xử lý giao diện ban đầu
+        const initialInput = document.getElementById('initialInput');
+        const initialSendButton = document.getElementById('initialSendButton');
+        const initialInterface = document.getElementById('initialInterface');
+        const chatInterface = document.getElementById('chatInterface');
+        
+        // Hiển thị nút gửi khi có nội dung
+        initialInput.addEventListener('input', function() {
+            if (this.value.trim() !== '') {
+                initialSendButton.classList.add('visible');
+            } else {
+                initialSendButton.classList.remove('visible');
+            }
+        });
+        
+        // Xử lý gửi tin nhắn ban đầu
+        function handleInitialSend() {
+            const message = initialInput.value.trim();
+            if (message) {
+                // Chuyển sang giao diện chat
+                initialInterface.style.display = 'none';
+                chatInterface.style.display = 'flex';
+                
+                // Thêm tin nhắn đầu tiên vào giao diện chat
+                addUserMessage(message);
+                
+                // Cuộn xuống dưới cùng
+                setTimeout(() => {
+                    scrollToBottom();
+                }, 100);
+            }
+        }
+        
+        initialSendButton.addEventListener('click', handleInitialSend);
+        
+        initialInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                handleInitialSend();
+            }
+        });
+        
+        // Phần xử lý giao diện chat
+        const chatContainer = document.getElementById('chatContainer');
+        const chatInput = document.getElementById('chatInput');
+        const chatSendButton = document.getElementById('chatSendButton');
+        
+        // Hàm thêm tin nhắn người dùng
+        function addUserMessage(message) {
+            const messageElement = document.createElement('div');
+            messageElement.className = 'message user-message';
+            messageElement.textContent = message;
+            chatContainer.appendChild(messageElement);
+            chatInput.value = '';
+            scrollToBottom();
+            
+            // Hiển thị indicator đang nhập
+            showTypingIndicator();
+            
+            // Giả lập bot trả lời sau 1 giây
+            setTimeout(() => {
+                removeTypingIndicator();
+                addBotMessage(getBotResponse(message));
+                
+                // Thêm câu hỏi nhanh sau tin nhắn đầu tiên
+                if (chatContainer.querySelectorAll('.message').length === 2) {
+                    addQuickQuestions();
+                }
+            }, 1000);
+        }
+        
+        // Hàm thêm tin nhắn bot
+        function addBotMessage(message) {
+            const messageElement = document.createElement('div');
+            messageElement.className = 'message bot-message';
+            messageElement.textContent = message;
+            chatContainer.appendChild(messageElement);
+            scrollToBottom();
+        }
+        
+        // Thêm câu hỏi nhanh
+        function addQuickQuestions() {
+            const quickQuestions = document.createElement('div');
+            quickQuestions.className = 'quick-questions';
+            quickQuestions.innerHTML = `
+                <div class="quick-question">Đặt lịch hẹn khám</div>
+                <div class="quick-question">Giá niềng răng</div>
+                <div class="quick-question">Cách chăm sóc răng</div>
+                <div class="quick-question">Trám răng có đau không?</div>
+            `;
+            chatContainer.appendChild(quickQuestions);
+            
+            // Xử lý sự kiện click vào câu hỏi nhanh
+            document.querySelectorAll('.quick-question').forEach(button => {
+                button.addEventListener('click', () => {
+                    addUserMessage(button.textContent);
+                    quickQuestions.remove();
+                });
+            });
+            
+            scrollToBottom();
+        }
+        
+        // Hiển thị indicator đang nhập
+        function showTypingIndicator() {
+            const typingElement = document.createElement('div');
+            typingElement.className = 'typing-indicator';
+            typingElement.id = 'typingIndicator';
+            typingElement.innerHTML = `
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+            `;
+            chatContainer.appendChild(typingElement);
+            scrollToBottom();
+        }
+        
+        // Xóa indicator đang nhập
+        function removeTypingIndicator() {
+            const typingElement = document.getElementById('typingIndicator');
+            if (typingElement) {
+                typingElement.remove();
+            }
+        }
+        
+        // Cuộn xuống dưới cùng
+        function scrollToBottom() {
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+        
+        // Hàm xử lý phản hồi của bot (đơn giản)
+        function getBotResponse(userMessage) {
+            const lowerMessage = userMessage.toLowerCase();
+            
+            if (lowerMessage.includes('đặt lịch') || lowerMessage.includes('hẹn')) {
+                return "Bạn muốn đặt lịch khám vào thời gian nào? Chúng tôi có các khung giờ trống vào thứ 3 và thứ 5 hàng tuần.";
+            } else if (lowerMessage.includes('giá') || lowerMessage.includes('chi phí')) {
+                return "Giá dịch vụ tại nha khoa chúng tôi:\n- Khám tổng quát: 200.000đ\n- Cạo vôi răng: 300.000đ\n- Trám răng: 400.000-800.000đ\n- Niềng răng: 15.000.000đ - 40.000.000đ\nBạn quan tâm đến dịch vụ cụ thể nào?";
+            } else if (lowerMessage.includes('niềng') || lowerMessage.includes('chỉnh nha')) {
+                return "Niềng răng là phương pháp chỉnh nha giúp điều chỉnh các răng mọc lệch lạc. Thời gian niềng trung bình từ 18-24 tháng. Bạn có muốn đặt lịch tư vấn với bác sĩ chuyên khoa không?";
+            } else if (lowerMessage.includes('đau') || lowerMessage.includes('nhức')) {
+                return "Nếu bạn đang bị đau răng, bạn có thể tạm thời súc miệng bằng nước muối ấm và dùng thuốc giảm đau. Tuy nhiên, bạn nên đến khám sớm để được chẩn đoán chính xác nguyên nhân.";
+            } else {
+                return "Tôi là trợ lý ảo của Nha khoa DentalGPT. Hiện tôi chưa hiểu rõ câu hỏi của bạn. Bạn có thể diễn đạt lại hoặc liên hệ hotline 0900 123 456 để được hỗ trợ trực tiếp.";
+            }
+        }
+        
+        // Xử lý sự kiện gửi tin nhắn trong giao diện chat
+        chatSendButton.addEventListener('click', () => {
+            const message = chatInput.value.trim();
+            if (message) {
+                addUserMessage(message);
+            }
+        });
+        
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const message = chatInput.value.trim();
+                if (message) {
+                    addUserMessage(message);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

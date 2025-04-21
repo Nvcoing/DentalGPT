@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DentalGPT - Trợ lý Nha khoa Thông minh</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f7fa;
+        }
+        
+        .chat-container {
+            height: calc(100vh - 80px);
+        }
+        
+        .message-animation {
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .typing-indicator span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #4f46e5;
+            margin: 0 2px;
+            animation: bounce 1.4s infinite ease-in-out;
+        }
+        
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes bounce {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-5px); }
+        }
+        
+        .tooth-icon {
+            background: linear-gradient(135deg, #4f46e5, #8b5cf6);
+        }
+        
+        .send-btn {
+            background: linear-gradient(135deg, #4f46e5, #8b5cf6);
+            transition: all 0.3s;
+        }
+        
+        .send-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+        }
+        
+        .user-message {
+            background: linear-gradient(135deg, #4f46e5, #8b5cf6);
+            color: white;
+            border-radius: 18px 18px 4px 18px;
+        }
+        
+        .bot-message {
+            background-color: white;
+            border-radius: 18px 18px 18px 4px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="flex flex-col h-screen">
+        <!-- Header -->
+        <header class="bg-white shadow-sm py-4 px-6 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="tooth-icon w-10 h-10 rounded-lg flex items-center justify-center text-white">
+                    <i class="fas fa-tooth text-xl"></i>
+                </div>
+                <h1 class="text-xl font-bold text-gray-800">DentalGPT</h1>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-history"></i>
+                </button>
+                <button class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-cog"></i>
+                </button>
+            </div>
+        </header>
+        
+        <!-- Chat Container -->
+        <div class="chat-container flex-1 overflow-y-auto p-4 pb-20 scrollbar-hide" id="chat-container">
+            <!-- Welcome Message -->
+            <div class="max-w-3xl mx-auto mb-6 bot-message p-5 message-animation">
+                <div class="flex items-start space-x-3">
+                    <div class="tooth-icon w-8 h-8 rounded-lg flex items-center justify-center text-white flex-shrink-0">
+                        <i class="fas fa-tooth text-sm"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-indigo-600">DentalGPT</h3>
+                        <p class="text-gray-700 mt-1">Xin chào! Tôi là DentalGPT, trợ lý nha khoa thông minh của bạn. Tôi có thể giúp gì cho bạn hôm nay?</p>
+                        <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <button class="suggestion-btn bg-gray-100 hover:bg-gray-200 text-gray-800 py-2 px-4 rounded-full text-sm transition">
+                                Cách chăm sóc răng miệng?
+                            </button>
+                            <button class="suggestion-btn bg-gray-100 hover:bg-gray-200 text-gray-800 py-2 px-4 rounded-full text-sm transition">
+                                Triệu chứng đau răng khôn
+                            </button>
+                            <button class="suggestion-btn bg-gray-100 hover:bg-gray-200 text-gray-800 py-2 px-4 rounded-full text-sm transition">
+                                Phương pháp tẩy trắng răng
+                            </button>
+                            <button class="suggestion-btn bg-gray-100 hover:bg-gray-200 text-gray-800 py-2 px-4 rounded-full text-sm transition">
+                                Niềng răng mất bao lâu?
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sample Conversation (will be populated by JS) -->
+            <div id="chat-messages"></div>
+        </div>
+        
+        <!-- Input Area -->
+        <div class="bg-white border-t border-gray-200 py-4 px-6">
+            <div class="max-w-3xl mx-auto relative">
+                <div class="flex items-center">
+                    <input 
+                        type="text" 
+                        id="user-input" 
+                        placeholder="Nhập câu hỏi về nha khoa..." 
+                        class="flex-1 border border-gray-300 rounded-full py-3 px-5 pr-12 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                    >
+                    <button id="send-btn" class="send-btn absolute right-2 w-9 h-9 rounded-full text-white flex items-center justify-center">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+                <p class="text-xs text-gray-500 mt-2 text-center">DentalGPT có thể đưa ra những câu trả lời không chính xác. Luôn tham khảo ý kiến nha sĩ cho vấn đề cụ thể của bạn.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatContainer = document.getElementById('chat-container');
+            const chatMessages = document.getElementById('chat-messages');
+            const userInput = document.getElementById('user-input');
+            const sendBtn = document.getElementById('send-btn');
+            const suggestionBtns = document.querySelectorAll('.suggestion-btn');
+            
+            // Sample responses for demo
+            const sampleResponses = {
+                "Cách chăm sóc răng miệng?": "Để chăm sóc răng miệng tốt, bạn nên:<br><br>1. Đánh răng 2 lần/ngày với kem đánh răng có fluoride<br>2. Dùng chỉ nha khoa hàng ngày<br>3. Khám nha sĩ định kỳ 6 tháng/lần<br>4. Hạn chế đồ ngọt và nước có gas<br>5. Thay bàn chải 3-4 tháng/lần hoặc khi lông bàn chải bị xơ",
+                "Triệu chứng đau răng khôn": "Triệu chứng đau răng khôn thường bao gồm:<br><br>• Đau nhức ở vùng góc hàm<br>• Sưng nướu xung quanh<br>• Khó mở miệng<br>• Đau đầu hoặc đau tai<br>• Hôi miệng do thức ăn mắc kẹt<br><br>Nếu có các triệu chứng này, bạn nên đến nha sĩ để được thăm khám và tư vấn nhổ răng nếu cần.",
+                "Phương pháp tẩy trắng răng": "Các phương pháp tẩy trắng răng phổ biến:<br><br>1. <b>Tẩy trắng tại phòng nha</b>: Hiệu quả nhanh, an toàn với nha sĩ<br>2. <b>Tẩy trắng tại nhà</b>: Dùng máng tẩy và gel theo chỉ định<br>3. <b>Miếng dán trắng răng</b>: Tiện lợi nhưng hiệu quả thấp<br>4. <b>Kem đánh răng làm trắng</b>: Duy trì độ trắng<br><br>Lưu ý: Tẩy trắng có thể gây ê buốt tạm thời.",
+                "Niềng răng mất bao lâu?": "Thời gian niềng răng trung bình từ 18-24 tháng, tùy thuộc vào:<br><br>• Mức độ lệch lạc của răng<br>• Loại niềng (mắc cài, trong suốt...)<br>• Tuân thủ lịch hẹn<br>• Chế độ chăm sóc<br><br>Trường hợp nhẹ có thể chỉ mất 12 tháng, phức tạp có thể đến 36 tháng."
+            };
+            
+            // Add message to chat
+            function addMessage(content, isUser = false) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `max-w-3xl mx-auto mb-4 ${isUser ? 'user-message' : 'bot-message'} p-5 message-animation`;
+                
+                if (isUser) {
+                    messageDiv.innerHTML = `
+                        <div class="flex justify-end">
+                            <div class="max-w-[90%]">
+                                <p>${content}</p>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    messageDiv.innerHTML = `
+                        <div class="flex items-start space-x-3">
+                            <div class="tooth-icon w-8 h-8 rounded-lg flex items-center justify-center text-white flex-shrink-0">
+                                <i class="fas fa-tooth text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-indigo-600">DentalGPT</h3>
+                                <p class="text-gray-700 mt-1">${content}</p>
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                chatMessages.appendChild(messageDiv);
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }
+            
+            // Show typing indicator
+            function showTyping() {
+                const typingDiv = document.createElement('div');
+                typingDiv.className = 'max-w-3xl mx-auto mb-4 bot-message p-5 message-animation';
+                typingDiv.innerHTML = `
+                    <div class="flex items-start space-x-3">
+                        <div class="tooth-icon w-8 h-8 rounded-lg flex items-center justify-center text-white flex-shrink-0">
+                            <i class="fas fa-tooth text-sm"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-indigo-600">DentalGPT</h3>
+                            <div class="typing-indicator flex mt-2">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                chatMessages.appendChild(typingDiv);
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+                return typingDiv;
+            }
+            
+            // Handle user input
+            function handleUserInput() {
+                const message = userInput.value.trim();
+                if (message === '') return;
+                
+                addMessage(message, true);
+                userInput.value = '';
+                
+                // Show typing indicator
+                const typingElement = showTyping();
+                
+                // Simulate bot response after delay
+                setTimeout(() => {
+                    // Remove typing indicator
+                    chatMessages.removeChild(typingElement);
+                    
+                    // Check if we have a predefined response
+                    if (sampleResponses[message]) {
+                        addMessage(sampleResponses[message]);
+                    } else {
+                        // Default response for unknown questions
+                        addMessage("Tôi là trợ lý nha khoa nên có thể không trả lời được câu hỏi ngoài lĩnh vực này. Bạn có thể hỏi tôi về:<br><br>- Các vấn đề răng miệng<br>- Phương pháp điều trị<br>- Chăm sóc răng tại nhà<br>- Triệu chứng bệnh lý răng miệng<br><br>Xin lỗi vì sự bất tiện này!");
+                    }
+                }, 1500);
+            }
+            
+            // Event listeners
+            sendBtn.addEventListener('click', handleUserInput);
+            
+            userInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    handleUserInput();
+                }
+            });
+            
+            suggestionBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    userInput.value = this.textContent;
+                    handleUserInput();
+                });
+            });
+        });
+    </script>
+</body>
+</html>
