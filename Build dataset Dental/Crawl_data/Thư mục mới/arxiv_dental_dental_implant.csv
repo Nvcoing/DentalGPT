@@ -1,0 +1,971 @@
+title,authors,summary,published,link,keyword_used
+"ToF-SIMS Investigations on Dental Implant Materials and Adsorbed Protein
+  Films",Falk Bernsmann,"In this work the two experimental dental implant materials FAT and FAW, made
+of fluoroapatite particles embedded in polymer matrices, and films of the
+proteins lysozyme, amylase and bovine serum albumin (BSA), adsorbed to the two
+dental implant materials, were investigated with time-of-flight secondary ion
+mass spectrometry (ToF-SIMS) and the multivariate data analysis technique
+discriminant principal component analysis (DPCA).",2011-06-23T07:21:11Z,http://arxiv.org/abs/1106.4644v1,dental implant
+"Accurate 3D Prediction of Missing Teeth in Diverse Patterns for Precise
+  Dental Implant Planning","Lei Ma, Peng Xue, Yuning Gu, Yue Zhao, Min Zhu, Zhongxiang Ding, Dinggang Shen","In recent years, the demand for dental implants has surged, driven by their
+high success rates and esthetic advantages. However, accurate prediction of
+missing teeth for precise digital implant planning remains a challenge due to
+the intricate nature of dental structures and the variability in tooth loss
+patterns. This study presents a novel framework for accurate prediction of
+missing teeth in different patterns, facilitating digital implant planning. The
+proposed framework begins by estimating point-to-point correspondence among a
+dataset of dental mesh models reconstructed from CBCT images of healthy
+subjects. Subsequently, tooth dictionaries are constructed for each tooth type,
+encoding their position and shape information based on the established
+point-to-point correspondence. To predict missing teeth in a given dental mesh
+model, sparse coefficients are learned by sparsely representing adjacent teeth
+of the missing teeth using the corresponding tooth dictionaries. These
+coefficients are then applied to the dictionaries of the missing teeth to
+generate accurate predictions of their positions and shapes. The evaluation
+results on real subjects shows that our proposed framework achieves an average
+prediction error of 1.04mm for predictions of single missing tooth and an
+average prediction error of 1.33mm for the prediction of 14 missing teeth,
+which demonstrates its capability of accurately predicting missing teeth in
+various patterns. By accurately predicting missing teeth, dental professionals
+can improve the planning and placement of dental implants, leading to better
+esthetic and functional outcomes for patients undergoing dental implant
+procedures.",2023-07-16T05:52:37Z,http://arxiv.org/abs/2307.07953v1,dental implant
+"Lack of corundum, carbon residues and revealing gaps on dental implants","Guy Florian Draenert, Gergo Mitov","Surface modification is an important topic to improve dental implants.
+Corundum residues, which are part of current dental implant blasting,
+disappeared on Straumann dental implants in recent publications. In our
+investigations of the surface of 4 different Straumann implants using scanning
+electron microscopy (SEM) and energy-dispersive X-ray spectroscopy (EDX) we
+found the following three main findings: surfaces are nearly corundum-free,
+disseminated gap-framed corundum particles and significant molecular carbon
+residues. The data strongly suggest that Straumann applies a modified surface
+technology on dental implants to remove corundum residues and involving unclear
+carbons. One explanation could be, a Straumann patent involving a dextran
+coating allowing easy corundum particle removal by aqueous solution, while
+unintended molecular carbon residues cannot explain all findings. This change
+of the production process without a new approval by the FDA would be a
+violation of US federal law and the carbon bindings are a possible danger to
+patients.",2022-09-13T04:45:44Z,http://arxiv.org/abs/2209.05728v1,dental implant
+"Local tissue effects and peri-implant bone healing induced by implant
+  surface treatment: an in vivo study in the sheep","Nicolas Rousseau, Ines Msolli, Patrick Chabrand, Arnaud Destainville, Olivier Richart, Jean-Louis Milan","Objective: The aim of this study was to assess, through biological analysis,
+the local effects and osseointegration of dental implants incorporating surface
+micro/nanofeatures compared to implants of identical design without surface
+treatment. Background: Known to impact bone cell behavior, surface chemical and
+topography modifications target improved osseointegration and long-term success
+of dental implants. Very few studies assess the performance of implants
+presenting both micro-and nanofeatures in vivo on the animal models used in
+preclinical studies for medical device certification. Methods: Implant surfaces
+were characterized in terms of topography and surface chemical composition.
+After 4 weeks and 13 weeks of implantation in sheep femoral condyles, forty
+implants were evaluated through micro-computed tomography, histopathologic, and
+histomorphometric analyses. Results: No local adverse effects were observed
+around implants. Histomorphometric analyses showed significantly higher
+bone-to-implant contact in the coronal region of the surface treated implant at
+week 4 and week 13, respectively 79.3$\pm$11.2% and 86.4$\pm$6.7%, compared to
+the untreated implant's 68.3$\pm$8.8% and 74.8$\pm$13%. Micro-computed
+tomography analyses revealed that healing patterns differed between coronal and
+apical regions, with higher coronal boneto-implant contact at week 13.
+Histopathologic results showed, at week 13, bone healing around the surface
+treated implant with undistinguishable defect margins while the untreated
+implant still presented bone condensation and traces of the initial drill
+defect. Conclusion: Our results suggest that the surface treated implant not
+only shows no deleterious effects on local tissues but also promotes faster
+bone healing around the implant. (word count: 241",2021-04-09T07:33:59Z,http://arxiv.org/abs/2104.04223v1,dental implant
+"TCSloT: Text Guided 3D Context and Slope Aware Triple Network for Dental
+  Implant Position Prediction","Xinquan Yang, Jinheng Xie, Xuechen Li, Xuguang Li, Linlin Shen, Yongqiang Deng","In implant prosthesis treatment, the surgical guide of implant is used to
+ensure accurate implantation. However, such design heavily relies on the manual
+location of the implant position. When deep neural network has been proposed to
+assist the dentist in locating the implant position, most of them take a single
+slice as input, which do not fully explore 3D contextual information and
+ignoring the influence of implant slope. In this paper, we design a Text Guided
+3D Context and Slope Aware Triple Network (TCSloT) which enables the perception
+of contextual information from multiple adjacent slices and awareness of
+variation of implant slopes. A Texture Variation Perception (TVP) module is
+correspondingly elaborated to process the multiple slices and capture the
+texture variation among slices and a Slope-Aware Loss (SAL) is proposed to
+dynamically assign varying weights for the regression head. Additionally, we
+design a conditional text guidance (CTG) module to integrate the text condition
+(i.e., left, middle and right) from the CLIP for assisting the implant position
+prediction. Extensive experiments on a dental implant dataset through five-fold
+cross-validation demonstrated that the proposed TCSloT achieves superior
+performance than existing methods.",2023-08-10T05:51:21Z,http://arxiv.org/abs/2308.05355v1,dental implant
+"ImplantFormer: Vision Transformer based Implant Position Regression
+  Using Dental CBCT Data","Xinquan Yang, Xuguang Li, Xuechen Li, Peixi Wu, Linlin Shen, Yongqiang Deng","Implant prosthesis is the most appropriate treatment for dentition defect or
+dentition loss, which usually involves a surgical guide design process to
+decide the implant position. However, such design heavily relies on the
+subjective experiences of dentists. In this paper, a transformer-based Implant
+Position Regression Network, ImplantFormer, is proposed to automatically
+predict the implant position based on the oral CBCT data. We creatively propose
+to predict the implant position using the 2D axial view of the tooth crown area
+and fit a centerline of the implant to obtain the actual implant position at
+the tooth root. Convolutional stem and decoder are designed to coarsely extract
+image features before the operation of patch embedding and integrate
+multi-level feature maps for robust prediction, respectively. As both
+long-range relationship and local features are involved, our approach can
+better represent global information and achieves better location performance.
+Extensive experiments on a dental implant dataset through five-fold
+cross-validation demonstrated that the proposed ImplantFormer achieves superior
+performance than existing methods.",2022-10-29T02:31:27Z,http://arxiv.org/abs/2210.16467v3,dental implant
+"Simplify Implant Depth Prediction as Video Grounding: A Texture Perceive
+  Implant Depth Prediction Network","Xinquan Yang, Xuguang Li, Xiaoling Luo, Leilei Zeng, Yudi Zhang, Linlin Shen, Yongqiang Deng","Surgical guide plate is an important tool for the dental implant surgery.
+However, the design process heavily relies on the dentist to manually simulate
+the implant angle and depth. When deep neural networks have been applied to
+assist the dentist quickly locates the implant position, most of them are not
+able to determine the implant depth. Inspired by the video grounding task which
+localizes the starting and ending time of the target video segment, in this
+paper, we simplify the implant depth prediction as video grounding and develop
+a Texture Perceive Implant Depth Prediction Network (TPNet), which enables us
+to directly output the implant depth without complex measurements of oral bone.
+TPNet consists of an implant region detector (IRD) and an implant depth
+prediction network (IDPNet). IRD is an object detector designed to crop the
+candidate implant volume from the CBCT, which greatly saves the computation
+resource. IDPNet takes the cropped CBCT data to predict the implant depth. A
+Texture Perceive Loss (TPL) is devised to enable the encoder of IDPNet to
+perceive the texture variation among slices. Extensive experiments on a large
+dental implant dataset demonstrated that the proposed TPNet achieves superior
+performance than the existing methods.",2024-06-07T03:24:04Z,http://arxiv.org/abs/2406.04603v1,dental implant
+Resonant frequency analysis of dental implants,"D Rittel, A Dorogoy, G. Haiat, K Shemtov-Yona","Dental implant stability influences the decision on the determination of the
+duration between implant insertion and loading, This work investigates the
+resonant frequency analysis by means of a numerical model. The investigation is
+done numerically through the determination of the eigenfrequencies and
+performing a steady state response analyses using a commercial finite element
+package. A peri-implant interface, of simultaneously varying stiffness
+(density) and layer thickness is introduced in the numerical 3D model in order
+to probe the sensitivity of the eigenfrequencies and steady state response to
+an evolving weakened layer, in an attempt to identify the bone reconstruction
+around the implant. For the first two modes, the resonant frequency is somewhat
+insensitive to the healing process, unless the weakened layer is rather large
+and compliant, like in the very early stages of the implantation. A ""Normalized
+Healing Factor"" is devised in the spirit of the Implant Stability Quotient,
+which can identify the healing process especially at the early stages after
+implantation. The sensitivity of the RFA to changes of mechanical properties of
+periprosthetic bone tissue seems relatively weak. Another indicator considering
+the amplitude as well as the resonance frequency might be more adapted to bone
+healing estimations. However, these results need to be verified experimentally
+as well as clinically.",2019-05-17T07:59:21Z,http://arxiv.org/abs/1905.07154v1,dental implant
+"Nonlinear ill-posed problem in low-dose dental cone-beam computed
+  tomography","Hyoung Suk Park, Chang Min Hyun, Jin Keun Seo","This paper describes the mathematical structure of the ill-posed nonlinear
+inverse problem of low-dose dental cone-beam computed tomography (CBCT) and
+explains the advantages of a deep learning-based approach to the reconstruction
+of computed tomography images over conventional regularization methods. This
+paper explains the underlying reasons why dental CBCT is more ill-posed than
+standard computed tomography. Despite this severe ill-posedness, the demand for
+dental CBCT systems is rapidly growing because of their cost competitiveness
+and low radiation dose. We then describe the limitations of existing methods in
+the accurate restoration of the morphological structures of teeth using dental
+CBCT data severely damaged by metal implants. We further discuss the usefulness
+of panoramic images generated from CBCT data for accurate tooth segmentation.
+We also discuss the possibility of utilizing radiation-free intra-oral scan
+data as prior information in CBCT image reconstruction to compensate for the
+damage to data caused by metal implants.",2023-03-03T02:46:15Z,http://arxiv.org/abs/2303.01678v1,dental implant
+"Emerging basic, clinical and translational research fronts in dental
+  biomaterials R&D","David Fajardo-Ortiz, Pablo Jaramillo, Claudia Jaramillo, Raul Resendiz, Miguel Lara-Flores, Victor M. Castano","The current (2007-2007) structure and content of dental materials research
+has been investigated by identifying and describing the emergent research
+fronts which can be related to basic, translational and clinical observation
+research. By a combination of network analysis and text mining of the
+literature on dental materials indexed in the Web of Science, we have
+identified eleven emerging research fronts. These fronts are related to
+different dental materials applications which are at different levels in the
+knowledge translation and biomedical innovation process. We identified fronts
+related to dominant designs like titanium implants, competing technologies like
+ceramics and composites applications to prothesis and restauration, and
+disruptive technologies like nanomaterials and mineral trioxide aggregates. Our
+results suggest the possible relation between the technological complexity of
+the dental materials and the level of advance in terms of knowledge
+translation. This is the first time the structure and content of research on
+dental materials research is analyzed.",2017-11-30T00:30:24Z,http://arxiv.org/abs/1711.11168v1,dental implant
+"Evaluation of dental implant stability in bone phantoms: comparison
+  between a quantitative ultrasound technique and resonance frequency analysis","Romain Vayron, Vu Hieu Nguyen, Benoît Lecuelle, Guillaume Haiat","Background Resonance frequency analyses and quantitative ultrasound methods
+have been suggested to assess dental implant primary stability. PurposeThe
+purpose of this study was to compare the results obtained using these two
+techniques applied to the same dental implants inserted in various bone
+phantoms. Materials and MethodsDifferent values of trabecular bone density and
+cortical thickness were considered to assess the effect of bone quality on the
+respective indicators (UI and ISQ). The effect of the implant insertion depth
+and of the final drill diameter was also investigated. ResultsISQ values
+increase and UI values decrease as a function of trabecular density, cortical
+thickness and the screwing of the implant. When the implant diameter varies,
+the UI values are significantly different for all final drill diameters (except
+for two), while the ISQ values are similar for all final drill diameters lower
+than 3.2 mm and higher than 3.3 mm. The error on the estimation of parameters
+with the QUS device is between 4 and 8 times lower compared to that made with
+the RFA technique.ConclusionsThe results show that ultrasound technique
+provides a better estimation of different parameters related to the implant
+stability compared to the RFA technique.",2019-05-20T06:50:29Z,http://arxiv.org/abs/1905.08247v1,dental implant
+Cone-beam CT for Dental Radiography,"Kaspar Höschel, Janos Juhasz","The cone beam computed tomography (CBCT) technique was first inserted in
+dental imaging 15 years ago. Due to this technique 3D imaging in dentistry has
+been excessively changed. The purpose beyond using CBCT instead of computed
+tomography (CT) imaging is that CT can not be used in many cases in dentistry,
+in addition to the higher radiation and cost of CT. Nowadays, CBCT can be
+applied in diagnostics for several dental specialties because of the variety of
+services it offers and the specification of use. In contrast to CT, CBCT has
+shown great benefits in endodontics, implant planning oral and maxillofacial
+surgery and even in orthodontics.",2018-12-10T16:13:38Z,http://arxiv.org/abs/1812.03900v1,dental implant
+Two-Stream Regression Network for Dental Implant Position Prediction,"Xinquan Yang, Xuguang Li, Xuechen Li, Wenting Chen, Linlin Shen, Xin Li, Yongqiang Deng","In implant prosthesis treatment, the design of the surgical guide heavily
+relies on the manual location of the implant position, which is subjective and
+prone to doctor's experiences. When deep learning based methods has started to
+be applied to address this problem, the space between teeth are various and
+some of them might present similar texture characteristic with the actual
+implant region. Both problems make a big challenge for the implant position
+prediction. In this paper, we develop a two-stream implant position regression
+framework (TSIPR), which consists of an implant region detector (IRD) and a
+multi-scale patch embedding regression network (MSPENet), to address this
+issue. For the training of IRD, we extend the original annotation to provide
+additional supervisory information, which contains much more rich
+characteristic and do not introduce extra labeling costs. A multi-scale patch
+embedding module is designed for the MSPENet to adaptively extract features
+from the images with various tooth spacing. The global-local feature
+interaction block is designed to build the encoder of MSPENet, which combines
+the transformer and convolution for enriched feature representation. During
+inference, the RoI mask extracted from the IRD is used to refine the prediction
+results of the MSPENet. Extensive experiments on a dental implant dataset
+through five-fold cross-validation demonstrated that the proposed TSIPR
+achieves superior performance than existing methods.",2023-05-17T08:37:26Z,http://arxiv.org/abs/2305.10044v3,dental implant
+"TCEIP: Text Condition Embedded Regression Network for Dental Implant
+  Position Prediction","Xinquan Yang, Jinheng Xie, Xuguang Li, Xuechen Li, Xin Li, Linlin Shen, Yongqiang Deng","When deep neural network has been proposed to assist the dentist in designing
+the location of dental implant, most of them are targeting simple cases where
+only one missing tooth is available. As a result, literature works do not work
+well when there are multiple missing teeth and easily generate false
+predictions when the teeth are sparsely distributed. In this paper, we are
+trying to integrate a weak supervision text, the target region, to the implant
+position regression network, to address above issues. We propose a text
+condition embedded implant position regression network (TCEIP), to embed the
+text condition into the encoder-decoder framework for improvement of the
+regression performance. A cross-modal interaction that consists of cross-modal
+attention (CMA) and knowledge alignment module (KAM) is proposed to facilitate
+the interaction between features of images and texts. The CMA module performs a
+cross-attention between the image feature and the text condition, and the KAM
+mitigates the knowledge gap between the image feature and the image encoder of
+the CLIP. Extensive experiments on a dental implant dataset through five-fold
+cross-validation demonstrated that the proposed TCEIP achieves superior
+performance than existing methods.",2023-06-26T03:38:43Z,http://arxiv.org/abs/2306.14406v2,dental implant
+"The interplay between tissue healing and bone remodeling around
+  immediately loaded tooth replacement implants","Soroush Irandoust, Sinan Muftu","Long-term bone healing/adaptation after a dental implant treatment starts
+with diffusion of mesenchymal stem cells to the fracture callus and their
+subsequent differentiation. The healing phase is followed by the
+bone-remodeling phase. In this work, a mechano-regulatory cellular
+differentiation model was used to simulate tissue healing around an immediately
+loaded dental implant. All tissue types were modeled as poroelastic in the
+healing phase. Material properties of the healing region were updated after
+each loading cycle for 30 cycles (days). The tissue distribution in the healed
+state was then used as the initial condition for the remodeling phase during
+which regions healed into bone adapt their internal density with respect to a
+homeostatic remodeling stimulus. The short- and long-term effects of
+micro-motion on bone healing and remodeling were studied. Development of soft
+tissue was observed both in the coronal region due to high fluid velocity, and
+on the vertical sides of the healing-callus due to high shear stress. In cases
+with small implant micromotion, tissue between the implant threads
+differentiated into bone during the healing phase, but resorbed during
+remodeling. In cases with large implant micromotion, higher percentage of the
+healing region differentiated into soft tissue resulting in less volume
+available for bone remodeling. But, the remaining bone region developed higher
+density bone tissue. It was concluded that an optimal range of controlled
+micromotion could be designed for a given implant in order to achieve the
+desired functional properties.",2019-07-18T20:45:39Z,http://arxiv.org/abs/1907.08277v1,dental implant
+"Surface texturing of Ti6Al4V alloy using femtosecond laser for superior
+  antibacterial performance","Shazia Shaikh, Sunita Kedia, Deepti Singh, Mahesh Subramanian, Sucharita Sinha","Titanium and its alloy are most widely used implant materials in dental and
+orthopaedic fields. However, infections occurring during implantation leads to
+implant failure in most of the cases. Here, we have demonstrated antibacterial
+behavior of Ti6Al4V alloy achieved when surface modified using femtosecond
+laser beam. Post laser treatment conical microstructures were observed on the
+Ti6Al4V alloy surface. Generation of different sub-oxide phases of titanium
+dioxide were detected on laser treated samples using X-ray diffraction and
+X-ray photoelectron spectroscopy. Wettability of Ti6Al4V alloy surface changed
+significantly after interaction with the laser. Adhesion and growth of two gram
+positive; Staphylococcus aureus and Streptococcus mutans and one gram negative
+Pseudomonas aeruginosa bacteria have been explored on pristine, as well as, on
+laser textured Ti6Al4V alloy surfaces. In-vitro investigation on agar plate
+showed inhibition of bacterial growth on most of the laser treated surface.
+Superior surface roughness and occurrence of magneli phases of titanium dioxide
+on laser treated surface were probably responsible for the antibacterial
+behavior exhibited by the laser treated samples. Therefore, femtosecond laser
+surface treatment of Ti6Al4V alloy could find potential application in the
+development of infection free medical implants for dental and orthopedic
+usages.",2018-02-21T10:15:54Z,http://arxiv.org/abs/1802.07492v1,dental implant
+"Effect of the geometry of butt-joint implant-supported restorations on
+  the fatigue life of prosthetic screws","Mikel Armentia, Mikel Abasolo, Ibai Coria, Nicolas Saintier","Statement of problem. Dental implant geometry affects the mechanical
+performance and fatigue behavior of butt-joint implant-supported restorations.
+However, failure of the implant component has been generally studied by
+ignoring the prosthetic screw, which is frequently the critical restoration
+component Purpose. Evaluate the effect of 3 main implant geometric parameters:
+the implant body diameter, the platform diameter, and the implant-abutment
+connection type (external versus internal butt-joint) on the fatigue life of
+the prosthetic screw. The experimental values were further compared with the
+theoretical ones obtained by using a previously published methodology M&M. 4
+different designs of direct-to-implant dental restorations from the
+manufacturer BTI were tested. Forty-eight fatigue tests were performed in an
+axial fatigue testing machine according to ISO 14801. Linear regression models,
+95% interval confidence bands for the linear regression, and 95% prediction
+intervals of the fatigue load-life results were obtained and compared through
+an analysis of covariance to determine the influence of the 3 parameters under
+study on the fatigue behavior Results. Linear regression models showed a
+statistical difference when the implant body diameter was increased by 1 mm; an
+average 3.5-fold increase in fatigue life was observed. Increasing the implant
+abutment connection diameter by 1.4 mm also showed a significant difference,
+leading to 7-fold longer fatigue life on average. No significant statistical
+evidence was found to demonstrate a difference in fatigue life between internal
+and external connections Conclusions. Increasing the implant platform and body
+diameter significantly improved the fatigue life of the screw, whereas external
+and internal connections provided similar results. In addition, experimental
+results proved the accuracy of the fatigue life prediction methodology",2024-11-07T08:16:00Z,http://arxiv.org/abs/2411.04515v1,dental implant
+"Radious: Unveiling the Enigma of Dental Radiology with BEIT Adaptor and
+  Mask2Former in Semantic Segmentation","Mohammad Mashayekhi, Sara Ahmadi Majd, Arian Amiramjadi, Babak Mashayekhi","X-ray images are the first steps for diagnosing and further treating dental
+problems. So, early diagnosis prevents the development and increase of oral and
+dental diseases. In this paper, we developed a semantic segmentation algorithm
+based on BEIT adaptor and Mask2Former to detect and identify teeth, roots, and
+multiple dental diseases and abnormalities such as pulp chamber, restoration,
+endodontics, crown, decay, pin, composite, bridge, pulpitis, orthodontics,
+radicular cyst, periapical cyst, cyst, implant, and bone graft material in
+panoramic, periapical, and bitewing X-ray images. We compared the result of our
+algorithm to two state-of-the-art algorithms in image segmentation named:
+Deeplabv3 and Segformer on our own data set. We discovered that Radious
+outperformed those algorithms by increasing the mIoU scores by 9% and 33% in
+Deeplabv3+ and Segformer, respectively.",2023-05-10T15:15:09Z,http://arxiv.org/abs/2305.06236v1,dental implant
+"DentiBot: System Design and 6-DoF Hybrid Position/Force Control for
+  Robot-Assisted Endodontic Treatment","Hao-Fang Cheng, Yi-Ching Ho, Cheng-Wei Chen","Robotic technologies are becoming increasingly popular in dentistry due to
+the high level of precision required in delicate dental procedures. Most dental
+robots available today are designed for implant surgery, helping dentists to
+accurately place implants in the desired position and depth. In this paper, we
+introduce the DentiBot, the first robot specifically designed for dental
+endodontic treatment. The DentiBot is equipped with a force and torque sensor,
+as well as a string-based Patient Tracking Module, allowing for real-time
+monitoring of endodontic file contact and patient movement. We propose a 6-DoF
+hybrid position/force controller that enables autonomous adjustment of the
+surgical path and compensation for patient movement, while also providing
+protection against endodontic file fracture. In addition, a file flexibility
+model is incorporated to compensate for file bending. Pre-clinical evaluations
+performed on acrylic root canal models and resin teeth confirm the feasibility
+of the DentiBot in assisting endodontic treatment.",2023-10-15T01:04:50Z,http://arxiv.org/abs/2310.09691v1,dental implant
+"Oral-3D: Reconstructing the 3D Bone Structure of Oral Cavity from 2D
+  Panoramic X-ray","Weinan Song, Yuan Liang, Jiawei Yang, Kun Wang, Lei He","Panoramic X-ray (PX) provides a 2D picture of the patient's mouth in a
+panoramic view to help dentists observe the invisible disease inside the gum.
+However, it provides limited 2D information compared with cone-beam computed
+tomography (CBCT), another dental imaging method that generates a 3D picture of
+the oral cavity but with more radiation dose and a higher price. Consequently,
+it is of great interest to reconstruct the 3D structure from a 2D X-ray image,
+which can greatly explore the application of X-ray imaging in dental surgeries.
+In this paper, we propose a framework, named Oral-3D, to reconstruct the 3D
+oral cavity from a single PX image and prior information of the dental arch.
+Specifically, we first train a generative model to learn the cross-dimension
+transformation from 2D to 3D. Then we restore the shape of the oral cavity with
+a deformation module with the dental arch curve, which can be obtained simply
+by taking a photo of the patient's mouth. To be noted, Oral-3D can restore both
+the density of bony tissues and the curved mandible surface. Experimental
+results show that Oral-3D can efficiently and effectively reconstruct the 3D
+oral structure and show critical information in clinical applications, e.g.,
+tooth pulling and dental implants. To the best of our knowledge, we are the
+first to explore this domain transformation problem between these two imaging
+methods.",2020-03-18T18:02:57Z,http://arxiv.org/abs/2003.08413v4,dental implant
+"A two-stage approach for beam hardening artifact reduction in low-dose
+  dental CBCT","T. Bayaraa, C. M. Hyun, T. J. Jang, S. M. Lee, J. K. Seo","This paper presents a two-stage method for beam hardening artifact correction
+of dental cone beam computerized tomography (CBCT). The proposed artifact
+reduction method is designed to improve the quality of maxillofacial imaging,
+where soft tissue details are not required. Compared to standard CT, the
+additional difficulty of dental CBCT comes from the problems caused by offset
+detector, FOV truncation, and low signal-to-noise ratio due to low X-ray
+irradiation. To address these problems, the proposed method primarily performs
+a sinogram adjustment in the direction of enhancing data consistency,
+considering the situation according to the FOV truncation and offset detector.
+This sinogram correction algorithm significantly reduces beam hardening
+artifacts caused by high-density materials such as teeth, bones, and metal
+implants, while tending to amplify special types of noise. To suppress such
+noise, a deep convolutional neural network is complementarily used, where CT
+images adjusted by the sinogram correction are used as the input of the neural
+network. Numerous experiments validate that the proposed method successfully
+reduces beam hardening artifacts and, in particular, has the advantage of
+improving the image quality of teeth, associated with maxillofacial CBCT
+imaging.",2020-10-08T05:48:31Z,http://arxiv.org/abs/2010.03778v1,dental implant
+"Neural Representation-Based Method for Metal-induced Artifact Reduction
+  in Dental CBCT Imaging","Hyoung Suk Park, Kiwan Jeon, Jin Keun Seo","This study introduces a novel reconstruction method for dental cone-beam
+computed tomography (CBCT), focusing on effectively reducing metal-induced
+artifacts commonly encountered in the presence of prevalent metallic implants.
+Despite significant progress in metal artifact reduction techniques, challenges
+persist owing to the intricate physical interactions between polychromatic
+X-ray beams and metal objects, which are further compounded by the additional
+effects associated with metal-tooth interactions and factors specific to the
+dental CBCT data environment. To overcome these limitations, we propose an
+implicit neural network that generates two distinct and informative tomographic
+images. One image represents the monochromatic attenuation distribution at a
+specific energy level, whereas the other captures the nonlinear beam-hardening
+factor resulting from the polychromatic nature of X-ray beams. In contrast to
+existing CT reconstruction techniques, the proposed method relies exclusively
+on the Beer--Lambert law, effectively preventing the generation of
+metal-induced artifacts during the backprojection process commonly implemented
+in conventional methods. Extensive experimental evaluations demonstrate that
+the proposed method effectively reduces metal artifacts while providing
+high-quality image reconstructions, thus emphasizing the significance of the
+second image in capturing the nonlinear beam-hardening factor.",2023-07-27T01:57:06Z,http://arxiv.org/abs/2307.14579v1,dental implant
+"MARformer: An Efficient Metal Artifact Reduction Transformer for Dental
+  CBCT Images","Yuxuan Shi, Jun Xu, Dinggang Shen","Cone Beam Computed Tomography (CBCT) plays a key role in dental diagnosis and
+surgery. However, the metal teeth implants could bring annoying metal artifacts
+during the CBCT imaging process, interfering diagnosis and downstream
+processing such as tooth segmentation. In this paper, we develop an efficient
+Transformer to perform metal artifacts reduction (MAR) from dental CBCT images.
+The proposed MAR Transformer (MARformer) reduces computation complexity in the
+multihead self-attention by a new Dimension-Reduced Self-Attention (DRSA)
+module, based on that the CBCT images have globally similar structure. A
+Patch-wise Perceptive Feed Forward Network (P2FFN) is also proposed to perceive
+local image information for fine-grained restoration. Experimental results on
+CBCT images with synthetic and real-world metal artifacts show that our
+MARformer is efficient and outperforms previous MAR methods and two restoration
+Transformers.",2023-11-16T06:02:03Z,http://arxiv.org/abs/2311.09590v2,dental implant
+"Assessing the Dosimetric Effects of High-Z Titanium Implants in Proton
+  Therapy Using Pixel Detectors","C. Balan, C. Granja, G. Mytsin, S. Shvidky, A. Molokanov, V. Chis, C. Oancea","This study experimentally examines the effect and changes in the delivered
+fields, using water-equivalent phantoms with and without titanium (Ti) dental
+implants positioned along the primary beam path. We measure in detail the
+composition and spectral-tracking characterization of particles generated in
+the entrance region of the Bragg curve using high-spatial resolution, spectral
+and time-sensitive imaging detectors with a pixelated array provided by the
+ASIC chip Timepix3. A 170 MeV proton beam was collimated and modulated in a
+polymethyl methacrylate (PMMA). Placing two dental implants at the end of the
+protons range in the phantom, the radiation was measured using two pixeled
+detectors with Si sensors. The Timepix3 (TPX3) detectors equipped with silicon
+sensors measure in detail particle fluxes, dose rates (DR) and linear energy
+transfer (LET) spectra for resolved particle types. Artificial intelligence
+(AI) based-trained neural networks (NN) calibrated in well-defined radiation
+fields were used to analyze and identify particles based on morphology and
+characteristic spectral-tracking response. The beam was characterized and
+single-particle tracks were registered and decomposed into particle-type
+groups. The resulting particle fluxes in both setups are resolved into three
+main classes of particles: i) protons, ii) electrons and photons iii) ions.
+Protons are the main particle component responsible for dose deposition.
+High-energy transfer particles (HETP), namely ions exhibited differences in
+both dosimetric aspects that were investigated: DR and particle fluxes, when
+the Ti implants were placed in the setup. The detailed multi-parametric
+information of the secondary radiation field provides a comprehensive
+understanding of the impact of Ti materials in proton therapy.",2024-09-27T07:57:14Z,http://arxiv.org/abs/2409.18521v1,dental implant
+"Particle Tracking, Recognition and LET Evaluation of Out-of-Field Proton
+  Therapy Delivered to a Phantom with Implants","Cristina Balan, Carlos Granja, Gennady Mytsin, Sergey Shvidky, Alexander Molokanov, Lukas Marek, Vasile Chis, Cristina Oancea","This study aims to assess the composition of scattered particles generated in
+proton therapy for tumours situated proximal to titanium dental implants. The
+investigation involves decomposing the mixed field and recording Linear Energy
+Transfer (LET) spectra to quantify the influence of metallic dental inserts
+located behind the tumour. A conformal proton beam was used to deliver the
+treatment plan to an anthropomorphic head phantom with two types of implants
+(Ti and plastic) inserted in the target volume. The stray radiation resulting
+during the irradiation was detected by a hybrid semiconductor pixel detector
+MiniPIX Timepix3 that was placed distal to the Spread-out Bragg peak.
+Visualization and field decomposition of stray radiation were generated using
+algorithms trained in particle recognition based on artificial intelligence
+convolution neural networks (AI CNN). Spectral sensitive aspects of the
+scattered radiation were collected using two angular positions of the detector
+relative to the beam direction: 0 and 60{\deg}. Using AI CNN, 3 classes of
+particles were identified: protons, electrons & photons, ions & fast neutrons.
+Placing a Ti implant in the beam's path resulted in predominantly electrons and
+photons, contributing 52.2%, whereas for plastic implants, the contribution was
+65.4%. Scattered protons comprised 45.5% and 31.9% with and without Ti inserts,
+respectively. The LET spectra was derived for each group of particles, with
+values ranging from 0.01 to 7.5 keV{\mu}m-1 for Ti/plastic implants. The
+low-LET component was primarily composed of electrons and photons, while the
+high-LET component corresponded to protons and ions. This method, complemented
+by directional maps, holds potential for evaluating and validating treatment
+plans involving stray radiation near organs at risk, offering precise
+discrimination of the mixt field, enhancing in this way the LET calculation.",2023-12-21T21:30:43Z,http://arxiv.org/abs/2312.14304v1,dental implant
+"Tribocorrosion under galvanic interaction of Ti6Al4V and NiCr implant
+  alloys","Camila Dias dos Reis Barros, Janaina Cardozo Rocha, Ivan Napoleão Bastos, José Antônio da Cunha Ponciano Gomes","Micromovements that occur in the joint between dental prostheses and implants
+can lead to wear-induced degradation. This process can be enhanced by corrosion
+in the oral environment influenced by the presence of solutions containing
+fluoride. Moreover, the eventual galvanic interactions between NiCr and Ti
+alloys can accelerate the wear-corrosion process. In this work, the
+tribocorrosion process of Ti6Al4V and NiCr alloys used in dental implant
+rehabilitations immersed in fluoride solutions at different pH values was
+investigated. The galvanic interaction effect between the alloys was also
+assessed. Tribocorrosion tests in corrosive media were performed with isolated
+Ti6Al4V and NiCr alloys, followed by testing with both alloys in contact. The
+media selected were based on fluoride concentrations and pH values that are
+possible to be found in oral environments. Analysis of the surfaces after the
+tribocorrosion tests was carried out using confocal laser microscopy. The wear
+profile and volume losses were determined by confocal measurements. It was
+concluded that the galvanic interaction between the alloys increased the
+tribocorrosion resistance of Ti6Al4V, compared with that of the isolated
+Ti6Al4V alloy. Ti6Al4V coupled with NiCr reduced the electrochemical potential
+decay during sliding. The increased resistance was explained by the
+electrochemical shift of the Ti6Al4V potential from active dissolution to the
+passive domain.",2020-05-30T13:42:46Z,http://arxiv.org/abs/2006.00270v1,dental implant
+"Femtosecond laser upscaling strategy and biological validation for
+  dental screws with improved osteogenic performance","Mathieu Maalouf, Yoan Di Maio, David Pallarés-Aldeiturriaga, Xxx Sedao, Lauriane Hivert, Steve Papa, Elisa Dalix, Mireille Thomas, Alain Guignandon, Virginie Dumas","Osseointegration is one of the key conditions for long term successful dental
+implantation. To this end, titanium alloys undergo plethora of surface
+treatments able to sustain osteogenic differentiation. For these surface
+treatments, femtosecond laser (FSL) can generate precise and reproducible
+surface patterns on titanium, avoiding thermal damage and chemical pollution.
+We recently identify that laser-induced periodic surface structure (LIPSS) with
+radial orientation, generated on model (flat) titanium surface, has a high
+osteogenic potential. However, nano-texturing is time consuming. In the present
+study, we aimed to reduce the texturing time of radial LIPSS, as well as
+processing of large commercially available dental screws by ways of laser beam
+engineering. Our objectives were to maintain at least osteogenic properties
+demonstrated on model surfaces by adjusting laser beam diameters and to
+demonstrate maintenance of performance with a dental screw texturing process
+not exceeding 1 minute.We first textured model surfaces with radial LIPSS by
+laser beams of different diameters, with surface impacts of 24$\mu$m, 80$\mu$m
+or 180$\mu$m, named as R24, R80 or R180 respectively. Osteogenic performance of
+human mesenchymal stem cells (hMSCs) were compared; seeded on polished control
+surfaces and textured surfaces and subjected to osteogenic evaluation by
+cell/matrix imaging, qRT-PCR and mineral deposition quantification. All
+textured surfaces showed greater osteogenic potential than the control
+surfaces, with significantly higher efficacy on R180 surface. Therefore, R180
+pattern with large beam impacts was chosen for texturing on a dental screw and
+its osteogenic activity was compared to that of a non-textured screw.
+Interestingly, R180 required only 40 seconds to be textured on whole screws, on
+which it preserved a high osteogenic potential. Thus, by using FSL technology,
+we have improved the osteogenic potential of a topographic pattern while
+optimizing and scaling up its processing time on a medical device.",2024-06-17T13:23:47Z,http://arxiv.org/abs/2406.11521v1,dental implant
+Panorama Tomosynthesis from Head CBCT with Simulated Projection Geometry,"Anusree P. S., Bikram Keshari Parida, Seong Yong Moon, Wonsang You","Cone Beam Computed Tomography (CBCT) and Panoramic X-rays are the most
+commonly used imaging modalities in dental health care. CBCT can produce
+three-dimensional views of a patient's head, providing clinicians with better
+diagnostic capability, whereas Panoramic X-ray can capture the entire
+maxillofacial region in a single image. If the CBCT is already available, it
+can be beneficial to synthesize a Panoramic X-ray, thereby avoiding an
+immediate additional scan and extra radiation exposure. Existing methods focus
+on delineating an approximate dental arch and creating orthogonal projections
+along this arch. However, no golden standard is available for such dental arch
+extractions, and this choice can affect the quality of synthesized X-rays. To
+avoid such issues, we propose a novel method for synthesizing Panoramic X-rays
+from diverse head CBCTs, employing a simulated projection geometry and dynamic
+rotation centers. Our method effectively synthesized panoramic views from CBCT,
+even for patients with missing or nonexistent teeth and in the presence of
+severe metal implants. Our results demonstrate that this method can generate
+high-quality panoramic images irrespective of the CBCT scanner geometry.",2024-08-18T04:48:03Z,http://arxiv.org/abs/2408.09358v2,dental implant
+"A Deep Learning Approach to Teeth Segmentation and Orientation from
+  Panoramic X-rays","Mrinal Kanti Dhar, Mou Deb, D. Madhab, Zeyun Yu","Accurate teeth segmentation and orientation are fundamental in modern oral
+healthcare, enabling precise diagnosis, treatment planning, and dental implant
+design. In this study, we present a comprehensive approach to teeth
+segmentation and orientation from panoramic X-ray images, leveraging deep
+learning techniques. We build our model based on FUSegNet, a popular model
+originally developed for wound segmentation, and introduce modifications by
+incorporating grid-based attention gates into the skip connections. We
+introduce oriented bounding box (OBB) generation through principal component
+analysis (PCA) for precise tooth orientation estimation. Evaluating our
+approach on the publicly available DNS dataset, comprising 543 panoramic X-ray
+images, we achieve the highest Intersection-over-Union (IoU) score of 82.43%
+and Dice Similarity Coefficient (DSC) score of 90.37% among compared models in
+teeth instance segmentation. In OBB analysis, we obtain the Rotated IoU (RIoU)
+score of 82.82%. We also conduct detailed analyses of individual tooth labels
+and categorical performance, shedding light on strengths and weaknesses. The
+proposed model's accuracy and versatility offer promising prospects for
+improving dental diagnoses, treatment planning, and personalized healthcare in
+the oral domain. Our generated OBB coordinates and codes are available at
+https://github.com/mrinal054/Instance_teeth_segmentation.",2023-10-26T06:01:25Z,http://arxiv.org/abs/2310.17176v1,dental implant
+"Gestalt driven augmented collimator widget for precise 5 dof dental
+  drill tool positioning in 3d space","Mine Dastan, Antonio E. Uva, Michele Fiorentino","Drill tool positioning in dental implantology is a challenging task requiring
+5DOF precision as the rotation around the tool axis is not influential. This
+work improves the quasi-static visual elements of the state-of-the-art with a
+novel Augmented Collimation Widget (ACW), an interactive tool of position and
+angle error visualization based on the gestalt reification, the human ability
+to group geometric elements. The user can seek in a quick, pre-attentive way
+the collimation of five (three positional and two rotational) error component
+widgets (ECWs), taking advantage of three key aspects: component separation and
+reification, error visual amplification, and dynamic hiding of the collimated
+components. We compared the ACW with the golden standard in a within-subjects
+(N=30) user test using 32 implant targets, measuring the time, error, and
+usability. ACW performed significantly better in positional (+19%) and angular
+(+47%) precision accuracy and with less mental demand (-6%) and frustration
+(-13%), but with an expected increase in task time (+59%) and physical demand
+(+64%). The interview indicated the ACW as the main preference and
+aesthetically more pleasant than GSW, candidating it as the new golden standard
+for implantology, but also for other applications where 5DOF positioning is
+key.",2024-09-17T07:56:54Z,http://arxiv.org/abs/2409.10960v1,dental implant
+MI image registration using prior knowledge,"W. Jacquet, P. de Groen","Subtraction of aligned images is a means to assess changes in a wide variety
+of clinical applications. In this paper we explore the information theoretical
+origin of Mutual Information (MI), which is based on Shannon's entropy.However,
+the interpretation of standard MI registration as a communication channel
+suggests that MI is too restrictive a criterion. In this paper the concept of
+Mutual Information (MI) is extended to (Normalized) Focussed Mutual Information
+(FMI) to incorporate prior knowledge to overcome some shortcomings of MI. We
+use this to develop new methodologies to successfully address specific
+registration problems, the follow-up of dental restorations, cephalometry, and
+the monitoring of implants.",2007-05-24T14:41:11Z,http://arxiv.org/abs/0705.3593v2,dental implant
+"Metal Artifact Reduction with Intra-Oral Scan Data for 3D Low Dose
+  Maxillofacial CBCT Modeling","Chang Min Hyun, Taigyntuya Bayaraa, Hye Sun Yun, Tae Jun Jang, Hyoung Suk Park, Jin Keun Seo","Low-dose dental cone beam computed tomography (CBCT) has been increasingly
+used for maxillofacial modeling. However, the presence of metallic inserts,
+such as implants, crowns, and dental filling, causes severe streaking and
+shading artifacts in a CBCT image and loss of the morphological structures of
+the teeth, which consequently prevents accurate segmentation of bones. A
+two-stage metal artifact reduction method is proposed for accurate 3D low-dose
+maxillofacial CBCT modeling, where a key idea is to utilize explicit tooth
+shape prior information from intra-oral scan data whose acquisition does not
+require any extra radiation exposure. In the first stage, an image-to-image
+deep learning network is employed to mitigate metal-related artifacts. To
+improve the learning ability, the proposed network is designed to take
+advantage of the intra-oral scan data as side-inputs and perform multi-task
+learning of auxiliary tooth segmentation. In the second stage, a 3D
+maxillofacial model is constructed by segmenting the bones from the dental CBCT
+image corrected in the first stage. For accurate bone segmentation, weighted
+thresholding is applied, wherein the weighting region is determined depending
+on the geometry of the intra-oral scan data. Because acquiring a paired
+training dataset of metal-artifact-free and metal artifact-affected dental CBCT
+images is challenging in clinical practice, an automatic method of generating a
+realistic dataset according to the CBCT physics model is introduced. Numerical
+simulations and clinical experiments show the feasibility of the proposed
+method, which takes advantage of tooth surface information from intra-oral scan
+data in 3D low dose maxillofacial CBCT modeling.",2022-02-08T00:24:41Z,http://arxiv.org/abs/2202.03571v1,dental implant
+"Construction of unbiased dental template and parametric dental model for
+  precision digital dentistry","Lei Ma, Jingyang Zhang, Ke Deng, Peng Xue, Zhiming Cui, Yu Fang, Minhui Tang, Yue Zhao, Min Zhu, Zhongxiang Ding, Dinggang Shen","Dental template and parametric dental models are important tools for various
+applications in digital dentistry. However, constructing an unbiased dental
+template and accurate parametric dental models remains a challenging task due
+to the complex anatomical and morphological dental structures and also low
+volume ratio of the teeth. In this study, we develop an unbiased dental
+template by constructing an accurate dental atlas from CBCT images with
+guidance of teeth segmentation. First, to address the challenges, we propose to
+enhance the CBCT images and their segmentation images, including image
+cropping, image masking and segmentation intensity reassigning. Then, we
+further use the segmentation images to perform co-registration with the CBCT
+images to generate an accurate dental atlas, from which an unbiased dental
+template can be generated. By leveraging the unbiased dental template, we
+construct parametric dental models by estimating point-to-point correspondences
+between the dental models and employing Principal Component Analysis to
+determine shape subspaces of the parametric dental models. A total of 159 CBCT
+images of real subjects are collected to perform the constructions.
+Experimental results demonstrate effectiveness of our proposed method in
+constructing unbiased dental template and parametric dental model. The
+developed dental template and parametric dental models are available at
+https://github.com/Marvin0724/Teeth_template.",2023-04-07T09:39:03Z,http://arxiv.org/abs/2304.03556v1,dental implant
+"Comparison of Patch-Based Conditional Generative Adversarial Neural Net
+  Models with Emphasis on Model Robustness for Use in Head and Neck Cases for
+  MR-Only planning","Peter Klages, Ilyes Benslimane, Sadegh Riyahi, Jue Jiang, Margie Hunt, Joe Deasy, Harini Veeraraghavan, Neelam Tyagi","A total of twenty paired CT and MR images were used in this study to
+investigate two conditional generative adversarial networks, Pix2Pix, and Cycle
+GAN, for generating synthetic CT images for Headand Neck cancer cases. Ten of
+the patient cases were used for training and included such common artifacts as
+dental implants; the remaining ten testing cases were used for testing and
+included a larger range of image features commonly found in clinical head and
+neck cases. These features included strong metal artifacts from dental
+implants, one case with a metal implant, and one case with abnormal anatomy.
+The original CT images were deformably registered to the mDixon FFE MR images
+to minimize the effects of processing the MR images. The sCT generation
+accuracy and robustness were evaluated using Mean Absolute Error (MAE) based on
+the Hounsfield Units (HU) for three regions (whole body, bone, and air within
+the body), Mean Error (ME) to observe systematic average offset errors in the
+sCT generation, and dosimetric evaluation of all clinically relevant
+structures. For the test set the MAE for the Pix2Pix and Cycle GAN models were
+92.4 $\pm$ 13.5 HU, and 100.7 $\pm$ 14.6 HU, respectively, for the body region,
+166.3 $\pm$ 31.8 HU, and 184 $\pm$ 31.9 HU, respectively, for the bone region,
+and 183.7 $\pm$ 41.3 HU and 185.4 $\pm$ 37.9 HU for the air regions. The ME for
+Pix2Pix and Cycle GAN were 21.0 $\pm$ 11.8 HU and 37.5 $\pm$ 14.9 HU,
+respectively. Absolute Percent Mean/Max Dose Errors were less than 2% for the
+PTV and all critical structures for both models, and DRRs generated from these
+models looked qualitatively similar to CT generated DRRs showing these methods
+are promising for MR-only planning.",2019-02-01T19:42:17Z,http://arxiv.org/abs/1902.00536v4,dental implant
+"Automatic Registration between Cone-Beam CT and Scanned Surface via
+  Deep-Pose Regression Neural Networks and Clustered Similarities","Minyoung Chung, Jingyu Lee, Wisoo Song, Youngchan Song, Il-Hyung Yang, Jeongjin Lee, Yeong-Gil Shin","Computerized registration between maxillofacial cone-beam computed tomography
+(CT) images and a scanned dental model is an essential prerequisite in surgical
+planning for dental implants or orthognathic surgery. We propose a novel method
+that performs fully automatic registration between a cone-beam CT image and an
+optically scanned model. To build a robust and automatic initial registration
+method, our method applies deep-pose regression neural networks in a reduced
+domain (i.e., 2-dimensional image). Subsequently, fine registration is
+performed via optimal clusters. Majority voting system achieves globally
+optimal transformations while each cluster attempts to optimize local
+transformation parameters. The coherency of clusters determines their candidacy
+for the optimal cluster set. The outlying regions in the iso-surface are
+effectively removed based on the consensus among the optimal clusters. The
+accuracy of registration was evaluated by the Euclidean distance of 10
+landmarks on a scanned model which were annotated by the experts in the field.
+The experiments show that the proposed method's registration accuracy, measured
+in landmark distance, outperforms other existing methods by 30.77% to 70%. In
+addition to achieving high accuracy, our proposed method requires neither
+human-interactions nor priors (e.g., iso-surface extraction). The main
+significance of our study is twofold: 1) the employment of light-weighted
+neural networks which indicates the applicability of neural network in
+extracting pose cues that can be easily obtained and 2) the introduction of an
+optimal cluster-based registration method that can avoid metal artifacts during
+the matching procedures.",2019-07-29T07:46:01Z,http://arxiv.org/abs/1907.12250v1,dental implant
+"Segmentation of Mental Foramen in Orthopantomographs: A Deep Learning
+  Approach","Haider Raza, Mohsin Ali, Vishal Krishna Singh, Agustin Wahjuningrum, Rachel Sarig, Akhilanand Chaurasia","Precise identification and detection of the Mental Foramen are crucial in
+dentistry, impacting procedures such as impacted tooth removal, cyst surgeries,
+and implants. Accurately identifying this anatomical feature facilitates
+post-surgery issues and improves patient outcomes. Moreover, this study aims to
+accelerate dental procedures, elevating patient care and healthcare efficiency
+in dentistry. This research used Deep Learning methods to accurately detect and
+segment the Mental Foramen from panoramic radiograph images. Two mask types,
+circular and square, were used during model training. Multiple segmentation
+models were employed to identify and segment the Mental Foramen, and their
+effectiveness was evaluated using diverse metrics. An in-house dataset
+comprising 1000 panoramic radiographs was created for this study. Our
+experiments demonstrated that the Classical UNet model performed exceptionally
+well on the test data, achieving a Dice Coefficient of 0.79 and an Intersection
+over Union (IoU) of 0.67. Moreover, ResUNet++ and UNet Attention models showed
+competitive performance, with Dice scores of 0.675 and 0.676, and IoU values of
+0.683 and 0.671, respectively. We also investigated transfer learning models
+with varied backbone architectures, finding LinkNet to produce the best
+outcomes. In conclusion, our research highlights the efficacy of the classical
+Unet model in accurately identifying and outlining the Mental Foramen in
+panoramic radiographs. While vital, this task is comparatively simpler than
+segmenting complex medical datasets such as brain tumours or skin cancer, given
+their diverse sizes and shapes. This research also holds value in optimizing
+dental practice, benefiting practitioners and patients.",2024-08-08T21:40:06Z,http://arxiv.org/abs/2408.04763v1,dental implant
+ToMoBrush: Exploring Dental Health Sensing using a Sonic Toothbrush,"Kuang Yuan, Mohamed Ibrahim, Yiwen Song, Guoxiang Deng, Suvendra Vijayan, Robert Nerone, Akshay Gadre, Swarun Kumar","Early detection of dental disease is crucial to prevent adverse outcomes.
+Today, dental X-rays are currently the most accurate gold standard for dental
+disease detection. Unfortunately, regular X-ray exam is still a privilege for
+billions of people around the world. In this paper, we ask: ""Can we develop a
+low-cost sensing system that enables dental self-examination in the comfort of
+one's home?""
+  This paper presents ToMoBrush, a dental health sensing system that explores
+using off-the-shelf sonic toothbrushes for dental condition detection. Our
+solution leverages the fact that a sonic toothbrush produces rich acoustic
+signals when in contact with teeth, which contain important information about
+each tooth's status. ToMoBrush extracts tooth resonance signatures from the
+acoustic signals to characterize varied dental health conditions of the teeth.
+We evaluate ToMoBrush on 19 participants and dental-standard models for
+detecting common dental problems including caries, calculus, and food
+impaction, achieving a detection ROC-AUC of 0.90, 0.83, and 0.88 respectively.
+Interviews with dental experts validate ToMoBrush's potential in enhancing
+at-home dental healthcare.",2024-02-02T22:05:57Z,http://arxiv.org/abs/2402.01933v1,dental implant
+"High-low level support vector regression prediction approach (HL-SVR)
+  for data modeling with input parameters of unequal sample sizes","Maolin Shi, Wei Sun, Xueguan Song, Hongyou Li","Support vector regression (SVR) has been widely used to reduce the high
+computational cost of computer simulation. SVR assumes the input parameters
+have equal sample sizes, but unequal sample sizes are often encountered in
+engineering practices. To solve this issue, a new prediction approach based on
+SVR, namely as high-low-level SVR approach (HL-SVR) is proposed for data
+modeling of input parameters of unequal sample sizes in this paper. The
+proposed approach is consisted of low-level SVR models for the input parameters
+of larger sample sizes and high-level SVR model for the input parameters of
+smaller sample sizes. For each training point of the input parameters of
+smaller sample sizes, one low-level SVR model is built based on its
+corresponding input parameters of larger sample sizes and their responses of
+interest. The high-level SVR model is built based on the obtained responses
+from the low-level SVR models and the input parameters of smaller sample sizes.
+Several numerical examples are used to validate the performance of HL-SVR. The
+experimental results indicate that HL-SVR can produce more accurate prediction
+results than conventional SVR. The proposed approach is applied on the stress
+analysis of dental implant, which the structural parameters have massive
+samples but the material of implant can only be selected from several Ti and
+its alloys. The prediction performance of the proposed approach is much better
+than the conventional SVR. The proposed approach can be used for the design,
+optimization and analysis of engineering systems with input parameters of
+unequal sample sizes.",2019-05-31T00:55:43Z,http://arxiv.org/abs/1906.05777v1,dental implant
+"A long-lasting guided bone regeneration membrane from sequentially
+  functionalised photoactive atelocollagen","He Liang, Jie Yin, Kenny Man, Xuebin B. Yang, Elena Calciolari, Nikolaos Donos, Stephen J. Russell, David J. Wood, Giuseppe Tronci","The fast degradation of collagen-based membranes in the biological
+environment remains a critical challenge, resulting in underperforming Guided
+Bone Regeneration (GBR) therapy leading to compromised clinical results.
+Photoactive atelocollagen (AC) systems functionalised with ethylenically
+unsaturated monomers, such as 4-vinylbenzyl chloride (4VBC), have been shown to
+generate mechanically competent materials for wound healing, inflammation
+control and drug delivery, whereby control of the molecular architecture of the
+AC network is key. Building on this platform, the sequential functionalisation
+with 4VBC and methacrylic anhydride (MA) was hypothesised to generate UV-cured
+AC hydrogels with reduced swelling ratio, increased proteolytic stability and
+barrier functionality for GBR therapy. The sequentially functionalised
+atelocollagen precursor (SAP) was characterised via TNBS and ninhydrin
+colourimetric assays, circular dichroism and UV-curing rheometry, which
+confirmed nearly complete consumption of collagen primary amino groups,
+preserved triple helices and fast (within 180 s) gelation kinetics,
+respectively. Hydrogel swelling ratio and compression modulus were adjusted
+depending on the aqueous environment used for UV-curing, whilst the sequential
+functionalisation of AC successfully generated hydrogels with superior
+proteolytic stability in vitro compared to both 4VBC functionalised control and
+the commercial dental membrane Bio-Gide. These in vitro results were confirmed
+in vivo via both subcutaneous implantation and a proof-of-concept study in a
+GBR calvarial model, indicating integrity of the hydrogel and barrier defect,
+as well as tissue formation following 1-month implantation in rats.",2021-12-15T11:04:11Z,http://arxiv.org/abs/2112.08040v1,dental implant
+"Fatigue performance of prosthetic screws used in dental implant
+  restorations: Rolled versus cut threads","Mikel Armentia, Mikel Abasolo, Ibai Coria, Joseba Albizuri, Josu Aguirrebeitia","Statement of problem. Cold rolling is widely used for screw thread
+manufacturing in industry but is less common in implant dentistry, where
+cutting is the preferred manufacturing method. Purpose. The purpose of this in
+vitro study was to compare the surface finish and mechanical performance of a
+specific model of prosthetic screw used for direct restorations manufactured by
+thread rolling and cutting. Material and methods. The thread profiles were
+measured in an optical measuring machine, the residual stresses in an X-ray
+diffractometer, the surface finish in a scanning electron microscope, and then
+fatigue and static load tests were carried out in a direct stress test bench
+according to the International Organization for Standardization (ISO) 14801.
+Finally, linear regression models and 95% interval confidence bands were
+calculated and compared through ANCOVA for fatigue tests while the t test was
+used for statistical comparisons (a=.05). Results. The surface finish was
+smoother, and compressive residual stresses were higher for the roll-threaded
+screws. Linear regression models showed a fatigue life 9 times higher for
+roll-threaded screws (P=1) without affecting static behavior, which showed
+statistically similar static strengths (P=.54). However, the thread profile in
+the roll-threaded screws was not accurately reproduced, but this should be
+easily corrected in future prototypes. Conclusions. Rolling was demonstrated to
+be a better thread-manufacturing process for prosthetic screws, producing
+improved surface quality and fatigue behavior.",2024-11-06T07:55:24Z,http://arxiv.org/abs/2411.03733v1,dental implant
+Characterization of Metal Artifacts in X-ray Computed Tomography,"Hyoung Suk Park, Jae Kyu Choi, Jin Keun Seo","Metal streak artifacts in X-ray computerized tomography (CT) are rigorously
+characterized here using the notion of the wavefront set from microlocal
+analysis. The metal artifacts are caused mainly from the mismatch of the
+forward model of the filtered back-projection; the presence of metallic
+subjects in an imaging subject violates the model's assumption of the CT
+sinogram data being the Radon transform of an image. The increasing use of
+metallic implants has increased demand for the reduction of metal artifacts in
+the field of dental and medical radiography. However, it is a challenging issue
+due to the serious difficulties in analyzing the X-ray data, which depends
+nonlinearly on the distribution of the metallic subject. In this paper, we
+found that the metal streaking artifacts cause mainly from the boundary
+geometry of the metal region. The metal streaking artifacts are produced only
+when the wavefront set of the Radon transform of the characteristic function of
+a metal region does not contain the wavefront set of the square of the Radon
+transform. We also found a sufficient condition for the non-existence of the
+metal streak artifacts.",2014-06-02T10:31:42Z,http://arxiv.org/abs/1406.0318v1,dental implant
+"A goal-oriented reduced basis method for the wave equation in inverse
+  analysis","Khac Chi Hoang, Pierre Kerfriden, Stephane P. A. Bordas","In this paper, we extend the reduced-basis methods developed earlier for wave
+equations to goal-oriented wave equations with affine parameter dependence. The
+essential new ingredient is the dual (or adjoint) problem and the use of its
+solution in a sampling procedure to pick up ""goal-orientedly"" parameter
+samples. First, we introduce the reduced-basis recipe --- Galerkin projection
+onto a space $Y_N$ spanned by the reduced basis functions which are constructed
+from the solutions of the governing partial differential equation at several
+selected points in parameter space. Second, we propose a new ""goal-oriented""
+Proper Orthogonal Decomposition (POD)--Greedy sampling procedure to construct
+these associated basis functions. Third, based on the assumption of affine
+parameter dependence, we use the offline-online computational procedures
+developed earlier to split the computational procedure into offline and online
+stages. We verify the proposed computational procedure by applying it to a
+three-dimensional simulation dental implant problem. The good numerical results
+show that our proposed procedure performs better than the standard POD--Greedy
+procedure in terms of the accuracy of output functionals.",2013-05-15T15:15:59Z,http://arxiv.org/abs/1305.3519v1,dental implant
+"Temperature measurement methods in an experimental setup during bone
+  drilling: A brief review on the comparison of thermocouple and infrared
+  thermography","Md Ashequl Islam, Nur Saifullah Kamarrudin, Ruslizam Daud, Ishak Ibrahim, Anas Rahman, Fauziah Mat","Predicting thermal response in orthopaedic surgery or dental implantation
+remains a significant challenge. This study aims to find a practical approach
+for measuring temperature elevation during a bone drilling experiment by
+analyzing the existing methods. Traditionally thermocouple has frequently been
+used to predict the bone temperature in the drilling process. However, several
+experimental studies demonstrate that the invasive method using thermocouple is
+impractical in medical conditions and prefers the thermal infrared (IR) camera
+as a non-invasive method. This work proposes a simplified experimental model
+that uses the thermocouple to determine temperature rise coupled with the
+thermal image source approach. Furthermore, our new method provides a
+significant opportunity to calibrate the thermal IR camera by discovering the
+undetected heat elevation in a workpiece depth.",2023-08-23T09:47:42Z,http://arxiv.org/abs/2308.12034v1,dental implant
+"Geodesic X-ray transform and streaking artifacts on simple surfaces or
+  on spaces of constant curvature",Hiroyuki Chihara,"The X-ray transform on the plane or on the three-dimensional Euclidean space
+can be considered as the measurements of CT scanners for normal human tissue.
+If the human body contains metal regions such as dental implants, stents in
+blood vessels, metal bones, etc., the beam hardening effect for the energy
+level of the X-ray causes streaking artifacts in its CT image. More precisely,
+if there are two strictly convex metal regions contained in the cross-section
+of normal human tissue, then streaking artifacts occur along the common tangent
+lines of the two regions. In this paper we study the geodesic X-ray transform
+and streaking artifacts on nontrapping simple compact Riemannian manifolds with
+strictly convex boundaries. We show that the streaking artifacts result from
+the propagation of conormal singularities on the boundary of metal regions
+along the common tangent geodesics under the strong and seemingly strange
+assumption that the manifolds are two dimensional or spaces of constant
+curvature. This condition ensures that every Jacobi field takes the form of the
+product of a scalar function and parallel transport along the geodesic. Our
+results clarify the geometric meaning of the theory, which was imperceptible in
+the known results on the Euclidean space.",2024-02-10T07:51:36Z,http://arxiv.org/abs/2402.06899v1,dental implant
+A review of dental informatics : current trends and future directions,"Prabath Jayatissa, Roshan Hewapathirane","Dental informatics is a rapidly evolving field that combines dentistry with
+information technology to improve oral health care delivery, research, and
+education. Electronic health records (EHRs), telehealth, digital imaging, and
+other digital tools have revolutionised how dental professionals diagnose,
+treat, and manage oral health conditions. In this review article, we will
+explore dental informatics's current trends and future directions, focusing on
+its impact on clinical practice, research, and education. We will also discuss
+the challenges and opportunities associated with implementing dental
+informatics and highlight fundamental research studies and innovations in the
+field.",2023-06-29T11:27:38Z,http://arxiv.org/abs/2307.03686v1,dental implant
+"Self-Supervised Learning with Masked Image Modeling for Teeth Numbering,
+  Detection of Dental Restorations, and Instance Segmentation in Dental
+  Panoramic Radiographs","Amani Almalki, Longin Jan Latecki","The computer-assisted radiologic informative report is currently emerging in
+dental practice to facilitate dental care and reduce time consumption in manual
+panoramic radiographic interpretation. However, the amount of dental
+radiographs for training is very limited, particularly from the point of view
+of deep learning. This study aims to utilize recent self-supervised learning
+methods like SimMIM and UM-MAE to increase the model efficiency and
+understanding of the limited number of dental radiographs. We use the Swin
+Transformer for teeth numbering, detection of dental restorations, and instance
+segmentation tasks. To the best of our knowledge, this is the first study that
+applied self-supervised learning methods to Swin Transformer on dental
+panoramic radiographs. Our results show that the SimMIM method obtained the
+highest performance of 90.4% and 88.9% on detecting teeth and dental
+restorations and instance segmentation, respectively, increasing the average
+precision by 13.4 and 12.8 over the random initialization baseline. Moreover,
+we augment and correct the existing dataset of panoramic radiographs. The code
+and the dataset are available at https://github.com/AmaniHAlmalki/DentalMIM.",2022-10-20T16:50:07Z,http://arxiv.org/abs/2210.11404v1,dental implant
+"Semantic decomposition Network with Contrastive and Structural
+  Constraints for Dental Plaque Segmentation","Jian Shi, Baoli Sun, Xinchen Ye, Zhihui Wang, Xiaolong Luo, Jin Liu, Heli Gao, Haojie Li","Segmenting dental plaque from images of medical reagent staining provides
+valuable information for diagnosis and the determination of follow-up treatment
+plan. However, accurate dental plaque segmentation is a challenging task that
+requires identifying teeth and dental plaque subjected to semantic-blur regions
+(i.e., confused boundaries in border regions between teeth and dental plaque)
+and complex variations of instance shapes, which are not fully addressed by
+existing methods. Therefore, we propose a semantic decomposition network
+(SDNet) that introduces two single-task branches to separately address the
+segmentation of teeth and dental plaque and designs additional constraints to
+learn category-specific features for each branch, thus facilitating the
+semantic decomposition and improving the performance of dental plaque
+segmentation. Specifically, SDNet learns two separate segmentation branches for
+teeth and dental plaque in a divide-and-conquer manner to decouple the
+entangled relation between them. Each branch that specifies a category tends to
+yield accurate segmentation. To help these two branches better focus on
+category-specific features, two constraint modules are further proposed: 1)
+contrastive constraint module (CCM) to learn discriminative feature
+representations by maximizing the distance between different category
+representations, so as to reduce the negative impact of semantic-blur regions
+on feature extraction; 2) structural constraint module (SCM) to provide
+complete structural information for dental plaque of various shapes by the
+supervision of an boundary-aware geometric constraint. Besides, we construct a
+large-scale open-source Stained Dental Plaque Segmentation dataset (SDPSeg),
+which provides high-quality annotations for teeth and dental plaque.
+Experimental results on SDPSeg datasets show SDNet achieves state-of-the-art
+performance.",2022-08-12T14:10:29Z,http://arxiv.org/abs/2208.06283v1,dental implant
+"Generative Adversarial Networks for Dental Patient Identity Protection
+  in Orthodontic Educational Imaging","Mingchuan Tian, Wilson Weixun Lu, Kelvin Weng Chiong Foong, Eugene Loh","Objectives: This research introduces a novel area-preserving Generative
+Adversarial Networks (GAN) inversion technique for effectively de-identifying
+dental patient images. This innovative method addresses privacy concerns while
+preserving key dental features, thereby generating valuable resources for
+dental education and research.
+  Methods: We enhanced the existing GAN Inversion methodology to maximize the
+preservation of dental characteristics within the synthesized images. A
+comprehensive technical framework incorporating several deep learning models
+was developed to provide end-to-end development guidance and practical
+application for image de-identification.
+  Results: Our approach was assessed with varied facial pictures, extensively
+used for diagnosing skeletal asymmetry and facial anomalies. Results
+demonstrated our model's ability to adapt the context from one image to
+another, maintaining compatibility, while preserving dental features essential
+for oral diagnosis and dental education. A panel of five clinicians conducted
+an evaluation on a set of original and GAN-processed images. The generated
+images achieved effective de-identification, maintaining the realism of
+important dental features and were deemed useful for dental diagnostics and
+education.
+  Clinical Significance: Our GAN model and the encompassing framework can
+streamline the de-identification process of dental patient images, enhancing
+efficiency in dental education. This method improves students' diagnostic
+capabilities by offering more exposure to orthodontic malocclusions.
+Furthermore, it facilitates the creation of de-identified datasets for broader
+2D image research at major research institutions.",2023-07-05T04:14:57Z,http://arxiv.org/abs/2307.02019v1,dental implant
+"Sub-Band-Gap Absorption Mechanisms Involving Oxygen Vacancies in
+  Hydroxyapatite","Vladimir S. Bystrov, Leon A. Avakyan, Ekaterina V. Paramonova, José Coutinho","Hydroxyapatite (HAp) is a widely used biomaterial for the preparation of bone
+and dental implants. Despite the relevance of HAp in medicine, exciting
+applications involving this material as a bio-compatible photocatalyst, depend
+on how well we understand its fundamental properties. Experimental evidence
+suggests that oxygen vacancies play a critical role in the production of
+surface radicals upon exposure of HAp to ultra-violet (UV) light. However, very
+little is known about the underlying physical and chemical details. We present
+a hybrid density-functional study of the structural and electronic properties
+of oxygen vacancies in large HAp supercells within the plane-wave formalism. We
+find that under equilibrium conditions, vacancies occur either as a simple
+vacant oxygen site (in the neutral charge state), or as extended structures
+replacing several crystalline moieties (in the double plus charge state). Large
+atomic relaxations upon ionization make the oxygen vacancy a negative-$U$
+defect, where the single plus charge state is metastable, being only accessible
+under UV excitation. From inspection of the transition levels, we find that
+electron promotion from the valence band top to the donor state of the vacancy,
+involves a zero-phonon transition of 3.6-3.9 eV. This mechanism is the most
+likely explanation to the 3.4-4.0 eV absorption onset for the observation of
+photocatalysis using HAp under persistent UV illumination.",2019-03-03T21:19:13Z,http://arxiv.org/abs/1903.00992v1,dental implant
+Superiorized method for metal artifact reduction,"T. Humphries, J. Wang","Metal artifact reduction (MAR) is a challenging problem in computed
+tomography (CT) imaging. A popular class of MAR methods replace sinogram
+measurements that are corrupted by metal with artificial data. While these
+``projection completion'' approaches are successful in eliminating severe
+artifacts, secondary artifacts may be introduced by the artificial data. In
+this paper, we propose an approach which uses projection completion to generate
+a prior image, which is then incorporated into an iterative reconstruction
+algorithm based on the superiorization framework. The prior image is
+reconstructed using normalized metal artifact reduction (NMAR), a popular
+projection completion approach. The iterative algorithm is a modified version
+of the simultaneous algebraic reconstruction technique (SART), which reduces
+artifacts by incorporating a polyenergetic forward model, least-squares
+weighting, and superiorization. The penalty function used for superiorization
+is a weighted average between a total variation (TV) term and a term promoting
+similarity with the prior image, similar to penalty functions used in prior
+image constrained compressive sensing. Because the prior is largely free of
+severe metal artifacts, these artifacts are discouraged from arising during
+iterative reconstruction; additionally, because the iterative approach uses the
+original projection data, it is able to recover information that is lost during
+the NMAR process. We perform numerical experiments modeling a simple geometric
+object, as well as several more realistic scenarios such as metal pins,
+bilateral hip implants, and dental fillings placed within an anatomical
+phantom. The proposed iterative algorithm is largely successful at eliminating
+severe metal artifacts as well as secondary artifacts introduced by the NMAR
+process, especially lost edges of bone structures in the neighborhood of the
+metal regions.",2020-03-10T00:47:05Z,http://arxiv.org/abs/2003.04479v1,dental implant
