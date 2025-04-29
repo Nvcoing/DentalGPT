@@ -2,3 +2,5 @@
 * text=auto
 *.xlsx
 API Gemini.txt
+*.json
+*.csv
