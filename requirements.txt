@@ -7,3 +7,5 @@ accelerate
 xformers
 peft
 trl
+flask_cors
+pyngrok

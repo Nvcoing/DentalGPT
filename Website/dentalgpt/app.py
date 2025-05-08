@@ -1,24 +1,21 @@
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 from pyngrok import ngrok
-import random
+from transformers import AutoTokenizer, AutoModelForCausalLM
+import torch
 
 # Khởi tạo Flask app
 app = Flask(__name__)
 CORS(app)
 
-# Mở tunnel public với ngrok
+# Tạo ngrok public URL
 public_url = ngrok.connect(5000).public_url
 print("* Ngrok tunnel URL:", public_url)
 
-# Sample responses
-sample_responses = [
-    "Tôi có thể giúp gì cho vấn đề nha khoa của bạn?",
-    "Để chẩn đoán chính xác hơn, bạn có thể mô tả triệu chứng chi tiết hơn không?",
-    "Theo thông tin bạn cung cấp, có thể bạn đang gặp vấn đề về sâu răng. Bạn nên đến nha sĩ để kiểm tra cụ thể.",
-    "Đối với cơn đau răng tạm thời, bạn có thể súc miệng bằng nước muối ấm và dùng thuốc giảm đau không kê đơn như paracetamol.",
-    "Chi phí trám răng thường dao động từ 500.000đ đến 2.000.000đ tùy vào mức độ và loại vật liệu trám."
-]
+# Tải mô hình nhẹ từ Hugging Face
+model_name = "distilgpt2"
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+model = AutoModelForCausalLM.from_pretrained(model_name)
 
 @app.route('/')
 def index():
@@ -28,9 +25,25 @@ def index():
 def chat():
     data = request.get_json()
     user_message = data.get('message', '')
-    bot_response = random.choice(sample_responses)
+
+    # Tiền xử lý đầu vào
+    prompt = f"User: {user_message}\nBot:"
+    inputs = tokenizer.encode(prompt, return_tensors="pt")
+
+    # Sinh văn bản từ mô hình
+    outputs = model.generate(
+        inputs,
+        max_length=100,
+        do_sample=True,
+        top_k=50,
+        top_p=0.95,
+        temperature=0.8,
+        pad_token_id=tokenizer.eos_token_id
+    )
+    generated_text = tokenizer.decode(outputs[0], skip_special_tokens=True)
+    bot_response = generated_text.split("Bot:")[-1].strip()
+
     return jsonify({'response': bot_response})
 
 if __name__ == '__main__':
-    # Chạy Flask
     app.run()
