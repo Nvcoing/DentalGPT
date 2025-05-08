@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DentalGPT - Your AI Dental Assistant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        
+        .logo-container {
+            position: relative;
+        }
+        
+        .logo-icon {
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, #22d3ee, #3b82f6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .chat-container {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .message-input {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .message-input:focus {
+            box-shadow: 0 2px 15px rgba(59, 130, 246, 0.2);
+        }
+        
+        .send-btn {
+            transition: all 0.2s ease;
+        }
+        
+        .send-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .action-btn {
+            transition: all 0.2s ease;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .chat-bubble {
+            max-width: 80%;
+            border-radius: 18px;
+            padding: 12px 16px;
+            margin-bottom: 12px;
+            line-height: 1.5;
+            position: relative;
+        }
+        
+        .user-bubble {
+            background-color: #3b82f6;
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+        
+        .bot-bubble {
+            background-color: white;
+            color: #333;
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .typing-indicator span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: #9ca3af;
+            border-radius: 50%;
+            margin: 0 2px;
+            animation: bounce 1.4s infinite ease-in-out;
+        }
+        
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes bounce {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-5px); }
+        }
+        
+        .dropdown-enter {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        
+        .dropdown-enter-active {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.2s ease;
+        }
+        
+        .dropdown-exit {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .dropdown-exit-active {
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.2s ease;
+        }
+        
+        .mode-option:hover {
+            background-color: rgba(59, 130, 246, 0.1);
+        }
+        
+        .fullscreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            background-color: white;
+            padding: 0;
+            margin: 0;
+            border-radius: 0;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <div class="container mx-auto px-4 py-8 flex-1 flex flex-col max-w-6xl">
+        <!-- Header with Logo -->
+        <header class="flex items-center mb-8">
+            <div class="logo-container mr-4">
+                <div class="logo-icon">
+                    <i class="fas fa-tooth"></i>
+                </div>
+                <h1 class="text-2xl font-bold text-gray-800 ml-8">Dental<span class="text-blue-500">GPT</span></h1>
+            </div>
+            <div class="ml-auto flex space-x-4">
+                <button class="px-4 py-2 rounded-full bg-white text-gray-700 border border-gray-200 hover:bg-gray-50 transition">
+                    <i class="fas fa-question-circle mr-2"></i> Help
+                </button>
+                <button class="px-4 py-2 rounded-full bg-blue-500 text-white hover:bg-blue-600 transition">
+                    <i class="fas fa-user-md mr-2"></i> Dentist Connect
+                </button>
+            </div>
+        </header>
+        
+        <!-- Main Chat Container -->
+        <div id="chat-container" class="flex-1 flex flex-col bg-white rounded-xl shadow-lg overflow-hidden">
+            <!-- Welcome Message -->
+            <div class="p-6 bg-gradient-to-r from-blue-50 to-cyan-50">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-2">Bạn cần tư vấn gì về nha khoa hôm nay?</h2>
+                <p class="text-gray-600">Tôi là DentalGPT, trợ lý AI chuyên về nha khoa. Tôi có thể giúp bạn với:</p>
+                <div class="grid grid-cols-2 gap-3 mt-4">
+                    <div class="p-3 bg-white rounded-lg shadow-sm border border-gray-100">
+                        <i class="fas fa-tooth text-blue-500 mr-2"></i> Chẩn đoán sơ bộ
+                    </div>
+                    <div class="p-3 bg-white rounded-lg shadow-sm border border-gray-100">
+                        <i class="fas fa-calendar-check text-blue-500 mr-2"></i> Lịch hẹn nha khoa
+                    </div>
+                    <div class="p-3 bg-white rounded-lg shadow-sm border border-gray-100">
+                        <i class="fas fa-pills text-blue-500 mr-2"></i> Thuốc & điều trị
+                    </div>
+                    <div class="p-3 bg-white rounded-lg shadow-sm border border-gray-100">
+                        <i class="fas fa-dollar-sign text-blue-500 mr-2"></i> Chi phí & bảo hiểm
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Chat Messages Area -->
+            <div id="chat-messages" class="flex-1 p-6 overflow-y-auto space-y-4">
+                <!-- Sample conversation will be inserted here by JavaScript -->
+            </div>
+            
+            <!-- Input Area -->
+            <div class="p-4 border-t border-gray-100 bg-white">
+                <div class="flex items-center mb-3 space-x-2">
+                    <!-- Mode Selector -->
+                    <div class="relative">
+                        <button id="mode-toggle" class="flex items-center px-3 py-2 bg-gray-100 rounded-full text-sm font-medium text-gray-700 hover:bg-gray-200">
+                            <i class="fas fa-brain mr-2 text-blue-500"></i> Suy luận
+                            <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </button>
+                        <div id="mode-dropdown" class="hidden absolute bottom-full mb-2 left-0 w-48 bg-white rounded-lg shadow-lg z-10 border border-gray-200">
+                            <div class="mode-option p-3 cursor-pointer rounded-t-lg flex items-center">
+                                <i class="fas fa-brain mr-2 text-blue-500"></i> Suy luận
+                            </div>
+                            <div class="mode-option p-3 cursor-pointer flex items-center">
+                                <i class="fas fa-microscope mr-2 text-purple-500"></i> Suy luận sâu
+                            </div>
+                            <div class="mode-option p-3 cursor-pointer rounded-b-lg flex items-center">
+                                <i class="fas fa-user-md mr-2 text-green-500"></i> Agent
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <button class="action-btn p-2 rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button class="action-btn p-2 rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                    <button class="action-btn p-2 rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200">
+                        <i class="fas fa-image"></i>
+                    </button>
+                    <button class="action-btn p-2 rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200">
+                        <i class="fas fa-paperclip"></i>
+                    </button>
+                </div>
+                
+                <div class="flex items-center">
+                    <input 
+                        id="message-input" 
+                        type="text" 
+                        placeholder="Nhập câu hỏi về nha khoa của bạn..." 
+                        class="message-input flex-1 px-4 py-3 rounded-full border border-gray-200 focus:outline-none focus:border-blue-400"
+                    >
+                    <button id="send-btn" class="send-btn ml-3 p-3 bg-blue-500 text-white rounded-full hover:bg-blue-600">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+                <p class="text-xs text-gray-500 mt-2 text-center">DentalGPT có thể đưa ra những câu trả lời không chính xác. Luôn tham khảo ý kiến nha sĩ cho vấn đề y tế.</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="bg-white py-4 border-t border-gray-200">
+        <div class="container mx-auto px-4 text-center text-gray-500 text-sm">
+            <p>© 2023 DentalGPT. Không phải lời khuyên y tế. Để biết thêm thông tin, hãy tham khảo ý kiến nha sĩ.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mode selector dropdown
+            const modeToggle = document.getElementById('mode-toggle');
+            const modeDropdown = document.getElementById('mode-dropdown');
+            
+            modeToggle.addEventListener('click', function() {
+                modeDropdown.classList.toggle('hidden');
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!modeToggle.contains(event.target) && !modeDropdown.contains(event.target)) {
+                    modeDropdown.classList.add('hidden');
+                }
+            });
+            
+            // Chat functionality
+            const messageInput = document.getElementById('message-input');
+            const sendBtn = document.getElementById('send-btn');
+            const chatMessages = document.getElementById('chat-messages');
+            const chatContainer = document.getElementById('chat-container');
+            
+            function addMessage(content, isUser) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `flex ${isUser ? 'justify-end' : 'justify-start'}`;
+                
+                const bubble = document.createElement('div');
+                bubble.className = isUser ? 'chat-bubble user-bubble' : 'chat-bubble bot-bubble';
+                bubble.innerHTML = content;
+                
+                messageDiv.appendChild(bubble);
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+            
+            function showTypingIndicator() {
+                const typingDiv = document.createElement('div');
+                typingDiv.className = 'flex justify-start';
+                
+                const bubble = document.createElement('div');
+                bubble.className = 'chat-bubble bot-bubble';
+                bubble.id = 'typing-indicator';
+                bubble.innerHTML = '<div class="typing-indicator"><span></span><span></span><span></span></div>';
+                
+                typingDiv.appendChild(bubble);
+                chatMessages.appendChild(typingDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                
+                return typingDiv;
+            }
+            
+            function removeTypingIndicator() {
+                const indicator = document.getElementById('typing-indicator');
+                if (indicator) {
+                    indicator.parentElement.remove();
+                }
+            }
+            
+            // Sample responses
+            const sampleResponses = [
+                "Tôi có thể giúp gì cho vấn đề nha khoa của bạn?",
+                "Để chẩn đoán chính xác hơn, bạn có thể mô tả triệu chứng chi tiết hơn không?",
+                "Theo thông tin bạn cung cấp, có thể bạn đang gặp vấn đề về sâu răng. Bạn nên đến nha sĩ để kiểm tra cụ thể.",
+                "Đối với cơn đau răng tạm thời, bạn có thể súc miệng bằng nước muối ấm và dùng thuốc giảm đau không kê đơn như paracetamol.",
+                "Chi phí trám răng thường dao động từ 500.000đ đến 2.000.000đ tùy vào mức độ và loại vật liệu trám."
+            ];
+            
+            sendBtn.addEventListener('click', function() {
+                const message = messageInput.value.trim();
+                if (message) {
+                    // Add user message
+                    addMessage(message, true);
+                    messageInput.value = '';
+                    
+                    // Show typing indicator
+                    const typing = showTypingIndicator();
+                    
+                    // Enter fullscreen mode
+                    chatContainer.classList.add('fullscreen');
+                    document.querySelector('header').classList.add('hidden');
+                    document.querySelector('footer').classList.add('hidden');
+                    
+                    // Simulate bot response after delay
+                    setTimeout(function() {
+                        removeTypingIndicator();
+                        
+                        // Random sample response
+                        const randomResponse = sampleResponses[Math.floor(Math.random() * sampleResponses.length)];
+                        addMessage(randomResponse, false);
+                    }, 1500);
+                }
+            });
+            
+            messageInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendBtn.click();
+                }
+            });
+            
+            // Sample initial messages
+            setTimeout(function() {
+                addMessage("Xin chào! Tôi là DentalGPT, trợ lý AI chuyên về nha khoa. Tôi có thể giúp bạn với các vấn đề như đau răng, vệ sinh răng miệng, lịch hẹn nha khoa và nhiều hơn nữa. Bạn đang gặp vấn đề gì về răng miệng?", false);
+            }, 500);
+        });
+    </script>
+</body>
+</html>
