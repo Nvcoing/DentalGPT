@@ -1,14 +1,9 @@
-# load_dataset.py
-from datasets import load_dataset, Dataset
-import pandas as pd
+from datasets import load_dataset
+from datasets import Dataset
 
 def build_dataset(hf_repo: str = "NV9523/DentalGPT") -> Dataset:
-    """
-    Load dataset from HuggingFace and build prompts.
-    """
-    ds = load_dataset(hf_repo)['train']
+    ds = load_dataset(hf_repo, split="train")
 
-    # rename columns
     ds = ds.rename_columns({
         "Câu hỏi": "question",
         "CoT_Goal": "goal",
@@ -17,20 +12,19 @@ def build_dataset(hf_repo: str = "NV9523/DentalGPT") -> Dataset:
         "Câu trả lời": "answer"
     })
 
-    def create_prompt(row):
-        user_prompt = (
-            "<|Question|>\n"
-            f"Câu hỏi: {row['question']}\n"
-            "</|Question|>\n"
-            "<|Think|>\n"
-            f"Mục tiêu: {row['goal']}\n"
-            f"Bước suy nghĩ: {row['reasoning']}\n"
-            f"Giải thích: {row['justification']}\n"
-            "</|Think|>"
-        )
-        return f"{user_prompt}\n<|Answer|>\n{row['answer']}</|Answer|>"
+    def is_valid(example):
+        return all(example.get(k) for k in ['question', 'goal', 'reasoning', 'justification', 'answer'])
 
-    ds = ds.filter(lambda x: not any(v is None for v in x.values()))
-    ds = ds.map(lambda row: {'text': create_prompt(row)}, batched=False)
-    df = pd.DataFrame(ds)
-    return Dataset.from_pandas(df[['text']])
+    ds = ds.filter(is_valid)
+
+    def create_prompt_batch(batch):
+        return {
+            "text": [
+                f"<|Question|>\nCâu hỏi: {q}\n</|Question|>\n<|Think|>\nMục tiêu: {g}\nBước suy nghĩ: {r}\nGiải thích: {j}\n</|Think|>\n<|Answer|>\n{a}</|Answer|>"
+                for q, g, r, j, a in zip(batch['question'], batch['goal'], batch['reasoning'], batch['justification'], batch['answer'])
+            ]
+        }
+
+    ds = ds.map(create_prompt_batch, batched=True, batch_size=64)
+
+    return ds.remove_columns([col for col in ds.column_names if col != "text"])
