@@ -10,7 +10,7 @@ import os
 from load_model import load_model
 from load_dataset import build_dataset
 from sft_trainer import get_trainer
-from huggingface_hub import snapshot_download
+from huggingface_hub import snapshot_download, login
 
 
 def main():
@@ -22,6 +22,9 @@ def main():
     parser.add_argument("--hub_token", type=str, required=True)
     parser.add_argument("--resume_from_hf", action="store_true", help="Resume from latest checkpoint on HF Hub")
     args = parser.parse_args()
+
+    # Đăng nhập vào Hugging Face
+    login(token=args.hub_token)
 
     # Biến để lưu đường dẫn tải checkpoint từ HF
     repo_dir = None
@@ -61,3 +64,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
