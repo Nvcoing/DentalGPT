@@ -49,7 +49,7 @@ def main():
     # Nếu có đường dẫn repo (tải từ HF), thiết lập để resume từ checkpoint
     if repo_dir:
         checkpoint_dir = os.path.join(repo_dir, "checkpoint")
-        if os.path.exists(checkpoint_dir):
+        if os.path.isdir(checkpoint_dir):
             print(f"Found checkpoint folder at {checkpoint_dir}, resuming from there.")
             trainer.train(resume_from_checkpoint=checkpoint_dir)
         else:
