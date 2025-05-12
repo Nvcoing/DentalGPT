@@ -11,8 +11,7 @@ from load_model import load_model
 from load_dataset import build_dataset
 from sft_trainer import get_trainer
 from huggingface_hub import snapshot_download, login
-import torch
-import numpy as np
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -55,7 +54,6 @@ def main():
         checkpoint_dir = os.path.join(repo_dir, "checkpoint")
         if os.path.isdir(checkpoint_dir):
             print(f"Found checkpoint folder at {checkpoint_dir}, resuming from there.")
-            torch.serialization.add_safe_globals([np.core.multiarray._reconstruct])
             trainer.train(resume_from_checkpoint=checkpoint_dir)
         else:
             print(f"No checkpoint found at {checkpoint_dir}. Starting training from scratch.")
