@@ -29,7 +29,7 @@ def get_trainer(model, tokenizer, train_dataset,
                 per_device_train_batch_size: int = 4,
                 gradient_accumulation_steps: int = 2,
                 max_seq_length: int = 512,
-                save_steps: int = 200,
+                save_steps: int = 100,
                 output_dir: str = "DentalGPT_SFT",
                 hub_model_id: str = "NV9523/DentalGPT_SFT",
                 hub_token: str = None,
@@ -58,8 +58,7 @@ def get_trainer(model, tokenizer, train_dataset,
         report_to="none",
         dataloader_num_workers=2
     )
-    # checkpoint_dir = os.path.join(output_dir, f"checkpoint-{save_steps}")
-    checkpoint_dir = os.path.join(output_dir, f"checkpoint")
+    checkpoint_dir = os.path.join(output_dir, f"checkpoint-{save_steps}")
     callbacks = [
         UploadCheckpointCallback(
             checkpoint_dir=checkpoint_dir,
