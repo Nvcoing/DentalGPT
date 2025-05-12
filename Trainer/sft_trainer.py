@@ -1,9 +1,9 @@
-# sft_trainer.py
 from trl import SFTTrainer
 from transformers import TrainingArguments, TrainerCallback
 from unsloth import is_bfloat16_supported
 from huggingface_hub import HfApi
 import os
+
 
 class UploadCheckpointCallback(TrainerCallback):
     def __init__(self, checkpoint_dir: str, repo_id: str, token: str):
@@ -13,7 +13,7 @@ class UploadCheckpointCallback(TrainerCallback):
         self.api = HfApi()
 
     def on_save(self, args, state, control, **kwargs):
-        print(f"Uploading checkpoint from {self.checkpoint_dir} to {self.repo_id}")
+        print(f"[Callback] Uploading checkpoint from {self.checkpoint_dir} to {self.repo_id}")
         self.api.upload_folder(
             repo_id=self.repo_id,
             folder_path=self.checkpoint_dir,
@@ -23,18 +23,19 @@ class UploadCheckpointCallback(TrainerCallback):
         )
         return control
 
+
 def get_trainer(model, tokenizer, train_dataset,
                 epoch: int = 20,
                 per_device_train_batch_size: int = 4,
                 gradient_accumulation_steps: int = 2,
                 max_seq_length: int = 512,
-                save_steps: int = 100,
+                save_steps: int = 150,
                 output_dir: str = "DentalGPT_SFT",
                 hub_model_id: str = "NV9523/DentalGPT_SFT",
-                hub_token: str = None):
+                hub_token: str = None,
+                resume_checkpoint_path: str = None):
 
-    total_steps = int(len(train_dataset) * epoch /
-                      (per_device_train_batch_size * gradient_accumulation_steps))
+    total_steps = int(len(train_dataset) * epoch / (per_device_train_batch_size * gradient_accumulation_steps))
 
     args = TrainingArguments(
         per_device_train_batch_size=per_device_train_batch_size,
@@ -53,10 +54,19 @@ def get_trainer(model, tokenizer, train_dataset,
         lr_scheduler_type="linear",
         seed=42,
         output_dir=output_dir,
-        push_to_hub=False,  # <-- turn off auto push
+        push_to_hub=False,
         report_to="none",
         dataloader_num_workers=2
     )
+
+    checkpoint_dir = os.path.join(output_dir, f"checkpoint-{save_steps}")
+    callbacks = [
+        UploadCheckpointCallback(
+            checkpoint_dir=checkpoint_dir,
+            repo_id=hub_model_id,
+            token=hub_token
+        )
+    ]
 
     trainer = SFTTrainer(
         model=model,
@@ -67,12 +77,7 @@ def get_trainer(model, tokenizer, train_dataset,
         dataset_num_proc=2,
         packing=True,
         args=args,
-        callbacks=[
-            UploadCheckpointCallback(
-                checkpoint_dir=os.path.join(output_dir, f"checkpoint-{save_steps}"),
-                repo_id=hub_model_id,
-                token=hub_token
-            )
-        ]
+        callbacks=callbacks,
     )
+
     return trainer
