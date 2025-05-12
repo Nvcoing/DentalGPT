@@ -58,8 +58,8 @@ def get_trainer(model, tokenizer, train_dataset,
         report_to="none",
         dataloader_num_workers=2
     )
-
-    checkpoint_dir = os.path.join(output_dir, f"checkpoint-{save_steps}")
+    # checkpoint_dir = os.path.join(output_dir, f"checkpoint-{save_steps}")
+    checkpoint_dir = os.path.join(output_dir, f"checkpoint")
     callbacks = [
         UploadCheckpointCallback(
             checkpoint_dir=checkpoint_dir,
