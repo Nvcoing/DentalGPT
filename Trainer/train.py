@@ -45,8 +45,6 @@ def main():
     model, tokenizer = load_model(model_name=args.model_name)
     train_ds = build_dataset(hf_repo=args.hf_repo_dataset)
 
-    torch.serialization.add_safe_globals([np.core.multiarray._reconstruct])
-
     # Get trainer
     trainer = get_trainer(model, tokenizer, train_ds,
                           hub_token=args.hub_token,
@@ -57,6 +55,7 @@ def main():
         checkpoint_dir = os.path.join(repo_dir, "checkpoint")
         if os.path.isdir(checkpoint_dir):
             print(f"Found checkpoint folder at {checkpoint_dir}, resuming from there.")
+            torch.serialization.add_safe_globals([np.core.multiarray._reconstruct])
             trainer.train(resume_from_checkpoint=checkpoint_dir)
         else:
             print(f"No checkpoint found at {checkpoint_dir}. Starting training from scratch.")
