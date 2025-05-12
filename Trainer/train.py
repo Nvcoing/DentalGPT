@@ -11,7 +11,8 @@ from load_model import load_model
 from load_dataset import build_dataset
 from sft_trainer import get_trainer
 from huggingface_hub import snapshot_download, login
-
+import torch
+import numpy as np
 
 def main():
     parser = argparse.ArgumentParser()
@@ -43,6 +44,8 @@ def main():
     # Load model & data
     model, tokenizer = load_model(model_name=args.model_name)
     train_ds = build_dataset(hf_repo=args.hf_repo_dataset)
+
+    torch.serialization.add_safe_globals([np.core.multiarray._reconstruct])
 
     # Get trainer
     trainer = get_trainer(model, tokenizer, train_ds,
