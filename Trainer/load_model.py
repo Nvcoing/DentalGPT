@@ -11,7 +11,7 @@ MODEL_NAME = "deepseek-ai/DeepSeek-R1-Distill-Llama-8B"
 model, tokenizer = FastLanguageModel.from_pretrained(
     model_name=MODEL_NAME,
     max_seq_length=MAX_SEQ,
-    dtype=DTYPE,
+    dtype=dTYPE,
     load_in_4bit=LOAD_4BIT
 )
 
