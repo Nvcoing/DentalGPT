@@ -1,30 +1,40 @@
-from unsloth import FastLanguageModel
 import torch
+from unsloth import FastLanguageModel, is_bfloat16_supported
 
-def load_model(model_name: str = "deepseek-ai/DeepSeek-R1-Distill-Llama-8B",
-               max_seq_length: int = 512,
-               dtype=None,
-               load_in_4bit: bool = True):
-    """
-    Load pretrained model and tokenizer with given settings.
-    """
-    model, tokenizer = FastLanguageModel.from_pretrained(
-        model_name=model_name,
-        max_seq_length=max_seq_length,
-        dtype=dtype,
-        load_in_4bit=load_in_4bit
-    )
+# cấu hình chung
+MAX_SEQ = 512
+dTYPE = None  # auto detect
+LOAD_4BIT = True
+MODEL_NAME = "deepseek-ai/DeepSeek-R1-Distill-Llama-8B"
 
-    # Gắn LoRA Adapter tại đây
-    model = FastLanguageModel.get_peft_model(
-        model,
-        r=64,
-        target_modules=["q_proj", "k_proj", "v_proj", "o_proj",
-                        "gate_proj", "up_proj", "down_proj"],
-        lora_alpha=128,
-        lora_dropout=0,
-        bias="none",
-        use_gradient_checkpointing="unsloth",
-    )
+# tải base model và tokenizer
+model, tokenizer = FastLanguageModel.from_pretrained(
+    model_name=MODEL_NAME,
+    max_seq_length=MAX_SEQ,
+    dtype=DTYPE,
+    load_in_4bit=LOAD_4BIT
+)
 
-    return model, tokenizer
+# thiết lập LoRA
+PEFT_MODEL = FastLanguageModel.get_peft_model(
+    model,
+    r=64,
+    target_modules=[
+        "q_proj","k_proj","v_proj","o_proj",
+        "gate_proj","up_proj","down_proj"
+    ],
+    lora_alpha=128,
+    lora_dropout=0.0,
+    bias="none",
+    use_gradient_checkpointing="unsloth"
+)
+
+# in thông tin tham số
+trainable = sum(p.numel() for p in PEFT_MODEL.parameters() if p.requires_grad)
+total = sum(p.numel() for p in PEFT_MODEL.parameters())
+print(f"trainable params: {trainable}")
+print(f"total params: {total}")
+print(f"percent  trainable: {100*trainable/total:.4f}%")
+
+# expose
+model = PEFT_MODEL
