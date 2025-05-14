@@ -26,16 +26,16 @@ class CheckpointPush(TrainerCallback):
 def get_trainer(model, tokenizer, dataset, repo_id, token):
     args = TrainingArguments(
         output_dir="DentalGPT_SFT",
-        per_device_train_batch_size=4*3,
-        gradient_accumulation_steps=2*3,
+        per_device_train_batch_size=4*4,
+        gradient_accumulation_steps=2*4,
         warmup_steps=250,
         max_steps=None,  # tính sau
         learning_rate=2e-4,
         fp16=not is_bfloat16_supported(),
         bf16=is_bfloat16_supported(),
-        logging_steps=100,
+        logging_steps=50,
         save_strategy="steps",
-        save_steps=100,
+        save_steps=50,
         save_total_limit=1,
         optim="adamw_8bit",
         weight_decay=0.01,
@@ -45,7 +45,7 @@ def get_trainer(model, tokenizer, dataset, repo_id, token):
         dataloader_num_workers=4
     )
     # tính max_steps dựa vào dataset và epochs
-    epochs = 2
+    epochs = 1
     steps = int(len(dataset) * epochs / (args.per_device_train_batch_size * args.gradient_accumulation_steps))
     args.max_steps = steps
 
