@@ -42,7 +42,7 @@ def get_trainer(model, tokenizer, dataset, repo_id, token):
         lr_scheduler_type="linear",
         seed=42,
         report_to="none",
-        dataloader_num_workers=2
+        dataloader_num_workers=4
     )
     # tính max_steps dựa vào dataset và epochs
     epochs = 2
