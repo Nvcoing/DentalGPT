@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 import requests
 import google.generativeai as genai
 
-# Cấu hình Gemini
+# Cấu hình Gemini 
 genai.configure(api_key="AIzaSyApEktQbsw89BGSmTCRspL4xIm0UcBKo4Y")
 model = genai.GenerativeModel("models/gemini-1.5-flash-latest")
 
