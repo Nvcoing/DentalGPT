@@ -3,6 +3,7 @@ from huggingface_hub import snapshot_download
 from load_dataset import build_dataset
 from load_model import model, tokenizer
 from sft_trainer import get_trainer
+import torch
 
 def find_checkpoint(local_dir: str):
     for root, dirs, _ in os.walk(local_dir):
@@ -24,6 +25,15 @@ if __name__ == '__main__':
 
     if ckpt:
         print('resuming from', ckpt)
+        # Patch the Trainer's _load_rng_state method to use weights_only=False
+        original_load_rng_state = trainer._load_rng_state
+        def patched_load_rng_state(checkpoint):
+            rng_file = os.path.join(checkpoint, "rng_state.pth")
+            if os.path.isfile(rng_file):
+                return torch.load(rng_file, weights_only=False)
+            return None
+        trainer._load_rng_state = patched_load_rng_state
+        
         trainer.train(resume_from_checkpoint=ckpt)
     else:
         trainer.train()
