@@ -10,10 +10,10 @@ LOAD_4BIT = True
 MODEL_NAME = "deepseek-ai/DeepSeek-R1-Distill-Llama-8B"
 
 # Định nghĩa token đặc biệt
-special_tokens = [
-    "<|Paitent|>", "<|Goal|>", "<|Step_Reasoning|>",
-    "<|Explain|>", "<|DentalGPT|>", 
-]
+# special_tokens = [
+#     "<|Paitent|>", "<|Goal|>", "<|Step_Reasoning|>",
+#     "<|Explain|>", "<|DentalGPT|>", 
+# ]
 
 # Tải model và tokenizer
 model, tokenizer = FastLanguageModel.from_pretrained(
@@ -23,11 +23,11 @@ model, tokenizer = FastLanguageModel.from_pretrained(
     load_in_4bit=LOAD_4BIT
 )
 
-# Thêm token đặc biệt vào tokenizer
-tokenizer.add_special_tokens({"additional_special_tokens": special_tokens})
+# # Thêm token đặc biệt vào tokenizer
+# tokenizer.add_special_tokens({"additional_special_tokens": special_tokens})
 
-# Resize embedding cho model (bắt buộc sau khi thêm token)
-model.resize_token_embeddings(len(tokenizer))
+# # Resize embedding cho model (bắt buộc sau khi thêm token)
+# model.resize_token_embeddings(len(tokenizer))
 
 # Thiết lập LoRA
 PEFT_MODEL = FastLanguageModel.get_peft_model(
