@@ -7,7 +7,7 @@ from unsloth import FastLanguageModel, is_bfloat16_supported
 MAX_SEQ = 512
 dTYPE = None  # auto detect
 LOAD_4BIT = True
-MODEL_NAME = "deepseek-ai/DeepSeek-R1-Distill-Llama-8B"
+MODEL_NAME = "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"
 
 # Định nghĩa token đặc biệt
 special_tokens = [
