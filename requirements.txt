@@ -12,3 +12,4 @@ datasets
 huggingface_hub
 hf_transfer
 unsloth
+protobuf==3.20.3
