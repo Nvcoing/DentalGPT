@@ -24,6 +24,12 @@ class CheckpointPush(TrainerCallback):
 
 
 def get_trainer(model, tokenizer, dataset, repo_id, token):
+    # tính max_steps dựa vào dataset và epochs
+    epochs = 1
+    nn_bact_size=2
+    SAVE=200/nn_bact_size
+    steps = int(len(dataset) * epochs / (args.per_device_train_batch_size * args.gradient_accumulation_steps))
+    args.max_steps = steps
     args = TrainingArguments(
         output_dir="DentalGPT_SFT",
         per_device_train_batch_size=4*nn_bact_size,
@@ -44,12 +50,6 @@ def get_trainer(model, tokenizer, dataset, repo_id, token):
         report_to="none",
         dataloader_num_workers=4
     )
-    # tính max_steps dựa vào dataset và epochs
-    epochs = 1
-    nn_bact_size=2
-    SAVE=200/nn_bact_size
-    steps = int(len(dataset) * epochs / (args.per_device_train_batch_size * args.gradient_accumulation_steps))
-    args.max_steps = steps
 
     trainer = SFTTrainer(
         model=model,
