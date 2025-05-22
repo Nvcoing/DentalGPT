@@ -16,35 +16,34 @@ def build_dataset(hf_repo: str = "NV9523/DentalGPT_SFT", filename: str = "Dental
     # Lọc bỏ các hàng thiếu thông tin
     def is_valid(x):
         return all(x.get(k) for k in ['question', 'goal', 'reasoning', 'justification', 'answer'])
+
     ds = ds.filter(is_valid)
 
-    # Tạo chat records theo format template
-    def make_chat_records(batch):
-        records = []
+    # Hàm tạo prompt theo định dạng mới
+    def create_prompt(batch):
+        prompts = []
         for q, g, r, j, a in zip(batch['question'], batch['goal'], batch['reasoning'], batch['justification'], batch['answer']):
-            messages = [
-                {"role": "system", "content": "Bạn là trợ lý nha khoa thông minh. Trước khi trả lời, hãy trình bày suy luận đầy đủ."},
-                {"role": "user", "content": q.strip()},
-                {"role": "assistant", "content": (
-                    "Hãy cùng diễn giải từng bước nào!🤔\n"
-                    "<reasoning_cot>\n"
-                    "# 🧠 Suy luận của DentalGPT\n"
-                    f"## 1️⃣ Mục tiêu 📌\n{g.strip()}\n"
-                    f"## 2️⃣ Bước suy nghĩ ⚙️\n{r.strip()}\n"
-                    f"## 3️⃣ Giải thích 📝\n{j.strip()}\n"
-                    "</reasoning_cot>\n"
-                    "<answer>\n"
-                    f"# 💬 Câu trả lời\n{a.strip()}\n"
-                    "</answer>"
-                )}
-            ]
-            records.append({"messages": messages})
-        return {"messages": records}
+            prompt = (
+                "<｜user｜>\n"
+                f"###Câu hỏi:\n {q.strip()}\n"
+                "<|think|>\n"
+                "Hãy cùng diễn giải từng bước nào!🤔\n"
+                "<reasoning_cot>\n"
+                "# 🧠 Suy luận của DentalGPT\n"
+                f"## 1️⃣ Mục tiêu 📌\n{g.strip()}\n"
+                f"## 2️⃣ Bước suy nghĩ ⚙️\n{r.strip()}\n"
+                f"## 3️⃣ Giải thích 📝\n{j.strip()}\n"
+                "</reasoning_cot>\n"
+                "<|assistant|>\n"
+                "<answer>\n"
+                f"# 💬 Câu trả lời\n{a.strip()}\n"
+                "</answer>"
+            )
+            prompts.append(prompt)
+        return {"text": prompts}
 
-    ds = ds.map(make_chat_records, batched=True, batch_size=64, remove_columns=ds.column_names)
+    # Tạo cột 'text'
+    ds = ds.map(create_prompt, batched=True, batch_size=64)
 
-    # ds bây giờ có cột "messages" chứa list of dict như mẫu, đổi dạng Dataset.from_list nếu cần:
-    # Nhưng map giữ nguyên định dạng Dataset, có thể flatten cột messages nếu muốn
-    # hoặc giữ nguyên để dùng trực tiếp với chat template tokenizer
-
-    return ds
+    # Chỉ giữ lại cột 'text' trong dataset
+    return ds.remove_columns([col for col in ds.column_names if col != "text"])

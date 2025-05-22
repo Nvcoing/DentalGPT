@@ -53,7 +53,7 @@ def get_trainer(model, tokenizer, dataset, repo_id, token):
         model=model,
         tokenizer=tokenizer,
         train_dataset=dataset,
-        dataset_text_field="messages",
+        dataset_text_field="text",
         max_seq_length=512,
         packing=True,
         args=args,
