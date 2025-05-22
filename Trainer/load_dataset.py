@@ -24,6 +24,7 @@ def build_dataset(hf_repo: str = "NV9523/DentalGPT_SFT", filename: str = "Dental
         prompts = []
         for q, g, r, j, a in zip(batch['question'], batch['goal'], batch['reasoning'], batch['justification'], batch['answer']):
             prompt = (
+                "<｜begin▁of▁sentence｜>"
                 "<｜user｜>\n"
                 f"###Câu hỏi:\n {q.strip()}\n"
                 "<|think|>\n"
@@ -38,6 +39,7 @@ def build_dataset(hf_repo: str = "NV9523/DentalGPT_SFT", filename: str = "Dental
                 "<answer>\n"
                 f"# 💬 Câu trả lời\n{a.strip()}\n"
                 "</answer>"
+                "<｜end▁of▁sentence｜>"
             )
             prompts.append(prompt)
         return {"text": prompts}
