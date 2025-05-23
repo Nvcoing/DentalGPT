@@ -6,6 +6,7 @@ def build_dataset(hf_repo: str = "NV9523/DentalGPT_SFT", filename: str = "Dental
 
     # Đổi tên cột theo chuẩn
     ds = ds.rename_columns({
+        "Instruction":"instruction",
         "Câu hỏi": "question",
         "CoT_Goal": "goal",
         "CoT_Reasoning": "reasoning",
@@ -15,16 +16,18 @@ def build_dataset(hf_repo: str = "NV9523/DentalGPT_SFT", filename: str = "Dental
 
     # Lọc bỏ các hàng thiếu thông tin
     def is_valid(x):
-        return all(x.get(k) for k in ['question', 'goal', 'reasoning', 'justification', 'answer'])
+        return all(x.get(k) for k in ['instruction','question', 'goal', 'reasoning', 'justification', 'answer'])
 
     ds = ds.filter(is_valid)
 
     # Hàm tạo prompt theo định dạng mới
     def create_prompt(batch):
         prompts = []
-        for q, g, r, j, a in zip(batch['question'], batch['goal'], batch['reasoning'], batch['justification'], batch['answer']):
+        for i,q, g, r, j, a in zip(batch['instruction'],batch['question'], batch['goal'], batch['reasoning'], batch['justification'], batch['answer']):
             prompt = (
                 "<｜begin▁of▁sentence｜>"
+                "<|system|>\n"
+                f"###Hướng dẫn: {i.strip()}\n"
                 "<｜user｜>\n"
                 f"###Câu hỏi:\n {q.strip()}\n"
                 "<|think|>\n"
