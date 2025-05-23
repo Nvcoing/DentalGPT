@@ -4,7 +4,7 @@ from unsloth import FastLanguageModel, is_bfloat16_supported
 # deepseek-ai/DeepSeek-R1-Distill-Llama-8B for DentalGPTmedium
 # deepseek-ai/DeepSeek-R1-Distill-Qwen-7B for DentalGPTlarge
 # Cấu hình chung
-MAX_SEQ = 512
+MAX_SEQ = 2048
 dTYPE = None  # auto detect
 LOAD_4BIT = True
 MODEL_NAME = "deepseek-ai/DeepSeek-R1-Distill-Llama-8B"
