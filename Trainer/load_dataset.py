@@ -3,7 +3,6 @@ from datasets import load_dataset, Dataset
 def build_dataset(hf_repo: str = "NV9523/DentalGPT_SFT") -> Dataset:
     # Load dataset từ HuggingFace Hub
     ds = load_dataset(hf_repo, split="train")
-
     # Đổi tên cột theo chuẩn
     ds = ds.rename_columns({
         "Instruction":"instruction",
