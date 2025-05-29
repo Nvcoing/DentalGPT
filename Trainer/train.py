@@ -1,4 +1,5 @@
 import os
+import argparse
 from huggingface_hub import snapshot_download
 from load_dataset import build_dataset
 from load_model import model, tokenizer
@@ -12,19 +13,34 @@ def find_checkpoint(local_dir: str):
                 return os.path.join(root, d)
     return None
 
-if __name__ == '__main__':
-    HF_TOKEN = os.getenv('HF_TOKEN')
-    REPO = 'NV9523/DentalGPT_SFT'
+def parse_args():
+    parser = argparse.ArgumentParser(description='Train DentalGPT model')
+    parser.add_argument('--hf_token', type=str, required=True, help='HuggingFace access token')
+    parser.add_argument('--wandb_key', type=str, required=True, help='Weights & Biases API key')
+    parser.add_argument('--repo', type=str, default='NV9523/DentalGPT_SFT', help='HuggingFace repository ID')
+    parser.add_argument('--eval_samples', type=int, default=10, help='Number of samples per group for evaluation')
+    return parser.parse_args()
 
+if __name__ == '__main__':
+    args = parse_args()
+    
     # clone once
-    local = snapshot_download(repo_id=REPO)
+    local = snapshot_download(repo_id=args.repo, token=args.hf_token)
     ckpt = find_checkpoint(local)
 
-    ds = build_dataset()
-    trainer = get_trainer(model, tokenizer, ds, REPO, HF_TOKEN)
+    train_ds, eval_ds = build_dataset(args.repo)
+    trainer = get_trainer(
+        model=model,
+        tokenizer=tokenizer,
+        train_dataset=train_ds,
+        eval_dataset=eval_ds,
+        repo_id=args.repo,
+        hf_token=args.hf_token,
+        wandb_key=args.wandb_key
+    )
 
     if ckpt:
-        print('resuming from', ckpt)
+        print('Resuming from checkpoint:', ckpt)
         # Patch the Trainer's _load_rng_state method to use weights_only=False
         original_load_rng_state = trainer._load_rng_state
         def patched_load_rng_state(checkpoint):
@@ -38,6 +54,6 @@ if __name__ == '__main__':
     else:
         trainer.train()
 
-    # lưu và push cuối
-    model.push_to_hub(REPO, use_temp_dir=False)
-    tokenizer.push_to_hub(REPO, use_temp_dir=False)
+    # Save and push final model
+    model.push_to_hub(args.repo, use_temp_dir=False, token=args.hf_token)
+    tokenizer.push_to_hub(args.repo, use_temp_dir=False, token=args.hf_token)
