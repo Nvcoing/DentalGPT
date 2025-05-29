@@ -35,17 +35,17 @@ def get_trainer(model, tokenizer, train_dataset, eval_dataset, repo_id, token, w
     
     args = TrainingArguments(
         output_dir="DentalGPT_SFT",
-        per_device_train_batch_size=4*5,
-        gradient_accumulation_steps=2*5,
+        per_device_train_batch_size=4*4,
+        gradient_accumulation_steps=2*4,
         warmup_steps=250,
         max_steps=None,  # tính sau
         learning_rate=2e-4,
         fp16=not is_bfloat16_supported(),
         bf16=is_bfloat16_supported(),
-        logging_steps=100/(5*5),
-        eval_steps=200/(5*5) if eval_dataset else None,
+        logging_steps=100/(4*4),
+        eval_steps=100/(4*4) if eval_dataset else None,
         save_strategy="steps",
-        save_steps=200/(5*5),
+        save_steps=200/(4*4),
         save_total_limit=1,
         optim="adamw_8bit",
         weight_decay=0.01,
