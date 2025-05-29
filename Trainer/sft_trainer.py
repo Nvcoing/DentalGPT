@@ -43,7 +43,6 @@ def get_trainer(model, tokenizer, train_dataset, eval_dataset, repo_id, token, w
         fp16=not is_bfloat16_supported(),
         bf16=is_bfloat16_supported(),
         logging_steps=100/(5*5),
-        evaluation_strategy="steps" if eval_dataset else "no",
         eval_steps=200/(5*5) if eval_dataset else None,
         save_strategy="steps",
         save_steps=200/(5*5),
