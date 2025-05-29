@@ -1,9 +1,9 @@
 import os
+import wandb
 from transformers import TrainingArguments, TrainerCallback
 from trl import SFTTrainer
 from huggingface_hub import upload_folder
 from unsloth import is_bfloat16_supported
-import wandb
 
 class CheckpointPush(TrainerCallback):
     def __init__(self, repo_id: str, token: str, save_steps: int):
@@ -23,46 +23,55 @@ class CheckpointPush(TrainerCallback):
             print(f"pushed checkpoint-{state.global_step}")
         return control
 
-
 def get_trainer(model, tokenizer, train_dataset, eval_dataset, repo_id, token, wandb_key=None):
-    # Initialize WANDB nếu có key
     if wandb_key:
         os.environ["WANDB_API_KEY"] = wandb_key
-        os.environ["WANDB_MODE"] = "offline"
-        wandb.init(project="DentalGPT", name=f"{repo_id.split('/')[-1]}")
+        os.environ["WANDB_MODE"] = "online"
+        
+        wandb.init(
+            project="DentalGPT",
+            name=f"{repo_id.split('/')[-1]}",
+            settings=wandb.Settings(
+                save_code=False,         # không log code project
+                _disable_stats=True      # không log CPU, GPU, RAM,...
+            )
+        )
         report_to = "wandb"
     else:
         report_to = "none"
-    
+
     args = TrainingArguments(
         output_dir="DentalGPT_SFT",
         per_device_train_batch_size=4*2,
         gradient_accumulation_steps=2*2,
         warmup_steps=250,
-        max_steps=None,  # tính sau
+        max_steps=None,
         learning_rate=2e-4,
         fp16=not is_bfloat16_supported(),
         bf16=is_bfloat16_supported(),
         logging_steps=int(100 / (4 * 4)),
-        eval_steps=100/(4*4) if eval_dataset else None,
+        eval_steps=int(100 / (4 * 4)) if eval_dataset else None,
         save_strategy="steps",
-        save_steps=int(200/(4*4)),
+        save_steps=int(1600 / (4 * 4)),
         save_total_limit=1,
         optim="adamw_8bit",
         weight_decay=0.01,
         lr_scheduler_type="linear",
         seed=42,
         report_to=report_to,
-        dataloader_num_workers=4
+        dataloader_num_workers=4,
+        save_on_each_node=False,
+        logging_dir=None  # không lưu log tensorboard vào ổ đĩa
     )
-    
-    # tính max_steps dựa vào dataset và epochs
+
+    # Tính lại max_steps và logging/save_steps
     epochs = 2
     steps = int(len(train_dataset) * epochs / (args.per_device_train_batch_size * args.gradient_accumulation_steps))
     batch_size = args.per_device_train_batch_size * args.gradient_accumulation_steps
     args.max_steps = steps
     args.logging_steps = int(800 / batch_size)
     args.save_steps = int(1600 / batch_size)
+
     trainer = SFTTrainer(
         model=model,
         tokenizer=tokenizer,
