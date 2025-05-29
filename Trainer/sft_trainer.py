@@ -45,7 +45,7 @@ def get_trainer(model, tokenizer, train_dataset, eval_dataset, repo_id, token, w
         logging_steps=int(100 / (4 * 4)),
         eval_steps=100/(4*4) if eval_dataset else None,
         save_strategy="steps",
-        save_steps=200/(4*4),
+        save_steps=int(200/(4*4)),
         save_total_limit=1,
         optim="adamw_8bit",
         weight_decay=0.01,
