@@ -3,18 +3,8 @@ import pandas as pd
 
 def build_dataset(hf_repo: str = "NV9523/DentalGPT_SFT"):
     # Load dataset từ HuggingFace Hub
-    ds = load_dataset(hf_repo, split="train")
-    
-    # Convert to pandas DataFrame để xử lý
-    df = ds.to_pandas()
-    
-    # Tạo eval_ds bằng cách lấy 100 mẫu mỗi nhóm
-    eval_ds = df.groupby(['label1', 'label2', 'label3']).head(100).reset_index(drop=True)
-    train_ds = df[~df.index.isin(eval_ds.index)]
-    
-    # Chuyển lại sang Dataset
-    train_ds = Dataset.from_pandas(train_ds)
-    eval_ds = Dataset.from_pandas(eval_ds)
+    train_ds = load_dataset(hf_repo, split="train")
+    eval_ds = load_dataset(hf_repo, split="validation")
     
     # Đổi tên cột theo chuẩn
     def rename_columns(ds):
