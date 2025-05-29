@@ -28,6 +28,7 @@ def get_trainer(model, tokenizer, train_dataset, eval_dataset, repo_id, token, w
     # Initialize WANDB nếu có key
     if wandb_key:
         os.environ["WANDB_API_KEY"] = wandb_key
+        os.environ["WANDB_MODE"] = "offline"
         wandb.init(project="DentalGPT", name=f"{repo_id.split('/')[-1]}")
         report_to = "wandb"
     else:
@@ -35,8 +36,8 @@ def get_trainer(model, tokenizer, train_dataset, eval_dataset, repo_id, token, w
     
     args = TrainingArguments(
         output_dir="DentalGPT_SFT",
-        per_device_train_batch_size=4*4,
-        gradient_accumulation_steps=2*4,
+        per_device_train_batch_size=4*2,
+        gradient_accumulation_steps=2*2,
         warmup_steps=250,
         max_steps=None,  # tính sau
         learning_rate=2e-4,
@@ -68,7 +69,7 @@ def get_trainer(model, tokenizer, train_dataset, eval_dataset, repo_id, token, w
         train_dataset=train_dataset,
         eval_dataset=eval_dataset,
         dataset_text_field="text",
-        max_seq_length=2048,
+        max_seq_length=1024,
         packing=True,
         args=args,
         dataset_num_proc=2,
