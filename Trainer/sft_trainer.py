@@ -6,9 +6,9 @@ from unsloth import is_bfloat16_supported
 import wandb
 
 class CheckpointPush(TrainerCallback):
-    def __init__(self, repo_id: str, hf_token: str, save_steps: int):
+    def __init__(self, repo_id: str, token: str, save_steps: int):
         self.repo_id = repo_id
-        self.hf_token = hf_token
+        self.token = token
         self.save_steps = save_steps
 
     def on_save(self, args, state, control, **kwargs):
@@ -17,53 +17,49 @@ class CheckpointPush(TrainerCallback):
             upload_folder(
                 folder_path=ckpt,
                 repo_id=self.repo_id,
-                token=self.hf_token,
+                token=self.token,
                 path_in_repo=f"checkpoint-{state.global_step}"
             )
-            print(f"Pushed checkpoint-{state.global_step} to HuggingFace Hub")
+            print(f"pushed checkpoint-{state.global_step}")
         return control
 
 
-def get_trainer(model, tokenizer, train_dataset, eval_dataset, repo_id, hf_token, wandb_key):
-    # Initialize WANDB
-    wandb.login(key=wandb_key)
-    wandb.init(
-        project="DentalGPT",
-        name=repo_id.split('/')[-1],
-        config={
-            "model": repo_id,
-            "learning_rate": 2e-4,
-            "architecture": "LLM Fine-tuning",
-            "dataset": "DentalGPT_SFT"
-        }
-    )
+def get_trainer(model, tokenizer, train_dataset, eval_dataset, repo_id, token, wandb_key=None):
+    # Initialize WANDB nếu có key
+    if wandb_key:
+        os.environ["WANDB_API_KEY"] = wandb_key
+        wandb.init(project="DentalGPT", name=f"{repo_id.split('/')[-1]}")
+        report_to = "wandb"
+    else:
+        report_to = "none"
     
     args = TrainingArguments(
         output_dir="DentalGPT_SFT",
-        per_device_train_batch_size=4,
-        per_device_eval_batch_size=4,
-        gradient_accumulation_steps=2,
-        warmup_steps=50,
-        max_steps=1000,
+        per_device_train_batch_size=4*5,
+        gradient_accumulation_steps=2*5,
+        warmup_steps=250,
+        max_steps=None,  # tính sau
         learning_rate=2e-4,
         fp16=not is_bfloat16_supported(),
         bf16=is_bfloat16_supported(),
-        logging_steps=10,
-        evaluation_strategy="steps",
-        eval_steps=50,
+        logging_steps=100/(5*5),
+        evaluation_strategy="steps" if eval_dataset else "no",
+        eval_steps=200/(5*5) if eval_dataset else None,
         save_strategy="steps",
-        save_steps=50,
-        save_total_limit=2,
+        save_steps=200/(5*5),
+        save_total_limit=1,
         optim="adamw_8bit",
         weight_decay=0.01,
         lr_scheduler_type="linear",
         seed=42,
-        report_to="wandb",
-        dataloader_num_workers=2,
-        load_best_model_at_end=True,
-        metric_for_best_model="eval_loss",
-        greater_is_better=False
+        report_to=report_to,
+        dataloader_num_workers=4
     )
+    
+    # tính max_steps dựa vào dataset và epochs
+    epochs = 2
+    steps = int(len(train_dataset) * epochs / (args.per_device_train_batch_size * args.gradient_accumulation_steps))
+    args.max_steps = steps
 
     trainer = SFTTrainer(
         model=model,
@@ -75,6 +71,6 @@ def get_trainer(model, tokenizer, train_dataset, eval_dataset, repo_id, hf_token
         packing=True,
         args=args,
         dataset_num_proc=2,
-        callbacks=[CheckpointPush(repo_id, hf_token, args.save_steps)]
+        callbacks=[CheckpointPush(repo_id, token, args.save_steps)]
     )
     return trainer

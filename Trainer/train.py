@@ -16,9 +16,8 @@ def find_checkpoint(local_dir: str):
 def parse_args():
     parser = argparse.ArgumentParser(description='Train DentalGPT model')
     parser.add_argument('--hf_token', type=str, required=True, help='HuggingFace access token')
-    parser.add_argument('--wandb_key', type=str, required=True, help='Weights & Biases API key')
+    parser.add_argument('--wandb_key', type=str, default=None, help='Weights & Biases API key (optional)')
     parser.add_argument('--repo', type=str, default='NV9523/DentalGPT_SFT', help='HuggingFace repository ID')
-    parser.add_argument('--eval_samples', type=int, default=10, help='Number of samples per group for evaluation')
     return parser.parse_args()
 
 if __name__ == '__main__':
@@ -35,7 +34,7 @@ if __name__ == '__main__':
         train_dataset=train_ds,
         eval_dataset=eval_ds,
         repo_id=args.repo,
-        hf_token=args.hf_token,
+        token=args.hf_token,
         wandb_key=args.wandb_key
     )
 
@@ -57,3 +56,7 @@ if __name__ == '__main__':
     # Save and push final model
     model.push_to_hub(args.repo, use_temp_dir=False, token=args.hf_token)
     tokenizer.push_to_hub(args.repo, use_temp_dir=False, token=args.hf_token)
+    
+    if args.wandb_key:
+        import wandb
+        wandb.finish()

@@ -1,78 +1,88 @@
-from datasets import load_dataset, Dataset, DatasetDict
+from datasets import load_dataset, Dataset
 import pandas as pd
 
 def build_dataset(hf_repo: str = "NV9523/DentalGPT_SFT"):
     # Load dataset từ HuggingFace Hub
     ds = load_dataset(hf_repo, split="train")
     
-    # Chuyển sang pandas DataFrame để xử lý
+    # Convert to pandas DataFrame để xử lý
     df = ds.to_pandas()
     
-    # Tạo eval dataset bằng cách lấy mẫu theo nhóm
-    eval_df = df.groupby(['label1', 'label2', 'label3']).head(10).reset_index(drop=True)
+    # Tạo eval_ds bằng cách lấy 100 mẫu mỗi nhóm
+    eval_ds = df.groupby(['label1', 'label2', 'label3']).head(100).reset_index(drop=True)
+    train_ds = df[~df.index.isin(eval_ds.index)]
     
-    # Loại bỏ các mẫu eval từ train dataset
-    train_df = df[~df.index.isin(eval_df.index)]
+    # Chuyển lại sang Dataset
+    train_ds = Dataset.from_pandas(train_ds)
+    eval_ds = Dataset.from_pandas(eval_ds)
     
     # Đổi tên cột theo chuẩn
-    def rename_columns(df):
-        return df.rename(columns={
-            "Instruction": "instruction",
+    def rename_columns(ds):
+        ds = ds.rename_columns({
+            "Instruction":"instruction",
             "Câu hỏi": "question",
             "CoT_Goal": "goal",
             "CoT_Reasoning": "reasoning",
             "CoT_Justification": "justification",
             "Câu trả lời": "answer",
-            "label1": "format",
-            "label2": "content",
-            "label3": "specialized"
+            "label1":"format",
+            "label2":"content",
+            "label3":"specialized"
         })
-    
-    train_df = rename_columns(train_df)
-    eval_df = rename_columns(eval_df)
+        return ds
     
     # Lọc bỏ các hàng thiếu thông tin
-    def is_valid(row):
-        return all(row.get(k) for k in ['instruction', 'question', 'goal', 
-                                      'reasoning', 'justification', 'answer',
-                                      'format', 'content', 'specialized'])
+    def is_valid(x):
+        return all(x.get(k) for k in ['instruction','question', 'goal', 'reasoning', 'justification', 'answer', "format", "content", "specialized"])
     
-    train_df = train_df[train_df.apply(is_valid, axis=1)]
-    eval_df = eval_df[eval_df.apply(is_valid, axis=1)]
+    # Process both datasets
+    def process_dataset(ds):
+        ds = rename_columns(ds)
+        ds = ds.filter(is_valid)
+        return ds
     
-    # Tạo prompt
-    def create_prompt(row):
-        return (
-            "<|system|>\n"
-            f"###Hướng dẫn: {row['instruction'].strip()}\n"
-            "<|user|>\n"
-            f"###Câu hỏi:\n {row['question'].strip()}\n"
-            "<|think|>\n"
-            "Hãy cùng diễn giải từng bước nào!🤔\n"
-            "<reasoning_cot>\n"
-            "# 🧠 Suy luận của DentalGPT\n"
-            f"## 1️⃣ Mục tiêu 📌\n{row['goal'].strip()}\n"
-            f"## 2️⃣ Bước suy nghĩ ⚙️\n{row['reasoning'].strip()}\n"
-            f"## 3️⃣ Giải thích 📝\n{row['justification'].strip()}\n"
-            "</reasoning_cot>\n"
-            "<|expert|>\n"
-            "<experting>\n"
-            "# 👨‍🔬 Chuyên gia\n"
-            f"##Trình bày dạng: {row['format'].strip()}\n"
-            f"##Nội dung về: {row['content'].strip()}\n"
-            f"##Chuyên sâu về: {row['specialized'].strip()}\n"
-            "</experting>\n"
-            "<|assistant|>\n"
-            "<answer>\n"
-            f"# 💬 Câu trả lời\n{row['answer'].strip()}\n"
-            "</answer>"
-        )
+    train_ds = process_dataset(train_ds)
+    eval_ds = process_dataset(eval_ds)
     
-    train_df['text'] = train_df.apply(create_prompt, axis=1)
-    eval_df['text'] = eval_df.apply(create_prompt, axis=1)
+    # Hàm tạo prompt theo định dạng mới
+    def create_prompt(batch):
+        prompts = []
+        for i, q, g, r, j, a, f, c, s in zip(
+            batch['instruction'], batch['question'], batch['goal'], 
+            batch['reasoning'], batch['justification'], batch['answer'],
+            batch['format'], batch['content'], batch['specialized']
+        ):
+            prompt = (
+                "<|system|>\n"
+                f"###Hướng dẫn: {i.strip()}\n"
+                "<|user|>\n"
+                f"###Câu hỏi:\n {q.strip()}\n"
+                "<|think|>\n"
+                "Hãy cùng diễn giải từng bước nào!🤔\n"
+                "<reasoning_cot>\n"
+                "# 🧠 Suy luận của DentalGPT\n"
+                f"## 1️⃣ Mục tiêu 📌\n{g.strip()}\n"
+                f"## 2️⃣ Bước suy nghĩ ⚙️\n{r.strip()}\n"
+                f"## 3️⃣ Giải thích 📝\n{j.strip()}\n"
+                "</reasoning_cot>\n"
+                "<|expert|>\n"
+                "<experting>\n"
+                "# 👨‍🔬 Chuyên gia\n"
+                f"##Trình bày dạng: {f.strip()}\n"
+                f"##Nội dung về: {c.strip()}\n"
+                f"##Chuyên sâu về: {s.strip()}\n"
+                "</experting>\n"
+                "<|assistant|>\n"
+                "<answer>\n"
+                f"# 💬 Câu trả lời\n{a.strip()}\n"
+                "</answer>"
+            )
+            prompts.append(prompt)
+        return {"text": prompts}
     
-    # Chuyển lại sang Dataset
-    train_ds = Dataset.from_pandas(train_df[['text']])
-    eval_ds = Dataset.from_pandas(eval_df[['text']])
+    # Apply to both datasets
+    train_ds = train_ds.map(create_prompt, batched=True, batch_size=64)
+    eval_ds = eval_ds.map(create_prompt, batched=True, batch_size=64)
     
-    return train_ds, eval_ds
+    return train_ds.remove_columns([col for col in train_ds.column_names if col != "text"]), \
+           eval_ds.remove_columns([col for col in eval_ds.column_names if col != "text"])
