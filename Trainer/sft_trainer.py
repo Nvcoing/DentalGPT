@@ -42,7 +42,7 @@ def get_trainer(model, tokenizer, train_dataset, eval_dataset, repo_id, token, w
         learning_rate=2e-4,
         fp16=not is_bfloat16_supported(),
         bf16=is_bfloat16_supported(),
-        logging_steps=100/(4*4),
+        logging_steps=int(100 / (4 * 4)),
         eval_steps=100/(4*4) if eval_dataset else None,
         save_strategy="steps",
         save_steps=200/(4*4),
