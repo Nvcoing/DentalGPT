@@ -53,11 +53,12 @@ def build_dataset(hf_repo: str = "NV9523/DentalGPT_SFT"):
             batch['format'], batch['content'], batch['specialized']
         ):
             prompt = (
-                "<|system|>\n"
+                "<｜begin▁of▁sentence｜>"
+                "<｜system｜>\n"
                 f"###Hướng dẫn: {i.strip()}\n"
-                "<|user|>\n"
+                "<｜user｜>\n"
                 f"###Câu hỏi:\n {q.strip()}\n"
-                "<|think|>\n"
+                "<｜think｜>\n"
                 "Hãy cùng diễn giải từng bước nào!🤔\n"
                 "<reasoning_cot>\n"
                 "# 🧠 Suy luận của DentalGPT\n"
@@ -65,17 +66,18 @@ def build_dataset(hf_repo: str = "NV9523/DentalGPT_SFT"):
                 f"## 2️⃣ Bước suy nghĩ ⚙️\n{r.strip()}\n"
                 f"## 3️⃣ Giải thích 📝\n{j.strip()}\n"
                 "</reasoning_cot>\n"
-                "<|expert|>\n"
+                "<｜expert｜>\n"
                 "<experting>\n"
                 "# 👨‍🔬 Chuyên gia\n"
                 f"##Trình bày dạng: {f.strip()}\n"
                 f"##Nội dung về: {c.strip()}\n"
                 f"##Chuyên sâu về: {s.strip()}\n"
                 "</experting>\n"
-                "<|assistant|>\n"
+                "<｜assistant｜>\n"
                 "<answer>\n"
                 f"# 💬 Câu trả lời\n{a.strip()}\n"
                 "</answer>"
+                "<｜end▁of▁sentence｜>"
             )
             prompts.append(prompt)
         return {"text": prompts}
