@@ -59,7 +59,7 @@ def get_trainer(model, tokenizer, train_dataset, eval_dataset, repo_id, token, w
         lr_scheduler_type="linear",
         seed=42,
         report_to=report_to,
-        dataloader_num_workers=4,
+        dataloader_num_workers=8,
         save_on_each_node=False,
         logging_dir=None  # không lưu log tensorboard vào ổ đĩa
     )
@@ -79,7 +79,7 @@ def get_trainer(model, tokenizer, train_dataset, eval_dataset, repo_id, token, w
         eval_dataset=eval_dataset,
         dataset_text_field="text",
         max_seq_length=1024,
-        packing=True,
+        packing=False,
         args=args,
         dataset_num_proc=2,
         callbacks=[CheckpointPush(repo_id, token, args.save_steps)]
