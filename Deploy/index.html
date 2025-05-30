@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Markdown Streaming Chat</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    textarea, input[type=text], input[type=number] { 
+      width: 100%; padding: 10px; margin-bottom: 10px; font-size: 1em; box-sizing: border-box; 
+    }
+    button { padding: 10px 20px; font-size: 1em; cursor: pointer; }
+    #result { 
+      border: 1px solid #ccc; 
+      padding: 15px; 
+      background-color: #fdfdfd;
+      min-height: 100px;
+      font-size: 1em;
+      line-height: 1.6;
+    }
+    pre, code {
+      background-color: #f6f8fa;
+      padding: 8px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+  </style>
+
+  <!-- marked.js -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!-- DOMPurify -->
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@2.4.4/dist/purify.min.js"></script>
+  <!-- highlight.js CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github.min.css">
+</head>
+<body>
+
+<h2>Chat Markdown Streaming</h2>
+
+<label for="prompt">Prompt:</label>
+<textarea id="prompt" rows="3" placeholder="Nhập prompt..."></textarea>
+
+<label for="additional_input">Additional Input (optional):</label>
+<input type="text" id="additional_input" placeholder="Nối thêm..."/>
+
+<label for="max_tokens">Max new tokens:</label>
+<input type="number" id="max_tokens" value="100" min="1" />
+
+<button id="sendBtn" disabled>Đang tải highlight.js...</button>
+
+<h3>Kết quả (Markdown chuẩn):</h3>
+<div id="result"></div>
+
+<!-- highlight.js SCRIPT (tải sau cùng) -->
+<script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/highlight.min.js" onload="initChat();"></script>
+
+<script>
+function initChat() {
+  document.getElementById("sendBtn").disabled = false;
+  document.getElementById("sendBtn").innerText = "Gửi";
+
+  document.getElementById("sendBtn").addEventListener("click", async () => {
+    const prompt = document.getElementById("prompt").value.trim();
+    const additional_input = document.getElementById("additional_input").value.trim();
+    const max_tokens = parseInt(document.getElementById("max_tokens").value);
+
+    if (!prompt) {
+      alert("Vui lòng nhập prompt!");
+      return;
+    }
+
+    const resultDiv = document.getElementById("result");
+    resultDiv.innerHTML = "";
+
+    try {
+      const response = await fetch("http://127.0.0.1:8000/DentalGPT/chatbot/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt, additional_input, max_new_tokens: max_tokens }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        resultDiv.textContent = "Error: " + (errorData.error || response.statusText);
+        return;
+      }
+
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder("utf-8");
+      let markdownBuffer = "";
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        const chunk = decoder.decode(value, { stream: true });
+        markdownBuffer += chunk;
+
+        const rawHTML = marked.parse(markdownBuffer, { breaks: true });
+        const safeHTML = DOMPurify.sanitize(rawHTML);
+        resultDiv.innerHTML = safeHTML;
+
+        resultDiv.querySelectorAll("pre code").forEach(block => {
+          hljs.highlightElement(block);
+        });
+
+        window.scrollTo(0, document.body.scrollHeight);
+      }
+    } catch (error) {
+      resultDiv.textContent = "Request failed: " + error.message;
+    }
+  });
+}
+</script>
+
+</body>
+</html>

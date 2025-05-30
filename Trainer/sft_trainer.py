@@ -59,7 +59,7 @@ def get_trainer(model, tokenizer, train_dataset, eval_dataset, repo_id, token, w
         lr_scheduler_type="linear",
         seed=42,
         report_to=report_to,
-        dataloader_num_workers=8,
+        dataloader_num_workers=12,
         save_on_each_node=False,
         logging_dir=None  # không lưu log tensorboard vào ổ đĩa
     )
