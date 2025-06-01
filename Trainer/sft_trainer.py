@@ -42,7 +42,6 @@ def get_trainer(model, tokenizer, train_dataset, eval_dataset, repo_id, token, w
 
     args = TrainingArguments(
         output_dir="DentalGPT_SFT",
-        deepspeed="ds_config.json",
         per_device_train_batch_size=4*2,
         gradient_accumulation_steps=2*2,
         warmup_steps=250,
@@ -82,7 +81,7 @@ def get_trainer(model, tokenizer, train_dataset, eval_dataset, repo_id, token, w
         max_seq_length=1024,
         packing=False,
         args=args,
-        dataset_num_proc=2,
+        dataset_num_proc=3,
         callbacks=[CheckpointPush(repo_id, token, args.save_steps)]
     )
     return trainer
