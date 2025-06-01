@@ -51,6 +51,7 @@ if __name__ == '__main__':
         
         trainer.train(resume_from_checkpoint=ckpt)
     else:
+        print('Starting....')
         trainer.train()
 
     # Save and push final model
