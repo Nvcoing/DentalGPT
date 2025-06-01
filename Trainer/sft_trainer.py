@@ -81,7 +81,7 @@ def get_trainer(model, tokenizer, train_dataset, eval_dataset, repo_id, token, w
         max_seq_length=1024,
         packing=False,
         args=args,
-        dataset_num_proc=3,
+        dataset_num_proc=4,
         callbacks=[CheckpointPush(repo_id, token, args.save_steps)]
     )
     return trainer
