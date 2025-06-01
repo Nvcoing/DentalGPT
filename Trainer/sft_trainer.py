@@ -42,6 +42,7 @@ def get_trainer(model, tokenizer, train_dataset, eval_dataset, repo_id, token, w
 
     args = TrainingArguments(
         output_dir="DentalGPT_SFT",
+        deepspeed="ds_config.json",
         per_device_train_batch_size=4*2,
         gradient_accumulation_steps=2*2,
         warmup_steps=250,
