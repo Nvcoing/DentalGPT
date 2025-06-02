@@ -25,9 +25,9 @@ async def generate(request: Request):
     # Nối thêm input nối vào prompt, bạn có thể tùy chỉnh cách nối (ví dụ thêm dấu cách)
     full_prompt = ("<｜begin▁of▁sentence｜>"
                 "<｜system｜>\n"
-                f"###Hướng dẫn: Hãy là là một trợ lý áo nha khoa và trả lời câu hỏi dưới đây:\n"
+                f"### Hướng dẫn: Hãy là là một trợ lý áo nha khoa và trả lời câu hỏi dưới đây:\n"
                 "<｜user｜>\n"
-                f"###Câu hỏi:\n {prompt.strip()}\n")
+                f"### Câu hỏi:\n {prompt.strip()}\n")
 
     data = {
         "prompt": full_prompt,
