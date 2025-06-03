@@ -73,8 +73,8 @@ def build_dataset(hf_repo: str = "NV9523/DentalGPT_SFT"):
         return {"text": prompts}
     
     # Apply to both datasets
-    train_ds = train_ds.map(create_prompt, batched=True, batch_size=512)
-    eval_ds = eval_ds.map(create_prompt, batched=True, batch_size=512)
+    train_ds = train_ds.map(create_prompt, batched=True, batch_size=1024)
+    eval_ds = eval_ds.map(create_prompt, batched=True, batch_size=1024)
     
     return train_ds.remove_columns([col for col in train_ds.column_names if col != "text"]), \
            eval_ds.remove_columns([col for col in eval_ds.column_names if col != "text"])
