@@ -1,117 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Markdown Streaming Chat</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 20px; }
-    textarea, input[type=text], input[type=number] { 
-      width: 100%; padding: 10px; margin-bottom: 10px; font-size: 1em; box-sizing: border-box; 
-    }
-    button { padding: 10px 20px; font-size: 1em; cursor: pointer; }
-    #result { 
-      border: 1px solid #ccc; 
-      padding: 15px; 
-      background-color: #fdfdfd;
-      min-height: 100px;
-      font-size: 1em;
-      line-height: 1.6;
-    }
-    pre, code {
-      background-color: #f6f8fa;
-      padding: 8px;
-      border-radius: 5px;
-      overflow-x: auto;
-    }
-  </style>
-
-  <!-- marked.js -->
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <!-- DOMPurify -->
-  <script src="https://cdn.jsdelivr.net/npm/dompurify@2.4.4/dist/purify.min.js"></script>
-  <!-- highlight.js CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github.min.css">
+  <meta charset="UTF-8">
+  <title>DentalGPT - Trợ lý nha khoa</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-blue-50 font-sans">
 
-<h2>Chat Markdown Streaming</h2>
+  <div class="max-w-3xl mx-auto p-6">
+    <h1 class="text-3xl font-bold text-center text-blue-800 mb-6">🦷 DentalGPT - Trợ lý ảo nha khoa</h1>
+    
+    <div id="chat-box" class="bg-white shadow-xl rounded-lg p-4 h-[500px] overflow-y-auto space-y-4">
+      <div class="text-gray-500 text-sm text-center">Hãy nhập câu hỏi nha khoa của bạn...</div>
+    </div>
 
-<label for="prompt">Prompt:</label>
-<textarea id="prompt" rows="3" placeholder="Nhập prompt..."></textarea>
+    <div class="mt-4 flex items-center gap-2">
+      <input id="user-input" type="text" placeholder="Nhập câu hỏi..." class="flex-1 p-3 border rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400">
+      <button onclick="sendMessage('normal')" class="bg-blue-600 text-white px-5 py-2 rounded-xl hover:bg-blue-700">Gửi</button>
+      <button onclick="sendMessage('reason')" class="bg-purple-600 text-white px-5 py-2 rounded-xl hover:bg-purple-700">Suy luận 🧠</button>
+    </div>
 
-<label for="additional_input">Additional Input (optional):</label>
-<input type="text" id="additional_input" placeholder="Nối thêm..."/>
+    <div class="mt-2 flex gap-2 text-sm text-gray-700">
+      <label>Tokens:</label><input id="max_tokens" type="number" value="50" class="w-16 border px-1 rounded-md">
+      <label>Temp:</label><input id="temperature" type="number" step="0.1" value="0.7" class="w-16 border px-1 rounded-md">
+      <label>Top P:</label><input id="top_p" type="number" step="0.1" value="0.9" class="w-16 border px-1 rounded-md">
+    </div>
+  </div>
 
-<label for="max_tokens">Max new tokens:</label>
-<input type="number" id="max_tokens" value="100" min="1" />
+  <script>
+    const apiUrl = "http://localhost:8000/DentalGPT/chatbot/";
 
-<button id="sendBtn" disabled>Đang tải highlight.js...</button>
-
-<h3>Kết quả (Markdown chuẩn):</h3>
-<div id="result"></div>
-
-<!-- highlight.js SCRIPT (tải sau cùng) -->
-<script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/highlight.min.js" onload="initChat();"></script>
-
-<script>
-function initChat() {
-  document.getElementById("sendBtn").disabled = false;
-  document.getElementById("sendBtn").innerText = "Gửi";
-
-  document.getElementById("sendBtn").addEventListener("click", async () => {
-    const prompt = document.getElementById("prompt").value.trim();
-    const additional_input = document.getElementById("additional_input").value.trim();
-    const max_tokens = parseInt(document.getElementById("max_tokens").value);
-
-    if (!prompt) {
-      alert("Vui lòng nhập prompt!");
-      return;
+    function appendMessage(text, isUser) {
+      const chatBox = document.getElementById("chat-box");
+      const msg = document.createElement("div");
+      msg.className = `flex ${isUser ? 'justify-end' : 'justify-start'}`;
+      msg.innerHTML = `
+        <div class="${isUser ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-900'} p-3 rounded-xl max-w-[75%] whitespace-pre-wrap">
+          ${text}
+        </div>
+      `;
+      chatBox.appendChild(msg);
+      chatBox.scrollTop = chatBox.scrollHeight;
     }
 
-    const resultDiv = document.getElementById("result");
-    resultDiv.innerHTML = "";
+    async function sendMessage(mode = "normal") {
+      const input = document.getElementById("user-input");
+      const prompt = input.value.trim();
+      if (!prompt) return;
 
-    try {
-      const response = await fetch("http://127.0.0.1:8000/DentalGPT/chatbot/", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt, additional_input, max_new_tokens: max_tokens }),
-      });
+      appendMessage(prompt, true);
+      input.value = "";
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        resultDiv.textContent = "Error: " + (errorData.error || response.statusText);
-        return;
-      }
+      const params = {
+        prompt: prompt,
+        max_new_tokens: parseInt(document.getElementById("max_tokens").value),
+        temperature: parseFloat(document.getElementById("temperature").value),
+        top_p: parseFloat(document.getElementById("top_p").value),
+        top_k: 50,
+        repetition_penalty: 1.0,
+        do_sample: true,
+        mode: mode
+      };
 
-      const reader = response.body.getReader();
-      const decoder = new TextDecoder("utf-8");
-      let markdownBuffer = "";
-
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-
-        const chunk = decoder.decode(value, { stream: true });
-        markdownBuffer += chunk;
-
-        const rawHTML = marked.parse(markdownBuffer, { breaks: true });
-        const safeHTML = DOMPurify.sanitize(rawHTML);
-        resultDiv.innerHTML = safeHTML;
-
-        resultDiv.querySelectorAll("pre code").forEach(block => {
-          hljs.highlightElement(block);
+      try {
+        const response = await fetch(apiUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(params)
         });
 
-        window.scrollTo(0, document.body.scrollHeight);
-      }
-    } catch (error) {
-      resultDiv.textContent = "Request failed: " + error.message;
-    }
-  });
-}
-</script>
+        if (!response.ok) {
+          throw new Error(`Server error: ${response.statusText}`);
+        }
 
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder("utf-8");
+        let botMsg = "";
+        appendMessage("Đang trả lời...", false);
+        const lastMsg = document.querySelector("#chat-box > div:last-child div");
+
+        while (true) {
+          const { value, done } = await reader.read();
+          if (done) break;
+          botMsg += decoder.decode(value, { stream: true });
+          lastMsg.innerText = botMsg;
+        }
+      } catch (error) {
+        appendMessage("Đã xảy ra lỗi khi kết nối đến máy chủ.", false);
+        console.error("Error:", error);
+      }
+    }
+  </script>
 </body>
 </html>

@@ -10,12 +10,9 @@ import asyncio
 from transformers import TextStreamer
 import gc
 
-# Giúp chạy asyncio trong notebook (Kaggle/Jupyter)
 nest_asyncio.apply()
-
 app = FastAPI()
 
-# Load model + tokenizer
 model_name = "NV9523/DentalGPT"
 model, tokenizer = FastLanguageModel.from_pretrained(
     model_name=model_name,
@@ -25,72 +22,69 @@ model, tokenizer = FastLanguageModel.from_pretrained(
 )
 FastLanguageModel.for_inference(model)
 device = "cuda" if torch.cuda.is_available() else "cpu"
-
-# Đưa model lên device ngay sau load
 model.to(device)
-model.eval()  # chế độ inference
+model.eval()
 
 @app.post("/model/generate/")
 async def generate(request: Request):
     data = await request.json()
     prompt = data.get("prompt", "")
     max_new_tokens = data.get("max_new_tokens", 50)
+    temperature = data.get("temperature", 0.7)
+    top_p = data.get("top_p", 0.9)
+    top_k = data.get("top_k", 50)
+    repetition_penalty = data.get("repetition_penalty", 1.0)
+    do_sample = data.get("do_sample", True)
 
     inputs = tokenizer(prompt, return_tensors="pt").to(device)
-    
-    # Tạo một queue để trao đổi dữ liệu giữa TextStreamer và StreamingResponse
     response_queue = asyncio.Queue()
-    
+
     class CustomStreamer(TextStreamer):
         def __init__(self, tokenizer, queue, **kwargs):
             super().__init__(tokenizer, **kwargs)
             self.queue = queue
-        
+
         def on_finalized_text(self, text: str, stream_end: bool = False):
-            # Đẩy text vào queue khi có token mới
             asyncio.run_coroutine_threadsafe(self.queue.put(text), loop)
             if stream_end:
                 asyncio.run_coroutine_threadsafe(self.queue.put(None), loop)
-    
-    # Lấy event loop hiện tại
+
     loop = asyncio.get_event_loop()
-    
-    # Khởi tạo streamer
     streamer = CustomStreamer(tokenizer, response_queue, skip_prompt=True)
-    
-    # Hàm generator để yield text từ queue
+
     async def response_generator():
         while True:
             text = await response_queue.get()
             if text is None:
                 break
             yield text
-            await asyncio.sleep(0.01)  # Giảm tải CPU
-    
-    # Chạy generation trong thread riêng để không block event loop
+            await asyncio.sleep(0.01)
+
     def generate_in_thread():
         with torch.no_grad():
             model.generate(
                 **inputs,
                 max_new_tokens=max_new_tokens,
+                temperature=temperature,
+                top_p=top_p,
+                top_k=top_k,
+                repetition_penalty=repetition_penalty,
+                do_sample=do_sample,
                 streamer=streamer,
                 pad_token_id=tokenizer.eos_token_id,
             )
         torch.cuda.empty_cache()
         gc.collect()
-    
+
     threading.Thread(target=generate_in_thread, daemon=True).start()
-    
     return StreamingResponse(response_generator(), media_type="text/markdown")
 
 def run_api():
     uvicorn.run(app, host="0.0.0.0", port=8000)
 
-ngrok.set_auth_token("2trAEunRvTy9WfZNUVGRt4bMhpy_267Sj5MEej5a1A3pkfrhg")
-# Mở ngrok tunnel tới port 8000
+ngrok.set_auth_token("2trAEunRvTy9WfZNUVGRt4bMhpy_267Sj5MEej5a1A3pkfrhg")  # Thay bằng token thật
 public_url = ngrok.connect(8000).public_url
 print(f"Public URL: {public_url}")
 
-# Chạy FastAPI server trong thread riêng để không block cell
 thread = threading.Thread(target=run_api, daemon=True)
 thread.start()
