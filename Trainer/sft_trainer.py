@@ -64,10 +64,10 @@ def get_trainer(model, tokenizer, train_dataset, eval_dataset, repo_id, token, w
         logging_dir=None  # không lưu log tensorboard vào ổ đĩa
     )
 
-    # Tính lại max_steps và logging/save_steps
-    args.warmup_steps = int(steps * 0.3) 
+    # Tính lại max_steps và logging/save_steps 
     epochs = 2
     steps = int(len(train_dataset) * epochs / (args.per_device_train_batch_size * args.gradient_accumulation_steps))
+    args.warmup_steps = int(steps * 0.3)
     batch_size = args.per_device_train_batch_size * args.gradient_accumulation_steps
     args.max_steps = steps
     args.logging_steps = int(800 / batch_size)
