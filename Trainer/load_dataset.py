@@ -3,7 +3,7 @@ import pandas as pd
 
 def build_dataset(hf_repo: str = "NV9523/DentalGPT_SFT"):
     # Load dataset từ HuggingFace Hub
-    train_ds = load_dataset(hf_repo, split="train")
+    train_ds = load_dataset(hf_repo, split="train[:10]")
     eval_ds = load_dataset(hf_repo, split="validation")
     
     # Đổi tên cột theo chuẩn
