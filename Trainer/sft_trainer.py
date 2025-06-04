@@ -46,7 +46,7 @@ def get_trainer(model, tokenizer, train_dataset, eval_dataset, repo_id, token, w
         gradient_accumulation_steps=2*2,
         warmup_steps=250,
         max_steps=None,
-        learning_rate=5e-4, #2e-4 với 1k step rồi 5e-4 với 1k step 7e-4 với 1k step rồi 1e-3 đến hết (có thể để mặc định 5e-4)
+        learning_rate=1e-3, #2e-4 với 1k step rồi 5e-4 với 1k step 7e-4 với 1k step rồi 1e-3 đến hết (có thể để mặc định 5e-4)
         fp16=not is_bfloat16_supported(),
         bf16=is_bfloat16_supported(),
         logging_steps=int(100 / (4 * 4)),
@@ -64,10 +64,10 @@ def get_trainer(model, tokenizer, train_dataset, eval_dataset, repo_id, token, w
         logging_dir=None  # không lưu log tensorboard vào ổ đĩa
     )
 
-    # Tính lại max_steps và logging/save_steps
-    # args.warmup_steps = int(steps * 0.3) 
+    # Tính lại max_steps và logging/save_steps 
     epochs = 2
     steps = int(len(train_dataset) * epochs / (args.per_device_train_batch_size * args.gradient_accumulation_steps))
+    # args.warmup_steps = int(steps * 0.3)
     batch_size = args.per_device_train_batch_size * args.gradient_accumulation_steps
     args.max_steps = steps
     args.logging_steps = int(800 / batch_size)
