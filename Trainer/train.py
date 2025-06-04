@@ -5,11 +5,17 @@ from load_dataset import build_dataset
 from load_model import model, tokenizer
 from sft_trainer import get_trainer
 import torch
-
+from datasets import load_from_disk
 def find_checkpoint(local_dir: str):
     for root, dirs, _ in os.walk(local_dir):
         for d in dirs:
             if 'checkpoint' in d.lower():
+                return os.path.join(root, d)
+    return None
+def find_dataset_cache(local_dir: str):
+    for root, dirs, _ in os.walk(local_dir):
+        for d in dirs:
+            if 'dataset_cache' in d.lower():
                 return os.path.join(root, d)
     return None
 
@@ -26,8 +32,12 @@ if __name__ == '__main__':
     # clone once
     local = snapshot_download(repo_id=args.repo, token=args.hf_token)
     ckpt = find_checkpoint(local)
-
-    train_ds, eval_ds = build_dataset(args.repo)
+    df_ckpt = find_dataset_cache(local)
+    if df_ckpt:
+        print("Loading dataset from cache...")
+        train_ds, eval_ds = load_from_disk("dataset_cache")
+    else:
+        train_ds, eval_ds = build_dataset(args.repo)
     trainer = get_trainer(
         model=model,
         tokenizer=tokenizer,

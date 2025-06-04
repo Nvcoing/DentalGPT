@@ -1,4 +1,3 @@
-import torch
 from unsloth import FastLanguageModel, is_bfloat16_supported
 # deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B for DentalGPTsmall
 # deepseek-ai/DeepSeek-R1-Distill-Llama-8B for DentalGPTmedium
