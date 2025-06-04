@@ -1,4 +1,5 @@
-from datasets import load_dataset, DatasetDict
+from datasets import load_dataset, Dataset
+import pandas as pd
 
 def build_dataset(hf_repo: str = "NV9523/DentalGPT_SFT"):
     # Load dataset từ HuggingFace Hub
@@ -74,7 +75,6 @@ def build_dataset(hf_repo: str = "NV9523/DentalGPT_SFT"):
     # Apply to both datasets
     train_ds = train_ds.map(create_prompt, batched=True, batch_size=1024)
     eval_ds = eval_ds.map(create_prompt, batched=True, batch_size=1024)
-    dataset_dict = DatasetDict({"train": train_ds, "eval": eval_ds})
-    dataset_dict.save_to_disk("dataset_cache")
+    
     return train_ds.remove_columns([col for col in train_ds.column_names if col != "text"]), \
            eval_ds.remove_columns([col for col in eval_ds.column_names if col != "text"])
