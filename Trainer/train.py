@@ -24,8 +24,8 @@ if __name__ == '__main__':
     args = parse_args()
     
     # clone once
-    local = snapshot_download(repo_id=args.repo, token=args.hf_token)
-    ckpt = find_checkpoint(local)
+    # local = snapshot_download(repo_id=args.repo, token=args.hf_token)
+    # ckpt = find_checkpoint(local)
 
     train_ds, eval_ds = build_dataset(args.repo)
     trainer = get_trainer(
@@ -38,22 +38,22 @@ if __name__ == '__main__':
         wandb_key=args.wandb_key
     )
 
-    if ckpt:
-        print('Resuming from checkpoint:', ckpt)
-        # Patch the Trainer's _load_rng_state method to use weights_only=False
-        original_load_rng_state = trainer._load_rng_state
-        def patched_load_rng_state(checkpoint):
-            rng_file = os.path.join(checkpoint, "rng_state.pth")
-            if os.path.isfile(rng_file):
-                return torch.load(rng_file, weights_only=False)
-            return None
-        trainer._load_rng_state = patched_load_rng_state
+    # if ckpt:
+    #     print('Resuming from checkpoint:', ckpt)
+    #     # Patch the Trainer's _load_rng_state method to use weights_only=False
+    #     original_load_rng_state = trainer._load_rng_state
+    #     def patched_load_rng_state(checkpoint):
+    #         rng_file = os.path.join(checkpoint, "rng_state.pth")
+    #         if os.path.isfile(rng_file):
+    #             return torch.load(rng_file, weights_only=False)
+    #         return None
+    #     trainer._load_rng_state = patched_load_rng_state
         
-        trainer.train(resume_from_checkpoint=ckpt)
-    else:
-        print('Starting....')
-        trainer.train()
-
+    #     trainer.train(resume_from_checkpoint=ckpt)
+    # else:
+    #     print('Starting....')
+    #     trainer.train()
+    trainer.train()
     # Save and push final model
     model.push_to_hub(args.repo, use_temp_dir=False, token=args.hf_token)
     tokenizer.push_to_hub(args.repo, use_temp_dir=False, token=args.hf_token)
