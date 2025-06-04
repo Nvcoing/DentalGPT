@@ -15,7 +15,7 @@ app.add_middleware(
 )
 
 # URL của mô hình xử lý văn bản (cập nhật nếu cần)
-NGROK_URL = "https://8fd5-104-196-251-156.ngrok-free.app/model/generate/"
+NGROK_URL = "https://49f0-34-139-6-56.ngrok-free.app/model/generate/"
 
 @app.post("/DentalGPT/chatbot/")
 async def generate(request: Request):
@@ -41,8 +41,16 @@ async def generate(request: Request):
             "<｜user｜>\n"
             f"### Câu hỏi:\n{prompt.strip()}\n"
         )
+    elif mode == "deep_reason":
+        full_prompt = (
+            "<｜begin▁of▁sentence｜>"
+            "<｜system｜>\n"
+            "### Hướng dẫn: Hãy là một trợ lý ảo nha khoa và TRÌNH BÀY để trả lời câu hỏi dưới đây:\n"
+            "<｜user｜>\n"
+            f"### Câu hỏi:\n{prompt.strip()}\n"
+        )
     else:
-        full_prompt = full_prompt = (
+        full_prompt = (
             "<｜begin▁of▁sentence｜>"
             "<｜system｜>\n"
             "### Hướng dẫn: Hãy là là một trợ lý ảo nha khoa và trả lời câu hỏi dưới đây:\n"
