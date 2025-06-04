@@ -37,7 +37,9 @@ if __name__ == '__main__':
     df_ckpt = find_dataset_cache(local)
     if df_ckpt:
         print("Loading dataset from cache...")
-        train_ds, eval_ds = load_from_disk(f"{local}/dataset_cache")
+        dataset  = load_from_disk(f"{local}/dataset_cache")
+        train_ds = dataset["train"]
+        eval_ds = dataset["eval"]
     else:
         train_ds, eval_ds = build_dataset(args.repo)
     trainer = get_trainer(
