@@ -14,3 +14,6 @@ hf_transfer
 unsloth
 protobuf==3.20.3
 wandb
+evaluate
+nltk
+bert_score
