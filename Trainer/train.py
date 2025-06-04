@@ -28,7 +28,9 @@ def parse_args():
 
 if __name__ == '__main__':
     args = parse_args()
-    
+    train_ds = None
+    eval_ds = None
+    trainer=None
     # clone once
     local = snapshot_download(repo_id=args.repo, token=args.hf_token)
     ckpt = find_checkpoint(local)
