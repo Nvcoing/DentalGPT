@@ -2,7 +2,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import StreamingResponse, JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 import requests
-
+import time
 app = FastAPI()
 
 # Cấu hình CORS để cho phép truy cập từ mọi nguồn
@@ -15,7 +15,7 @@ app.add_middleware(
 )
 
 # URL của mô hình xử lý văn bản (cập nhật nếu cần)
-NGROK_URL = "https://49f0-34-139-6-56.ngrok-free.app/model/generate/"
+NGROK_URL = " https://8d8a-34-125-84-96.ngrok-free.app/model/generate/"
 
 @app.post("/DentalGPT/chatbot/")
 async def generate(request: Request):
@@ -28,12 +28,13 @@ async def generate(request: Request):
     top_k = req_json.get("top_k", 50)
     repetition_penalty = req_json.get("repetition_penalty", 1.0)
     do_sample = req_json.get("do_sample", True)
-
+    num_samples = 1
     if not prompt:
         return JSONResponse(status_code=400, content={"error": "Missing 'prompt' in request"})
 
     # Tạo prompt dựa trên chế độ
     if mode == "reason":
+        max_new_tokens = 1024  # Giới hạn số token cho chế độ 'reason'
         full_prompt = (
             "<｜begin▁of▁sentence｜>"
             "<｜system｜>\n"
@@ -42,6 +43,8 @@ async def generate(request: Request):
             f"### Câu hỏi:\n{prompt.strip()}\n"
         )
     elif mode == "deep_reason":
+        num_samples = 3
+        max_new_tokens = 512
         full_prompt = (
             "<｜begin▁of▁sentence｜>"
             "<｜system｜>\n"
@@ -50,6 +53,7 @@ async def generate(request: Request):
             f"### Câu hỏi:\n{prompt.strip()}\n"
         )
     else:
+        max_new_tokens = 512  # Giới hạn số token cho chế độ 'normal'
         full_prompt = (
             "<｜begin▁of▁sentence｜>"
             "<｜system｜>\n"
@@ -65,7 +69,7 @@ async def generate(request: Request):
             f"## 3️⃣ Giải thích 📝\nGiải thích ngắn gọn\n"
             "</reasoning_cot>\n"
         )
-
+    
     data = {
         "prompt": full_prompt,
         "max_new_tokens": max_new_tokens,
@@ -75,15 +79,19 @@ async def generate(request: Request):
         "repetition_penalty": repetition_penalty,
         "do_sample": do_sample
     }
-
-    try:
-        external_response = requests.post(NGROK_URL, json=data, stream=True)
-        external_response.raise_for_status()
-    except requests.exceptions.RequestException as e:
-        return JSONResponse(status_code=500, content={"error": f"Failed to connect to model server: {str(e)}"})
+    deep_response = ""
+    for _ in range(num_samples):
+        deep_response+=full_prompt
+        try:
+            response = requests.post(NGROK_URL, json=data, stream=True)
+            response.raise_for_status()
+            deep_response+=f"\n{response}"
+            time.sleep(0.5)  # tránh gửi quá nhanh gây lỗi server
+        except requests.exceptions.RequestException as e:
+            return JSONResponse(status_code=500, content={"error": f"Error during generation: {str(e)}"})
 
     def event_stream():
-        for chunk in external_response.iter_content(chunk_size=None):
+        for chunk in response.iter_content(chunk_size=None):
             if chunk:
                 yield chunk.decode("utf-8")
 
