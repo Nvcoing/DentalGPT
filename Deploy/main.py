@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Request
-from fastapi.responses import StreamingResponse, JSONResponse
+from fastapi.responses import StreamingResponse, JSONResponse, HTMLResponse
+from fastapi.templating import Jinja2Templates
 from fastapi.middleware.cors import CORSMiddleware
 import requests
 import time
@@ -16,6 +17,12 @@ app.add_middleware(
 
 # URL của mô hình xử lý văn bản (cập nhật nếu cần)
 NGROK_URL = " https://8d8a-34-125-84-96.ngrok-free.app/model/generate/"
+
+templates = Jinja2Templates(directory="templates")
+
+@app.get("/", response_class=HTMLResponse)
+async def read_index(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
 
 @app.post("/DentalGPT/chatbot/")
 async def generate(request: Request):
