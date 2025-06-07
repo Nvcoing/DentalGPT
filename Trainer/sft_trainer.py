@@ -42,8 +42,8 @@ def get_trainer(model, tokenizer, train_dataset, eval_dataset, repo_id, token, w
 
     args = TrainingArguments(
         output_dir="DentalGPT_SFT",
-        per_device_train_batch_size=4*4,
-        gradient_accumulation_steps=2*4,
+        per_device_train_batch_size=4*2,
+        gradient_accumulation_steps=2*2,
         warmup_steps=250,
         max_steps=None,
         learning_rate=2e-4, #2e-4 với 1k step rồi 5e-4 với 1k step 7e-4 với 1k step rồi 1e-3 đến hết (có thể để mặc định 5e-4)
@@ -66,8 +66,7 @@ def get_trainer(model, tokenizer, train_dataset, eval_dataset, repo_id, token, w
 
     # Tính lại max_steps và logging/save_steps 
     epochs = 2
-    # steps = int(len(train_dataset) * epochs / (args.per_device_train_batch_size * args.gradient_accumulation_steps)) #189434 
-    steps = 189434
+    steps = int(len(train_dataset) * epochs / (args.per_device_train_batch_size * args.gradient_accumulation_steps)) #189434 
     # args.warmup_steps = int(steps * 0.3)
     batch_size = args.per_device_train_batch_size * args.gradient_accumulation_steps
     args.max_steps = steps
