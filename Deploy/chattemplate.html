@@ -1,10 +1,238 @@
-<template id="chat-template">
-  <div class="chat-template flex justify-between items-start group">
-    <div class="max-w-[90%]">
-      <div class="bg-gray-100 text-gray-900 p-3 rounded-xl whitespace-pre-wrap markdown-content"></div>
-    </div>
-    <button class="toggle-btn text-gray-400 hover:text-black hidden group-hover:block ml-2">
-      ⬆
-    </button>
-  </div>
-</template>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Render Chatbot Response</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 1rem;
+    background: #f9f9f9;
+    color: #222;
+  }
+  pre#raw-content {
+    display: none;
+  }
+  .container {
+    max-width: 800px;
+    margin: auto;
+  }
+  /* Style cho phần toggle */
+  .toggle-section {
+    border-left: 3px solid #007acc;
+    padding-left: 0.8rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    user-select: none;
+  }
+  .toggle-header {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: 600;
+    color: #007acc;
+  }
+  .toggle-arrow {
+    transition: transform 0.2s ease;
+    font-weight: bold;
+    user-select: none;
+  }
+  .toggle-arrow.closed {
+    transform: rotate(0deg);
+  }
+  .toggle-arrow.open {
+    transform: rotate(90deg);
+  }
+  .toggle-content {
+    margin-top: 0.5rem;
+    padding-left: 1.2rem;
+    color: #555;
+    font-size: 0.9rem;
+    max-height: 300px;
+    overflow: auto;
+    transition: color 0.3s ease;
+  }
+  .toggle-content.closed {
+    color: #aaa;
+    max-height: 3.5em; /* chỉ hiện 1 dòng + làm mờ */
+    overflow: hidden;
+  }
+  /* Style cho phần answer */
+  .answer {
+    background: white;
+    border-radius: 6px;
+    padding: 1rem 1.2rem;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+    font-size: 1rem;
+    white-space: pre-wrap;
+  }
+  /* Style markdown căn bản */
+  .answer h1, .answer h2, .answer h3, .answer h4 {
+    margin: 0.6rem 0 0.3rem;
+  }
+  .answer ul, .answer ol {
+    margin-left: 1.2rem;
+  }
+  .answer code {
+    background-color: #eee;
+    padding: 0.1rem 0.3rem;
+    border-radius: 3px;
+    font-family: monospace;
+    font-size: 0.95rem;
+  }
+  .answer blockquote {
+    border-left: 4px solid #ccc;
+    margin-left: 0;
+    padding-left: 1rem;
+    color: #666;
+    font-style: italic;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Raw input here for example -->
+  <pre id="raw-content">
+&lt;｜think｜&gt;
+Hãy cùng diễn giải từng bước nào!🤔
+&lt;reasoning_cot&gt;
+# 🧠 Suy luận của Mình
+## 1️⃣ Mục tiêu 📌
+Xác định nguyên nhân chính gây sâu răng dựa trên bằng chứng khoa học hiện có và giải thích một cách dễ hiểu cho bệnh nhân.
+## 2️⃣ Bước suy nghĩ ⚙️
+Bước 1: Phân tích ngữ cảnh: Ngữ cảnh đề cập đến các nghiên cứu về vi khuẩn Streptococcus mutans và vai trò của chúng trong sự phát triển sâu răng.  Nghiên cứu cho thấy sự hiện diện của S. mutans là yếu tố tiên quyết.
+Bước 2: Xác định mối liên hệ:  Nghiên cứu chỉ ra rằng S. mutans tạo ra acid từ đường trong thức ăn, làm giảm pH trong miệng, gây tổn thương men răng.
+Bước 3: Kết luận:  Mặc dù có nhiều yếu tố khác có thể góp phần vào sự phát triển sâu răng, nhưng S. mutans và acid do chúng tạo ra là yếu tố chính.
+Bước 4:  Xem xét các yếu tố khác:  Mặc dù S. mutans là yếu tố chính,  các yếu tố khác như vệ sinh răng miệng kém, chế độ ăn nhiều đường, di truyền cũng đóng vai trò quan trọng.
+## 3️⃣ Giải thích 📝
+Sự hiện diện của Streptococcus mutans trong khoang miệng là yếu tố tiên quyết gây sâu răng.  Vi khuẩn này chuyển hóa đường thành acid, làm giảm pH trong miệng, phá hủy men răng và ngà răng.  Các yếu tố khác như vệ sinh răng miệng kém, chế độ ăn nhiều đường và di truyền cũng góp phần làm tăng nguy cơ sâu răng.
+&lt;/reasoning_cot&gt;
+&lt;｜expert｜&gt;
+&lt;experting&gt;
+# 👨‍🔬 Chuyên gia
+## Trình bày dạng: Biểu đồ
+## Nội dung về: Điều trị
+## Chuyên sâu về: Tiểu phẫu răng
+&lt;/experting&gt;
+&lt;｜assistant｜&gt;
+&lt;answer&gt;
+# 💬 Câu trả lời
+Chào bạn! Nguyên nhân chính gây sâu răng là do vi khuẩn Streptococcus mutans.  Vi khuẩn này trong miệng chuyển hóa đường từ thức ăn thành acid, làm giảm độ pH trong miệng.  Khi pH giảm, axit sẽ tấn công men răng và ngà răng, gây ra các lỗ sâu răng.  Mặc dù S. mutans là nguyên nhân chính, nhưng việc duy trì vệ sinh răng miệng tốt, hạn chế ăn đồ ngọt và có chế độ ăn uống lành mạnh cũng rất quan trọng để giảm nguy cơ sâu răng.  Nếu bạn có bất kỳ thắc mắc nào khác, đừng ngần ngại hỏi nha!
+&lt;/answer&gt;&lt;｜end▁of▁sentence｜&gt;
+  </pre>
+
+  <div id="rendered-content"></div>
+</div>
+
+<script>
+  // Lấy nội dung thô
+  const raw = document.getElementById('raw-content').textContent;
+
+  // Hàm escape HTML để an toàn khi chèn
+  function escapeHtml(text) {
+    const map = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#039;'
+    };
+    return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+  }
+
+  // Hàm render markdown đơn giản, hỗ trợ tiêu đề và danh sách cơ bản, code inline
+  function simpleMarkdownToHtml(md) {
+    let html = escapeHtml(md);
+
+    // Tiêu đề
+    html = html.replace(/^# (.*)$/gm, '<h1>$1</h1>');
+    html = html.replace(/^## (.*)$/gm, '<h2>$1</h2>');
+    html = html.replace(/^### (.*)$/gm, '<h3>$1</h3>');
+    html = html.replace(/^#### (.*)$/gm, '<h4>$1</h4>');
+
+    // Danh sách (unordered)
+    html = html.replace(/^\s*[-*+] (.*)$/gm, '<ul><li>$1</li></ul>');
+    // Danh sách nhiều dòng (gộp lại)
+    html = html.replace(/(<\/ul>\s*)<ul>/g, '');
+
+    // Danh sách (ordered)
+    html = html.replace(/^\s*\d+\. (.*)$/gm, '<ol><li>$1</li></ol>');
+    html = html.replace(/(<\/ol>\s*)<ol>/g, '');
+
+    // Inline code
+    html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+
+    // Thay dòng mới bằng <br> trong đoạn văn (cho đoạn nhỏ)
+    html = html.replace(/\n/g, '<br>');
+
+    return html;
+  }
+
+  // Hàm xử lý nội dung theo thẻ custom
+  function processContent(rawText) {
+    // Loại bỏ tất cả thẻ dạng <｜...｜>
+    let text = rawText.replace(/<｜[^｜]+｜>/g, '');
+
+    // Xử lý thẻ reasoning_cot: thành phần toggle
+    text = text.replace(/<reasoning_cot>([\s\S]*?)<\/reasoning_cot>/g, (_, content) => {
+      const htmlContent = simpleMarkdownToHtml(content.trim());
+      return `
+      <div class="toggle-section">
+        <div class="toggle-header">
+          <span class="toggle-arrow closed">▶</span>
+          <span>🧠 Suy luận (Reasoning)</span>
+        </div>
+        <div class="toggle-content closed">${htmlContent}</div>
+      </div>`;
+    });
+
+    // Xử lý thẻ experting cũng tương tự reasoning_cot
+    text = text.replace(/<experting>([\s\S]*?)<\/experting>/g, (_, content) => {
+      const htmlContent = simpleMarkdownToHtml(content.trim());
+      return `
+      <div class="toggle-section">
+        <div class="toggle-header">
+          <span class="toggle-arrow closed">▶</span>
+          <span>👨‍🔬 Chuyên gia (Expert)</span>
+        </div>
+        <div class="toggle-content closed">${htmlContent}</div>
+      </div>`;
+    });
+
+    // Xử lý thẻ answer: hiển thị rõ ràng, markdown chuẩn
+    text = text.replace(/<answer>([\s\S]*?)<\/answer>/g, (_, content) => {
+      const htmlContent = simpleMarkdownToHtml(content.trim());
+      return `<div class="answer">${htmlContent}</div>`;
+    });
+
+    return text.trim();
+  }
+
+  // Gán nội dung đã xử lý vào div
+  const renderedDiv = document.getElementById('rendered-content');
+  renderedDiv.innerHTML = processContent(raw);
+
+  // Thêm event toggle cho các section toggle
+  renderedDiv.querySelectorAll('.toggle-section').forEach(section => {
+    const header = section.querySelector('.toggle-header');
+    const arrow = section.querySelector('.toggle-arrow');
+    const content = section.querySelector('.toggle-content');
+
+    header.addEventListener('click', () => {
+      const isClosed = content.classList.contains('closed');
+      if (isClosed) {
+        // Mở
+        content.classList.remove('closed');
+        arrow.textContent = '▼';
+      } else {
+        // Đóng
+        content.classList.add('closed');
+        arrow.textContent = '▶';
+      }
+    });
+  });
+</script>
+</body>
+</html>
