@@ -17,3 +17,4 @@ wandb
 evaluate
 nltk
 bert_score
+google-generativeai
