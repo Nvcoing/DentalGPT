@@ -61,7 +61,7 @@ Hãy thực hiện đầy đủ 5 bước ở trên cho ví dụ này.
 def generate_response(prompt: str,
                       temperature=0.1, top_p=0.9, top_k=50,
                       repetition_penalty=1.0, do_sample=True,
-                      max_new_tokens=512):
+                      max_new_tokens=1024):
     
     generation_params = {
         "max_new_tokens": max_new_tokens,
