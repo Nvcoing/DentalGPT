@@ -1,29 +1,30 @@
 import os
 import google.generativeai as genai
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 
 # Load API key từ file .env (chỉ load 1 lần khi import)
-# load_dotenv()
-# API_KEY = os.getenv("GOOGLE_API_KEY")
-API_KEY="AIzaSyDGA68vEoOeUV2ejZ2Epw83i89nK8wgzPo"
-if not API_KEY:
-    raise ValueError("GOOGLE_API_KEY không được tìm thấy trong file .env")
+load_dotenv()
 
-# Cấu hình Gemini
-genai.configure(api_key=API_KEY)
+def get_all_api_keys():
+    return [value for key, value in os.environ.items() if key.startswith("GOOGLE_API_KEY_")]
 
 def call_gemini(prompt: str, model_name: str = "models/gemini-1.5-flash-latest") -> str:
     """
-    Hàm gọi Gemini API với prompt và model cụ thể.
-    Trả về phản hồi dạng chuỗi.
+    Gọi Gemini API với các key khác nhau cho đến khi thành công.
     """
-    try:
-        model = genai.GenerativeModel(model_name=model_name)
-        response = model.generate_content(prompt)
-        return response.text
-    except Exception as e:
-        return f"Lỗi: {e}"
+    api_keys = get_all_api_keys()
+    if not api_keys:
+        return "Lỗi: Key không tồn tại."
 
+    for key in api_keys:
+        try:
+            genai.configure(api_key=key)
+            model = genai.GenerativeModel(model_name=model_name)
+            response = model.generate_content(prompt)
+            return response.text
+        except Exception as e:
+            continue
+    return "❌ Tất cả các API key đều bị lỗi. Vui lòng kiểm tra lại."
 
 # Nếu chạy trực tiếp từ dòng lệnh
 if __name__ == "__main__":
