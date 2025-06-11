@@ -14,7 +14,7 @@ def call_gemini(prompt: str, model_name: str = "models/gemini-1.5-flash-latest")
     """
     api_keys = get_all_api_keys()
     if not api_keys:
-        return "Lỗi: Key không tồn tại."
+        return "Không thể kết nối LLM 0."
 
     for key in api_keys:
         try:
@@ -24,7 +24,7 @@ def call_gemini(prompt: str, model_name: str = "models/gemini-1.5-flash-latest")
             return response.text
         except Exception as e:
             continue
-    return "❌ Tất cả các API key đều bị lỗi. Vui lòng kiểm tra lại."
+    return "Không thể kết nối LLM 0."
 
 # Nếu chạy trực tiếp từ dòng lệnh
 if __name__ == "__main__":

@@ -18,3 +18,7 @@ evaluate
 nltk
 bert_score
 google-generativeai
+jinja2
+uvicorn
+fastapi
+dotenv

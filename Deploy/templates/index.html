@@ -6,6 +6,7 @@
   <title>DentalGPT - Trợ lý nha khoa</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.24.0/full/pyodide.js"></script>
   <style>
     .collapsible {
       cursor: pointer;
@@ -150,6 +151,62 @@
       border: 1px solid #f3f4f6;
       margin-top: 0.5rem;
     }
+    .python-code-block {
+      position: relative;
+      margin: 1rem 0;
+      border: 1px solid #e5e7eb;
+      border-radius: 0.5rem;
+      overflow: hidden;
+    }
+    .python-code-header {
+      background: #374151;
+      color: white;
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .python-code-content {
+      background: #1f2937;
+      color: #f9fafb;
+      padding: 1rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+    }
+    .run-button {
+      background: #10b981;
+      color: white;
+      border: none;
+      padding: 0.25rem 0.75rem;
+      border-radius: 0.25rem;
+      cursor: pointer;
+      font-size: 0.8rem;
+      transition: background 0.2s;
+    }
+    .run-button:hover {
+      background: #059669;
+    }
+    .run-button:disabled {
+      background: #6b7280;
+      cursor: not-allowed;
+    }
+    .python-output {
+      background: #111827;
+      color: #10b981;
+      padding: 1rem;
+      border-top: 1px solid #374151;
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      white-space: pre-wrap;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+    .loading-indicator {
+      color: #fbbf24;
+      display: none;
+    }
   </style>
 </head>
 <body class="bg-gradient-to-br from-blue-50 to-indigo-100 font-sans min-h-screen">
@@ -228,6 +285,65 @@
     let isGenerating = false;
     let currentBotMessage = null;
     let streamBuffer = "";
+    let pyodide = null;
+
+    // Initialize Pyodide
+    async function initPyodide() {
+      if (!pyodide) {
+        try {
+          pyodide = await loadPyodide();
+          console.log("Pyodide initialized successfully");
+        } catch (error) {
+          console.error("Failed to initialize Pyodide:", error);
+        }
+      }
+      return pyodide;
+    }
+
+    // Python Code Runner
+    async function runPythonCode(code, outputElement, buttonElement) {
+      if (!pyodide) {
+        await initPyodide();
+      }
+      
+      if (!pyodide) {
+        outputElement.textContent = "Lỗi: Không thể khởi tạo Python runner";
+        return;
+      }
+
+      buttonElement.disabled = true;
+      buttonElement.textContent = "Đang chạy...";
+      
+      // Show loading
+      const loadingIndicator = buttonElement.parentElement.querySelector('.loading-indicator');
+      loadingIndicator.style.display = 'inline';
+      
+      try {
+        // Capture stdout
+        pyodide.runPython(`
+import sys
+from io import StringIO
+sys.stdout = StringIO()
+        `);
+        
+        // Run the user code
+        pyodide.runPython(code);
+        
+        // Get the output
+        const output = pyodide.runPython("sys.stdout.getvalue()");
+        
+        outputElement.textContent = output || "Chương trình chạy thành công (không có output)";
+        outputElement.style.display = 'block';
+        
+      } catch (error) {
+        outputElement.textContent = `Lỗi: ${error.message}`;
+        outputElement.style.display = 'block';
+      } finally {
+        buttonElement.disabled = false;
+        buttonElement.textContent = "Chạy";
+        loadingIndicator.style.display = 'none';
+      }
+    }
 
     // Chat Template Class để quản lý rendering
     class ChatTemplate {
@@ -321,14 +437,65 @@
 
       markdownToHtml(text) {
         try {
-          return marked.parse(text);
+          let html = marked.parse(text);
+          // Process Python code blocks
+          html = this.processPythonCodeBlocks(html);
+          return html;
         } catch (e) {
           return text.replace(/\n/g, '<br>');
         }
       }
+
+      processPythonCodeBlocks(html) {
+        // Regex để tìm code blocks Python
+        const pythonCodeRegex = /<pre><code class="language-python">([\s\S]*?)<\/code><\/pre>/g;
+        
+        return html.replace(pythonCodeRegex, (match, code) => {
+          const decodedCode = this.decodeHtml(code.trim());
+          const blockId = 'python-' + Math.random().toString(36).substr(2, 9);
+          
+          return `
+            <div class="python-code-block">
+              <div class="python-code-header">
+                <span>🐍 Python Code</span>
+                <div>
+                  <button class="run-button" onclick="executeCode('${blockId}')">Chạy</button>
+                  <span class="loading-indicator">⏳</span>
+                </div>
+              </div>
+              <div class="python-code-content">
+                <pre id="${blockId}">${this.escapeHtml(decodedCode)}</pre>
+              </div>
+              <div class="python-output" id="${blockId}-output" style="display:none;"></div>
+            </div>
+          `;
+        });
+      }
+
+      decodeHtml(html) {
+        const txt = document.createElement("textarea");
+        txt.innerHTML = html;
+        return txt.value;
+      }
+
+      escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+      }
     }
 
     const template = new ChatTemplate();
+
+    // Global function to execute Python code
+    window.executeCode = async function(blockId) {
+      const codeElement = document.getElementById(blockId);
+      const outputElement = document.getElementById(blockId + '-output');
+      const buttonElement = codeElement.parentElement.parentElement.querySelector('.run-button');
+      
+      const code = codeElement.textContent;
+      await runPythonCode(code, outputElement, buttonElement);
+    };
 
     function handleKeyPress(event) {
       if (event.key === 'Enter' && !event.shiftKey) {
@@ -609,6 +776,8 @@
       document.getElementById('user-input').focus();
       // Initialize event delegation for collapsibles
       bindCollapsibleEvents();
+      // Initialize Pyodide in background
+      initPyodide();
     });
   </script>
 </body>
