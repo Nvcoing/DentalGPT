@@ -207,6 +207,12 @@
       color: #fbbf24;
       display: none;
     }
+    .plot-image {
+      max-width: 100%;
+      margin: 0.5rem 0;
+      border: 1px solid #e5e7eb;
+      border-radius: 0.25rem;
+    }
   </style>
 </head>
 <body class="bg-gradient-to-br from-blue-50 to-indigo-100 font-sans min-h-screen">
@@ -287,12 +293,18 @@
     let streamBuffer = "";
     let pyodide = null;
 
-    // Initialize Pyodide
+    // Initialize Pyodide with matplotlib support
     async function initPyodide() {
       if (!pyodide) {
         try {
           pyodide = await loadPyodide();
-          console.log("Pyodide initialized successfully");
+          // Load required packages
+          await pyodide.loadPackage("micropip");
+          await pyodide.runPythonAsync(`
+            import micropip
+            await micropip.install('matplotlib')
+          `);
+          console.log("Pyodide initialized successfully with matplotlib");
         } catch (error) {
           console.error("Failed to initialize Pyodide:", error);
         }
@@ -300,52 +312,7 @@
       return pyodide;
     }
 
-    // Python Code Runner
-    async function runPythonCode(code, outputElement, buttonElement) {
-      if (!pyodide) {
-        await initPyodide();
-      }
-      
-      if (!pyodide) {
-        outputElement.textContent = "Lỗi: Không thể khởi tạo Python runner";
-        return;
-      }
-
-      buttonElement.disabled = true;
-      buttonElement.textContent = "Đang chạy...";
-      
-      // Show loading
-      const loadingIndicator = buttonElement.parentElement.querySelector('.loading-indicator');
-      loadingIndicator.style.display = 'inline';
-      
-      try {
-        // Capture stdout
-        pyodide.runPython(`
-import sys
-from io import StringIO
-sys.stdout = StringIO()
-        `);
-        
-        // Run the user code
-        pyodide.runPython(code);
-        
-        // Get the output
-        const output = pyodide.runPython("sys.stdout.getvalue()");
-        
-        outputElement.textContent = output || "Chương trình chạy thành công (không có output)";
-        outputElement.style.display = 'block';
-        
-      } catch (error) {
-        outputElement.textContent = `Lỗi: ${error.message}`;
-        outputElement.style.display = 'block';
-      } finally {
-        buttonElement.disabled = false;
-        buttonElement.textContent = "Chạy";
-        loadingIndicator.style.display = 'none';
-      }
-    }
-
-    // Chat Template Class để quản lý rendering
+    // Chat Template Class to manage rendering
     class ChatTemplate {
       constructor() {
         this.sections = {
@@ -384,25 +351,25 @@ sys.stdout = StringIO()
         }
       }
 
-      render() {
+      async render() {
         let html = "";
         
-        // Render collapsible sections với ô riêng biệt
-        Object.entries(this.sections).forEach(([key, section]) => {
+        // Render collapsible sections with separate boxes
+        for (const [key, section] of Object.entries(this.sections)) {
           if (key !== 'answer' && section.content.trim()) {
-            html += this.renderCollapsibleSection(key, section);
+            html += await this.renderCollapsibleSection(key, section);
           }
-        });
+        }
 
         // Render answer section
         if (this.sections.answer.content.trim()) {
-          html += this.renderAnswerSection(this.sections.answer.content);
+          html += await this.renderAnswerSection(this.sections.answer.content);
         }
 
         return html;
       }
 
-      renderCollapsibleSection(key, section) {
+      async renderCollapsibleSection(key, section) {
         const extraClass = key === 'reasoning_cot' ? 'reasoning-box' : 'expert-box';
         const hasContent = section.content.trim() !== '';
         
@@ -415,13 +382,13 @@ sys.stdout = StringIO()
               ${hasContent ? '<span class="text-xs text-blue-500 ml-auto">Click để xem chi tiết</span>' : ''}
             </div>
             <div class="content-box ${extraClass}" data-content="${key}">
-              <div class="markdown-content">${this.markdownToHtml(section.content)}</div>
+              <div class="markdown-content">${await this.markdownToHtml(section.content)}</div>
             </div>
           </div>
         `;
       }
 
-      renderAnswerSection(content) {
+      async renderAnswerSection(content) {
         return `
           <div class="answer-section">
             <div class="flex items-center gap-2 mb-3">
@@ -429,48 +396,102 @@ sys.stdout = StringIO()
               <span class="font-semibold text-gray-700">Câu trả lời</span>
             </div>
             <div class="markdown-content prose max-w-none">
-              ${this.markdownToHtml(content)}
+              ${await this.markdownToHtml(content)}
             </div>
           </div>
         `;
       }
 
-      markdownToHtml(text) {
+      async markdownToHtml(text) {
         try {
           let html = marked.parse(text);
           // Process Python code blocks
-          html = this.processPythonCodeBlocks(html);
+          html = await this.processPythonCodeBlocks(html);
           return html;
         } catch (e) {
           return text.replace(/\n/g, '<br>');
         }
       }
 
-      processPythonCodeBlocks(html) {
-        // Regex để tìm code blocks Python
+      async processPythonCodeBlocks(html) {
+        // Regex to find Python code blocks
         const pythonCodeRegex = /<pre><code class="language-python">([\s\S]*?)<\/code><\/pre>/g;
         
-        return html.replace(pythonCodeRegex, (match, code) => {
-          const decodedCode = this.decodeHtml(code.trim());
+        // Process all matches
+        const matches = [...html.matchAll(pythonCodeRegex)];
+        for (const match of matches) {
+          const fullMatch = match[0];
+          const code = match[1].trim();
+          const decodedCode = this.decodeHtml(code);
           const blockId = 'python-' + Math.random().toString(36).substr(2, 9);
           
-          return `
-            <div class="python-code-block">
-              <div class="python-code-header">
-                <span>🐍 Python Code</span>
-                <div>
-                  <button class="run-button" onclick="executeCode('${blockId}')">Chạy</button>
-                  <span class="loading-indicator">⏳</span>
+          // Execute the code and get output
+          let output = "";
+          try {
+            output = await this.executePythonCode(decodedCode);
+          } catch (error) {
+            output = `Error executing code: ${error.message}`;
+          }
+          
+          // Create the replacement HTML
+          const replacement = output
+            ? `<div class="image-output"><img src="${output}" alt="Output Image" /></div>`
+            : `
+                <div class="python-code-block">
+                  <div class="python-code-header">
+                    <span>🐍 Python Code</span>
+                    <div>
+                      <button class="run-button" onclick="executeCode('${blockId}')">Chạy lại</button>
+                      <span class="loading-indicator">⏳</span>
+                    </div>
+                  </div>
+                  <div class="python-code-content">
+                    <pre id="${blockId}">${this.escapeHtml(decodedCode)}</pre>
+                  </div>
                 </div>
-              </div>
-              <div class="python-code-content">
-                <pre id="${blockId}">${this.escapeHtml(decodedCode)}</pre>
-              </div>
-              <div class="python-output" id="${blockId}-output" style="display:none;"></div>
-            </div>
-          `;
-        });
+              `;
+          
+          // Replace in the HTML
+          html = html.replace(fullMatch, replacement);
+        }
+        
+        return html;
       }
+
+      async executePythonCode(code) {
+        if (!pyodide) {
+          await initPyodide();
+        }
+
+        try {
+          // Set up the backend and buffer to capture image
+          await pyodide.runPythonAsync(`
+            import matplotlib
+            matplotlib.use('AGG')  # Use non-interactive backend
+            import matplotlib.pyplot as plt
+            import io
+            import base64
+          `);
+
+          // Run user code
+          await pyodide.runPythonAsync(code);
+
+          // Save plot to buffer
+          const imageBase64 = await pyodide.runPythonAsync(`
+            buf = io.BytesIO()
+            plt.savefig(buf, format='png')
+            buf.seek(0)
+            encoded = base64.b64encode(buf.read()).decode('utf-8')
+            plt.close()
+            encoded
+          `);
+
+          return `data:image/png;base64,${imageBase64}`;
+        } catch (error) {
+          return `Error: ${error.message}`;
+        }
+      }
+
 
       decodeHtml(html) {
         const txt = document.createElement("textarea");
@@ -494,7 +515,25 @@ sys.stdout = StringIO()
       const buttonElement = codeElement.parentElement.parentElement.querySelector('.run-button');
       
       const code = codeElement.textContent;
-      await runPythonCode(code, outputElement, buttonElement);
+      
+      buttonElement.disabled = true;
+      buttonElement.textContent = "Đang chạy...";
+      const loadingIndicator = buttonElement.parentElement.querySelector('.loading-indicator');
+      loadingIndicator.style.display = 'inline';
+      outputElement.style.display = 'none';
+      
+      try {
+        const output = await template.executePythonCode(code);
+        outputElement.innerHTML = output;
+        outputElement.style.display = 'block';
+      } catch (error) {
+        outputElement.textContent = `Error: ${error.message}`;
+        outputElement.style.display = 'block';
+      } finally {
+        buttonElement.disabled = false;
+        buttonElement.textContent = "Chạy lại";
+        loadingIndicator.style.display = 'none';
+      }
     };
 
     function handleKeyPress(event) {
@@ -566,28 +605,6 @@ sys.stdout = StringIO()
       const div = document.createElement('div');
       div.textContent = text;
       return div.innerHTML;
-    }
-
-    function parseStreamingResponse(rawText) {
-      // Remove control tags
-      let text = rawText.replace(/<｜[^｜]*｜>/g, "");
-      
-      // Extract sections using regex - improved for incomplete tags
-      const sections = {
-        reasoning_cot: extractSection(text, 'reasoning_cot'),
-        experting: extractSection(text, 'experting'),
-        answer: extractSection(text, 'answer')
-      };
-
-      // Update template
-      template.reset();
-      Object.entries(sections).forEach(([key, content]) => {
-        if (content) {
-          template.updateSection(key, content);
-        }
-      });
-
-      return template.render();
     }
 
     function extractSection(text, sectionName) {
@@ -733,7 +750,7 @@ sys.stdout = StringIO()
           streamBuffer += chunk;
           
           // Parse and render the accumulated content
-          const parsedContent = parseStreamingResponse(streamBuffer);
+          const parsedContent = await parseStreamingResponse(streamBuffer);
           currentBotMessage.innerHTML = parsedContent + '<span class="stream-cursor"></span>';
           
           // Apply saved section states after content update
@@ -749,7 +766,7 @@ sys.stdout = StringIO()
 
         // Remove cursor and finalize
         if (currentBotMessage) {
-          const finalContent = parseStreamingResponse(streamBuffer);
+          const finalContent = await parseStreamingResponse(streamBuffer);
           currentBotMessage.innerHTML = finalContent;
           applySectionStates();
         }
@@ -769,6 +786,28 @@ sys.stdout = StringIO()
         sendBtn.textContent = "Gửi";
         sendBtn.disabled = false;
       }
+    }
+
+    async function parseStreamingResponse(rawText) {
+      // Remove control tags
+      let text = rawText.replace(/<｜[^｜]*｜>/g, "");
+      
+      // Extract sections using regex - improved for incomplete tags
+      const sections = {
+        reasoning_cot: extractSection(text, 'reasoning_cot'),
+        experting: extractSection(text, 'experting'),
+        answer: extractSection(text, 'answer')
+      };
+
+      // Update template
+      template.reset();
+      Object.entries(sections).forEach(([key, content]) => {
+        if (content) {
+          template.updateSection(key, content);
+        }
+      });
+
+      return await template.render();
     }
 
     // Initialize
