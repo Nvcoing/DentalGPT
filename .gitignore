@@ -1,3 +1,4 @@
 Build dataset Dental/API Gemini.txt
 Deploy/DentalGPT/
 Deploy/gemini_tool/.env
+Deploy/gemini_tool/env

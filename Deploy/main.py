@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Request
-from fastapi.responses import StreamingResponse, JSONResponse
+from fastapi.responses import StreamingResponse, JSONResponse, HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
-
+from fastapi.templating import Jinja2Templates
 from handlers.normal_handler import generate_response as normal_generate
 from handlers.reason_handler import generate_response as reason_generate
 from handlers.deep_reason_handler import generate_response as deep_reason_generate
@@ -15,7 +15,13 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+# Khai báo thư mục chứa templates (giao diện)
+templates = Jinja2Templates(directory="templates")
 
+# Route hiển thị giao diện chính
+@app.get("/", response_class=HTMLResponse)
+async def home(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
 @app.post("/DentalGPT/chatbot/")
 async def generate(request: Request):
     req_json = await request.json()
