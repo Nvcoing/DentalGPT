@@ -66,14 +66,14 @@ def get_trainer(model, tokenizer, train_dataset, eval_dataset, repo_id, token, w
 
     # Tính lại max_steps và logging/save_steps 
     epochs = 2
-    # steps = int(len(train_dataset) * epochs / (args.per_device_train_batch_size * args.gradient_accumulation_steps)) #189434 
-    steps = 189434  
+    steps = int(len(train_dataset) * epochs / (args.per_device_train_batch_size * args.gradient_accumulation_steps)) #189434 
+    # steps = 189434  
     # args.warmup_steps = int(steps * 0.3)
-    # batch_size = args.per_device_train_batch_size * args.gradient_accumulation_steps #32
+    batch_size = args.per_device_train_batch_size * args.gradient_accumulation_steps #32
     batch_size = 32
     args.max_steps = steps
-    args.logging_steps = int(800 / batch_size)
-    args.save_steps = int(1600 / batch_size)
+    args.logging_steps = int(800 / batch_size) #25
+    args.save_steps = int(1600 / batch_size) #50
 
     trainer = SFTTrainer(
         model=model,

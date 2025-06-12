@@ -2,3 +2,7 @@ Build dataset Dental/API Gemini.txt
 Deploy/DentalGPT/
 Deploy/gemini_tool/.env
 Deploy/gemini_tool/env
+Trainer/sft_trainer.py
+Deploy/config.txt
+Trainer/sft_trainer.py
+Trainer/sft_trainer.py
