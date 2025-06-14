@@ -5,6 +5,7 @@ from fastapi.templating import Jinja2Templates
 from handlers.normal_handler import generate_response as normal_generate
 from handlers.reason_handler import generate_response as reason_generate
 from handlers.deep_reason_handler import generate_response as deep_reason_generate
+from handlers.agentic_handler import generate_response as agentic_generate
 
 app = FastAPI()
 
@@ -46,6 +47,10 @@ async def generate(request: Request):
         gen = deep_reason_generate(prompt, temperature=temperature, top_p=top_p,
                                    top_k=top_k, repetition_penalty=repetition_penalty,
                                    do_sample=do_sample, max_new_tokens=max_new_tokens or 512)
+    elif mode == "agentic":
+        gen = agentic_generate(prompt, temperature=temperature, top_p=top_p,
+                                    top_k=top_k, repetition_penalty=repetition_penalty,
+                                    do_sample=do_sample, max_new_tokens=max_new_tokens or 1024)
     else:
         gen = normal_generate(prompt, temperature=temperature, top_p=top_p,
                               top_k=top_k, repetition_penalty=repetition_penalty,
