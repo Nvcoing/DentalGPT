@@ -2,6 +2,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import StreamingResponse, JSONResponse, HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.templating import Jinja2Templates
+from fastapi.staticfiles import StaticFiles
 from handlers.normal_handler import generate_response as normal_generate
 from handlers.reason_handler import generate_response as reason_generate
 from handlers.deep_reason_handler import generate_response as deep_reason_generate
@@ -16,6 +17,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+app.mount("/static", StaticFiles(directory="static"), name="static")
 # Khai báo thư mục chứa templates (giao diện)
 templates = Jinja2Templates(directory="templates")
 
@@ -53,8 +55,8 @@ async def generate(request: Request):
         gen = agentic_generate(prompt, temperature=temperature, top_p=top_p,
                                     top_k=top_k, repetition_penalty=repetition_penalty,
                                     do_sample=do_sample, max_new_tokens=max_new_tokens or 1024)
-        full_text = ''.join(list(gen))
-        return full_text
+        full_output = ''.join(list(gen))
+        return JSONResponse(content={"response": full_output})
     else:
         gen = normal_generate(prompt, temperature=temperature, top_p=top_p,
                               top_k=top_k, repetition_penalty=repetition_penalty,
