@@ -108,3 +108,4 @@ def generate_response(prompt: str,
     final_summary = call_gemini(summary_prompt, model_name="models/gemini-1.5-flash-latest")
     yield "\n\n📌 KẾT LUẬN TỔNG HỢP:\n"
     yield final_summary
+    return

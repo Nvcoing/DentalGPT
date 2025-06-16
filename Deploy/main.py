@@ -43,17 +43,21 @@ async def generate(request: Request):
         gen = reason_generate(prompt, temperature=temperature, top_p=top_p,
                               top_k=top_k, repetition_penalty=repetition_penalty,
                               do_sample=do_sample, max_new_tokens=max_new_tokens or 512)
+        return StreamingResponse(gen, media_type="text/markdown")
     elif mode == "deep_reason":
         gen = deep_reason_generate(prompt, temperature=temperature, top_p=top_p,
                                    top_k=top_k, repetition_penalty=repetition_penalty,
                                    do_sample=do_sample, max_new_tokens=max_new_tokens or 512)
+        return StreamingResponse(gen, media_type="text/markdown")
     elif mode == "agentic":
         gen = agentic_generate(prompt, temperature=temperature, top_p=top_p,
                                     top_k=top_k, repetition_penalty=repetition_penalty,
                                     do_sample=do_sample, max_new_tokens=max_new_tokens or 1024)
+        full_text = ''.join(list(gen))
+        return full_text
     else:
         gen = normal_generate(prompt, temperature=temperature, top_p=top_p,
                               top_k=top_k, repetition_penalty=repetition_penalty,
                               do_sample=do_sample, max_new_tokens=max_new_tokens or 256)
-
-    return StreamingResponse(gen, media_type="text/markdown")
+        return StreamingResponse(gen, media_type="text/markdown")
+   
