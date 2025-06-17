@@ -99,14 +99,14 @@ def build_prompt(question: str) -> str:
         "### Hướng dẫn: Hãy là là một trợ lý ảo nha khoa và trả lời câu hỏi dưới đây:\n"
         "<｜user｜>\n"
         f"### Câu hỏi:\n{question.strip()}\n"
-        "<｜think｜>\n"
-        "Hãy cùng diễn giải từng bước nào!🤔\n"
-        "<reasoning_cot>\n"
-        "# 🧠 Suy luận của DentalGPT\n"
-        f"## 1️⃣ Mục tiêu 📌\nTrả lời đơn giản, đúng trọng tâm, ngắn gọn, dễ hiểu\n"
-        f"## 2️⃣ Bước suy nghĩ ⚙️\nBước 1: Xác định đúng câu hỏi\nBước 2: Xác định câu trả lời\nBước 3: Xác định cách trình bày\n"
-        f"## 3️⃣ Giải thích 📝\nGiải thích ngắn gọn\n"
-        "</reasoning_cot>\n"
+        # "<｜think｜>\n"
+        # "Hãy cùng diễn giải từng bước nào!🤔\n"
+        # "<reasoning_cot>\n"
+        # "# 🧠 Suy luận của DentalGPT\n"
+        # f"## 1️⃣ Mục tiêu 📌\nTrả lời đơn giản, đúng trọng tâm, ngắn gọn, dễ hiểu\n"
+        # f"## 2️⃣ Bước suy nghĩ ⚙️\nBước 1: Xác định đúng câu hỏi\nBước 2: Xác định câu trả lời\nBước 3: Xác định cách trình bày\n"
+        # f"## 3️⃣ Giải thích 📝\nGiải thích ngắn gọn\n"
+        # "</reasoning_cot>\n"
     )
 
 def send_request(prompt: str, generation_params: dict):
