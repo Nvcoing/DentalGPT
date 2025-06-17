@@ -17,7 +17,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-app.mount("/static", StaticFiles(directory="static"), name="static")
+# app.mount("/static", StaticFiles(directory="static"), name="static")
 # Khai báo thư mục chứa templates (giao diện)
 templates = Jinja2Templates(directory="templates")
 
@@ -45,19 +45,21 @@ async def generate(request: Request):
         gen = reason_generate(prompt, temperature=temperature, top_p=top_p,
                               top_k=top_k, repetition_penalty=repetition_penalty,
                               do_sample=do_sample, max_new_tokens=max_new_tokens or 512)
+        return StreamingResponse(gen, media_type="text/markdown")
     elif mode == "deep_reason":
         gen = deep_reason_generate(prompt, temperature=temperature, top_p=top_p,
                                    top_k=top_k, repetition_penalty=repetition_penalty,
                                    do_sample=do_sample, max_new_tokens=max_new_tokens or 512)
+        return StreamingResponse(gen, media_type="text/markdown")
     elif mode == "agentic":
         gen = agentic_generate(prompt, temperature=temperature, top_p=top_p,
                                     top_k=top_k, repetition_penalty=repetition_penalty,
                                     do_sample=do_sample, max_new_tokens=max_new_tokens or 1024)
-        full_output = ''.join(list(gen))
+        output = ''.join(list(gen))
+        full_output=output
         return JSONResponse(content={"response": full_output})
     else:
         gen = normal_generate(prompt, temperature=temperature, top_p=top_p,
                               top_k=top_k, repetition_penalty=repetition_penalty,
                               do_sample=do_sample, max_new_tokens=max_new_tokens or 256)
-    return StreamingResponse(gen, media_type="text/markdown")
-   
+        return StreamingResponse(gen, media_type="text/markdown")
