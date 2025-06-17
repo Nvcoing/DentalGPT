@@ -8,3 +8,4 @@ Trainer/sft_trainer.py
 Trainer/sft_trainer.py
 RAG/retrieval_search/.env
 Deploy/retrieval_search/.env
+Deploy/retrieval_search/env

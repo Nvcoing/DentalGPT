@@ -1,13 +1,9 @@
-# tool_search.py
-
 import os
 import requests
 import logging
 from bs4 import BeautifulSoup
 from googleapiclient.discovery import build
 from dotenv import load_dotenv
-
-from router_format import detect_file_type
 
 # Load biến môi trường
 load_dotenv()
@@ -37,10 +33,6 @@ def get_page_content(url):
         logger.warning(f"[LỖI] Không lấy được nội dung từ {url}: {e}")
         return ""
 
-# # Hàm xử lý chính (gọi router + chọn dạng)
-# def unified_search(query, num_results=3):
-#     file_type = detect_file_type(query)
-#     return tool_search(query, file_type, num_results=num_results)
 
 # Hàm tìm kiếm gốc
 def tool_search(query, file_type=None, num_results=3, api_key=API_KEY, cse_id=CSE_ID):
@@ -86,19 +78,19 @@ def tool_search(query, file_type=None, num_results=3, api_key=API_KEY, cse_id=CS
         logger.error(f"Lỗi trong tool_search: {e}")
         return []
 
-# Ví dụ test
-if __name__ == "__main__":
-    query1 = "Tìm tài liệu trí tuệ nhân tạo"
-    query2 = "Cho tôi tài liệu"
-    print("🔍 Tìm kiếm thường:")
-    results = unified_search(query1)
-    for i, r in enumerate(results):
-        print(f"{i+1}. {r['title']}\n   {r['link']}\n   {r['content'][:300]}\n")
+# # Ví dụ test
+# if __name__ == "__main__":
+#     query1 = "Tìm tài liệu trí tuệ nhân tạo"
+#     query2 = "Cho tôi tài liệu"
+#     print("🔍 Tìm kiếm thường:")
+#     results = tool_search(query1)
+#     for i, r in enumerate(results):
+#         print(f"{i+1}. {r['title']}\n   {r['link']}\n   {r['content'][:300]}\n")
 
-    print("📄 Tìm kiếm có định dạng:")
-    results2 = unified_search(query2)
-    for i, r in enumerate(results2):
-        print(f"{i+1}. {r['title']}\n   {r['link']}\n   {r['content'][:300]}\n")
+#     print("📄 Tìm kiếm có định dạng:")
+#     results2 = tool_search(query2)
+#     for i, r in enumerate(results2):
+#         print(f"{i+1}. {r['title']}\n   {r['link']}\n   {r['content'][:300]}\n")
 # import os
 # import requests
 # import logging

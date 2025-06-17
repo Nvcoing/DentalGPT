@@ -84,7 +84,7 @@ def generate_response(prompt: str,
 
     # Bước 2: Gửi cho Gemini để phản biện và tạo prompt tốt hơn
     refining_prompt = build_refining_prompt(base_prompt, raw_answer)
-    improved_instruction = call_gemini(refining_prompt, model_name="models/gemini-1.5-flash-latest")
+    improved_instruction = call_gemini(refining_prompt, model_name="models/gemini-2.0-flash")
 
     # Bước 3: Tạo prompt mới từ phản hồi của Gemini
     refined_prompt = (

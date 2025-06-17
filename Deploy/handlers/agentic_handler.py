@@ -225,7 +225,7 @@ Chỉ trả về nội dung báo cáo cuối cùng, không cần giải thích t
 """
     
     try:
-        final_report = call_gemini(gemini_prompt, model_name="models/gemini-2.0-flash")
+        final_report = call_gemini(gemini_prompt, model_name="models/gemini-2.5-pro")
         return final_report.strip()
     except Exception as e:
         # Fallback nếu Gemini lỗi
@@ -279,17 +279,17 @@ def generate_response(prompt: str,
             
             # Bước 2: Tạo prompt chi tiết cho LLM
             detailed_prompt = f"""
-Yêu cầu gốc: {prompt}
+                Yêu cầu gốc: {prompt}
 
-Mục cần viết: {section_title}
-Mô tả: {section_description}
+                Mục cần viết: {section_title}
+                Mô tả: {section_description}
 
-Câu hỏi hướng dẫn:
-{questions}
+                Câu hỏi hướng dẫn:
+                {questions}
 
-Hãy viết nội dung chi tiết và chuyên nghiệp cho mục "{section_title}" dựa trên các câu hỏi hướng dẫn trên.
-Nội dung cần có cấu trúc rõ ràng, sử dụng thuật ngữ chuyên môn phù hợp và đảm bảo tính khoa học.
-"""
+                Hãy viết nội dung chi tiết và chuyên nghiệp cho mục "{section_title}" dựa trên các câu hỏi hướng dẫn trên.
+                Nội dung cần có cấu trúc rõ ràng, sử dụng thuật ngữ chuyên môn phù hợp và đảm bảo tính khoa học.
+                """
             
             # Bước 3: Gửi tới LLM
             full_response += "⚡ Sinh nội dung từ LLM...\n"

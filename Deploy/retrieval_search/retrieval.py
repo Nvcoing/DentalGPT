@@ -7,7 +7,7 @@ from nltk.tokenize import sent_tokenize
 
 
 # === 1. Chia văn bản thành các đoạn nhỏ (mỗi đoạn 2 câu) ===
-def chunk_text(text, chunk_size=1000, overlap=2):
+def chunk_text(text, chunk_size=500, overlap=1):
     sentences = sent_tokenize(text)
     chunks = []
     for i in range(0, len(sentences), chunk_size - overlap):

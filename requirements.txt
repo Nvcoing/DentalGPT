@@ -22,3 +22,8 @@ jinja2
 uvicorn
 fastapi
 dotenv
+sentence_transformers
+beautifulsoup4
+faiss-cpu
+pyngrok
+nest_asyncio
