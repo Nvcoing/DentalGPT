@@ -59,7 +59,7 @@ async def generate(request: Request):
         full_output=output
         return JSONResponse(content={"response": full_output})
     else:
-        gen = normal_generate(prompt, temperature=temperature, top_p=top_p,
+        gen = normal_generate(prompt,rag(prompt, top_k=3, num_web_results=5), temperature=temperature, top_p=top_p,
                               top_k=top_k, repetition_penalty=repetition_penalty,
                               do_sample=do_sample, max_new_tokens=max_new_tokens or 256)
         return StreamingResponse(gen, media_type="text/markdown")

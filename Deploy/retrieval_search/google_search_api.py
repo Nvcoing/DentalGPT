@@ -6,7 +6,8 @@ from googleapiclient.discovery import build
 from dotenv import load_dotenv
 
 # Load biến môi trường
-load_dotenv()
+dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
+load_dotenv(dotenv_path=dotenv_path)
 API_KEY = os.getenv("GOOGLE_API_KEY")
 CSE_ID = os.getenv("GOOGLE_CSE_ID")
 
@@ -36,7 +37,7 @@ def get_page_content(url):
 
 # Hàm tìm kiếm gốc
 def tool_search(query, file_type=None, num_results=3, api_key=API_KEY, cse_id=CSE_ID):
-    if not api_key or not cse_id:
+    if not api_key and not cse_id:
         logger.error("API_KEY hoặc CSE_ID không được tìm thấy.")
         return []
 
