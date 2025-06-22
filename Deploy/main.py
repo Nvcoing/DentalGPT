@@ -7,7 +7,7 @@ from handlers.normal_handler import generate_response as normal_generate
 from handlers.reason_handler import generate_response as reason_generate
 from handlers.deep_reason_handler import generate_response as deep_reason_generate
 from handlers.agentic_handler import generate_response as agentic_generate
-from retrieval_search.augmented import augmented as rag 
+from rag_search.augmented import augmented as rag 
 app = FastAPI()
 
 app.add_middleware(
