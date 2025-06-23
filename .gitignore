@@ -9,3 +9,5 @@ Trainer/sft_trainer.py
 RAG/retrieval_search/.env
 Deploy/retrieval_search/.env
 Deploy/retrieval_search/env
+RAG/ChromaDB/eef5898a-4cf8-40ab-945c-a83017510ea1/link_lists.bin
+/RAG/ChromaDB
