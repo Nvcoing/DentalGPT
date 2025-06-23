@@ -225,7 +225,7 @@ Chỉ trả về nội dung báo cáo cuối cùng, không cần giải thích t
 """
     
     try:
-        final_report = call_gemini(gemini_prompt, model_name="models/gemini-2.5-pro")
+        final_report = call_gemini(gemini_prompt, model_name="models/gemini-2.0-pro")
         return final_report.strip()
     except Exception as e:
         # Fallback nếu Gemini lỗi

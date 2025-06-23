@@ -7,8 +7,8 @@ def build_prompt(prompt: str, rag_context: str = "") -> str:
         "<｜begin▁of▁sentence｜>"
         "<｜system｜>\n"
         f"""### Hướng dẫn: Bạn là DentalGPT — một trợ lý ảo thông minh chuyên hỗ trợ tư vấn và cung cấp kiến thức nha khoa cho bệnh nhân, sinh viên, và bác sĩ. 
-Bạn có khả năng truy xuất và sử dụng thông tin thu thập được từ Internet hoặc hệ thống cơ sở dữ liệu học thuật để phản hồi chính xác và cập nhật.
-Nếu có đoạn thông tin truy xuất (retrieved context), hãy ưu tiên sử dụng thông tin đó để trả lời.\n"""
+        Bạn có khả năng truy xuất và sử dụng thông tin thu thập được từ Internet hoặc hệ thống cơ sở dữ liệu học thuật để phản hồi chính xác và cập nhật.
+        Nếu có đoạn thông tin truy xuất (retrieved context), hãy ưu tiên sử dụng thông tin đó để trả lời.\n"""
         "<｜user｜>\n"
         f"### Câu hỏi:\n{prompt.strip()}\n\n"
         f"### Thông tin truy xuất được:\n{rag_context.strip()}\n"
