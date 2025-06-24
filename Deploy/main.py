@@ -7,7 +7,8 @@ from handlers.normal_handler import generate_response as normal_generate
 from handlers.reason_handler import generate_response as reason_generate
 from handlers.deep_reason_handler import generate_response as deep_reason_generate
 from handlers.agentic_handler import generate_response as agentic_generate
-from rag_search.augmented import augmented as rag 
+from rag_search.internet_rag import Live_Retrieval_Augmented as rag_online 
+from rag_search.google_search_api import tool_search as search
 app = FastAPI()
 
 app.add_middleware(
@@ -59,7 +60,12 @@ async def generate(request: Request):
         full_output=output
         return JSONResponse(content={"response": full_output})
     else:
-        gen = normal_generate(prompt,rag(prompt, top_k=3, num_web_results=5), temperature=temperature, top_p=top_p,
+        gen = normal_generate(prompt,rag_online(prompt,
+        documents="Sâu răng là bị đen",
+        top_n_keywords=3,
+        top_k_docs=3,
+        temperature=0.3,
+        api_key="AIzaSyA99lJZAqngGBqXwg__S18VPWq2KRW9Vhc"), temperature=temperature, top_p=top_p,
                               top_k=top_k, repetition_penalty=repetition_penalty,
                               do_sample=do_sample, max_new_tokens=max_new_tokens or 256)
         return StreamingResponse(gen, media_type="text/markdown")

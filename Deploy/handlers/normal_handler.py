@@ -11,7 +11,7 @@ def build_prompt(prompt: str, rag_context: str = "") -> str:
         Nếu có đoạn thông tin truy xuất (retrieved context), hãy ưu tiên sử dụng thông tin đó để trả lời.\n"""
         "<｜user｜>\n"
         f"### Câu hỏi:\n{prompt.strip()}\n\n"
-        f"### Thông tin truy xuất được:\n{rag_context.strip()}\n"
+        f"### Thông tin truy xuất được:\n{str(rag_context).strip()}\n"
         "<｜think｜>\n"
         "Hãy cùng diễn giải từng bước nào!🤔\n"
         "<reasoning_cot>\n"
