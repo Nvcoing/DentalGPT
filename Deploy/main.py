@@ -47,7 +47,7 @@ async def generate(request: Request):
         context_online = rag_online(prompt,documents=search(prompt))
         prompt = prompt+"\n Ngữ cảnh:".join(context_online)
     else:
-        context = rag_local(prompt,persist_dir="vectordb/ChromDB",top_k=5)
+        context = rag_local(prompt,persist_dir="ChromaDB",top_k=5)
         prompt = "CÂU HỎI:\n"+prompt+"\n THÔNG TIN TRUY XUẤT:\n".join(context)
     
     
