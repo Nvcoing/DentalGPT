@@ -2,7 +2,7 @@ import requests
 import time
 from config import NGROK_URL
 
-def build_prompt(prompt: str, rag_context: str = "") -> str:
+def build_prompt(prompt: str) -> str:
     return (
         "<｜begin▁of▁sentence｜>"
         "<｜system｜>\n"
@@ -11,7 +11,6 @@ def build_prompt(prompt: str, rag_context: str = "") -> str:
         Nếu có đoạn thông tin truy xuất (retrieved context), hãy ưu tiên sử dụng thông tin đó để trả lời.\n"""
         "<｜user｜>\n"
         f"### Câu hỏi:\n{prompt.strip()}\n\n"
-        f"### Thông tin truy xuất được:\n{str(rag_context).strip()}\n"
         "<｜think｜>\n"
         "Hãy cùng diễn giải từng bước nào!🤔\n"
         "<reasoning_cot>\n"
@@ -22,10 +21,10 @@ def build_prompt(prompt: str, rag_context: str = "") -> str:
         "</reasoning_cot>\n"
     )
 
-def generate_response(prompt: str, rag_context:str, temperature=0.1, top_p=0.9, top_k=50,
+def generate_response(prompt: str, temperature=0.1, top_p=0.9, top_k=50,
                       repetition_penalty=1.0, do_sample=True, max_new_tokens=256):
 
-    full_prompt = build_prompt(prompt, rag_context=rag_context)
+    full_prompt = build_prompt(prompt)
 
     data = {
         "prompt": full_prompt,

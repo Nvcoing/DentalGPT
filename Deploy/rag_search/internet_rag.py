@@ -4,7 +4,10 @@ from langchain.vectorstores import FAISS
 from langchain.chains import RetrievalQA
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.prompts import PromptTemplate
+from gemini_tool.call_gemini import get_all_api_keys as gemini_key
 from vectordb.build_vectordb import chunk_documents
+for k in gemini_key():
+    key = k
 def extract_keywords_keybert(text, top_n=3, model_name='paraphrase-multilingual-MiniLM-L12-v2'):
     kw_model = KeyBERT(model=model_name)
     keywords = kw_model.extract_keywords(text, keyphrase_ngram_range=(1, 2), stop_words='english', top_n=top_n)
@@ -20,7 +23,7 @@ def Live_Retrieval_Augmented(
     keyword_model_name: str = "paraphrase-multilingual-MiniLM-L12-v2",
     llm_model_name: str = "models/gemini-1.5-flash-latest",
     prompt_template_str: str = None,
-    api_key: str = ""
+    api_key: str = k
 ):
     # 1. Từ khóa
     keywords = extract_keywords_keybert(question, top_n=top_n_keywords, model_name=keyword_model_name)
@@ -39,15 +42,15 @@ def Live_Retrieval_Augmented(
     retriever = db.as_retriever(search_kwargs={"k": top_k_docs})
 
     # 3. Prompt template
-    default_prompt = f"""
+    default_prompt = """
     Bạn là một bác sĩ nha khoa chuyên môn sâu.
     Dựa vào các đoạn tài liệu sau, hãy tạo ngữ cảnh cho chatbot nha khoa dựa vào câu hỏi và từ khóa.
 
     TÀI LIỆU:
-    {retriever}
+    {context}
 
     CÂU HỎI:
-    {keyword_query}
+    {question}
     """
     prompt_str = prompt_template_str if prompt_template_str else default_prompt
     prompt = PromptTemplate.from_template(prompt_str)

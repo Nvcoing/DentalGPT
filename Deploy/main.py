@@ -8,7 +8,9 @@ from handlers.reason_handler import generate_response as reason_generate
 from handlers.deep_reason_handler import generate_response as deep_reason_generate
 from handlers.agentic_handler import generate_response as agentic_generate
 from rag_search.internet_rag import Live_Retrieval_Augmented as rag_online 
+from rag_search.vectordb_rag import run_keybert_qa as rag_local
 from rag_search.google_search_api import tool_search as search
+from gemini_tool.call_gemini import call_gemini as gemini
 app = FastAPI()
 
 app.add_middleware(
@@ -31,6 +33,7 @@ async def generate(request: Request):
     req_json = await request.json()
     prompt = req_json.get("prompt")
     mode = req_json.get("mode", "normal")
+    module = req_json.get("module", None)
     max_new_tokens = req_json.get("max_new_tokens", None)
     temperature = req_json.get("temperature", 0.1)
     top_p = req_json.get("top_p", 0.9)
@@ -40,7 +43,14 @@ async def generate(request: Request):
 
     if not prompt:
         return JSONResponse(status_code=400, content={"error": "Missing 'prompt' in request"})
-
+    if module == "search_all":
+        context_online = rag_online(prompt,documents=search(prompt))
+        prompt = prompt+"\n Ngữ cảnh:".join(context_online)
+    else:
+        context = rag_local(prompt,persist_dir="vectordb/ChromDB",top_k=5)
+        prompt = "CÂU HỎI:\n"+prompt+"\n THÔNG TIN TRUY XUẤT:\n".join(context)
+    
+    
     # Gọi hàm tương ứng theo mode
     if mode == "reason":
         gen = reason_generate(prompt, temperature=temperature, top_p=top_p,
@@ -60,12 +70,7 @@ async def generate(request: Request):
         full_output=output
         return JSONResponse(content={"response": full_output})
     else:
-        gen = normal_generate(prompt,rag_online(prompt,
-        documents="Sâu răng là bị đen",
-        top_n_keywords=3,
-        top_k_docs=3,
-        temperature=0.3,
-        api_key="AIzaSyA99lJZAqngGBqXwg__S18VPWq2KRW9Vhc"), temperature=temperature, top_p=top_p,
+        gen = normal_generate(prompt, temperature=temperature, top_p=top_p,
                               top_k=top_k, repetition_penalty=repetition_penalty,
                               do_sample=do_sample, max_new_tokens=max_new_tokens or 256)
         return StreamingResponse(gen, media_type="text/markdown")
