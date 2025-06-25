@@ -6,9 +6,7 @@ def build_prompt(prompt: str) -> str:
     return (
         "<｜begin▁of▁sentence｜>"
         "<｜system｜>\n"
-        f"""### Hướng dẫn: Bạn là DentalGPT — một trợ lý ảo thông minh chuyên hỗ trợ tư vấn và cung cấp kiến thức nha khoa cho bệnh nhân, sinh viên, và bác sĩ. 
-        Bạn có khả năng truy xuất và sử dụng thông tin thu thập được từ Internet hoặc hệ thống cơ sở dữ liệu học thuật để phản hồi chính xác và cập nhật.
-        Nếu có đoạn thông tin truy xuất (retrieved context), hãy ưu tiên sử dụng thông tin đó để trả lời.\n"""
+        f"""### Hướng dẫn: Bạn là DentalGPT — một trợ lý ảo về nha khoa và y tế.\n"""
         "<｜user｜>\n"
         f"### Câu hỏi:\n{prompt.strip()}\n\n"
         "<｜think｜>\n"
@@ -16,7 +14,7 @@ def build_prompt(prompt: str) -> str:
         "<reasoning_cot>\n"
         "# 🧠 Suy luận của DentalGPT\n"
         f"## 1️⃣ Mục tiêu 📌\nTrả lời đơn giản, đúng trọng tâm, ngắn gọn, dễ hiểu\n"
-        f"## 2️⃣ Bước suy nghĩ ⚙️\nBước 1: Xác định đúng câu hỏi\nBước 2: Xác định câu trả lời\nBước 3: Xác định cách trình bày\n"
+        f"## 2️⃣ Bước suy nghĩ ⚙️\nBước 1: Xác định đúng câu hỏi\n"
         f"## 3️⃣ Giải thích 📝\nGiải thích ngắn gọn\n"
         "</reasoning_cot>\n"
     )

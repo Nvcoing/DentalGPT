@@ -36,7 +36,7 @@ def extract_documents(folder_path):
                 print(f"Lỗi khi xử lý {filename}: {e}")
     return documents
 
-def chunk_documents(documents, chunk_size=5000, chunk_overlap=500):
+def chunk_documents(documents, chunk_size=2000, chunk_overlap=200):
     # Đảm bảo toàn bộ `documents` là đối tượng `Document`
     safe_docs = []
     for doc in documents:

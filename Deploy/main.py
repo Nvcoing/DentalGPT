@@ -10,7 +10,7 @@ from handlers.agentic_handler import generate_response as agentic_generate
 from rag_search.internet_rag import Live_Retrieval_Augmented as rag_online 
 from rag_search.vectordb_rag import run_keybert_qa as rag_local
 from rag_search.google_search_api import tool_search as search
-from gemini_tool.call_gemini import call_gemini as gemini
+from rag_search.augmented import augmented as aug
 app = FastAPI()
 
 app.add_middleware(
@@ -45,10 +45,12 @@ async def generate(request: Request):
         return JSONResponse(status_code=400, content={"error": "Missing 'prompt' in request"})
     if module == "search_all":
         context_online = rag_online(prompt,documents=search(prompt))
-        prompt = prompt+"\n Ngữ cảnh:".join(context_online)
+        print(aug(prompt,context_online["document"]))
+        prompt = prompt+"\n Thông tin truy xuất:".join(aug(prompt,context_online["document"]))
     else:
         context = rag_local(prompt,persist_dir="ChromaDB",top_k=5)
-        prompt = "CÂU HỎI:\n"+prompt+"\n THÔNG TIN TRUY XUẤT:\n".join(context)
+        context = context.replace('\n', ' ').replace('\r', ' ')
+        prompt = "CÂU HỎI:\n"+prompt+"\n THÔNG TIN TRUY XUẤT:\n".join(context.lower())
     
     
     # Gọi hàm tương ứng theo mode
