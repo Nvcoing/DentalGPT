@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DentalGPT Chatbox</title>
+  <style>
+    #chat-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 1000;
+    }
+    #chatbox {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 350px;
+      height: 500px;
+      border: 1px solid #ccc;
+      background: white;
+      border-radius: 10px;
+      display: none;
+      flex-direction: column;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+    #chatbox-header {
+      background: #007bff;
+      color: white;
+      padding: 10px;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+    #chat-messages {
+      flex: 1;
+      padding: 10px;
+      overflow-y: auto;
+    }
+    #chat-input {
+      display: flex;
+      padding: 10px;
+      border-top: 1px solid #ccc;
+    }
+    #chat-input input {
+      flex: 1;
+      padding: 5px;
+    }
+    #chat-input button {
+      margin-left: 5px;
+      padding: 5px 10px;
+    }
+    .user-message {
+      text-align: right;
+      margin: 5px 0;
+    }
+    .bot-message {
+      text-align: left;
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <button id="chat-toggle">💬</button>
+
+  <div id="chatbox">
+    <div id="chatbox-header">DentalGPT Chat</div>
+    <div id="chat-messages"></div>
+    <div id="chat-input">
+      <input type="text" id="user-input" placeholder="Nhập câu hỏi..." />
+      <button onclick="sendMessage()">Gửi</button>
+    </div>
+  </div>
+
+  <script>
+    const toggleButton = document.getElementById("chat-toggle");
+    const chatbox = document.getElementById("chatbox");
+    toggleButton.addEventListener("click", () => {
+      chatbox.style.display = chatbox.style.display === "none" ? "flex" : "none";
+    });
+
+    async function sendMessage() {
+      const inputField = document.getElementById("user-input");
+      const messagesDiv = document.getElementById("chat-messages");
+      const userText = inputField.value.trim();
+      if (!userText) return;
+
+      // Show user message
+      const userDiv = document.createElement("div");
+      userDiv.className = "user-message";
+      userDiv.textContent = userText;
+      messagesDiv.appendChild(userDiv);
+
+      // Show bot typing...
+      const botDiv = document.createElement("div");
+      botDiv.className = "bot-message";
+      botDiv.textContent = "Đang xử lý...";
+      messagesDiv.appendChild(botDiv);
+
+      inputField.value = "";
+
+      try {
+        const response = await fetch("https://ago-walnut-office-watson.trycloudflare.com/DentalGPT/chatbot/", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            prompt: userText,
+            mode: "normal",         // default mode
+            module: "search_local", // default module
+            temperature: 0.1,
+            top_p: 0.9,
+            top_k: 50,
+            repetition_penalty: 1.0,
+            do_sample: true,
+          })
+        });
+
+        if (!response.ok || !response.body) {
+          botDiv.textContent = "Đã xảy ra lỗi.";
+          return;
+        }
+
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder("utf-8");
+        let botText = "";
+        while (true) {
+          const { value, done } = await reader.read();
+          if (done) break;
+          botText += decoder.decode(value, { stream: true });
+          botDiv.textContent = botText;
+          messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+      } catch (error) {
+        console.error(error);
+        botDiv.textContent = "Lỗi kết nối tới server.";
+      }
+    }
+  </script>
+</body>
+</html>
