@@ -44,14 +44,9 @@ async def generate(request: Request):
     if not prompt:
         return JSONResponse(status_code=400, content={"error": "Missing 'prompt' in request"})
     if module == "search_all":
-        context_online = rag_online(prompt,documents=search(prompt))
-        print(aug(prompt,context_online["document"]))
-        prompt = prompt+"\n Thông tin truy xuất:".join(aug(prompt,context_online["document"]))
-    else:
-        context = rag_local(prompt,persist_dir="ChromaDB",top_k=5)
-        context = context.replace('\n', ' ').replace('\r', ' ')
-        prompt = "CÂU HỎI:\n"+prompt+"\n THÔNG TIN TRUY XUẤT:\n".join(context.lower())
-    
+        prompt = aug(prompt,rag_online(prompt,documents=search(prompt))["document"])
+    elif module == "search_local":
+        prompt = aug(prompt,rag_local(prompt,persist_dir="ChromaDB",top_k=5)["document"])
     
     # Gọi hàm tương ứng theo mode
     if mode == "reason":

@@ -7,7 +7,7 @@ def extract_keywords_keybert(text, top_n=5):
     keywords = kw_model.extract_keywords(text, keyphrase_ngram_range=(1, 2), stop_words='english', top_n=top_n)
     return [kw for kw, _ in keywords]
 
-def run_keybert_qa(query, persist_dir="chroma_db", top_k=5):
+def run_keybert_qa(query, persist_dir="ChromaDB", top_k=5):
     # 1. Trích xuất từ khóa
     keywords = extract_keywords_keybert(query)
     print("Từ khóa:", ", ".join(keywords))
