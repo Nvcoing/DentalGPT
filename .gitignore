@@ -12,3 +12,6 @@ Deploy/retrieval_search/env
 RAG/ChromaDB/eef5898a-4cf8-40ab-945c-a83017510ea1/link_lists.bin
 /RAG/ChromaDB
 /Deploy/ChromaDB
+Deploy/48e74245-243c-4f6a-b9ca-7250a8cdc26e.json
+Deploy/cert.pem
+Deploy/config.yml
