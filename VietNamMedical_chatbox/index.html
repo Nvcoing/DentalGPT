@@ -107,7 +107,7 @@
       inputField.value = "";
 
       try {
-        const response = await fetch("https://ago-walnut-office-watson.trycloudflare.com/DentalGPT/chatbot/", {
+        const response = await fetch("http://localhost:8000/DentalGPT/chatbot/", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

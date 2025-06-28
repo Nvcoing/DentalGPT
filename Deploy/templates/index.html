@@ -314,6 +314,12 @@
           <input id="top_p" type="number" step="0.1" value="0.9" class="w-16 border border-gray-300 px-2 py-1 rounded text-center">
         </div>
       </div>
+
+      <!-- Thêm vào trong form nhập prompt -->
+      <div class="mb-3">
+        <label class="block text-gray-700 text-sm font-bold mb-2">Tải lên file PDF hoặc ảnh:</label>
+        <input id="file-input" type="file" multiple accept=".pdf,image/*" class="block w-full text-sm text-gray-700 border border-gray-300 rounded-lg p-2 bg-white" />
+      </div>
     </div>
   </div>
 
@@ -586,14 +592,13 @@ class ChatTemplate {
   async processPythonCodeBlocks(html) {
     // Regex to find Python code blocks
     const pythonCodeRegex = /<pre><code class="language-python">([\s\S]*?)<\/code><\/pre>/g;
-    
     // Process all matches
     const matches = [...html.matchAll(pythonCodeRegex)];
     for (const match of matches) {
       const fullMatch = match[0];
       const code = match[1].trim();
       const decodedCode = this.decodeHtml(code);
-      
+
       // Show loading state first
       const loadingHtml = `
         <div class="python-execution-container">
@@ -603,31 +608,44 @@ class ChatTemplate {
           </div>
         </div>
       `;
-      
+
       // Replace with loading first
       html = html.replace(fullMatch, loadingHtml);
-      
+
       // Execute the code and get result
+      let resultHtml = "";
       try {
-        const resultHtml = await autoExecutePythonCode(decodedCode);
-        // Replace loading with result
-        html = html.replace(loadingHtml, resultHtml);
+        resultHtml = await autoExecutePythonCode(decodedCode);
+        // Nếu không có biểu đồ và không có output, báo rõ
+        if (!resultHtml || resultHtml.trim() === "") {
+          resultHtml = `
+            <div class="python-result">
+              <div class="python-result-header">
+                <span>⚠️</span>
+                <span>Không có biểu đồ hoặc output</span>
+              </div>
+              <div class="python-result-content">
+                <div class="python-error">Không có biểu đồ hoặc output từ đoạn code này.</div>
+              </div>
+            </div>
+          `;
+        }
       } catch (error) {
-        const errorHtml = `
+        resultHtml = `
           <div class="python-result">
             <div class="python-result-header">
               <span>❌</span>
               <span>Lỗi Python</span>
             </div>
             <div class="python-result-content">
-              <div class="python-error">Lỗi: ${error.message}</div>
+              <div class="python-error">Lỗi: ${error.message || "Không có biểu đồ hoặc output."}</div>
             </div>
           </div>
         `;
-        html = html.replace(loadingHtml, errorHtml);
       }
+      // Luôn thay thế loadingHtml bằng resultHtml (dù thành công hay lỗi)
+      html = html.replace(loadingHtml, resultHtml);
     }
-    
     return html;
   }
 
@@ -828,25 +846,41 @@ async function parseStreamingResponse(rawText) {
 
 async function sendMessage(mode = "normal") {
   if (isGenerating) return;
-  
+
   const input = document.getElementById("user-input");
   const prompt = input.value.trim();
   if (!prompt) return;
+
+  const fileInput = document.getElementById("file-input");
+  const files = fileInput.files;
 
   isGenerating = true;
   const sendBtn = document.getElementById("send-btn");
   sendBtn.textContent = "Đang xử lý...";
   sendBtn.disabled = true;
 
-  // Add user message
   appendMessage(prompt, true);
   input.value = "";
-
-  // Add empty bot message with typing indicator
   currentBotMessage = appendMessage("", false);
+
+  let file_paths = [];
+  if (files.length > 0) {
+    // Upload file trước
+    const formData = new FormData();
+    for (let i = 0; i < files.length; i++) {
+      formData.append("files", files[i]);
+    }
+    const uploadRes = await fetch("http://localhost:8000/DentalGPT/upload_files/", {
+      method: "POST",
+      body: formData
+    });
+    const uploadData = await uploadRes.json();
+    file_paths = uploadData.file_paths || [];
+  }
 
   const params = {
     prompt: prompt,
+    file_paths: file_paths,
     max_new_tokens: parseInt(document.getElementById("max_tokens").value),
     temperature: parseFloat(document.getElementById("temperature").value),
     top_p: parseFloat(document.getElementById("top_p").value),
