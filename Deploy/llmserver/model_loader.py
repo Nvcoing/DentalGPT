@@ -1,5 +1,4 @@
 from unsloth import FastLanguageModel
-from transformers import AutoTokenizer
 import torch
 
 def load_model(model_name="NV9523/DentalGPT"):
@@ -11,6 +10,5 @@ def load_model(model_name="NV9523/DentalGPT"):
     )
     FastLanguageModel.for_inference(model)
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    model.to(device)
     model.eval()
     return model, tokenizer, device

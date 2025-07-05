@@ -39,6 +39,6 @@ async def generate(request: Request):
 
     return StreamingResponse(response_generator(), media_type="text/markdown")
 
-def run_local():
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+# def run_local():
+#     import uvicorn
+#     uvicorn.run(app, host="0.0.0.0", port=8080)
