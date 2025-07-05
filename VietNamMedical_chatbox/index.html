@@ -112,6 +112,7 @@
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             prompt: userText,
+            max_new_tokens: 1024,
             mode: "normal",         // default mode
             module: "search_local", // default module
             temperature: 0.1,
