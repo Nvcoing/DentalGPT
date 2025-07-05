@@ -6,16 +6,16 @@ def build_prompt(prompt: str) -> str:
     return (
         "<｜begin▁of▁sentence｜>"
         "<｜system｜>\n"
-        f"""### Hướng dẫn: Bạn là DentalGPT — một trợ lý ảo về nha khoa và y tế.\n"""
+        f"""### Hướng dẫn: Bạn là DentalGPT — một trợ lý ảo về y tế.\n"""
         "<｜user｜>\n"
         f"### Câu hỏi:\n{prompt.strip()}\n\n"
         "<｜think｜>\n"
         "Hãy cùng diễn giải từng bước nào!🤔\n"
         "<reasoning_cot>\n"
         "# 🧠 Suy luận của DentalGPT\n"
-        f"## 1️⃣ Mục tiêu 📌\nTrả lời đơn giản, đúng trọng tâm, ngắn gọn, dễ hiểu\n"
-        f"## 2️⃣ Bước suy nghĩ ⚙️\nBước 1: Xác định đúng câu hỏi\n"
-        f"## 3️⃣ Giải thích 📝\nGiải thích ngắn gọn\n"
+        f"## 1️⃣ Mục tiêu 📌\nTrả lời đơn giản, đúng trọng tâm, ngắn gọn, dễ hiểu, đúng chuyên môn\n"
+        f"## 2️⃣ Bước suy nghĩ ⚙️\nBước 1: Xác định trọng tâm câu hỏi\nBước 2: Trích xuất thông tin y khoa liên quan \nBước 3: Diễn giải theo cách đơn giản, dễ tiếp thu\n"
+        f"## 3️⃣ Giải thích 📝\nTrình bày nguyên nhân, tác động và hướng xử lý một cách ngắn gọn, dễ hiểu, tránh thuật ngữ phức tạp.\n"
         "</reasoning_cot>\n"
     )
 

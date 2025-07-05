@@ -20,7 +20,7 @@ def run_keybert_qa(query, persist_dir="ChromaDB", top_k=5):
     # 2. Tải Embedding và database
     embedding = HuggingFaceEmbeddings(
         model_name="sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
-        model_kwargs={"device": "cpu"}
+        model_kwargs={"device": "cuda"}
     )
     db = Chroma(persist_directory=persist_dir, embedding_function=embedding)
     retriever = db.as_retriever(search_kwargs={"k": top_k})

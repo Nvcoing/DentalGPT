@@ -18,5 +18,5 @@ cloudflared tunnel --url http://localhost:8000
 #   - service: http_status:404
 # EOL
 
-# cloudflared tunnel --config config.yml run dentalgpt_nv_tlu
+# cloudflared tunnel --config config.yml run dentalgpt_nv_tlu & wait
 # # run: bash run.sh
