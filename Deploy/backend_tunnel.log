@@ -23,3 +23,9 @@
 2025-07-05T09:42:31Z INF Registered tunnel connection connIndex=0 connection=7daa676a-59ba-4bc2-90c5-f703fa8cf3be event=0 ip=198.41.192.47 location=han03 protocol=quic
 2025-07-05T09:58:38Z ERR  error="context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8080
 2025-07-05T09:58:38Z ERR Request failed error="context canceled" connIndex=0 dest=https://robust-dui-exchange-rc.trycloudflare.com/DentalGPT/chatbot/ event=0 ip=198.41.192.47 type=http
+2025-07-05T10:03:50Z INF Initiating graceful shutdown due to signal interrupt ...
+2025-07-05T10:03:50Z ERR Failed to serve tunnel connection error="context canceled" connIndex=0 event=0 ip=198.41.192.47
+2025-07-05T10:03:50Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.192.47
+2025-07-05T10:03:50Z ERR no more connections active and exiting
+2025-07-05T10:03:50Z INF Tunnel server stopped
+2025-07-05T10:03:50Z INF Metrics server stopped
