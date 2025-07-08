@@ -1,4 +1,4 @@
-    const apiUrl = "https://feel-washington-payday-jurisdiction.trycloudflare.com/DentalGPT/chatbot/";
+const apiUrl = "http://localhost:8000/DentalGPT/chatbot/";
 let isGenerating = false;
 let currentBotMessage = null;
 let streamBuffer = "";
@@ -289,21 +289,9 @@ class ChatTemplate {
       // Execute the code and get result
       let resultHtml = "";
       try {
-        resultHtml = await autoExecutePythonCode(decodedCode);
-        // Nếu không có biểu đồ và không có output, báo rõ
-        if (!resultHtml || resultHtml.trim() === "") {
-          resultHtml = `
-            <div class="python-result">
-              <div class="python-result-header">
-                <span>⚠️</span>
-                <span>Không có biểu đồ hoặc output</span>
-              </div>
-              <div class="python-result-content">
-                <div class="python-error">Không có biểu đồ hoặc output từ đoạn code này.</div>
-              </div>
-            </div>
-          `;
-        }
+        const resultHtml = await autoExecutePythonCode(decodedCode);
+        // Replace loading with result
+        html = html.replace(loadingHtml, resultHtml);
       } catch (error) {
         resultHtml = `
           <div class="python-result">
@@ -544,7 +532,7 @@ async function sendMessage(mode = "normal") {
     for (let i = 0; i < files.length; i++) {
       formData.append("files", files[i]);
     }
-    const uploadRes = await fetch("https://feel-washington-payday-jurisdiction.trycloudflare.com/DentalGPT/upload_files/", {
+    const uploadRes = await fetch("http://localhost:8000/DentalGPT/upload_files/", {
       method: "POST",
       body: formData
     });

@@ -1,4 +1,15 @@
 #!/bin/bash
+# run: chmod +x deploy.sh
+# ./deploy.sh
+# echo "🚀 Starting FastAPI..."
+# uvicorn main:app --host 0.0.0.0 --port 8000 &
+
+# echo "⏳ Waiting for server to be ready..."
+# sleep 7  # hoặc dùng wait-for-port ở trên
+
+# echo "🌐 Starting Cloudflare Tunnel..."
+# cloudflared tunnel --url http://localhost:8000
+
 uvicorn main:app --host 0.0.0.0 --port 8000 &
 sleep 2
 cloudflared tunnel --url http://localhost:8000
