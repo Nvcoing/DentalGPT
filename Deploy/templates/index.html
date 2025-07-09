@@ -1,83 +1,77 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DentalGPT - Trợ lý nha khoa</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DentalGPT - Trợ ý nha khoa</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="https://cdn.jsdelivr.net/pyodide/v0.24.0/full/pyodide.js"></script>
   <link rel="stylesheet" href="/static/style.css" />
 </head>
-<body class="bg-gradient-to-br from-blue-50 to-indigo-100 font-sans h-screen flex flex-col">
+<body class="h-screen w-screen overflow-hidden font-sans bg-gradient-to-br from-blue-50 to-indigo-100">
 
-  <!-- Header -->
-  <header class="py-4 text-center shadow bg-white/80 backdrop-blur-md z-10">
-    <h1 class="text-2xl md:text-3xl font-bold text-blue-800">🦷 DentalGPT</h1>
-    <p class="text-sm text-blue-600">Trợ lý ảo nha khoa thông minh</p>
-  </header>
+  <!-- Main layout -->
+  <div class="flex h-full">
+    <!-- Sidebar tools -->
+    <aside class="w-60 bg-white shadow-md p-4 space-y-3 border-r border-gray-200 overflow-y-auto">
+      <h2 class="text-blue-800 font-semibold text-lg mb-3">Công cụ</h2>
+      <button onclick="sendMessage('reason')" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 rounded transition">🧠 Suy luận</button>
+      <button onclick="sendMessage('deep_reason')" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded transition">🔬 Suy luận sâu</button>
+      <button onclick="sendMessage('agentic')" class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded transition">🧬 Agentic</button>
+      <button onclick="clearChat()" class="w-full bg-gray-400 hover:bg-gray-500 text-white font-semibold py-2 rounded transition">🗑️ Xóa</button>
+      <button id="search-toggle-btn" onclick="toggleSearch()" class="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 rounded transition">🔎 Search</button>
+      <div class="mt-6">
+        <label class="block text-sm font-medium text-gray-700">Tải file:</label>
+        <input id="file-input" type="file" multiple accept=".pdf,image/*" class="block w-full mt-1 text-sm text-gray-700 border border-gray-300 rounded-md p-1" />
+      </div>
+    </aside>
 
-  <!-- Main chat area -->
-  <main class="flex-1 overflow-y-auto px-4 md:px-6 py-4" id="chat-box">
-    <div class="text-gray-500 text-sm text-center py-8">
-      <div class="text-2xl mb-2">👋</div>
-      Xin chào! Tôi là DentalGPT. Hãy đặt câu hỏi về nha khoa...
+    <!-- Main Chat Panel -->
+    <div class="flex-1 flex flex-col">
+      <!-- Header -->
+      <header class="p-4 bg-white shadow z-10 flex items-center justify-between border-b border-gray-200">
+        <div>
+          <h1 class="text-2xl font-bold text-blue-700">🦷 DentalGPT</h1>
+          <p class="text-sm text-blue-500">Trợ lý nha khoa thông minh</p>
+        </div>
+        <div class="hidden md:flex gap-4 text-xs text-gray-600 items-center">
+          <label>Tokens:
+            <input id="max_tokens" type="number" value="1024" class="config-input w-16 border rounded p-1">
+          </label>
+          <label>Temp:
+            <input id="temperature" type="number" step="0.1" value="0.1" class="config-input w-12 border rounded p-1">
+          </label>
+          <label>Top P:
+            <input id="top_p" type="number" step="0.1" value="0.9" class="config-input w-12 border rounded p-1">
+          </label>
+        </div>
+      </header>
+
+      <!-- Chat content -->
+      <main id="chat-box" class="flex-1 overflow-y-auto p-6 space-y-4 bg-white">
+        <div class="text-center text-gray-400">
+          <div class="text-3xl mb-2">👋</div>
+          <p>Xin chào! Tôi là DentalGPT. Hãy đặt câu hỏi về nha khoa...</p>
+        </div>
+      </main>
+
+      <!-- Input area -->
+      <footer class="p-4 border-t border-gray-300 bg-white flex items-center gap-2">
+        <input id="user-input" type="text" placeholder="Nhập câu hỏi..." class="flex-1 px-4 py-3 border rounded-xl shadow focus:outline-none focus:ring-2 focus:ring-blue-400" onkeydown="handleKeyPress(event)" />
+        <button onclick="sendMessage('normal')" id="send-btn" class="px-6 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition">Gửi</button>
+      </footer>
     </div>
-  </main>
 
-  <!-- Input & Control -->
-  <footer class="bg-white/90 backdrop-blur-sm border-t border-white/30 p-4 shadow-inner">
-    <div class="max-w-4xl mx-auto">
-      <!-- Input -->
-      <div class="flex gap-2 mb-3">
-        <input 
-          id="user-input" 
-          type="text" 
-          placeholder="Nhập câu hỏi về nha khoa..." 
-          class="flex-1 p-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all"
-          onkeydown="handleKeyPress(event)"
-        />
-        <button 
-          onclick="sendMessage('normal')" 
-          id="send-btn"
-          class="bg-blue-600 text-white px-6 py-3 rounded-xl hover:bg-blue-700 transition-all shadow-md hover:shadow-lg transform hover:scale-105"
-        >Gửi</button>
-      </div>
-
-      <!-- Buttons -->
-      <div class="flex flex-wrap gap-2 mb-3">
-        <button onclick="sendMessage('reason')" class="btn-purple">🧠 Suy luận</button>
-        <button onclick="sendMessage('deep_reason')" class="btn-indigo">🔬 Suy luận sâu</button>
-        <button onclick="sendMessage('agentic')" class="btn-indigo">🔬 Agentic</button>
-        <button onclick="clearChat()" class="btn-gray">🗑️ Xóa</button>
-        <button id="search-toggle-btn" onclick="toggleSearch()" class="btn-yellow">🔎 Search</button>
-      </div>
-
-      <!-- Settings -->
-      <div class="flex flex-wrap gap-4 text-xs text-gray-600 mb-3">
-        <div class="flex items-center gap-1">
-          <label>Tokens:</label>
-          <input id="max_tokens" type="number" value="1024" class="config-input">
-        </div>
-        <div class="flex items-center gap-1">
-          <label>Temp:</label>
-          <input id="temperature" type="number" step="0.1" value="0.1" class="config-input">
-        </div>
-        <div class="flex items-center gap-1">
-          <label>Top P:</label>
-          <input id="top_p" type="number" step="0.1" value="0.9" class="config-input">
-        </div>
-      </div>
-
-      <!-- File upload -->
-      <div class="mb-2">
-        <label class="block text-gray-700 text-sm font-medium mb-1">Tải lên file PDF hoặc ảnh:</label>
-        <input id="file-input" type="file" multiple accept=".pdf,image/*" class="block w-full text-sm text-gray-700 border border-gray-300 rounded-lg p-2 bg-white" />
-      </div>
+    <!-- Settings panel (mobile/fallback) -->
+    <div class="md:hidden absolute bottom-4 right-4 bg-white p-3 rounded-lg shadow-md border text-xs space-y-2">
+      <label>Tokens: <input id="mobile_tokens" type="number" value="1024" class="w-16 border rounded p-1"></label><br>
+      <label>Temp: <input id="mobile_temp" type="number" step="0.1" value="0.1" class="w-12 border rounded p-1"></label><br>
+      <label>Top P: <input id="mobile_top_p" type="number" step="0.1" value="0.9" class="w-12 border rounded p-1"></label>
     </div>
-  </footer>
+  </div>
 
-  <!-- JS -->
+  <!-- JS logic -->
   <script src="/static/script.js"></script>
 </body>
 </html>
