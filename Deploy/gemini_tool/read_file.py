@@ -1,6 +1,7 @@
 import mimetypes
 import google.generativeai as genai
 from gemini_tool.call_gemini import get_all_api_keys
+from rag_search.augmented import augmented as aug
 api_keys = get_all_api_keys()
 for key in api_keys:
     genai.configure(api_key=key)
@@ -21,4 +22,5 @@ def send_files_and_prompt(prompt, file_paths):
                 mime_type = 'application/octet-stream'
         uploaded_files.append(genai.upload_file(path, mime_type=mime_type))
     response = model.generate_content([prompt] + uploaded_files)
-    return response.text
+    response = aug(prompt, response.text, model_name="models/gemini-2.0-flash")
+    return response

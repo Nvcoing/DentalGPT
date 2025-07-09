@@ -124,7 +124,7 @@ def get_page_content(url):
         return ""
 
 # Hàm chính: thực hiện tìm kiếm và trích xuất nội dung
-def tool_search(query, api_key=API_KEY, cse_id=CSE_ID, num_results=5):
+def tool_search(query, api_key=API_KEY, cse_id=CSE_ID, num_results=10):
     if not api_key or not cse_id:
         logger.error("API_KEY hoặc CSE_ID không được tìm thấy trong biến môi trường.")
         return []
