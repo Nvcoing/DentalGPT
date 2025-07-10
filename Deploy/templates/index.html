@@ -8,44 +8,254 @@
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="https://cdn.jsdelivr.net/pyodide/v0.24.0/full/pyodide.js"></script>
   <link rel="stylesheet" href="/static/style.css" />
+  <style>
+    .collapsible {
+      cursor: pointer;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+      color: #2563eb;
+      transition: all 0.2s ease;
+      padding: 0.75rem;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .collapsible:hover {
+      color: #1d4ed8;
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+    }
+    .collapsible > .arrow {
+      transition: transform 0.3s ease;
+      display: inline-block;
+      font-size: 0.9rem;
+      color: #64748b;
+    }
+    .collapsible.open > .arrow {
+      transform: rotate(90deg);
+      color: #3b82f6;
+    }
+    .collapsible .section-badge {
+      background: #3b82f6;
+      color: white;
+      padding: 0.2rem 0.5rem;
+      border-radius: 0.25rem;
+      font-size: 0.7rem;
+      font-weight: 500;
+    }
+    .content-container {
+      margin-bottom: 1rem;
+    }
+    .content-box {
+      padding: 0.75rem;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 0.5rem;
+      border-left: 4px solid #3b82f6;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .content-box.visible {
+      max-height: 600px;
+      opacity: 1;
+      overflow-y: auto;
+    }
+    .reasoning-box {
+      border-left-color: #8b5cf6;
+    }
+    .expert-box {
+      border-left-color: #10b981;
+    }
+    .markdown-content {
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      line-height: 1.4;
+    }
+    .markdown-content h1, .markdown-content h2, .markdown-content h3 {
+      margin: 0.5rem 0 0.25rem 0;
+      color: #1f2937;
+      font-weight: 600;
+    }
+    .markdown-content h1 { font-size: 1rem; }
+    .markdown-content h2 { font-size: 0.95rem; }
+    .markdown-content h3 { font-size: 0.9rem; }
+    .markdown-content ul, .markdown-content ol {
+      margin: 0.3rem 0;
+      padding-left: 1rem;
+    }
+    .markdown-content li {
+      margin: 0.1rem 0;
+    }
+    .markdown-content p {
+      margin: 0.3rem 0;
+    }
+    .markdown-content code {
+      background: #e5e7eb;
+      padding: 0.2rem 0.4rem;
+      border-radius: 0.25rem;
+      font-size: 0.85rem;
+    }
+    .markdown-content strong {
+      font-weight: 600;
+      color: #374151;
+    }
+    .markdown-content em {
+      font-style: italic;
+      color: #6b7280;
+    }
+    .typing-indicator {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #3b82f6;
+      animation: typing 1.4s infinite ease-in-out;
+    }
+    .typing-indicator:nth-child(1) { animation-delay: -0.32s; }
+    .typing-indicator:nth-child(2) { animation-delay: -0.16s; }
+    @keyframes typing {
+      0%, 80%, 100% { transform: scale(0); opacity: 0.5; }
+      40% { transform: scale(1); opacity: 1; }
+    }
+    .stream-cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1.2em;
+      background: #3b82f6;
+      animation: blink 1s infinite;
+      margin-left: 2px;
+    }
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+    .message-container {
+      animation: slideIn 0.3s ease-out;
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .answer-section {
+      background: #fefefe;
+      padding: 0.75rem;
+      border-radius: 0.5rem;
+      border: 1px solid #f3f4f6;
+      margin-top: 0.3rem;
+    }
+    .python-code-block {
+      position: relative;
+      margin: 1rem 0;
+      border: 1px solid #e5e7eb;
+      border-radius: 0.5rem;
+      overflow: hidden;
+    }
+    .python-code-header {
+      background: #374151;
+      color: white;
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .python-code-content {
+      background: #1f2937;
+      color: #f9fafb;
+      padding: 1rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+    }
+    .run-button {
+      background: #10b981;
+      color: white;
+      border: none;
+      padding: 0.25rem 0.75rem;
+      border-radius: 0.25rem;
+      cursor: pointer;
+      font-size: 0.8rem;
+      transition: background 0.2s;
+    }
+    .run-button:hover {
+      background: #059669;
+    }
+    .run-button:disabled {
+      background: #6b7280;
+      cursor: not-allowed;
+    }
+    .python-output {
+      background: #111827;
+      color: #10b981;
+      padding: 1rem;
+      border-top: 1px solid #374151;
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      white-space: pre-wrap;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+    .loading-indicator {
+      color: #fbbf24;
+      display: none;
+    }
+    .plot-image {
+      max-width: 100%;
+      margin: 0.5rem 0;
+      border: 1px solid #e5e7eb;
+      border-radius: 0.25rem;
+    }
+    </style>
 </head>
 <body class="h-screen w-screen overflow-hidden font-sans bg-gradient-to-br from-blue-50 to-indigo-100">
 
   <!-- Main layout -->
   <div class="flex h-full">
-    <!-- Sidebar tools -->
-    <aside class="w-64 bg-white shadow-xl rounded-2xl m-4 p-6 space-y-4 border-r border-gray-200 overflow-y-auto transition-all duration-300">
-      <h2 class="text-blue-800 font-bold text-xl mb-4 flex items-center gap-2"><span>🛠️</span> Công cụ</h2>
-      <button onclick="sendMessage('reason')" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 rounded-xl shadow transition">🧠 Suy luận</button>
-      <button onclick="sendMessage('deep_reason')" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-xl shadow transition">🔬 Suy luận sâu</button>
-      <button onclick="sendMessage('agentic')" class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-xl shadow transition">🧬 Agentic</button>
-      <button onclick="clearChat()" class="w-full bg-gray-400 hover:bg-gray-500 text-white font-semibold py-2 rounded-xl shadow transition">🗑️ Xóa</button>
-      <button id="search-toggle-btn" onclick="toggleSearch()" class="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 rounded-xl shadow transition">🔎 Search</button>
-      <div class="mt-8">
-        <label class="block text-sm font-medium text-gray-700 mb-1 flex items-center gap-2"><span>📄</span> Tải file:</label>
-        <input id="file-input" type="file" multiple accept=".pdf,image/*" class="block w-full mt-1 text-sm text-gray-700 border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-400" />
-        <p class="text-xs text-gray-400 mt-1">Chấp nhận PDF, ảnh</p>
-      </div>
-    </aside>
 
     <!-- Main Chat Panel -->
     <div class="flex-1 flex flex-col">
       <!-- Header -->
       <header class="p-6 bg-white shadow-lg rounded-b-2xl z-10 flex items-center justify-between border-b border-gray-200">
-        <div>
-          <h1 class="text-3xl font-extrabold text-blue-700 flex items-center gap-2">🦷 DentalGPT</h1>
-          <p class="text-base text-blue-500">Trợ lý nha khoa thông minh</p>
+        <div class="flex items-center gap-4">
+          <img src="https://cdn.haitrieu.com/wp-content/uploads/2021/10/Logo-DH-Thuy-Loi.png" alt="Logo" class="h-12 w-auto">
+          <div>
+            <h1 class="text-3xl font-extrabold text-blue-700 flex items-center gap-2">🦷 DentalGPT</h1>
+            <p class="text-base text-blue-500">Trợ lý nha khoa thông minh</p>
+          </div>
         </div>
-        <div class="hidden md:flex gap-4 text-xs text-gray-600 items-center">
-          <label>Tokens:
-            <input id="max_tokens" type="number" value="1024" class="config-input w-16 border rounded-lg p-1 focus:ring-2 focus:ring-blue-400">
-          </label>
-          <label>Temp:
-            <input id="temperature" type="number" step="0.1" value="0.1" class="config-input w-12 border rounded-lg p-1 focus:ring-2 focus:ring-blue-400">
-          </label>
-          <label>Top P:
-            <input id="top_p" type="number" step="0.1" value="0.9" class="config-input w-12 border rounded-lg p-1 focus:ring-2 focus:ring-blue-400">
-          </label>
+        <div class="relative">
+          <button id="settings-btn" class="p-2 text-gray-500 hover:text-blue-600 rounded-full">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+          </button>
+          <div id="settings-panel" class="hidden absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-xl z-20 p-4 border border-gray-200 transform transition-all duration-200 origin-top-right">
+            <h3 class="font-medium text-gray-700 mb-3">Cài đặt mô hình</h3>
+            <div class="space-y-3 text-sm">
+              <div>
+                <label class="block text-gray-600 mb-1">Tokens</label>
+                <input id="max_tokens" type="number" min="1" max="4096" value="1024" class="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-400">
+              </div>
+              <div>
+                <label class="block text-gray-600 mb-1">Temperature</label>
+                <input id="temperature" type="number" step="0.1" min="0" max="2" value="0.1" class="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-400">
+              </div>
+              <div>
+                <label class="block text-gray-600 mb-1">Top P</label>
+                <input id="top_p" type="number" step="0.1" min="0" max="1" value="0.9" class="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-400">
+              </div>
+            </div>
+          </div>
         </div>
       </header>
 
@@ -60,23 +270,767 @@
 
       <!-- Input area -->
       <footer class="p-6 border-t border-gray-300 bg-white flex items-center gap-3 rounded-t-2xl shadow-lg">
-        <input id="user-input" type="text" placeholder="Nhập câu hỏi..." class="flex-1 px-5 py-3 border rounded-2xl shadow focus:outline-none focus:ring-2 focus:ring-blue-400 text-base" onkeydown="handleKeyPress(event)" />
-        <button onclick="sendMessage('normal')" id="send-btn" class="flex items-center gap-2 px-7 py-3 bg-blue-600 text-white rounded-2xl hover:bg-blue-700 transition text-lg font-semibold shadow">
-          <span>Gửi</span>
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </button>
+        <div class="relative flex-1">
+          <input id="user-input" type="text" placeholder="Nhập câu hỏi..." class="w-full px-5 py-3 border rounded-2xl shadow focus:outline-none focus:ring-2 focus:ring-blue-400 text-base" onkeydown="handleKeyPress(event)" />
+          <div class="absolute right-8 bottom-3.5 flex gap-2">
+            <button id="file-upload-btn" class="text-gray-500 hover:text-blue-600 relative" title="Tải lên file PDF hoặc hình ảnh">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+              </svg>
+              <input id="file-input" type="file" multiple accept=".pdf,.jpg,.jpeg,.png" class="hidden" />
+              <div id="file-upload-status" class="absolute -bottom-6 left-0 text-xs whitespace-nowrap hidden" style="min-width: 200px;"></div>
+            </button>
+          </div>
+        </div>
+        <div class="relative">
+          <button onclick="sendMessage('normal')" id="send-btn" class="flex items-center gap-2 px-7 py-3 bg-blue-600 text-white rounded-2xl hover:bg-blue-700 transition text-lg font-semibold shadow">
+            <span>Gửi</span>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          <div id="tools-dropdown" class="hidden absolute bottom-full right-0 mb-2 w-48 bg-white rounded-md shadow-lg z-10">
+            <div class="py-1">
+              <button onclick="sendMessage('reason')" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">🧠 Suy luận</button>
+              <button onclick="sendMessage('deep_reason')" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">🔬 Suy luận sâu</button>
+              <button onclick="sendMessage('agentic')" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">🧬 Agentic</button>
+              <button onclick="clearChat()" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">🗑️ Xóa chat</button>
+              <button id="search-toggle-btn" onclick="toggleSearch()" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">🔎 Tìm kiếm</button>
+            </div>
+          </div>
+          <button id="tools-btn" class="absolute -left-12 top-1/2 -translate-y-1/2 p-2 text-gray-500 hover:text-blue-600 rounded-full">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+            </svg>
+          </button>
+        </div>
       </footer>
+
+      <script>
+        // Toggle tools dropdown
+        document.getElementById('tools-btn').addEventListener('click', function(e) {
+          e.stopPropagation();
+          document.getElementById('tools-dropdown').classList.toggle('hidden');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function() {
+          document.getElementById('tools-dropdown').classList.add('hidden');
+        });
+
+        // File upload handling
+        document.getElementById('file-upload-btn').addEventListener('click', function() {
+          document.getElementById('file-input').click();
+        });
+
+        document.getElementById('file-input').addEventListener('change', async function(e) {
+          const files = e.target.files;
+          if (!files || files.length === 0) return;
+
+          const statusEl = document.getElementById('file-upload-status');
+          statusEl.textContent = `Đang tải lên ${files.length} file...`;
+          statusEl.classList.remove('hidden', 'text-red-600', 'text-green-600');
+          statusEl.classList.add('text-blue-600');
+
+          try {
+            const formData = new FormData();
+            for (let i = 0; i < files.length; i++) {
+              formData.append('files', files[i]);
+            }
+
+            const uploadResponse = await fetch('http://localhost:8000/DentalGPT/upload_files/', {
+              method: 'POST',
+              body: formData
+            });
+
+            if (!uploadResponse.ok) {
+              const errorData = await uploadResponse.json();
+              throw new Error(errorData.detail || 'Upload failed');
+            }
+
+            const result = await uploadResponse.json();
+            statusEl.textContent = `Đã tải lên thành công ${result.file_paths.length} file!`;
+            statusEl.classList.remove('text-blue-600');
+            statusEl.classList.add('text-green-600');
+
+            // Store file paths for sending with chat
+            document.getElementById('file-input').dataset.uploadedPaths = JSON.stringify(result.file_paths);
+
+            // Hide status after 3 seconds
+            setTimeout(() => {
+              statusEl.classList.add('hidden');
+            }, 3000);
+
+          } catch (error) {
+            statusEl.textContent = `Lỗi: ${error.message}`;
+            statusEl.classList.remove('text-blue-600');
+            statusEl.classList.add('text-red-600');
+          }
+        });
+      </script>
     </div>
 
-    <!-- Settings panel (mobile/fallback) -->
-    <div class="md:hidden absolute bottom-4 right-4 bg-white p-4 rounded-2xl shadow-lg border text-xs space-y-2">
-      <label>Tokens: <input id="mobile_tokens" type="number" value="1024" class="w-16 border rounded-lg p-1"></label><br>
-      <label>Temp: <input id="mobile_temp" type="number" step="0.1" value="0.1" class="w-12 border rounded-lg p-1"></label><br>
-      <label>Top P: <input id="mobile_top_p" type="number" step="0.1" value="0.9" class="w-12 border rounded-lg p-1"></label>
-    </div>
   </div>
 
   <!-- JS logic -->
-  <script src="/static/script.js"></script>
+  <script>const apiUrl = "http://localhost:8000/DentalGPT/chatbot/";
+let isGenerating = false;
+let currentBotMessage = null;
+let streamBuffer = "";
+let pyodide = null;
+let isSearchEnabled = false;
+
+function toggleSearch() {
+  isSearchEnabled = !isSearchEnabled;
+  const btn = document.getElementById('search-toggle-btn');
+  if (isSearchEnabled) {
+    btn.classList.remove('bg-yellow-500', 'hover:bg-yellow-600');
+    btn.classList.add('bg-green-600', 'hover:bg-green-700');
+    btn.textContent = '✅ Search ON';
+  } else {
+    btn.classList.remove('bg-green-600', 'hover:bg-green-700');
+    btn.classList.add('bg-yellow-500', 'hover:bg-yellow-600');
+    btn.textContent = '🔎 Search';
+  }
+}
+// Initialize Pyodide with matplotlib support
+async function initPyodide() {
+  if (!pyodide) {
+    try {
+      pyodide = await loadPyodide();
+      // Load required packages
+      await pyodide.loadPackage("micropip");
+      await pyodide.runPythonAsync(`
+        import micropip
+        await micropip.install('matplotlib')
+      `);
+      console.log("Pyodide initialized successfully with matplotlib");
+    } catch (error) {
+      console.error("Failed to initialize Pyodide:", error);
+    }
+  }
+  return pyodide;
+}
+
+// Auto-execute Python code and return result HTML
+async function autoExecutePythonCode(code) {
+  if (!pyodide) {
+    await initPyodide();
+  }
+  
+  if (!pyodide) {
+    return `<div class="python-error">Lỗi: Không thể khởi tạo Python runner</div>`;
+  }
+
+  try {
+    // Set up matplotlib backend and capture system
+    await pyodide.runPythonAsync(`
+      import matplotlib
+      matplotlib.use('AGG')  # Use non-interactive backend
+      import matplotlib.pyplot as plt
+      import io
+      import base64
+      import sys
+      from io import StringIO
+      
+      # Capture stdout for text output
+      sys.stdout = StringIO()
+      
+      # Clear any existing plots
+      plt.clf()
+    `);
+    
+    // Run the user code
+    await pyodide.runPythonAsync(code);
+    
+    // Get text output
+    const textOutput = await pyodide.runPythonAsync("sys.stdout.getvalue()");
+    
+    // Try to get plot output
+    let imageOutput = null;
+    try {
+      const hasPlot = await pyodide.runPythonAsync(`
+        import matplotlib.pyplot as plt
+        len(plt.get_fignums()) > 0
+      `);
+      
+      if (hasPlot) {
+        imageOutput = await pyodide.runPythonAsync(`
+          import matplotlib.pyplot as plt
+          import io
+          import base64
+          
+          buf = io.BytesIO()
+          plt.savefig(buf, format='png', dpi=150, bbox_inches='tight')
+          buf.seek(0)
+          encoded = base64.b64encode(buf.read()).decode('utf-8')
+          plt.close()
+          encoded
+        `);
+      }
+    } catch (plotError) {
+      console.log("No plot to save:", plotError);
+    }
+    
+    // Build result HTML
+    let resultHtml = '';
+    
+    // If there's a plot, show only the plot (replace the code)
+    if (imageOutput) {
+      resultHtml = `
+        <div class="python-result">
+          <div class="python-result-header">
+            <span>📊</span>
+            <span>Biểu đồ</span>
+          </div>
+          <div class="python-result-content">
+            <div class="python-plot-output">
+              <img src="data:image/png;base64,${imageOutput}" alt="Generated Plot" />
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    // If there's text output but no plot, show the text
+    else if (textOutput && textOutput.trim()) {
+      resultHtml = `
+        <div class="python-result">
+          <div class="python-result-header">
+            <span>🐍</span>
+            <span>Kết quả Python</span>
+          </div>
+          <div class="python-result-content">
+            <div class="python-text-output">${textOutput}</div>
+          </div>
+        </div>
+      `;
+    }
+    // If code ran successfully but no output
+    else {
+      resultHtml = `
+        <div class="python-result">
+          <div class="python-result-header">
+            <span>✅</span>
+            <span>Python đã chạy thành công</span>
+          </div>
+          <div class="python-result-content">
+            <div class="text-green-600 text-sm">Chương trình đã chạy thành công (không có output)</div>
+          </div>
+        </div>
+      `;
+    }
+    
+    return resultHtml;
+    
+  } catch (error) {
+    return `
+      <div class="python-result">
+        <div class="python-result-header">
+          <span>❌</span>
+          <span>Lỗi Python</span>
+        </div>
+        <div class="python-result-content">
+          <div class="python-error">Lỗi: ${error.message}</div>
+        </div>
+      </div>
+    `;
+  }
+}
+
+// Chat Template Class to manage rendering
+class ChatTemplate {
+  constructor() {
+    this.sections = {
+      reasoning_cot: { 
+        title: "🧠 Quá trình suy luận", 
+        content: "", 
+        visible: false,
+        badge: "SUY LUẬN",
+        icon: "🤔"
+      },
+      experting: { 
+        title: "👨‍🔬 Phân tích chuyên gia", 
+        content: "", 
+        visible: false,
+        badge: "CHUYÊN GIA",
+        icon: "🔬"
+      },
+      answer: { 
+        title: "", 
+        content: "", 
+        visible: true 
+      }
+    };
+  }
+
+  reset() {
+    Object.keys(this.sections).forEach(key => {
+      this.sections[key].content = "";
+      this.sections[key].visible = key === 'answer';
+    });
+  }
+
+  updateSection(sectionName, content) {
+    if (this.sections[sectionName]) {
+      this.sections[sectionName].content = content;
+    }
+  }
+
+  async render() {
+    let html = "";
+    
+    // Render collapsible sections with separate boxes
+    for (const [key, section] of Object.entries(this.sections)) {
+      if (key !== 'answer' && section.content.trim()) {
+        html += await this.renderCollapsibleSection(key, section);
+      }
+    }
+
+    // Render answer section
+    if (this.sections.answer.content.trim()) {
+      html += await this.renderAnswerSection(this.sections.answer.content);
+    }
+
+    return html;
+  }
+
+  async renderCollapsibleSection(key, section) {
+    const extraClass = key === 'reasoning_cot' ? 'reasoning-box' : 'expert-box';
+    const hasContent = section.content.trim() !== '';
+    
+    return `
+      <div class="content-container">
+        <div class="collapsible" data-section="${key}">
+          <span class="arrow">▶</span>
+          <span class="section-badge">${section.badge}</span>
+          <span>${section.title}</span>
+          ${hasContent ? '<span class="text-xs text-blue-500 ml-auto">Click để xem chi tiết</span>' : ''}
+        </div>
+        <div class="content-box ${extraClass}" data-content="${key}">
+          <div class="markdown-content">${await this.markdownToHtml(section.content)}</div>
+        </div>
+      </div>
+    `;
+  }
+
+  async renderAnswerSection(content) {
+    return `
+      <div class="answer-section">
+        <div class="flex items-center gap-2 mb3">
+          <span class="text-lg">💡</span>
+          <span class="font-semibold text-gray-700">Câu trả lời</span>
+        </div>
+        <div class="markdown-content prose max-w-none">
+          ${await this.markdownToHtml(content)}
+        </div>
+      </div>
+    `;
+  }
+
+  async markdownToHtml(text) {
+    try {
+      let html = marked.parse(text);
+      // Process Python code blocks - auto-run and replace with results
+      html = await this.processPythonCodeBlocks(html);
+      return html;
+    } catch (e) {
+      return text.replace(/\n/g, '<br>');
+    }
+  }
+
+  async processPythonCodeBlocks(html) {
+    // Regex to find Python code blocks
+    const pythonCodeRegex = /<pre><code class="language-python">([\s\S]*?)<\/code><\/pre>/g;
+    // Process all matches
+    const matches = [...html.matchAll(pythonCodeRegex)];
+    for (const match of matches) {
+      const fullMatch = match[0];
+      const code = match[1].trim();
+      const decodedCode = this.decodeHtml(code);
+
+      // Show loading state first
+      const loadingHtml = `
+        <div class="python-execution-container">
+          <div class="python-loading">
+            <div class="spinner"></div>
+            <span>Đang chạy code Python...</span>
+          </div>
+        </div>
+      `;
+
+      // Replace with loading first
+      html = html.replace(fullMatch, loadingHtml);
+
+      // Execute the code and get result
+      let resultHtml = "";
+      try {
+        const resultHtml = await autoExecutePythonCode(decodedCode);
+        // Replace loading with result
+        html = html.replace(loadingHtml, resultHtml);
+      } catch (error) {
+        resultHtml = `
+          <div class="python-result">
+            <div class="python-result-header">
+              <span>❌</span>
+              <span>Lỗi Python</span>
+            </div>
+            <div class="python-result-content">
+              <div class="python-error">Lỗi: ${error.message || "Không có biểu đồ hoặc output."}</div>
+            </div>
+          </div>
+        `;
+      }
+      // Luôn thay thế loadingHtml bằng resultHtml (dù thành công hay lỗi)
+      html = html.replace(loadingHtml, resultHtml);
+    }
+    return html;
+  }
+
+  decodeHtml(html) {
+    const txt = document.createElement("textarea");
+    txt.innerHTML = html;
+    return txt.value;
+  }
+
+  escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+}
+
+const template = new ChatTemplate();
+
+function handleKeyPress(event) {
+  if (event.key === 'Enter' && !event.shiftKey) {
+    event.preventDefault();
+    if (!isGenerating) {
+      sendMessage('normal');
+    }
+  }
+}
+
+function clearChat() {
+  document.getElementById("chat-box").innerHTML = `
+    <div class="text-gray-500 text-sm text-center py-8">
+      <div class="text-2xl mb-2">👋</div>
+      Xin chào! Tôi là DentalGPT. Hãy đặt câu hỏi về nha khoa...
+    </div>
+  `;
+  // Reset section states
+  sectionStates = {};
+}
+
+function appendMessage(text, isUser) {
+  const chatBox = document.getElementById("chat-box");
+  
+  // Clear welcome message if exists
+  if (chatBox.children.length === 1 && chatBox.children[0].classList.contains('text-center')) {
+    chatBox.innerHTML = '';
+  }
+
+  const msg = document.createElement("div");
+  msg.className = `message-container flex ${isUser ? 'justify-end' : 'justify-start'} mb-4`;
+  
+  if (isUser) {
+    msg.innerHTML = `
+      <div class="bg-blue-600 text-white p-4 rounded-2xl max-w-[75%] shadow-lg">
+        <div class="whitespace-pre-wrap">${escapeHtml(text)}</div>
+      </div>
+    `;
+  } else {
+    const botContent = document.createElement("div");
+    botContent.className = "bg-gray-50 border border-gray-200 text-gray-900 p-4 rounded-2xl max-w-[90%] shadow-lg";
+    
+    if (text === "") {
+      // Show typing indicator
+      botContent.innerHTML = `
+        <div class="flex items-center gap-2">
+          <span class="typing-indicator"></span>
+          <span class="typing-indicator"></span>
+          <span class="typing-indicator"></span>
+          <span class="text-sm text-gray-500 ml-2">Đang suy nghĩ...</span>
+        </div>
+      `;
+    } else {
+      botContent.innerHTML = text;
+    }
+    
+    msg.appendChild(botContent);
+    currentBotMessage = botContent;
+  }
+  
+  chatBox.appendChild(msg);
+  chatBox.scrollTop = chatBox.scrollHeight;
+  
+  return isUser ? null : currentBotMessage;
+}
+
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+function extractSection(text, sectionName) {
+  // Try to find complete section first
+  const completeRegex = new RegExp(`<${sectionName}>([\\s\\S]*?)<\\/${sectionName}>`, 'g');
+  const completeMatch = text.match(completeRegex);
+  
+  if (completeMatch) {
+    return completeMatch[0].replace(new RegExp(`<\\/?${sectionName}>`, 'g'), '').trim();
+  }
+  
+  // If no complete section, try to find incomplete/streaming section
+  const incompleteRegex = new RegExp(`<${sectionName}>(([\\s\\S]*?)(?=<\\/|$))`, 'g');
+  const incompleteMatch = text.match(incompleteRegex);
+  
+  if (incompleteMatch) {
+    return incompleteMatch[0].replace(new RegExp(`<${sectionName}>`, 'g'), '').trim();
+  }
+  
+  return "";
+}
+
+// Global state to track section visibility
+let sectionStates = {};
+
+function bindCollapsibleEvents() {
+  // Use event delegation on the chat box to handle dynamic content
+  const chatBox = document.getElementById("chat-box");
+  
+  // Remove existing listener if any
+  chatBox.removeEventListener('click', handleCollapsibleClick);
+  
+  // Add event listener with delegation
+  chatBox.addEventListener('click', handleCollapsibleClick);
+}
+
+function handleCollapsibleClick(e) {
+  // Check if clicked element is a collapsible or its child
+  const collapsible = e.target.closest('.collapsible');
+  if (!collapsible) return;
+  
+  e.preventDefault();
+  e.stopPropagation();
+  
+  const sectionKey = collapsible.dataset.section;
+  const contentBox = collapsible.parentElement.querySelector('.content-box[data-content="' + sectionKey + '"]');
+  const arrow = collapsible.querySelector('.arrow');
+  
+  if (contentBox && arrow) {
+    // Toggle state
+    const currentState = sectionStates[sectionKey] || false;
+    const newState = !currentState;
+    sectionStates[sectionKey] = newState;
+    
+    // Apply state
+    if (newState) {
+      contentBox.classList.add('visible');
+      arrow.textContent = '▼';
+      collapsible.classList.add('open');
+    } else {
+      contentBox.classList.remove('visible');
+      arrow.textContent = '▶';
+      collapsible.classList.remove('open');
+    }
+  }
+}
+
+function applySectionStates() {
+  // Apply saved states to all sections
+  Object.keys(sectionStates).forEach(sectionKey => {
+    const isOpen = sectionStates[sectionKey];
+    const collapsible = currentBotMessage ? currentBotMessage.querySelector(`.collapsible[data-section="${sectionKey}"]`) : null;
+    const contentBox = currentBotMessage ? currentBotMessage.querySelector(`.content-box[data-content="${sectionKey}"]`) : null;
+    
+    if (collapsible && contentBox) {
+      const arrow = collapsible.querySelector('.arrow');
+      if (isOpen) {
+        contentBox.classList.add('visible');
+        arrow.textContent = '▼';
+        collapsible.classList.add('open');
+      } else {
+        contentBox.classList.remove('visible');
+        arrow.textContent = '▶';
+        collapsible.classList.remove('open');
+      }
+    }
+  });
+}
+
+async function parseStreamingResponse(rawText) {
+  // Remove control tags
+  let text = rawText.replace(/<｜[^｜]*｜>/g, "");
+  
+  // Extract sections using regex - improved for incomplete tags
+  const sections = {
+    reasoning_cot: extractSection(text, 'reasoning_cot'),
+    experting: extractSection(text, 'experting'),
+    answer: extractSection(text, 'answer')
+  };
+
+  // Update template
+  template.reset();
+  Object.entries(sections).forEach(([key, content]) => {
+    if (content) {
+      template.updateSection(key, content);
+    }
+  });
+
+  return await template.render();
+}
+
+async function sendMessage(mode = "normal") {
+  if (isGenerating) return;
+
+  const input = document.getElementById("user-input");
+  const prompt = input.value.trim();
+  if (!prompt) return;
+
+  const fileInput = document.getElementById("file-input");
+  const files = fileInput.files;
+
+  isGenerating = true;
+  const sendBtn = document.getElementById("send-btn");
+  sendBtn.textContent = "Đang xử lý...";
+  sendBtn.disabled = true;
+
+  appendMessage(prompt, true);
+  input.value = "";
+  currentBotMessage = appendMessage("", false);
+
+  const params = {
+    prompt: prompt,
+    file_paths: fileInput.dataset.uploadedPaths ? JSON.parse(fileInput.dataset.uploadedPaths) : [],
+    max_new_tokens: parseInt(document.getElementById("max_tokens").value),
+    temperature: parseFloat(document.getElementById("temperature").value),
+    top_p: parseFloat(document.getElementById("top_p").value),
+    top_k: 50,
+    repetition_penalty: 1.0,
+    do_sample: true,
+    mode: mode,
+    module: isSearchEnabled ? "search_all" : null
+  };
+
+  try {
+    const response = await fetch(apiUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(params)
+    });
+
+    if (!response.ok) {
+      throw new Error(`Server error: ${response.statusText}`);
+    }
+
+    if (mode === "agentic") {
+      // Clear typing indicator
+      currentBotMessage.innerHTML = "";
+
+      // Get JSON response
+      const { response: agenticText } = await response.json();
+
+      // Render agentic canvas
+      const canvasHtml = `
+        <div class="answer-section border-2 border-blue-600 bg-blue-50 p-4 rounded-xl shadow-lg">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="text-lg">🔷</span>
+            <span class="font-bold text-blue-800">Agentic Canvas</span>
+          </div>
+          <div class="markdown-content prose max-w-none">
+            ${await template.markdownToHtml(agenticText)}
+          </div>
+        </div>
+      `;
+      currentBotMessage.innerHTML = canvasHtml;
+      
+    } else {
+      // Handle streaming response for normal mode
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder("utf-8");
+      streamBuffer = "";
+      
+      // Reset section states for new conversation
+      sectionStates = {};
+
+      while (true) {
+        const { value, done } = await reader.read();
+        if (done) break;
+
+        const chunk = decoder.decode(value, { stream: true });
+        streamBuffer += chunk;
+        
+        // Parse and render the accumulated content
+        const parsedContent = await parseStreamingResponse(streamBuffer);
+        currentBotMessage.innerHTML = parsedContent + '<span class="stream-cursor"></span>';
+        
+        // Apply saved section states after content update
+        applySectionStates();
+
+        // Auto scroll
+        const chatBox = document.getElementById("chat-box");
+        chatBox.scrollTop = chatBox.scrollHeight;
+        
+        // Small delay for smooth streaming effect
+        await new Promise(resolve => setTimeout(resolve, 30));
+      }
+
+      // Remove cursor and finalize
+      if (currentBotMessage) {
+        const finalContent = await parseStreamingResponse(streamBuffer);
+        currentBotMessage.innerHTML = finalContent;
+        applySectionStates();
+      }
+    }
+
+  } catch (error) {
+    if (currentBotMessage) {
+      currentBotMessage.innerHTML = `
+        <div class="text-red-600 flex items-center gap-2">
+          <span>⚠️</span>
+          <span>Đã xảy ra lỗi khi kết nối đến máy chủ: ${error.message}</span>
+        </div>
+      `;
+    }
+    console.error("Error:", error);
+  } finally {
+    isGenerating = false;
+    sendBtn.textContent = "Gửi";
+    sendBtn.disabled = false;
+  }
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('user-input').focus();
+  // Initialize event delegation for collapsibles
+  bindCollapsibleEvents();
+  // Initialize Pyodide in background
+  initPyodide();
+  
+  // Toggle settings panel with animation
+  const settingsBtn = document.getElementById('settings-btn');
+  const settingsPanel = document.getElementById('settings-panel');
+  
+  settingsBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    settingsPanel.classList.toggle('hidden');
+    if (!settingsPanel.classList.contains('hidden')) {
+      settingsPanel.classList.remove('opacity-0', 'scale-95');
+      settingsPanel.classList.add('opacity-100', 'scale-100');
+    } else {
+      settingsPanel.classList.remove('opacity-100', 'scale-100');
+      settingsPanel.classList.add('opacity-0', 'scale-95');
+    }
+  });
+  
+  // Close settings when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!settingsPanel.contains(e.target) && e.target !== settingsBtn) {
+      settingsPanel.classList.add('hidden');
+      settingsPanel.classList.remove('opacity-100', 'scale-100');
+      settingsPanel.classList.add('opacity-0', 'scale-95');
+    }
+  });
+});</script>
 </body>
 </html>

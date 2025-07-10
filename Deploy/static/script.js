@@ -241,7 +241,7 @@ class ChatTemplate {
   async renderAnswerSection(content) {
     return `
       <div class="answer-section">
-        <div class="flex items-center gap-2 mb-3">
+        <div class="flex items-center gap-2 mb3">
           <span class="text-lg">💡</span>
           <span class="font-semibold text-gray-700">Câu trả lời</span>
         </div>
@@ -525,24 +525,9 @@ async function sendMessage(mode = "normal") {
   input.value = "";
   currentBotMessage = appendMessage("", false);
 
-  let file_paths = [];
-  if (files.length > 0) {
-    // Upload file trước
-    const formData = new FormData();
-    for (let i = 0; i < files.length; i++) {
-      formData.append("files", files[i]);
-    }
-    const uploadRes = await fetch("http://localhost:8000/DentalGPT/upload_files/", {
-      method: "POST",
-      body: formData
-    });
-    const uploadData = await uploadRes.json();
-    file_paths = uploadData.file_paths || [];
-  }
-
   const params = {
     prompt: prompt,
-    file_paths: file_paths,
+    file_paths: fileInput.dataset.uploadedPaths ? JSON.parse(fileInput.dataset.uploadedPaths) : [],
     max_new_tokens: parseInt(document.getElementById("max_tokens").value),
     temperature: parseFloat(document.getElementById("temperature").value),
     top_p: parseFloat(document.getElementById("top_p").value),
@@ -648,4 +633,29 @@ document.addEventListener('DOMContentLoaded', function() {
   bindCollapsibleEvents();
   // Initialize Pyodide in background
   initPyodide();
+  
+  // Toggle settings panel with animation
+  const settingsBtn = document.getElementById('settings-btn');
+  const settingsPanel = document.getElementById('settings-panel');
+  
+  settingsBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    settingsPanel.classList.toggle('hidden');
+    if (!settingsPanel.classList.contains('hidden')) {
+      settingsPanel.classList.remove('opacity-0', 'scale-95');
+      settingsPanel.classList.add('opacity-100', 'scale-100');
+    } else {
+      settingsPanel.classList.remove('opacity-100', 'scale-100');
+      settingsPanel.classList.add('opacity-0', 'scale-95');
+    }
+  });
+  
+  // Close settings when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!settingsPanel.contains(e.target) && e.target !== settingsBtn) {
+      settingsPanel.classList.add('hidden');
+      settingsPanel.classList.remove('opacity-100', 'scale-100');
+      settingsPanel.classList.add('opacity-0', 'scale-95');
+    }
+  });
 });
