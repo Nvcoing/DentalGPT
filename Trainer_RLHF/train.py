@@ -5,9 +5,6 @@ from datasets import Dataset
 
 from load_model import load_model_and_tokenizer
 from orpo_trainer import create_orpo_trainer
-import torch
-torch._dynamo.config.suppress_errors = True
-torch._dynamo.disable()
 
 def main(hf_token):
     # Đăng nhập HF
