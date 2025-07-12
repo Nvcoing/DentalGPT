@@ -614,10 +614,6 @@ class ChatTemplate {
   async renderAnswerSection(content) {
     return `
       <div class="answer-section">
-        <div class="flex items-center gap-2 mb3">
-          <span class="text-lg">💡</span>
-          <span class="font-semibold text-gray-700">Câu trả lời</span>
-        </div>
         <div class="markdown-content prose max-w-none">
           ${await this.markdownToHtml(content)}
         </div>
@@ -926,22 +922,29 @@ async function sendMessage(mode = "normal") {
       // Clear typing indicator
       currentBotMessage.innerHTML = "";
 
-      // Get JSON response
-      const { response: agenticText } = await response.json();
+      const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+    let agenticText = "";
 
-      // Render agentic canvas
-      const canvasHtml = `
-        <div class="answer-section border-2 border-blue-600 bg-blue-50 p-4 rounded-xl shadow-lg">
-          <div class="flex items-center gap-2 mb-3">
-            <span class="text-lg">🔷</span>
-            <span class="font-bold text-blue-800">Agentic Canvas</span>
-          </div>
-          <div class="markdown-content prose max-w-none">
-            ${await template.markdownToHtml(agenticText)}
-          </div>
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      agenticText += decoder.decode(value, { stream: true });
+    }
+
+    const canvasHtml = `
+      <div class="answer-section border-2 border-blue-600 bg-blue-50 p-4 rounded-xl shadow-lg">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-lg">🔷</span>
+          <span class="font-bold text-blue-800">Agentic Canvas</span>
         </div>
-      `;
-      currentBotMessage.innerHTML = canvasHtml;
+        <div class="markdown-content prose max-w-none">
+          ${await template.markdownToHtml(agenticText)}
+        </div>
+      </div>
+    `;
+
+    currentBotMessage.innerHTML = canvasHtml;
       
     } else {
       // Handle streaming response for normal mode

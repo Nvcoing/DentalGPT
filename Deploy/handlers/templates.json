@@ -1,0 +1,85 @@
+{
+  "report": {
+    "name": "Báo cáo Khám Nha khoa",
+    "sections": [
+      {
+        "title": "Thông tin bệnh nhân",
+        "description": "Thông tin cá nhân, tiền sử bệnh, lý do khám"
+      },
+      {
+        "title": "Khám lâm sàng",
+        "description": "Triệu chứng, dấu hiệu lâm sàng, tình trạng răng miệng"
+      },
+      {
+        "title": "Chẩn đoán",
+        "description": "Chẩn đoán sơ bộ và phân biệt chẩn đoán"
+      },
+      {
+        "title": "Kế hoạch điều trị",
+        "description": "Phương pháp điều trị, lời khuyên, theo dõi"
+      },
+      {
+        "title": "Tiên lượng và hướng dẫn",
+        "description": "Tiên lượng bệnh, hướng dẫn chăm sóc tại nhà"
+      }
+    ]
+  },
+  "thesis": {
+    "name": "Luận văn/Đồ án Nha khoa",
+    "sections": [
+      {
+        "title": "Đặt vấn đề",
+        "description": "Lý do chọn đề tài, tính cấp thiết, mục tiêu nghiên cứu"
+      },
+      {
+        "title": "Tổng quan tài liệu",
+        "description": "Cơ sở lý thuyết, nghiên cứu liên quan, khoảng trống kiến thức"
+      },
+      {
+        "title": "Đối tượng và phương pháp nghiên cứu",
+        "description": "Thiết kế nghiên cứu, đối tượng, tiêu chí, phương pháp thu thập dữ liệu"
+      },
+      {
+        "title": "Kết quả nghiên cứu",
+        "description": "Trình bày kết quả, phân tích số liệu, biểu đồ, bảng"
+      },
+      {
+        "title": "Thảo luận",
+        "description": "Giải thích kết quả, so sánh với nghiên cứu khác, hạn chế"
+      },
+      {
+        "title": "Kết luận và kiến nghị",
+        "description": "Tóm tắt kết quả chính, ý nghĩa thực tiễn, hướng nghiên cứu tiếp theo"
+      }
+    ]
+  },
+  "paper": {
+    "name": "Bài báo khoa học Nha khoa",
+    "sections": [
+      {
+        "title": "Tóm tắt (Abstract)",
+        "description": "Tóm tắt mục tiêu, phương pháp, kết quả chính, kết luận"
+      },
+      {
+        "title": "Giới thiệu (Introduction)",
+        "description": "Bối cảnh, vấn đề nghiên cứu, mục tiêu, giả thuyết"
+      },
+      {
+        "title": "Vật liệu và phương pháp (Materials & Methods)",
+        "description": "Thiết kế nghiên cứu, đối tượng, quy trình, phân tích thống kê"
+      },
+      {
+        "title": "Kết quả (Results)",
+        "description": "Trình bày kết quả khách quan, số liệu, hình ảnh"
+      },
+      {
+        "title": "Thảo luận (Discussion)",
+        "description": "Giải thích kết quả, so sánh nghiên cứu, ý nghĩa lâm sàng"
+      },
+      {
+        "title": "Kết luận (Conclusion)",
+        "description": "Tóm tắt phát hiện chính, ứng dụng thực tiễn, hạn chế"
+      }
+    ]
+  }
+}

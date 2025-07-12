@@ -3,93 +3,12 @@ import time
 import json
 from gemini_tool.call_gemini import call_gemini
 from config import NGROK_URL
-
-# Template mẫu cho 3 loại báo cáo nha khoa
-TEMPLATES = {
-    "report": {
-        "name": "Báo cáo Khám Nha khoa",
-        "sections": [
-            {
-                "title": "Thông tin bệnh nhân",
-                "description": "Thông tin cá nhân, tiền sử bệnh, lý do khám"
-            },
-            {
-                "title": "Khám lâm sàng",
-                "description": "Triệu chứng, dấu hiệu lâm sàng, tình trạng răng miệng"
-            },
-            {
-                "title": "Chẩn đoán",
-                "description": "Chẩn đoán sơ bộ và phân biệt chẩn đoán"
-            },
-            {
-                "title": "Kế hoạch điều trị",
-                "description": "Phương pháp điều trị, lời khuyên, theo dõi"
-            },
-            {
-                "title": "Tiên lượng và hướng dẫn",
-                "description": "Tiên lượng bệnh, hướng dẫn chăm sóc tại nhà"
-            }
-        ]
-    },
-    "thesis": {
-        "name": "Luận văn/Đồ án Nha khoa",
-        "sections": [
-            {
-                "title": "Đặt vấn đề",
-                "description": "Lý do chọn đề tài, tính cấp thiết, mục tiêu nghiên cứu"
-            },
-            {
-                "title": "Tổng quan tài liệu",
-                "description": "Cơ sở lý thuyết, nghiên cứu liên quan, khoảng trống kiến thức"
-            },
-            {
-                "title": "Đối tượng và phương pháp nghiên cứu",
-                "description": "Thiết kế nghiên cứu, đối tượng, tiêu chí, phương pháp thu thập dữ liệu"
-            },
-            {
-                "title": "Kết quả nghiên cứu",
-                "description": "Trình bày kết quả, phân tích số liệu, biểu đồ, bảng"
-            },
-            {
-                "title": "Thảo luận",
-                "description": "Giải thích kết quả, so sánh với nghiên cứu khác, hạn chế"
-            },
-            {
-                "title": "Kết luận và kiến nghị",
-                "description": "Tóm tắt kết quả chính, ý nghĩa thực tiễn, hướng nghiên cứu tiếp theo"
-            }
-        ]
-    },
-    "paper": {
-        "name": "Bài báo khoa học Nha khoa",
-        "sections": [
-            {
-                "title": "Tóm tắt (Abstract)",
-                "description": "Tóm tắt mục tiêu, phương pháp, kết quả chính, kết luận"
-            },
-            {
-                "title": "Giới thiệu (Introduction)",
-                "description": "Bối cảnh, vấn đề nghiên cứu, mục tiêu, giả thuyết"
-            },
-            {
-                "title": "Vật liệu và phương pháp (Materials & Methods)",
-                "description": "Thiết kế nghiên cứu, đối tượng, quy trình, phân tích thống kê"
-            },
-            {
-                "title": "Kết quả (Results)",
-                "description": "Trình bày kết quả khách quan, số liệu, hình ảnh"
-            },
-            {
-                "title": "Thảo luận (Discussion)",
-                "description": "Giải thích kết quả, so sánh nghiên cứu, ý nghĩa lâm sàng"
-            },
-            {
-                "title": "Kết luận (Conclusion)",
-                "description": "Tóm tắt phát hiện chính, ứng dụng thực tiễn, hạn chế"
-            }
-        ]
-    }
-}
+import os
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+TEMPLATE_PATH = os.path.join(CURRENT_DIR, "templates.json")
+# Tải template từ JSON
+with open(TEMPLATE_PATH, "r", encoding="utf-8") as f:
+    TEMPLATES = json.load(f)
 
 def build_prompt(question: str) -> str:
     """Xây dựng prompt cơ bản cho LLM"""
@@ -153,23 +72,23 @@ def generate_section_questions(user_prompt: str, section_title: str, section_des
     """Sử dụng Gemini để tạo câu hỏi chi tiết cho từng mục"""
     
     gemini_prompt = f"""
-Bạn là chuyên gia nha khoa có kinh nghiệm. Tôi đang viết một {TEMPLATES[template_type]['name']}.
+        Bạn là chuyên gia nha khoa có kinh nghiệm. Tôi đang viết một {TEMPLATES[template_type]['name']}.
 
-Yêu cầu của người dùng: "{user_prompt}"
+        Yêu cầu của người dùng: "{user_prompt}"
 
-Mục hiện tại: "{section_title}"
-Mô tả mục: "{section_description}"
+        Mục hiện tại: "{section_title}"
+        Mô tả mục: "{section_description}"
 
-Hãy tạo ra 3-5 câu hỏi chi tiết và cụ thể để hướng dẫn viết nội dung cho mục này. 
-Các câu hỏi cần:
-1. Phù hợp với yêu cầu của người dùng
-2. Tập trung vào mục "{section_title}" 
-3. Có tính chuyên môn cao trong lĩnh vực nha khoa
-4. Giúp tạo ra nội dung chất lượng và đầy đủ
+        Hãy tạo ra 3-5 câu hỏi chi tiết và cụ thể để hướng dẫn viết nội dung cho mục này. 
+        Các câu hỏi cần:
+        1. Phù hợp với yêu cầu của người dùng
+        2. Tập trung vào mục "{section_title}" 
+        3. Có tính chuyên môn cao trong lĩnh vực nha khoa
+        4. Giúp tạo ra nội dung chất lượng và đầy đủ
 
-Chỉ trả về danh sách câu hỏi, mỗi câu hỏi trên một dòng bắt đầu bằng "- ".
-"""
-    
+        Chỉ trả về danh sách câu hỏi, mỗi câu hỏi trên một dòng bắt đầu bằng "- ".
+        """
+            
     try:
         questions = call_gemini(gemini_prompt, model_name="models/gemini-1.5-flash-latest")
         return questions.strip()
@@ -180,16 +99,16 @@ Chỉ trả về danh sách câu hỏi, mỗi câu hỏi trên một dòng bắt
 def format_output_section(section_title: str, questions: str, content: str) -> str:
     """Format output cho từng mục"""
     return f"""
-## {section_title}
+        ## {section_title}
 
-### Câu hỏi hướng dẫn:
-{questions}
+        ### Câu hỏi hướng dẫn:
+        {questions}
 
-### Nội dung:
-{content}
+        ### Nội dung:
+        {content}
 
----
-"""
+        ---
+        """
 
 def create_final_report_with_gemini(template_name: str, user_prompt: str, results: dict) -> str:
     """Sử dụng Gemini để tổng hợp template thành báo cáo cuối cùng"""
@@ -200,32 +119,37 @@ def create_final_report_with_gemini(template_name: str, user_prompt: str, result
         sections_content += f"**{section_title}:**\n{data['content']}\n\n"
     
     gemini_prompt = f"""
-Bạn là chuyên gia nha khoa có kinh nghiệm. Tôi có một {template_name} với các mục đã được hoàn thành như sau:
+        Bạn là chuyên gia nha khoa có kinh nghiệm. Tôi có một {template_name} với các mục đã được hoàn thành như sau:
 
-**Yêu cầu ban đầu:** {user_prompt}
+        **Yêu cầu ban đầu:** {user_prompt}
 
-**Nội dung các mục:**
-{sections_content}
+        **Nội dung các mục:**
+        {sections_content}
 
-Nhiệm vụ của bạn:
-1. Tổng hợp toàn bộ nội dung thành một báo cáo hoàn chỉnh, mạch lạc
-2. Đảm bảo tính liên kết giữa các mục
-3. Bổ sung thêm thông tin cần thiết nếu có
-4. Sửa lỗi chính tả, ngữ pháp nếu có
-5. Định dạng lại cho chuyên nghiệp và dễ đọc
-6. Thêm các khuyến nghị cụ thể và thực tế
+        Nhiệm vụ của bạn:
+        1. Tổng hợp toàn bộ nội dung thành một báo cáo hoàn chỉnh, mạch lạc
+        2. Đảm bảo tính liên kết giữa các mục
+        3. Bổ sung thêm thông tin cần thiết nếu có
+        4. Sửa lỗi chính tả, ngữ pháp nếu có
+        5. Định dạng lại cho chuyên nghiệp và dễ đọc
+        6. Thêm các khuyến nghị cụ thể và thực tế
+        7. **Nếu có dữ liệu định lượng, hãy biểu diễn chúng bằng biểu đồ (với mã Python matplotlib)**
+        8. **Nếu có thông tin định tính cần hệ thống, hãy trình bày bằng bảng (dùng markdown table)**
+        9. **Nếu có các khái niệm y học liên quan, hãy trình bày thêm công thức hoặc biểu thức dưới dạng markdown chuẩn**
 
-Hãy viết lại toàn bộ báo cáo theo cấu trúc chuẩn, đảm bảo:
-- Ngôn ngữ chuyên nghiệp nhưng dễ hiểu
-- Thông tin chính xác và khoa học
-- Cấu trúc rõ ràng với các tiêu đề phù hợp
-- Nội dung đầy đủ và toàn diện
+        Hãy viết lại toàn bộ báo cáo theo cấu trúc chuẩn, đảm bảo:
+        - Ngôn ngữ chuyên nghiệp nhưng dễ hiểu
+        - Thông tin chính xác và khoa học
+        - Cấu trúc rõ ràng với các tiêu đề phù hợp
+        - Nội dung đầy đủ và toàn diện
+        - Bao gồm biểu đồ minh họa (nếu có), bảng thông tin, và công thức (nếu phù hợp)
 
-Chỉ trả về nội dung báo cáo cuối cùng, không cần giải thích thêm.
-"""
+        Chỉ trả về nội dung báo cáo cuối cùng, không cần giải thích thêm.
+    """
+
     
     try:
-        final_report = call_gemini(gemini_prompt, model_name="models/gemini-2.0-flash")
+        final_report = call_gemini(gemini_prompt, model_name="models/gemini-2.5-flash")
         return final_report.strip()
     except Exception as e:
         # Fallback nếu Gemini lỗi
@@ -338,7 +262,7 @@ def generate_response(prompt: str,
             
         except Exception as e:
             full_response += f"\n❌ Lỗi tổng hợp báo cáo cuối: {str(e)}\n"
-            full_response += "\n📋 **BÁOCÁO GỐC (chưa tổng hợp):**\n\n"
+            full_response += "\n📋 **BÁO CÁO GỐC (chưa tổng hợp):**\n\n"
             for section_title, data in results.items():
                 full_response += f"## {section_title}\n\n{data['content']}\n\n---\n\n"
         

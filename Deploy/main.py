@@ -90,9 +90,7 @@ async def generate(request: Request):
         gen = agentic_generate(prompt, temperature=temperature, top_p=top_p,
                                     top_k=top_k, repetition_penalty=repetition_penalty,
                                     do_sample=do_sample, max_new_tokens=max_new_tokens or 1024)
-        output = ''.join(list(gen))
-        full_output=output
-        return JSONResponse(content={"response": full_output})
+        return StreamingResponse(gen, media_type="text/markdown")
     else:
         gen = normal_generate(prompt, temperature=temperature, top_p=top_p,
                               top_k=top_k, repetition_penalty=repetition_penalty,
