@@ -7,214 +7,555 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="https://cdn.jsdelivr.net/pyodide/v0.24.0/full/pyodide.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <link rel="stylesheet" href="/static/style.css" />
   <style>
-    .collapsible {
-      cursor: pointer;
-      user-select: none;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-weight: 600;
-      color: #2563eb;
-      transition: all 0.2s ease;
-      padding: 0.75rem;
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: 0.5rem;
-      margin-bottom: 0.5rem;
-    }
-    .collapsible:hover {
-      color: #1d4ed8;
-      background: #f1f5f9;
-      border-color: #cbd5e1;
-    }
-    .collapsible > .arrow {
-      transition: transform 0.3s ease;
-      display: inline-block;
-      font-size: 0.9rem;
-      color: #64748b;
-    }
-    .collapsible.open > .arrow {
-      transform: rotate(90deg);
-      color: #3b82f6;
-    }
-    .collapsible .section-badge {
-      background: #3b82f6;
-      color: white;
-      padding: 0.2rem 0.5rem;
-      border-radius: 0.25rem;
-      font-size: 0.7rem;
-      font-weight: 500;
-    }
-    .content-container {
-      margin-bottom: 1rem;
-    }
-    .content-box {
-      padding: 0.75rem;
-      background: #ffffff;
-      border: 1px solid #e5e7eb;
-      border-radius: 0.5rem;
-      border-left: 4px solid #3b82f6;
-      font-size: 0.85rem;
-      line-height: 1.4;
-      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-      max-height: 0;
-      overflow: hidden;
-      opacity: 0;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .content-box.visible {
-      max-height: 600px;
-      opacity: 1;
+/* COLLAPSIBLE HEADER */
+.collapsible {
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: #2563eb;
+  background: #f9fafb;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  margin-bottom: 0.75rem;
+  transition: background 0.2s ease, color 0.2s;
+}
+.collapsible:hover {
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+.collapsible > .arrow {
+  transition: transform 0.3s ease;
+  font-size: 0.9rem;
+  color: #64748b;
+}
+.collapsible.open > .arrow {
+  transform: rotate(90deg);
+  color: #3b82f6;
+}
+.collapsible .section-badge {
+  background: #3b82f6;
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+/* CONTAINER & CONTENT BOX */
+.content-container {
+  margin-bottom: 1rem;
+}
+.content-box {
+  padding: 1rem;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-left: 4px solid #3b82f6;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s ease;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+}
+.content-box.visible {
+  max-height: 1000px;
+  opacity: 1;
+  overflow: visible;
+}
+.reasoning-box {
+  border-left-color: #8b5cf6;
+}
+.expert-box {
+  border-left-color: #10b981;
+}
+
+/* MARKDOWN STYLES */
+.markdown-content {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  line-height: 1.7;
+  font-size: 1rem;
+  color: #1f2937;
+  padding: 1rem;
+  background-color: #fdfdfd;
+  border-radius: 0.5rem;
+  box-shadow: inset 0 0 0 1px #e5e7eb;
+  overflow-x: auto;
+}
+.markdown-content h1 {
+  font-size: 1.5rem;
+  margin: 1rem 0 0.5rem;
+  font-weight: 700;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 0.25rem;
+}
+.markdown-content h2 {
+  font-size: 1.25rem;
+  margin: 1rem 0 0.5rem;
+  font-weight: 600;
+  color: #1e3a8a;
+  border-left: 4px solid #3b82f6;
+  padding-left: 0.75rem;
+}
+.markdown-content h3 {
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  color: #374151;
+  font-style: italic;
+}
+.markdown-content ul,
+.markdown-content ol {
+  margin: 0.75rem 0;
+  padding-left: 1.5rem;
+}
+.markdown-content li {
+  margin-bottom: 0.4rem;
+}
+.markdown-content p {
+  margin: 0.75rem 0;
+}
+.markdown-content code {
+  background: #f3f4f6;
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+  font-size: 0.9rem;
+  color: #111827;
+  font-family: 'Courier New', monospace;
+}
+.markdown-content strong {
+  font-weight: 700;
+  color: #111827;
+}
+.markdown-content em {
+  font-style: italic;
+  color: #6b7280;
+}
+.markdown-content blockquote {
+  border-left: 4px solid #cbd5e1;
+  padding-left: 1rem;
+  margin: 1rem 0;
+  font-style: italic;
+  color: #6b7280;
+}
+.markdown-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+.markdown-content th,
+.markdown-content td {
+  border: 1px solid #e5e7eb;
+  padding: 0.5rem;
+}
+.markdown-content thead {
+  background-color: #f3f4f6;
+  font-weight: 600;
+}
+
+/* INDICATORS */
+.typing-indicator {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #3b82f6;
+  animation: typing 1.4s infinite ease-in-out;
+  margin: 0 2px;
+}
+.typing-indicator:nth-child(1) { animation-delay: -0.32s; }
+.typing-indicator:nth-child(2) { animation-delay: -0.16s; }
+@keyframes typing {
+  0%, 80%, 100% { transform: scale(0); opacity: 0.5; }
+  40% { transform: scale(1); opacity: 1; }
+}
+.stream-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.2em;
+  background: #3b82f6;
+  animation: blink 1s infinite;
+  margin-left: 2px;
+}
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* PYTHON CODE UI */
+.message-container {
+  animation: slideIn 0.3s ease-out;
+}
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.answer-section {
+  background: #fefefe;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid #f3f4f6;
+  margin-top: 0.3rem;
+}
+.python-code-block {
+  position: relative;
+  margin: 1rem 0;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+.python-code-header {
+  background: #374151;
+  color: white;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.python-code-content {
+  background: #1f2937;
+  color: #f9fafb;
+  padding: 1rem;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  overflow-x: auto;
+}
+.run-button {
+  background: #10b981;
+  color: white;
+  border: none;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: background 0.2s;
+}
+.run-button:hover {
+  background: #059669;
+}
+.run-button:disabled {
+  background: #6b7280;
+  cursor: not-allowed;
+}
+.python-output {
+  background: #111827;
+  color: #10b981;
+  padding: 1rem;
+  border-top: 1px solid #374151;
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  white-space: pre-wrap;
+  max-height: 200px;
+  overflow-y: auto;
+}
+.loading-indicator {
+  color: #fbbf24;
+  display: none;
+}
+.plot-image {
+  max-width: 100%;
+  margin: 0.5rem 0;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.25rem;
+}
+/* Agentic Canvas Styles */
+.agentic-canvas {
+  position: relative;
+  user-select: text !important;
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  -ms-user-select: text !important;
+}
+
+.agentic-canvas * {
+  user-select: text !important;
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  -ms-user-select: text !important;
+}
+
+.canvas-toolbar {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.canvas-btn {
+  padding: 4px 8px;
+  font-size: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.canvas-btn:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+}
+
+.canvas-btn:active {
+  transform: translateY(1px);
+}
+
+.pdf-processing {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 1000;
+  display: none;
+}
+
+.pdf-spinner {
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #3498db;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+/* Editable Canvas Styles */
+.canvas-content[contenteditable="true"] {
+  border: 2px dashed #3b82f6;
+  background: #fefefe;
+  outline: none;
+  min-height: 100px;
+  padding: 16px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.canvas-content[contenteditable="true"]:focus {
+  border-color: #1d4ed8;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.edit-mode-indicator {
+  position: absolute;
+  top: 40px;
+  right: 8px;
+  background: #f59e0b;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  z-index: 11;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.canvas-toolbar {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  gap: 6px;
+  z-index: 10;
+}
+
+.canvas-btn {
+  padding: 4px 8px;
+  font-size: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.canvas-btn:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+  transform: translateY(-1px);
+}
+
+.canvas-btn.edit-active {
+  background: #f59e0b;
+  color: white;
+  border-color: #d97706;
+}
+
+.canvas-btn.save-btn {
+  background: #10b981;
+  color: white;
+  border-color: #059669;
+}
+
+.canvas-btn.save-btn:hover {
+  background: #059669;
+}
+
+.canvas-btn.cancel-btn {
+  background: #ef4444;
+  color: white;
+  border-color: #dc2626;
+}
+
+.canvas-btn.cancel-btn:hover {
+  background: #dc2626;
+}
+
+/* Formatting toolbar */
+.format-toolbar {
+  position: sticky;
+  top: 0;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 8px;
+  margin-bottom: 12px;
+  display: none;
+  flex-wrap: wrap;
+  gap: 4px;
+  z-index: 12;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.format-toolbar.visible {
+  display: flex;
+}
+
+.format-btn {
+  padding: 4px 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.2s;
+}
+
+.format-btn:hover {
+  background: #f3f4f6;
+}
+
+.format-btn.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #2563eb;
+}
+
+.auto-save-indicator {
+  position: absolute;
+  top: 70px;
+  right: 8px;
+  background: #10b981;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  z-index: 11;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.auto-save-indicator.visible {
+  opacity: 1;
+}
+.uploaded-files {
+      max-height: 120px;
       overflow-y: auto;
-    }
-    .reasoning-box {
-      border-left-color: #8b5cf6;
-    }
-    .expert-box {
-      border-left-color: #10b981;
-    }
-    .markdown-content {
-      white-space: pre-wrap;
-      word-wrap: break-word;
-      line-height: 1.4;
-    }
-    .markdown-content h1, .markdown-content h2, .markdown-content h3 {
-      margin: 0.5rem 0 0.25rem 0;
-      color: #1f2937;
-      font-weight: 600;
-    }
-    .markdown-content h1 { font-size: 1rem; }
-    .markdown-content h2 { font-size: 0.95rem; }
-    .markdown-content h3 { font-size: 0.9rem; }
-    .markdown-content ul, .markdown-content ol {
-      margin: 0.3rem 0;
-      padding-left: 1rem;
-    }
-    .markdown-content li {
-      margin: 0.1rem 0;
-    }
-    .markdown-content p {
-      margin: 0.3rem 0;
-    }
-    .markdown-content code {
-      background: #e5e7eb;
-      padding: 0.2rem 0.4rem;
-      border-radius: 0.25rem;
-      font-size: 0.85rem;
-    }
-    .markdown-content strong {
-      font-weight: 600;
-      color: #374151;
-    }
-    .markdown-content em {
-      font-style: italic;
-      color: #6b7280;
-    }
-    .typing-indicator {
-      display: inline-block;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #3b82f6;
-      animation: typing 1.4s infinite ease-in-out;
-    }
-    .typing-indicator:nth-child(1) { animation-delay: -0.32s; }
-    .typing-indicator:nth-child(2) { animation-delay: -0.16s; }
-    @keyframes typing {
-      0%, 80%, 100% { transform: scale(0); opacity: 0.5; }
-      40% { transform: scale(1); opacity: 1; }
-    }
-    .stream-cursor {
-      display: inline-block;
-      width: 2px;
-      height: 1.2em;
-      background: #3b82f6;
-      animation: blink 1s infinite;
-      margin-left: 2px;
-    }
-    @keyframes blink {
-      0%, 50% { opacity: 1; }
-      51%, 100% { opacity: 0; }
-    }
-    .message-container {
-      animation: slideIn 0.3s ease-out;
-    }
-    @keyframes slideIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .answer-section {
-      background: #fefefe;
-      padding: 0.75rem;
-      border-radius: 0.5rem;
-      border: 1px solid #f3f4f6;
-      margin-top: 0.3rem;
-    }
-    .python-code-block {
-      position: relative;
-      margin: 1rem 0;
       border: 1px solid #e5e7eb;
-      border-radius: 0.5rem;
-      overflow: hidden;
-    }
-    .python-code-header {
-      background: #374151;
-      color: white;
-      padding: 0.5rem 1rem;
-      font-size: 0.85rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .python-code-content {
-      background: #1f2937;
-      color: #f9fafb;
-      padding: 1rem;
-      font-family: 'Courier New', monospace;
-      font-size: 0.9rem;
-      overflow-x: auto;
-    }
-    .run-button {
-      background: #10b981;
-      color: white;
-      border: none;
-      padding: 0.25rem 0.75rem;
-      border-radius: 0.25rem;
-      cursor: pointer;
-      font-size: 0.8rem;
-      transition: background 0.2s;
-    }
-    .run-button:hover {
-      background: #059669;
-    }
-    .run-button:disabled {
-      background: #6b7280;
-      cursor: not-allowed;
-    }
-    .python-output {
-      background: #111827;
-      color: #10b981;
-      padding: 1rem;
-      border-top: 1px solid #374151;
-      font-family: 'Courier New', monospace;
-      font-size: 0.85rem;
-      white-space: pre-wrap;
-      max-height: 200px;
-      overflow-y: auto;
-    }
-    .loading-indicator {
-      color: #fbbf24;
+      border-radius: 8px;
+      padding: 8px;
+      margin-top: 8px;
+      background: #f9fafb;
       display: none;
     }
-    .plot-image {
-      max-width: 100%;
-      margin: 0.5rem 0;
-      border: 1px solid #e5e7eb;
-      border-radius: 0.25rem;
+    .uploaded-files.visible {
+      display: block;
     }
-    </style>
+    .file-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 8px;
+      margin: 2px 0;
+      background: white;
+      border-radius: 6px;
+      border: 1px solid #e5e7eb;
+      font-size: 13px;
+    }
+    .file-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+      min-width: 0;
+    }
+    .file-icon {
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .file-name {
+      font-weight: 500;
+      color: #374151;
+      overflow: hidden;
+      white-space: nowrap;
+      max-width: 200px;
+    }
+    .file-size {
+      color: #6b7280;
+      font-size: 11px;
+      margin-left: 4px;
+    }
+    .remove-file {
+      color: #ef4444;
+      cursor: pointer;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+    .remove-file:hover {
+      background: #fee2e2;
+    }
+    .file-upload-area {
+      position: relative;
+    }
+    .upload-summary {
+      font-size: 12px;
+      color: #6b7280;
+      margin-top: 4px;
+    }
+</style>
+
 </head>
 <body class="h-screen w-screen overflow-hidden font-sans bg-gradient-to-br from-blue-50 to-indigo-100">
 
@@ -239,6 +580,12 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
             </svg>
           </button>
+          <div id="pdf-loading" class="pdf-processing">
+            <div class="flex items-center">
+              <div class="pdf-spinner"></div>
+              <span>Đang tạo PDF...</span>
+            </div>
+          </div>
           <div id="settings-panel" class="hidden absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-xl z-20 p-4 border border-gray-200 transform transition-all duration-200 origin-top-right">
             <h3 class="font-medium text-gray-700 mb-3">Cài đặt mô hình</h3>
             <div class="space-y-3 text-sm">
@@ -271,22 +618,37 @@
       <!-- Input area -->
       <footer class="p-6 border-t border-gray-300 bg-white flex items-center gap-3 rounded-t-2xl shadow-lg">
         <div class="relative flex-1">
-          <input id="user-input" type="text" placeholder="Nhập câu hỏi..." class="w-full px-5 py-3 border rounded-2xl shadow focus:outline-none focus:ring-2 focus:ring-blue-400 text-base" onkeydown="handleKeyPress(event)" />
-          <div class="absolute right-8 bottom-3.5 flex gap-2">
-            <button id="file-upload-btn" class="text-gray-500 hover:text-blue-600 relative" title="Tải lên file PDF hoặc hình ảnh">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-              </svg>
-              <input id="file-input" type="file" multiple accept=".pdf,.jpg,.jpeg,.png" class="hidden" />
-              <div id="file-upload-status" class="absolute -bottom-6 left-0 text-xs whitespace-nowrap hidden" style="min-width: 200px;"></div>
-            </button>
+          <div class="file-upload-area">
+            <!-- Input chính -->
+            <input id="user-input" type="text" placeholder="Nhập câu hỏi..." class="w-full px-5 py-3 border rounded-2xl shadow focus:outline-none focus:ring-2 focus:ring-blue-400 text-base" onkeydown="handleKeyPress(event)" />
+            
+            <!-- Nút upload và status -->
+            <div class="absolute right-8 bottom-3.5 flex gap-2">
+              <button id="file-upload-btn" class="text-gray-500 hover:text-blue-600 relative" title="Tải lên file PDF hoặc hình ảnh">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                </svg>
+                <input id="file-input" type="file" multiple accept=".pdf,.jpg,.jpeg,.png" class="hidden" />
+              </button>
+            </div>
+            
+            <!-- Danh sách file đã upload -->
+            <div id="uploaded-files" class="uploaded-files">
+              <div class="upload-summary">
+                <span id="file-count">0 file đã chọn</span>
+                <button id="clear-all-files" class="text-red-500 hover:text-red-700 text-xs ml-2 underline" style="display: none;">Xóa tất cả</button>
+              </div>
+              <div id="file-list"></div>
+            </div>
           </div>
         </div>
+        
         <div class="relative">
           <button onclick="sendMessage('normal')" id="send-btn" class="flex items-center gap-2 px-7 py-3 bg-blue-600 text-white rounded-2xl hover:bg-blue-700 transition text-lg font-semibold shadow">
             <span>Gửi</span>
             <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>
+          <!-- Tools dropdown giữ nguyên -->
           <div id="tools-dropdown" class="hidden absolute bottom-full right-0 mb-2 w-48 bg-white rounded-md shadow-lg z-10">
             <div class="py-1">
               <button onclick="sendMessage('reason')" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">🧠 Suy luận</button>
@@ -315,56 +677,120 @@
         document.addEventListener('click', function() {
           document.getElementById('tools-dropdown').classList.add('hidden');
         });
-
+        // Thêm biến global để lưu trữ file
+        let uploadedFiles = [];
         // File upload handling
         document.getElementById('file-upload-btn').addEventListener('click', function() {
-          document.getElementById('file-input').click();
+        document.getElementById('file-input').click();
+      });
+
+      document.getElementById('file-input').addEventListener('change', function(e) {
+        const files = Array.from(e.target.files);
+        if (!files || files.length === 0) return;
+
+        // Validate file types
+        const allowedTypes = ['.pdf', '.jpg', '.jpeg', '.png'];
+        const invalidFiles = files.filter(file => {
+          const ext = '.' + file.name.split('.').pop().toLowerCase();
+          return !allowedTypes.includes(ext);
         });
 
-        document.getElementById('file-input').addEventListener('change', async function(e) {
-          const files = e.target.files;
-          if (!files || files.length === 0) return;
+        if (invalidFiles.length > 0) {
+          alert(`Chỉ chấp nhận file PDF và hình ảnh (JPG, PNG). File không hợp lệ: ${invalidFiles.map(f => f.name).join(', ')}`);
+          return;
+        }
 
-          const statusEl = document.getElementById('file-upload-status');
-          statusEl.textContent = `Đang tải lên ${files.length} file...`;
-          statusEl.classList.remove('hidden', 'text-red-600', 'text-green-600');
-          statusEl.classList.add('text-blue-600');
+        // Validate file size (max 10MB per file)
+        const maxSize = 50 * 1024 * 1024; // 10MB
+        const oversizedFiles = files.filter(file => file.size > maxSize);
+        
+        if (oversizedFiles.length > 0) {
+          alert(`File quá lớn (tối đa 10MB). File vượt quá: ${oversizedFiles.map(f => f.name).join(', ')}`);
+          return;
+        }
 
-          try {
-            const formData = new FormData();
-            for (let i = 0; i < files.length; i++) {
-              formData.append('files', files[i]);
-            }
-
-            const uploadResponse = await fetch('http://localhost:8000/DentalGPT/upload_files/', {
-              method: 'POST',
-              body: formData
-            });
-
-            if (!uploadResponse.ok) {
-              const errorData = await uploadResponse.json();
-              throw new Error(errorData.detail || 'Upload failed');
-            }
-
-            const result = await uploadResponse.json();
-            statusEl.textContent = `Đã tải lên thành công ${result.file_paths.length} file!`;
-            statusEl.classList.remove('text-blue-600');
-            statusEl.classList.add('text-green-600');
-
-            // Store file paths for sending with chat
-            document.getElementById('file-input').dataset.uploadedPaths = JSON.stringify(result.file_paths);
-
-            // Hide status after 3 seconds
-            setTimeout(() => {
-              statusEl.classList.add('hidden');
-            }, 3000);
-
-          } catch (error) {
-            statusEl.textContent = `Lỗi: ${error.message}`;
-            statusEl.classList.remove('text-blue-600');
-            statusEl.classList.add('text-red-600');
+        // Add files to uploaded list
+        files.forEach(file => {
+          // Check if file already exists
+          const exists = uploadedFiles.some(f => f.name === file.name && f.size === file.size);
+          if (!exists) {
+            uploadedFiles.push(file);
           }
         });
+
+        // Update UI
+        updateFileList();
+        
+        // Clear file input
+        e.target.value = '';
+      });
+
+      // Function to update file list UI
+      function updateFileList() {
+        const fileListEl = document.getElementById('file-list');
+        const uploadedFilesEl = document.getElementById('uploaded-files');
+        const fileCountEl = document.getElementById('file-count');
+        const clearAllBtn = document.getElementById('clear-all-files');
+
+        if (uploadedFiles.length === 0) {
+          uploadedFilesEl.classList.remove('visible');
+          return;
+        }
+
+        uploadedFilesEl.classList.add('visible');
+        fileCountEl.textContent = `${uploadedFiles.length} file đã chọn`;
+        clearAllBtn.style.display = uploadedFiles.length > 0 ? 'inline' : 'none';
+
+        fileListEl.innerHTML = uploadedFiles.map((file, index) => {
+          const icon = getFileIcon(file.name);
+          const size = formatFileSize(file.size);
+          
+          return `
+            <div class="file-item" data-index="${index}">
+              <div class="file-info">
+                <span class="file-icon">${icon}</span>
+                <span class="file-name" title="${file.name}">${file.name}</span>
+                <span class="file-size">${size}</span>
+              </div>
+              <button class="remove-file" onclick="removeFile(${index})" title="Xóa file">×</button>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // Function to get file icon
+      function getFileIcon(filename) {
+        const ext = filename.split('.').pop().toLowerCase();
+        switch (ext) {
+          case 'pdf': return '📄';
+          case 'jpg':
+          case 'jpeg':
+          case 'png': return '🖼️';
+          default: return '📎';
+        }
+      }
+
+      // Function to format file size
+      function formatFileSize(bytes) {
+        if (bytes === 0) return '0 B';
+        const k = 1024;
+        const sizes = ['B', 'KB', 'MB', 'GB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+      }
+
+      // Function to remove file
+      function removeFile(index) {
+        uploadedFiles.splice(index, 1);
+        updateFileList();
+      }
+
+      // Function to clear all files
+      document.getElementById('clear-all-files').addEventListener('click', function() {
+        uploadedFiles = [];
+        updateFileList();
+      });
+
       </script>
     </div>
 
@@ -400,7 +826,12 @@ async function initPyodide() {
       await pyodide.loadPackage("micropip");
       await pyodide.runPythonAsync(`
         import micropip
-        await micropip.install('matplotlib')
+        await micropip.install([
+          'matplotlib',
+          'numpy',
+          'pandas',
+          'seaborn'
+        ])
       `);
       console.log("Pyodide initialized successfully with matplotlib");
     } catch (error) {
@@ -415,124 +846,119 @@ async function autoExecutePythonCode(code) {
   if (!pyodide) {
     await initPyodide();
   }
-  
+
   if (!pyodide) {
     return `<div class="python-error">Lỗi: Không thể khởi tạo Python runner</div>`;
   }
 
+  // try {
+  // Set up matplotlib backend and capture system
+  await pyodide.runPythonAsync(`
+    import matplotlib
+    matplotlib.use('AGG')  # Use non-interactive backend
+    import matplotlib.pyplot as plt
+    import io
+    import base64
+    import sys
+    from io import StringIO
+    
+    import numpy as np
+    import pandas as pd
+    import seaborn as sns
+
+    # Capture stdout for text output
+    sys.stdout = StringIO()
+    
+    # Clear any existing plots
+    plt.clf()
+  `);
+
+  // Run the user code
+  await pyodide.runPythonAsync(code);
+
+  // Get text output
+  const textOutput = await pyodide.runPythonAsync("sys.stdout.getvalue()");
+
+  // Try to get plot output
+  let imageOutput = null;
   try {
-    // Set up matplotlib backend and capture system
-    await pyodide.runPythonAsync(`
-      import matplotlib
-      matplotlib.use('AGG')  # Use non-interactive backend
+    const hasPlot = await pyodide.runPythonAsync(`
       import matplotlib.pyplot as plt
-      import io
-      import base64
-      import sys
-      from io import StringIO
-      
-      # Capture stdout for text output
-      sys.stdout = StringIO()
-      
-      # Clear any existing plots
-      plt.clf()
+      len(plt.get_fignums()) > 0
     `);
-    
-    // Run the user code
-    await pyodide.runPythonAsync(code);
-    
-    // Get text output
-    const textOutput = await pyodide.runPythonAsync("sys.stdout.getvalue()");
-    
-    // Try to get plot output
-    let imageOutput = null;
-    try {
-      const hasPlot = await pyodide.runPythonAsync(`
+
+    if (hasPlot) {
+      imageOutput = await pyodide.runPythonAsync(`
         import matplotlib.pyplot as plt
-        len(plt.get_fignums()) > 0
+        import io
+        import base64
+
+        buf = io.BytesIO()
+        plt.savefig(buf, format='png', dpi=150, bbox_inches='tight')
+        buf.seek(0)
+        encoded = base64.b64encode(buf.read()).decode('utf-8')
+        plt.close()
+        encoded
       `);
-      
-      if (hasPlot) {
-        imageOutput = await pyodide.runPythonAsync(`
-          import matplotlib.pyplot as plt
-          import io
-          import base64
-          
-          buf = io.BytesIO()
-          plt.savefig(buf, format='png', dpi=150, bbox_inches='tight')
-          buf.seek(0)
-          encoded = base64.b64encode(buf.read()).decode('utf-8')
-          plt.close()
-          encoded
-        `);
-      }
-    } catch (plotError) {
-      console.log("No plot to save:", plotError);
     }
-    
-    // Build result HTML
-    let resultHtml = '';
-    
-    // If there's a plot, show only the plot (replace the code)
-    if (imageOutput) {
-      resultHtml = `
-        <div class="python-result">
-          <div class="python-result-header">
-            <span>📊</span>
-            <span>Biểu đồ</span>
-          </div>
-          <div class="python-result-content">
-            <div class="python-plot-output">
-              <img src="data:image/png;base64,${imageOutput}" alt="Generated Plot" />
-            </div>
+  } catch (plotError) {
+    console.log("No plot to save:", plotError);
+  }
+
+  // Build result HTML
+  let resultHtml = '';
+
+  if (imageOutput) {
+    resultHtml = `
+      <div class="python-result">
+        <div class="python-result-content">
+          <div class="python-plot-output">
+            <img src="data:image/png;base64,${imageOutput}" alt="Generated Plot" />
           </div>
         </div>
-      `;
-    }
-    // If there's text output but no plot, show the text
-    else if (textOutput && textOutput.trim()) {
-      resultHtml = `
-        <div class="python-result">
-          <div class="python-result-header">
-            <span>🐍</span>
-            <span>Kết quả Python</span>
-          </div>
-          <div class="python-result-content">
-            <div class="python-text-output">${textOutput}</div>
-          </div>
-        </div>
-      `;
-    }
-    // If code ran successfully but no output
-    else {
-      resultHtml = `
-        <div class="python-result">
-          <div class="python-result-header">
-            <span>✅</span>
-            <span>Python đã chạy thành công</span>
-          </div>
-          <div class="python-result-content">
-            <div class="text-green-600 text-sm">Chương trình đã chạy thành công (không có output)</div>
-          </div>
-        </div>
-      `;
-    }
-    
-    return resultHtml;
-    
-  } catch (error) {
-    return `
+      </div>
+    `;
+  } else if (textOutput && textOutput.trim()) {
+    resultHtml = `
       <div class="python-result">
         <div class="python-result-header">
-          <span>❌</span>
-          <span>Lỗi Python</span>
+          <span>🐍</span>
+          <span>Kết quả Python</span>
         </div>
         <div class="python-result-content">
-          <div class="python-error">Lỗi: ${error.message}</div>
+          <div class="python-text-output">${textOutput}</div>
+        </div>
+      </div>
+    `;
+  } else {
+    resultHtml = `
+      <div class="python-result">
+        <div class="python-result-header">
+          <span>✅</span>
+          <span>Python đã chạy thành công</span>
+        </div>
+        <div class="python-result-content">
+          <div class="text-green-600 text-sm">Chương trình đã chạy thành công (không có output)</div>
         </div>
       </div>
     `;
   }
+
+  return resultHtml;
+
+  // } catch (error) {
+  //   return `
+  //     <div class="python-result">
+  //       <div class="python-result-header">
+  //         <span>❌</span>
+  //         <span>Lỗi Python</span>
+  //       </div>
+  //       <div class="python-result-content">
+  //         <div class="python-error">Lỗi: ${error.message}</div>
+  //       </div>
+  //     </div>
+  //   `;
+  // }
 }
 
 // Chat Template Class to manage rendering
@@ -662,14 +1088,27 @@ class ChatTemplate {
         // Replace loading with result
         html = html.replace(loadingHtml, resultHtml);
       } catch (error) {
+        // resultHtml = `
+        //   <div class="python-result">
+        //     <div class="python-result-header">
+        //       <span>❌</span>
+        //       <span>Lỗi Python</span>
+        //     </div>
+        //     <div class="python-result-content">
+        //       <div class="python-error">Lỗi: ${error.message || "Không có biểu đồ hoặc output."}</div>
+        //     </div>
+        //   </div>
+        // `;
         resultHtml = `
           <div class="python-result">
             <div class="python-result-header">
-              <span>❌</span>
-              <span>Lỗi Python</span>
+              <span class="animate-pulse">🖌️</span>
+              <span>Đang vẽ biểu đồ...</span>
             </div>
             <div class="python-result-content">
-              <div class="python-error">Lỗi: ${error.message || "Không có biểu đồ hoặc output."}</div>
+              <div class="python-error text-yellow-600">
+                ⏳ Đang xử lý: ${error.message || "Không có biểu đồ hoặc output."}
+              </div>
             </div>
           </div>
         `;
@@ -882,8 +1321,37 @@ async function sendMessage(mode = "normal") {
   const prompt = input.value.trim();
   if (!prompt) return;
 
-  const fileInput = document.getElementById("file-input");
-  const files = fileInput.files;
+  // Nếu có file, upload trước khi gửi
+  let filePaths = [];
+  if (uploadedFiles.length > 0) {
+    try {
+      const formData = new FormData();
+      uploadedFiles.forEach(file => {
+        formData.append('files', file);
+      });
+
+      const uploadResponse = await fetch('http://localhost:8000/DentalGPT/upload_files/', {
+        method: 'POST',
+        body: formData
+      });
+
+      if (!uploadResponse.ok) {
+        const errorData = await uploadResponse.json();
+        throw new Error(errorData.detail || 'Upload failed');
+      }
+
+      const result = await uploadResponse.json();
+      filePaths = result.file_paths;
+      
+      // Clear uploaded files after successful upload
+      uploadedFiles = [];
+      updateFileList();
+      
+    } catch (error) {
+      alert(`Lỗi upload file: ${error.message}`);
+      return;
+    }
+  }
 
   isGenerating = true;
   const sendBtn = document.getElementById("send-btn");
@@ -896,7 +1364,7 @@ async function sendMessage(mode = "normal") {
 
   const params = {
     prompt: prompt,
-    file_paths: fileInput.dataset.uploadedPaths ? JSON.parse(fileInput.dataset.uploadedPaths) : [],
+    file_paths: filePaths,
     max_new_tokens: parseInt(document.getElementById("max_tokens").value),
     temperature: parseFloat(document.getElementById("temperature").value),
     top_p: parseFloat(document.getElementById("top_p").value),
@@ -932,17 +1400,70 @@ async function sendMessage(mode = "normal") {
       agenticText += decoder.decode(value, { stream: true });
     }
 
+    const canvasId = `agentic-canvas-${Date.now()}`;
     const canvasHtml = `
-      <div class="answer-section border-2 border-blue-600 bg-blue-50 p-4 rounded-xl shadow-lg">
+      <div class="answer-section border-2 border-blue-600 bg-blue-50 p-4 rounded-xl shadow-lg agentic-canvas" id="${canvasId}">
+        <div class="canvas-toolbar">
+          <button class="canvas-btn edit-btn" onclick="toggleEditMode(this)" title="Chỉnh sửa">
+            ✏️ Chỉnh sửa
+          </button>
+          <button class="canvas-btn save-btn" onclick="saveCanvas(this)" title="Lưu" style="display: none;">
+            💾 Lưu
+          </button>
+          <button class="canvas-btn cancel-btn" onclick="cancelEdit(this)" title="Hủy" style="display: none;">
+            ❌ Hủy
+          </button>
+          <button class="canvas-btn" onclick="selectAllCanvas(this)" title="Chọn tất cả">
+            📋 Chọn tất cả
+          </button>
+          <button class="canvas-btn" onclick="exportCanvasToPDF(this)" title="Xuất PDF">
+            📄 Xuất PDF
+          </button>
+        </div>
+        <div class="edit-mode-indicator" style="display: none;">
+          ĐANG CHỈNH SỬA
+        </div>
+        <div class="auto-save-indicator">
+          Đã lưu tự động
+        </div>
+        <div class="format-toolbar">
+          <button class="format-btn" onclick="formatText('bold')" title="Đậm">
+            <b>B</b>
+          </button>
+          <button class="format-btn" onclick="formatText('italic')" title="Nghiêng">
+            <i>I</i>
+          </button>
+          <button class="format-btn" onclick="formatText('underline')" title="Gạch chân">
+            <u>U</u>
+          </button>
+          <span style="border-left: 1px solid #d1d5db; margin: 0 4px;"></span>
+          <button class="format-btn" onclick="formatText('insertOrderedList')" title="Danh sách số">
+            1. 2. 3.
+          </button>
+          <button class="format-btn" onclick="formatText('insertUnorderedList')" title="Danh sách">
+            • • •
+          </button>
+          <span style="border-left: 1px solid #d1d5db; margin: 0 4px;"></span>
+          <button class="format-btn" onclick="formatText('justifyLeft')" title="Căn trái">
+            ⬅️
+          </button>
+          <button class="format-btn" onclick="formatText('justifyCenter')" title="Căn giữa">
+            ↔️
+          </button>
+          <button class="format-btn" onclick="formatText('justifyRight')" title="Căn phải">
+            ➡️
+          </button>
+        </div>
         <div class="flex items-center gap-2 mb-3">
           <span class="text-lg">🔷</span>
           <span class="font-bold text-blue-800">Agentic Canvas</span>
         </div>
-        <div class="markdown-content prose max-w-none">
+        <div class="markdown-content prose max-w-none canvas-content" data-original-content="">
           ${await template.markdownToHtml(agenticText)}
         </div>
       </div>
     `;
+      // Render canvas HTML
 
     currentBotMessage.innerHTML = canvasHtml;
       
@@ -1001,7 +1522,93 @@ async function sendMessage(mode = "normal") {
     sendBtn.disabled = false;
   }
 }
+function selectAllCanvas(button) {
+  const canvas = button.closest('.agentic-canvas');
+  const content = canvas.querySelector('.canvas-content');
+  
+  if (window.getSelection) {
+    const selection = window.getSelection();
+    const range = document.createRange();
+    range.selectNodeContents(content);
+    selection.removeAllRanges();
+    selection.addRange(range);
+  } else if (document.selection) {
+    const range = document.body.createTextRange();
+    range.moveToElementText(content);
+    range.select();
+  }
+}
 
+async function exportCanvasToPDF(button) {
+  const canvas = button.closest('.agentic-canvas');
+  const loading = document.getElementById('pdf-loading');
+  
+  try {
+    // Hiển thị loading
+    loading.style.display = 'block';
+    
+    // Tạo clone để xử lý
+    const clone = canvas.cloneNode(true);
+    clone.style.position = 'absolute';
+    clone.style.left = '-9999px';
+    clone.style.top = '0';
+    clone.style.width = '800px';
+    clone.style.background = 'white';
+    clone.style.padding = '20px';
+    
+    // Ẩn toolbar trong clone
+    const toolbar = clone.querySelector('.canvas-toolbar');
+    if (toolbar) toolbar.style.display = 'none';
+    
+    document.body.appendChild(clone);
+    
+    // Tạo canvas từ HTML
+    const canvas2d = await html2canvas(clone, {
+      scale: 2,
+      useCORS: true,
+      backgroundColor: '#ffffff',
+      width: 840,
+      height: clone.offsetHeight + 40
+    });
+    
+    // Tạo PDF
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF('p', 'mm', 'a4');
+    
+    const imgData = canvas2d.toDataURL('image/png');
+    const imgWidth = 210; // A4 width in mm
+    const pageHeight = 297; // A4 height in mm
+    const imgHeight = (canvas2d.height * imgWidth) / canvas2d.width;
+    let heightLeft = imgHeight;
+    
+    let position = 0;
+    
+    // Thêm trang đầu tiên
+    pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+    heightLeft -= pageHeight;
+    
+    // Thêm các trang tiếp theo nếu cần
+    while (heightLeft >= 0) {
+      position = heightLeft - imgHeight;
+      pdf.addPage();
+      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+    }
+    
+    // Lưu PDF
+    const timestamp = new Date().toISOString().slice(0, 19).replace(/:/g, '-');
+    pdf.save(`DentalGPT_Agentic_Canvas_${timestamp}.pdf`);
+    
+    // Cleanup
+    document.body.removeChild(clone);
+    
+  } catch (error) {
+    console.error('Lỗi tạo PDF:', error);
+    alert('Có lỗi xảy ra khi tạo PDF. Vui lòng thử lại.');
+  } finally {
+    loading.style.display = 'none';
+  }
+}
 // Initialize
 document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('user-input').focus();
@@ -1034,6 +1641,183 @@ document.addEventListener('DOMContentLoaded', function() {
       settingsPanel.classList.add('opacity-0', 'scale-95');
     }
   });
-});</script>
+});
+// 3. Thêm các function mới cho chỉnh sửa
+let editingSessions = new Map();
+
+function toggleEditMode(button) {
+  const canvas = button.closest('.agentic-canvas');
+  const content = canvas.querySelector('.canvas-content');
+  const editIndicator = canvas.querySelector('.edit-mode-indicator');
+  const formatToolbar = canvas.querySelector('.format-toolbar');
+  const saveBtn = canvas.querySelector('.save-btn');
+  const cancelBtn = canvas.querySelector('.cancel-btn');
+  
+  if (content.contentEditable === 'true') {
+    // Tắt chế độ chỉnh sửa
+    exitEditMode(canvas);
+  } else {
+    // Bật chế độ chỉnh sửa
+    enterEditMode(canvas);
+  }
+}
+
+function enterEditMode(canvas) {
+  const content = canvas.querySelector('.canvas-content');
+  const editBtn = canvas.querySelector('.edit-btn');
+  const editIndicator = canvas.querySelector('.edit-mode-indicator');
+  const formatToolbar = canvas.querySelector('.format-toolbar');
+  const saveBtn = canvas.querySelector('.save-btn');
+  const cancelBtn = canvas.querySelector('.cancel-btn');
+  
+  // Lưu nội dung gốc
+  content.dataset.originalContent = content.innerHTML;
+  
+  // Bật contentEditable
+  content.contentEditable = 'true';
+  content.focus();
+  
+  // Cập nhật UI
+  editBtn.classList.add('edit-active');
+  editBtn.innerHTML = '✏️ Đang sửa';
+  editIndicator.style.display = 'block';
+  formatToolbar.classList.add('visible');
+  saveBtn.style.display = 'inline-flex';
+  cancelBtn.style.display = 'inline-flex';
+  
+  // Thêm event listeners
+  content.addEventListener('input', handleAutoSave);
+  content.addEventListener('keydown', handleKeydown);
+  
+  // Lưu session
+  editingSessions.set(canvas.id, {
+    originalContent: content.innerHTML,
+    autoSaveTimer: null
+  });
+}
+
+function exitEditMode(canvas) {
+  const content = canvas.querySelector('.canvas-content');
+  const editBtn = canvas.querySelector('.edit-btn');
+  const editIndicator = canvas.querySelector('.edit-mode-indicator');
+  const formatToolbar = canvas.querySelector('.format-toolbar');
+  const saveBtn = canvas.querySelector('.save-btn');
+  const cancelBtn = canvas.querySelector('.cancel-btn');
+  
+  // Tắt contentEditable
+  content.contentEditable = 'false';
+  
+  // Cập nhật UI
+  editBtn.classList.remove('edit-active');
+  editBtn.innerHTML = '✏️ Chỉnh sửa';
+  editIndicator.style.display = 'none';
+  formatToolbar.classList.remove('visible');
+  saveBtn.style.display = 'none';
+  cancelBtn.style.display = 'none';
+  
+  // Xóa event listeners
+  content.removeEventListener('input', handleAutoSave);
+  content.removeEventListener('keydown', handleKeydown);
+  
+  // Xóa session
+  const session = editingSessions.get(canvas.id);
+  if (session && session.autoSaveTimer) {
+    clearTimeout(session.autoSaveTimer);
+  }
+  editingSessions.delete(canvas.id);
+}
+
+function saveCanvas(button) {
+  const canvas = button.closest('.agentic-canvas');
+  const content = canvas.querySelector('.canvas-content');
+  const autoSaveIndicator = canvas.querySelector('.auto-save-indicator');
+  
+  // Xóa nội dung gốc đã lưu
+  content.dataset.originalContent = content.innerHTML;
+  
+  // Hiển thị thông báo đã lưu
+  autoSaveIndicator.classList.add('visible');
+  setTimeout(() => {
+    autoSaveIndicator.classList.remove('visible');
+  }, 2000);
+  
+  // Thoát chế độ chỉnh sửa
+  exitEditMode(canvas);
+  
+  console.log('Canvas đã được lưu:', content.innerHTML);
+}
+
+function cancelEdit(button) {
+  const canvas = button.closest('.agentic-canvas');
+  const content = canvas.querySelector('.canvas-content');
+  
+  // Khôi phục nội dung gốc
+  content.innerHTML = content.dataset.originalContent;
+  
+  // Thoát chế độ chỉnh sửa
+  exitEditMode(canvas);
+}
+
+function handleAutoSave(event) {
+  const canvas = event.target.closest('.agentic-canvas');
+  const session = editingSessions.get(canvas.id);
+  
+  if (session) {
+    // Hủy timer cũ
+    if (session.autoSaveTimer) {
+      clearTimeout(session.autoSaveTimer);
+    }
+    
+    // Tạo timer mới để auto-save sau 2 giây
+    session.autoSaveTimer = setTimeout(() => {
+      const autoSaveIndicator = canvas.querySelector('.auto-save-indicator');
+      autoSaveIndicator.classList.add('visible');
+      setTimeout(() => {
+        autoSaveIndicator.classList.remove('visible');
+      }, 1500);
+    }, 2000);
+  }
+}
+
+function handleKeydown(event) {
+  // Ctrl+S để lưu
+  if (event.ctrlKey && event.key === 's') {
+    event.preventDefault();
+    const canvas = event.target.closest('.agentic-canvas');
+    const saveBtn = canvas.querySelector('.save-btn');
+    saveCanvas(saveBtn);
+  }
+  
+  // Esc để hủy
+  if (event.key === 'Escape') {
+    event.preventDefault();
+    const canvas = event.target.closest('.agentic-canvas');
+    const cancelBtn = canvas.querySelector('.cancel-btn');
+    cancelEdit(cancelBtn);
+  }
+}
+
+function formatText(command) {
+  document.execCommand(command, false, null);
+}
+
+// Cập nhật function selectAllCanvas
+function selectAllCanvas(button) {
+  const canvas = button.closest('.agentic-canvas');
+  const content = canvas.querySelector('.canvas-content');
+  
+  if (window.getSelection) {
+    const selection = window.getSelection();
+    const range = document.createRange();
+    range.selectNodeContents(content);
+    selection.removeAllRanges();
+    selection.addRange(range);
+  } else if (document.selection) {
+    const range = document.body.createTextRange();
+    range.moveToElementText(content);
+    range.select();
+  }
+}
+</script>
 </body>
 </html>

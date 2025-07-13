@@ -11,6 +11,10 @@
         "description": "Triệu chứng, dấu hiệu lâm sàng, tình trạng răng miệng"
       },
       {
+        "title": "Cận lâm sàng",
+        "description": "Xét nghiệm, X-quang, các kết quả hỗ trợ chẩn đoán"
+      },
+      {
         "title": "Chẩn đoán",
         "description": "Chẩn đoán sơ bộ và phân biệt chẩn đoán"
       },
@@ -19,14 +23,42 @@
         "description": "Phương pháp điều trị, lời khuyên, theo dõi"
       },
       {
+        "title": "Thực hiện điều trị",
+        "description": "Các bước điều trị đã thực hiện, thời gian, phản ứng"
+      },
+      {
+        "title": "Kết quả điều trị",
+        "description": "Tình trạng sau điều trị, hiệu quả, biến chứng (nếu có)"
+      },
+      {
         "title": "Tiên lượng và hướng dẫn",
         "description": "Tiên lượng bệnh, hướng dẫn chăm sóc tại nhà"
+      },
+      {
+        "title": "Ghi chú thêm",
+        "description": "Các nhận xét bổ sung từ bác sĩ hoặc bệnh nhân"
       }
     ]
   },
   "thesis": {
     "name": "Luận văn/Đồ án Nha khoa",
     "sections": [
+      {
+        "title": "Trang bìa",
+        "description": "Tên đề tài, sinh viên, giảng viên hướng dẫn, trường"
+      },
+      {
+        "title": "Lời cảm ơn",
+        "description": "Lời tri ân đến những người hỗ trợ"
+      },
+      {
+        "title": "Tóm tắt",
+        "description": "Tóm tắt toàn bộ nội dung chính của luận văn"
+      },
+      {
+        "title": "Danh mục bảng, hình",
+        "description": "Danh sách bảng biểu, hình ảnh kèm số thứ tự"
+      },
       {
         "title": "Đặt vấn đề",
         "description": "Lý do chọn đề tài, tính cấp thiết, mục tiêu nghiên cứu"
@@ -36,20 +68,40 @@
         "description": "Cơ sở lý thuyết, nghiên cứu liên quan, khoảng trống kiến thức"
       },
       {
+        "title": "Câu hỏi và giả thuyết nghiên cứu",
+        "description": "Câu hỏi đặt ra, giả thuyết chính và phụ"
+      },
+      {
         "title": "Đối tượng và phương pháp nghiên cứu",
         "description": "Thiết kế nghiên cứu, đối tượng, tiêu chí, phương pháp thu thập dữ liệu"
       },
       {
+        "title": "Quy trình thực hiện",
+        "description": "Các bước tiến hành nghiên cứu chi tiết"
+      },
+      {
+        "title": "Xử lý và phân tích số liệu",
+        "description": "Phương pháp thống kê, phần mềm sử dụng"
+      },
+      {
         "title": "Kết quả nghiên cứu",
-        "description": "Trình bày kết quả, phân tích số liệu, biểu đồ, bảng"
+        "description": "Trình bày kết quả, biểu đồ, bảng số liệu"
       },
       {
         "title": "Thảo luận",
-        "description": "Giải thích kết quả, so sánh với nghiên cứu khác, hạn chế"
+        "description": "Phân tích kết quả, so sánh nghiên cứu khác, hạn chế"
       },
       {
         "title": "Kết luận và kiến nghị",
-        "description": "Tóm tắt kết quả chính, ý nghĩa thực tiễn, hướng nghiên cứu tiếp theo"
+        "description": "Tóm tắt phát hiện chính, khuyến nghị ứng dụng hoặc nghiên cứu tiếp theo"
+      },
+      {
+        "title": "Tài liệu tham khảo",
+        "description": "Danh sách tài liệu, nghiên cứu đã trích dẫn"
+      },
+      {
+        "title": "Phụ lục",
+        "description": "Bảng biểu, phiếu khảo sát, công cụ nghiên cứu"
       }
     ]
   },
@@ -57,28 +109,48 @@
     "name": "Bài báo khoa học Nha khoa",
     "sections": [
       {
+        "title": "Tựa đề (Title)",
+        "description": "Tên bài báo ngắn gọn, rõ ý"
+      },
+      {
         "title": "Tóm tắt (Abstract)",
         "description": "Tóm tắt mục tiêu, phương pháp, kết quả chính, kết luận"
+      },
+      {
+        "title": "Từ khóa (Keywords)",
+        "description": "Các từ khóa chính liên quan đến nghiên cứu"
       },
       {
         "title": "Giới thiệu (Introduction)",
         "description": "Bối cảnh, vấn đề nghiên cứu, mục tiêu, giả thuyết"
       },
       {
-        "title": "Vật liệu và phương pháp (Materials & Methods)",
+        "title": "Vật liệu và phương pháp (Materials and Methods)",
         "description": "Thiết kế nghiên cứu, đối tượng, quy trình, phân tích thống kê"
       },
       {
         "title": "Kết quả (Results)",
-        "description": "Trình bày kết quả khách quan, số liệu, hình ảnh"
+        "description": "Trình bày kết quả khách quan, số liệu, hình ảnh minh họa"
       },
       {
         "title": "Thảo luận (Discussion)",
-        "description": "Giải thích kết quả, so sánh nghiên cứu, ý nghĩa lâm sàng"
+        "description": "Phân tích kết quả, so sánh với nghiên cứu khác, ý nghĩa lâm sàng"
       },
       {
         "title": "Kết luận (Conclusion)",
-        "description": "Tóm tắt phát hiện chính, ứng dụng thực tiễn, hạn chế"
+        "description": "Tóm tắt phát hiện chính, giá trị ứng dụng, hướng nghiên cứu tiếp theo"
+      },
+      {
+        "title": "Lời cảm ơn (Acknowledgments)",
+        "description": "Cảm ơn các tổ chức, cá nhân đã hỗ trợ nghiên cứu"
+      },
+      {
+        "title": "Tài liệu tham khảo (References)",
+        "description": "Danh sách tài liệu khoa học đã trích dẫn theo chuẩn"
+      },
+      {
+        "title": "Phụ lục (Appendix, nếu có)",
+        "description": "Thông tin bổ sung như bảng dữ liệu gốc, mẫu khảo sát"
       }
     ]
   }

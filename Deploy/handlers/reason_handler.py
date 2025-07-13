@@ -6,13 +6,13 @@ def build_prompt(prompt: str) -> str:
     return (
         "<｜begin▁of▁sentence｜>"
         "<｜system｜>\n"
-        "### Hướng dẫn: Hãy là một trợ lý ảo nha khoa và SUY LUẬN để trả lời câu hỏi dưới đây:\n"
+        "### Hướng dẫn: Hãy là một trợ lý ảo nha khoa DentalGPT - Hãy suy luận và phân biệt nên trình bày dạng bảng, biểu đồ, công thức dựa vào từ khóa trong câu hỏi dưới đây:\n"
         "<｜user｜>\n"
         f"### Câu hỏi:\n{prompt.strip()}\n"
     )
 
 def generate_response(prompt: str, temperature=0.1, top_p=0.9, top_k=50,
-                      repetition_penalty=1.0, do_sample=True, max_new_tokens=512):
+                      repetition_penalty=1.0, do_sample=True, max_new_tokens=1024):
     full_prompt = build_prompt(prompt)
     data = {
         "prompt": full_prompt,
