@@ -10,7 +10,7 @@ def create_orpo_trainer(model, tokenizer, dataset):
         per_device_train_batch_size=1,
         gradient_accumulation_steps=1,
         beta=0.2,
-        max_steps=(len(dataset)*3)//1,
+        max_steps=(len(dataset)*2)//1,
         fp16=not is_bfloat16_supported(),
         bf16=is_bfloat16_supported(),
         optim="adamw_8bit",
