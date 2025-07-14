@@ -135,7 +135,7 @@ def create_final_report_with_gemini(template_name: str, user_prompt: str, result
         6. Thêm các khuyến nghị cụ thể và thực tế
         7. **Nếu có dữ liệu định lượng, hãy biểu diễn chúng bằng biểu đồ (với mã Python matplotlib)**
         8. **Nếu có thông tin định tính cần hệ thống, hãy trình bày bằng bảng (dùng markdown table)**
-        9. **Nếu có các khái niệm y học liên quan, hãy trình bày thêm công thức hoặc biểu thức dưới dạng markdown chuẩn**
+        9. **Nếu có các khái niệm y học liên quan, hãy trình bày thêm công thức chuẩn dạng markdown và không dùng LaTex mà chỉ dạng markdown**
 
         Hãy viết lại toàn bộ báo cáo theo cấu trúc chuẩn, đảm bảo:
         - Ngôn ngữ chuyên nghiệp nhưng dễ hiểu

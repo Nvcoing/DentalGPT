@@ -38,7 +38,7 @@ def build_gemini_prompts(question_prompt: str, raw_answer: str) -> dict:
         "study_method": f"""Bạn là chuyên gia nha khoa. Với câu hỏi: "{question_prompt}", câu trả lời hiện tại: "{raw_answer}".
 Hãy liệt kê chi tiết tất cả các **phương pháp điều trị, kỹ thuật và quy trình** có thể áp dụng. Bao gồm mô tả, khi nào áp dụng, bảng markdown nếu cần.""",
 
-        "fix_presentation": f"""Câu trả lời: "{raw_answer}". Cải thiện cách trình bày cho rõ ràng, chuyên nghiệp hơn. Có thể dùng bảng markdown, danh sách, hoặc biểu đồ minh họa bằng code python nếu phù hợp.""",
+        "fix_presentation": f"""Câu trả lời: "{raw_answer}". Cải thiện cách trình bày cho rõ ràng, chuyên nghiệp hơn. Có thể dùng bảng markdown, danh sách, công thức chuẩn dạng markdown hiển thị hoặc biểu đồ minh họa bằng code python nếu phù hợp.""",
 
         "knowledge_boost": f"""Câu trả lời: "{raw_answer}". Bổ sung thêm kiến thức giúp học hỏi như:
 - Thống kê (có thể gần đúng),

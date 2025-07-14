@@ -10,6 +10,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <link rel="stylesheet" href="/static/style.css" />
+  <link rel="icon" type="image/png" href="https://cdn.haitrieu.com/wp-content/uploads/2021/10/Logo-DH-Thuy-Loi.png">
   <style>
 /* COLLAPSIBLE HEADER */
 .collapsible {
@@ -554,6 +555,128 @@
       color: #6b7280;
       margin-top: 4px;
     }
+    /* Thay thế CSS cho input area */
+    footer {
+      position: relative; /* Thêm position relative */
+    }
+
+    .input-wrapper {
+      position: relative;
+      flex: 1;
+    }
+
+    /* Icon upload file - dính với input */
+    .file-upload-icon {
+      position: absolute;
+      right: 100px; /* Tăng khoảng cách để chừa chỗ cho tools icon */
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      background: white;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #e5e7eb;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .file-upload-icon:hover {
+      background: #f3f4f6;
+      border-color: #3b82f6;
+      color: #3b82f6;
+    }
+
+    /* Icon tools - ngay bên cạnh upload icon */
+    .tools-icon {
+      position: absolute;
+      right: 60px; /* Ngay bên cạnh upload icon */
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      background: white;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #e5e7eb;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .tools-icon:hover {
+      background: #f3f4f6;
+      border-color: #3b82f6;
+      color: #3b82f6;
+    }
+
+    .tools-icon:hover {
+      background: #f3f4f6;
+      border-color: #3b82f6;
+      color: #3b82f6;
+    }
+
+    /* Dropdown tools - căn chỉnh lại theo icon tools */
+    #tools-dropdown {
+      position: absolute;
+      top: -200px; /* Hiển thị phía trên icon */
+      right: 60px; /* Align với tools icon */
+      width: 200px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      border: 1px solid #e5e7eb;
+      z-index: 20;
+    }
+
+    /* Uploaded files list - dính với input */
+    .uploaded-files {
+      position: absolute;
+      bottom: 100%;
+      left: 0;
+      right: 0;
+      margin-bottom: 8px;
+      z-index: 15;
+    }
+    .warning-message {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  background: #fef3c7;
+  border: 1px solid #f59e0b;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 8px;
+  color: #92400e;
+  font-size: 14px;
+  display: none;
+  z-index: 20;
+  animation: slideDown 0.3s ease-out;
+}
+
+.warning-message.visible {
+  display: block;
+}
+
+.warning-message .close-warning {
+  float: right;
+  cursor: pointer;
+  font-weight: bold;
+  color: #92400e;
+  margin-left: 8px;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 </style>
 
 </head>
@@ -616,56 +739,74 @@
       </main>
 
       <!-- Input area -->
-      <footer class="p-6 border-t border-gray-300 bg-white flex items-center gap-3 rounded-t-2xl shadow-lg">
-        <div class="relative flex-1">
-          <div class="file-upload-area">
-            <!-- Input chính -->
-            <input id="user-input" type="text" placeholder="Nhập câu hỏi..." class="w-full px-5 py-3 border rounded-2xl shadow focus:outline-none focus:ring-2 focus:ring-blue-400 text-base" onkeydown="handleKeyPress(event)" />
-            
-            <!-- Nút upload và status -->
-            <div class="absolute right-8 bottom-3.5 flex gap-2">
-              <button id="file-upload-btn" class="text-gray-500 hover:text-blue-600 relative" title="Tải lên file PDF hoặc hình ảnh">
+      <footer class="p-6 border-t border-gray-300 bg-white rounded-t-2xl shadow-lg">
+        <!-- Input area -->
+        <div class="flex items-center gap-3">
+          <div class="input-wrapper">
+            <div class="file-upload-area">
+              <!-- Input chính -->
+              <input id="user-input" type="text" placeholder="Nhập câu hỏi..." class="w-full px-5 py-3 pr-32 border rounded-2xl shadow focus:outline-none focus:ring-2 focus:ring-blue-400 text-base" onkeydown="handleKeyPress(event)" />
+              
+              <!-- Icon upload file - dính với input -->
+              <div class="file-upload-icon" id="file-upload-btn" title="Tải lên file PDF hoặc hình ảnh">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                 </svg>
                 <input id="file-input" type="file" multiple accept=".pdf,.jpg,.jpeg,.png" class="hidden" />
-              </button>
-            </div>
-            
-            <!-- Danh sách file đã upload -->
-            <div id="uploaded-files" class="uploaded-files">
-              <div class="upload-summary">
-                <span id="file-count">0 file đã chọn</span>
-                <button id="clear-all-files" class="text-red-500 hover:text-red-700 text-xs ml-2 underline" style="display: none;">Xóa tất cả</button>
               </div>
-              <div id="file-list"></div>
+              
+              <!-- Tools icon - ngay bên cạnh upload icon -->
+              <div class="tools-icon" id="tools-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                </svg>
+              </div>
+              
+              <!-- Tools dropdown -->
+              <div id="tools-dropdown" class="hidden">
+                <div class="py-1">
+                  <button onclick="sendMessage('reason')" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">🧠 Suy luận</button>
+                  <button onclick="sendMessage('deep_reason')" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">🔬 Suy luận sâu</button>
+                  <button onclick="sendMessage('agentic')" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">🧬 Agentic</button>
+                  <button onclick="clearChat()" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">🗑️ Xóa chat</button>
+                  <button id="search-toggle-btn" onclick="toggleSearch()" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">🔎 Tìm kiếm</button>
+                </div>
+              </div>
+              
+              <!-- Danh sách file đã upload -->
+              <div id="uploaded-files" class="uploaded-files">
+                <div class="upload-summary">
+                  <span id="file-count">0 file đã chọn</span>
+                  <button id="clear-all-files" class="text-red-500 hover:text-red-700 text-xs ml-2 underline" style="display: none;">Xóa tất cả</button>
+                </div>
+                <div id="file-list"></div>
+              </div>
+              <div id="warning-message" class="warning-message">
+                <span id="warning-text"></span>
+                <span class="close-warning" onclick="hideWarning()">×</span>
+              </div>
             </div>
           </div>
-        </div>
-        
-        <div class="relative">
-          <button onclick="sendMessage('normal')" id="send-btn" class="flex items-center gap-2 px-7 py-3 bg-blue-600 text-white rounded-2xl hover:bg-blue-700 transition text-lg font-semibold shadow">
-            <span>Gửi</span>
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </button>
-          <!-- Tools dropdown giữ nguyên -->
-          <div id="tools-dropdown" class="hidden absolute bottom-full right-0 mb-2 w-48 bg-white rounded-md shadow-lg z-10">
-            <div class="py-1">
-              <button onclick="sendMessage('reason')" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">🧠 Suy luận</button>
-              <button onclick="sendMessage('deep_reason')" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">🔬 Suy luận sâu</button>
-              <button onclick="sendMessage('agentic')" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">🧬 Agentic</button>
-              <button onclick="clearChat()" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">🗑️ Xóa chat</button>
-              <button id="search-toggle-btn" onclick="toggleSearch()" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">🔎 Tìm kiếm</button>
-            </div>
-          </div>
-          <button id="tools-btn" class="absolute -left-12 top-1/2 -translate-y-1/2 p-2 text-gray-500 hover:text-blue-600 rounded-full">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
-            </svg>
-          </button>
-        </div>
-      </footer>
+      
+      <!-- Nút gửi -->
+      <button onclick="sendMessage('normal')" id="send-btn" class="flex items-center gap-2 px-7 py-3 bg-blue-600 text-white rounded-2xl hover:bg-blue-700 transition text-lg font-semibold shadow">
+        <span>Gửi</span>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </footer>
 
+
+  <!-- Tools dropdown -->
+  <div id="tools-dropdown" class="hidden">
+    <div class="py-1">
+      <button onclick="sendMessage('reason')" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">🧠 Suy luận</button>
+      <button onclick="sendMessage('deep_reason')" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">🔬 Suy luận sâu</button>
+      <button onclick="sendMessage('agentic')" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">🧬 Agentic</button>
+      <button onclick="clearChat()" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">🗑️ Xóa chat</button>
+      <button id="search-toggle-btn" onclick="toggleSearch()" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">🔎 Tìm kiếm</button>
+    </div>
+  </div>
       <script>
         // Toggle tools dropdown
         document.getElementById('tools-btn').addEventListener('click', function(e) {
@@ -685,78 +826,95 @@
       });
 
       document.getElementById('file-input').addEventListener('change', function(e) {
-        const files = Array.from(e.target.files);
-        if (!files || files.length === 0) return;
+      const files = Array.from(e.target.files);
+      if (!files || files.length === 0) return;
 
-        // Validate file types
-        const allowedTypes = ['.pdf', '.jpg', '.jpeg', '.png'];
-        const invalidFiles = files.filter(file => {
-          const ext = '.' + file.name.split('.').pop().toLowerCase();
-          return !allowedTypes.includes(ext);
-        });
+      // Kiểm tra xung đột với search
+      if (isSearchEnabled) {
+        showWarning('⚠️ Vui lòng tắt chức năng tìm kiếm trước khi upload file.');
+        e.target.value = ''; // Clear input
+        return;
+      }
 
-        if (invalidFiles.length > 0) {
-          alert(`Chỉ chấp nhận file PDF và hình ảnh (JPG, PNG). File không hợp lệ: ${invalidFiles.map(f => f.name).join(', ')}`);
-          return;
-        }
-
-        // Validate file size (max 10MB per file)
-        const maxSize = 50 * 1024 * 1024; // 10MB
-        const oversizedFiles = files.filter(file => file.size > maxSize);
-        
-        if (oversizedFiles.length > 0) {
-          alert(`File quá lớn (tối đa 10MB). File vượt quá: ${oversizedFiles.map(f => f.name).join(', ')}`);
-          return;
-        }
-
-        // Add files to uploaded list
-        files.forEach(file => {
-          // Check if file already exists
-          const exists = uploadedFiles.some(f => f.name === file.name && f.size === file.size);
-          if (!exists) {
-            uploadedFiles.push(file);
-          }
-        });
-
-        // Update UI
-        updateFileList();
-        
-        // Clear file input
-        e.target.value = '';
+      // Validate file types
+      const allowedTypes = ['.pdf', '.jpg', '.jpeg', '.png'];
+      const invalidFiles = files.filter(file => {
+        const ext = '.' + file.name.split('.').pop().toLowerCase();
+        return !allowedTypes.includes(ext);
       });
+
+      if (invalidFiles.length > 0) {
+        alert(`Chỉ chấp nhận file PDF và hình ảnh (JPG, PNG). File không hợp lệ: ${invalidFiles.map(f => f.name).join(', ')}`);
+        return;
+      }
+
+      // Validate file size (max 50MB per file)
+      const maxSize = 50 * 1024 * 1024; // 50MB
+      const oversizedFiles = files.filter(file => file.size > maxSize);
+      
+      if (oversizedFiles.length > 0) {
+        alert(`File quá lớn (tối đa 50MB). File vượt quá: ${oversizedFiles.map(f => f.name).join(', ')}`);
+        return;
+      }
+
+      // Add files to uploaded list
+      files.forEach(file => {
+        // Check if file already exists
+        const exists = uploadedFiles.some(f => f.name === file.name && f.size === file.size);
+        if (!exists) {
+          uploadedFiles.push(file);
+        }
+      });
+
+      // Update UI
+      updateFileList();
+      
+      // Clear file input
+      e.target.value = '';
+    });
 
       // Function to update file list UI
       function updateFileList() {
-        const fileListEl = document.getElementById('file-list');
-        const uploadedFilesEl = document.getElementById('uploaded-files');
-        const fileCountEl = document.getElementById('file-count');
-        const clearAllBtn = document.getElementById('clear-all-files');
+      const fileListEl = document.getElementById('file-list');
+      const uploadedFilesEl = document.getElementById('uploaded-files');
+      const fileCountEl = document.getElementById('file-count');
+      const clearAllBtn = document.getElementById('clear-all-files');
 
-        if (uploadedFiles.length === 0) {
-          uploadedFilesEl.classList.remove('visible');
-          return;
-        }
-
-        uploadedFilesEl.classList.add('visible');
-        fileCountEl.textContent = `${uploadedFiles.length} file đã chọn`;
-        clearAllBtn.style.display = uploadedFiles.length > 0 ? 'inline' : 'none';
-
-        fileListEl.innerHTML = uploadedFiles.map((file, index) => {
-          const icon = getFileIcon(file.name);
-          const size = formatFileSize(file.size);
-          
-          return `
-            <div class="file-item" data-index="${index}">
-              <div class="file-info">
-                <span class="file-icon">${icon}</span>
-                <span class="file-name" title="${file.name}">${file.name}</span>
-                <span class="file-size">${size}</span>
-              </div>
-              <button class="remove-file" onclick="removeFile(${index})" title="Xóa file">×</button>
-            </div>
-          `;
-        }).join('');
+      if (uploadedFiles.length === 0) {
+        uploadedFilesEl.classList.remove('visible');
+        
+        // Enable lại search khi không có file
+        const searchBtn = document.getElementById('search-toggle-btn');
+        searchBtn.style.opacity = '1';
+        searchBtn.style.pointerEvents = 'auto';
+        return;
       }
+
+      // Disable search khi có file
+      const searchBtn = document.getElementById('search-toggle-btn');
+      searchBtn.style.opacity = '0.5';
+      searchBtn.style.pointerEvents = 'none';
+
+      uploadedFilesEl.classList.add('visible');
+      fileCountEl.textContent = `${uploadedFiles.length} file đã chọn`;
+      clearAllBtn.style.display = uploadedFiles.length > 0 ? 'inline' : 'none';
+
+      fileListEl.innerHTML = uploadedFiles.map((file, index) => {
+        const icon = getFileIcon(file.name);
+        const size = formatFileSize(file.size);
+        
+        return `
+          <div class="file-item" data-index="${index}">
+            <div class="file-info">
+              <span class="file-icon">${icon}</span>
+              <span class="file-name" title="${file.name}">${file.name}</span>
+              <span class="file-size">${size}</span>
+            </div>
+            <button class="remove-file" onclick="removeFile(${index})" title="Xóa file">×</button>
+          </div>
+        `;
+      }).join('');
+    }
 
       // Function to get file icon
       function getFileIcon(filename) {
@@ -805,16 +963,35 @@ let pyodide = null;
 let isSearchEnabled = false;
 
 function toggleSearch() {
+  // Kiểm tra xung đột trước khi bật search
+  if (!isSearchEnabled && uploadedFiles.length > 0) {
+    showWarning('⚠️ Vui lòng xóa tất cả file trước khi bật chức năng tìm kiếm.');
+    return;
+  }
+  
   isSearchEnabled = !isSearchEnabled;
   const btn = document.getElementById('search-toggle-btn');
+  
   if (isSearchEnabled) {
-    btn.classList.remove('bg-yellow-500', 'hover:bg-yellow-600');
+    btn.innerHTML = '✅ Search ON';
     btn.classList.add('bg-green-600', 'hover:bg-green-700');
-    btn.textContent = '✅ Search ON';
+    btn.classList.remove('bg-transparent', 'hover:bg-gray-100');
+    
+    // Disable file upload khi search bật
+    const fileUploadIcon = document.getElementById('file-upload-btn');
+    fileUploadIcon.style.opacity = '0.5';
+    fileUploadIcon.style.pointerEvents = 'none';
+    fileUploadIcon.title = 'Tắt tìm kiếm để sử dụng upload file';
   } else {
+    btn.innerHTML = '🔎 Tìm kiếm';
     btn.classList.remove('bg-green-600', 'hover:bg-green-700');
-    btn.classList.add('bg-yellow-500', 'hover:bg-yellow-600');
-    btn.textContent = '🔎 Search';
+    btn.classList.add('bg-transparent', 'hover:bg-gray-100');
+    
+    // Enable lại file upload
+    const fileUploadIcon = document.getElementById('file-upload-btn');
+    fileUploadIcon.style.opacity = '1';
+    fileUploadIcon.style.pointerEvents = 'auto';
+    fileUploadIcon.title = 'Tải lên file PDF hoặc hình ảnh';
   }
 }
 // Initialize Pyodide with matplotlib support
@@ -1320,7 +1497,9 @@ async function sendMessage(mode = "normal") {
   const input = document.getElementById("user-input");
   const prompt = input.value.trim();
   if (!prompt) return;
-
+  if (checkConflict()) {
+      return;
+    }
   // Nếu có file, upload trước khi gửi
   let filePaths = [];
   if (uploadedFiles.length > 0) {
@@ -1817,6 +1996,35 @@ function selectAllCanvas(button) {
     range.moveToElementText(content);
     range.select();
   }
+}
+function showWarning(message) {
+  const warningEl = document.getElementById('warning-message');
+  const warningText = document.getElementById('warning-text');
+  warningText.textContent = message;
+  warningEl.classList.add('visible');
+  
+  // Tự động ẩn sau 5 giây
+  setTimeout(() => {
+    hideWarning();
+  }, 5000);
+}
+
+// Hàm ẩn cảnh báo
+function hideWarning() {
+  const warningEl = document.getElementById('warning-message');
+  warningEl.classList.remove('visible');
+}
+
+// Hàm kiểm tra xung đột
+function checkConflict() {
+  const hasFiles = uploadedFiles.length > 0;
+  const hasSearch = isSearchEnabled;
+  
+  if (hasFiles && hasSearch) {
+    showWarning('⚠️ Không thể sử dụng đồng thời tìm kiếm và upload file. Vui lòng chọn một chức năng.');
+    return true;
+  }
+  return false;
 }
 </script>
 </body>
