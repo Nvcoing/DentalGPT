@@ -6,7 +6,7 @@ def build_prompt(prompt: str) -> str:
     return (
         "<｜begin▁of▁sentence｜>"
         "<｜system｜>\n"
-        "### Hướng dẫn: Hãy là một trợ lý ảo nha khoa DentalGPT - Hãy suy luận và phân biệt nên trình bày dạng bảng, biểu đồ, công thức dựa vào từ khóa trong câu hỏi dưới đây:\n"
+        "### Hướng dẫn: Hãy là một trợ lý ảo nha khoa DentalGPT - Hãy suy luận và phân biệt nên trình bày dạng bảng, biểu đồ, công thức. Nếu câu hỏi về bảng thì chuyên gia phải trình bày dạng bảng\n"
         "<｜user｜>\n"
         f"### Câu hỏi:\n{prompt.strip()}\n"
     )

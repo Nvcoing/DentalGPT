@@ -146,6 +146,12 @@ def tool_search(query, api_key=API_KEY, cse_id=CSE_ID, num_results=10):
                 })
         else:
             logger.info("Không tìm thấy kết quả phù hợp.")
+        for i, item in enumerate(results):
+            print(f"{i+1}. 🏷️ {item['title']}")
+            print(f"   🔗 {item['link']}")
+            print(f"   ✍️  {item['snippet']}")
+            print(f"   📄 Nội dung:\n{item['content'][:800]}")  # In tối đa 800 ký tự
+            print("-" * 80)    
         return results
     except Exception as e:
         logger.error(f"Lỗi trong tool_search: {e}")
