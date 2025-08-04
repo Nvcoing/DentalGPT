@@ -57,7 +57,7 @@ Tran, D., & Cao, V. (2025). *DentalGPT: A Multi-Expert Transformer Model for Den
 
 ## Tech Stack
 
-- [DeepSeek-R1]([https://huggingface.co/deepseek-ai/deepseek-llm](https://huggingface.co/collections/deepseek-ai/deepseek-llm-65f2964ad8a0a29fe39b71d8))
+- [DeepSeek-R1](https://huggingface.co/collections/deepseek-ai/deepseek-llm-65f2964ad8a0a29fe39b71d8)
 - PyTorch / Transformers
 - QLoRA
 - RLHF (Reinforcement Learning from Human Feedback)
