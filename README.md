@@ -1,6 +1,5 @@
 # DentalGPT: A Multi-Expert Transformer Model for Dental Inquiry Resolution
 
-![DentalGPT Overview](./z6871778590293_3a347a881aa0af0b78e46ad7ffb1e38c.jpg)
 
 ## Overview
 
