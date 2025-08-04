@@ -1,790 +1,2031 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DentalGPT - Trợ lý nha khoa</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DentalGPT - Trợ ý nha khoa</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="https://cdn.jsdelivr.net/pyodide/v0.24.0/full/pyodide.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <link rel="stylesheet" href="/static/style.css" />
+  <link rel="icon" type="image/png" href="https://cdn.haitrieu.com/wp-content/uploads/2021/10/Logo-DH-Thuy-Loi.png">
   <style>
-    .collapsible {
-      cursor: pointer;
-      user-select: none;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-weight: 600;
-      color: #2563eb;
-      transition: all 0.2s ease;
-      padding: 0.75rem;
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: 0.5rem;
-      margin-bottom: 0.5rem;
-    }
-    .collapsible:hover {
-      color: #1d4ed8;
-      background: #f1f5f9;
-      border-color: #cbd5e1;
-    }
-    .collapsible > .arrow {
-      transition: transform 0.3s ease;
-      display: inline-block;
-      font-size: 0.9rem;
-      color: #64748b;
-    }
-    .collapsible.open > .arrow {
-      transform: rotate(90deg);
-      color: #3b82f6;
-    }
-    .collapsible .section-badge {
-      background: #3b82f6;
-      color: white;
-      padding: 0.2rem 0.5rem;
-      border-radius: 0.25rem;
-      font-size: 0.7rem;
-      font-weight: 500;
-    }
-    .content-container {
-      margin-bottom: 1rem;
-    }
-    .content-box {
-      padding: 1rem;
-      background: #ffffff;
-      border: 1px solid #e5e7eb;
-      border-radius: 0.5rem;
-      border-left: 4px solid #3b82f6;
-      font-size: 0.9rem;
-      line-height: 1.6;
-      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-      max-height: 0;
-      overflow: hidden;
-      opacity: 0;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .content-box.visible {
-      max-height: 600px;
-      opacity: 1;
+/* COLLAPSIBLE HEADER */
+.collapsible {
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: #2563eb;
+  background: #f9fafb;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  margin-bottom: 0.75rem;
+  transition: background 0.2s ease, color 0.2s;
+}
+.collapsible:hover {
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+.collapsible > .arrow {
+  transition: transform 0.3s ease;
+  font-size: 0.9rem;
+  color: #64748b;
+}
+.collapsible.open > .arrow {
+  transform: rotate(90deg);
+  color: #3b82f6;
+}
+.collapsible .section-badge {
+  background: #3b82f6;
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+/* CONTAINER & CONTENT BOX */
+.content-container {
+  margin-bottom: 1rem;
+}
+.content-box {
+  padding: 1rem;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-left: 4px solid #3b82f6;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s ease;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+}
+.content-box.visible {
+  max-height: 1000px;
+  opacity: 1;
+  overflow: visible;
+}
+.reasoning-box {
+  border-left-color: #8b5cf6;
+}
+.expert-box {
+  border-left-color: #10b981;
+}
+
+/* MARKDOWN STYLES */
+.markdown-content {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  line-height: 1.7;
+  font-size: 1rem;
+  color: #1f2937;
+  padding: 1rem;
+  background-color: #fdfdfd;
+  border-radius: 0.5rem;
+  box-shadow: inset 0 0 0 1px #e5e7eb;
+  overflow-x: auto;
+}
+.markdown-content h1 {
+  font-size: 1.5rem;
+  margin: 1rem 0 0.5rem;
+  font-weight: 700;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 0.25rem;
+}
+.markdown-content h2 {
+  font-size: 1.25rem;
+  margin: 1rem 0 0.5rem;
+  font-weight: 600;
+  color: #1e3a8a;
+  border-left: 4px solid #3b82f6;
+  padding-left: 0.75rem;
+}
+.markdown-content h3 {
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  color: #374151;
+  font-style: italic;
+}
+.markdown-content ul,
+.markdown-content ol {
+  margin: 0.75rem 0;
+  padding-left: 1.5rem;
+}
+.markdown-content li {
+  margin-bottom: 0.4rem;
+}
+.markdown-content p {
+  margin: 0.75rem 0;
+}
+.markdown-content code {
+  background: #f3f4f6;
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+  font-size: 0.9rem;
+  color: #111827;
+  font-family: 'Courier New', monospace;
+}
+.markdown-content strong {
+  font-weight: 700;
+  color: #111827;
+}
+.markdown-content em {
+  font-style: italic;
+  color: #6b7280;
+}
+.markdown-content blockquote {
+  border-left: 4px solid #cbd5e1;
+  padding-left: 1rem;
+  margin: 1rem 0;
+  font-style: italic;
+  color: #6b7280;
+}
+.markdown-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+.markdown-content th,
+.markdown-content td {
+  border: 1px solid #e5e7eb;
+  padding: 0.5rem;
+}
+.markdown-content thead {
+  background-color: #f3f4f6;
+  font-weight: 600;
+}
+
+/* INDICATORS */
+.typing-indicator {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #3b82f6;
+  animation: typing 1.4s infinite ease-in-out;
+  margin: 0 2px;
+}
+.typing-indicator:nth-child(1) { animation-delay: -0.32s; }
+.typing-indicator:nth-child(2) { animation-delay: -0.16s; }
+@keyframes typing {
+  0%, 80%, 100% { transform: scale(0); opacity: 0.5; }
+  40% { transform: scale(1); opacity: 1; }
+}
+.stream-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.2em;
+  background: #3b82f6;
+  animation: blink 1s infinite;
+  margin-left: 2px;
+}
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* PYTHON CODE UI */
+.message-container {
+  animation: slideIn 0.3s ease-out;
+}
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.answer-section {
+  background: #fefefe;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid #f3f4f6;
+  margin-top: 0.3rem;
+}
+.python-code-block {
+  position: relative;
+  margin: 1rem 0;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+.python-code-header {
+  background: #374151;
+  color: white;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.python-code-content {
+  background: #1f2937;
+  color: #f9fafb;
+  padding: 1rem;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  overflow-x: auto;
+}
+.run-button {
+  background: #10b981;
+  color: white;
+  border: none;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: background 0.2s;
+}
+.run-button:hover {
+  background: #059669;
+}
+.run-button:disabled {
+  background: #6b7280;
+  cursor: not-allowed;
+}
+.python-output {
+  background: #111827;
+  color: #10b981;
+  padding: 1rem;
+  border-top: 1px solid #374151;
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  white-space: pre-wrap;
+  max-height: 200px;
+  overflow-y: auto;
+}
+.loading-indicator {
+  color: #fbbf24;
+  display: none;
+}
+.plot-image {
+  max-width: 100%;
+  margin: 0.5rem 0;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.25rem;
+}
+/* Agentic Canvas Styles */
+.agentic-canvas {
+  position: relative;
+  user-select: text !important;
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  -ms-user-select: text !important;
+}
+
+.agentic-canvas * {
+  user-select: text !important;
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  -ms-user-select: text !important;
+}
+
+.canvas-toolbar {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.canvas-btn {
+  padding: 4px 8px;
+  font-size: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.canvas-btn:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+}
+
+.canvas-btn:active {
+  transform: translateY(1px);
+}
+
+.pdf-processing {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 1000;
+  display: none;
+}
+
+.pdf-spinner {
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #3498db;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+/* Editable Canvas Styles */
+.canvas-content[contenteditable="true"] {
+  border: 2px dashed #3b82f6;
+  background: #fefefe;
+  outline: none;
+  min-height: 100px;
+  padding: 16px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.canvas-content[contenteditable="true"]:focus {
+  border-color: #1d4ed8;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.edit-mode-indicator {
+  position: absolute;
+  top: 40px;
+  right: 8px;
+  background: #f59e0b;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  z-index: 11;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.canvas-toolbar {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  gap: 6px;
+  z-index: 10;
+}
+
+.canvas-btn {
+  padding: 4px 8px;
+  font-size: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.canvas-btn:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+  transform: translateY(-1px);
+}
+
+.canvas-btn.edit-active {
+  background: #f59e0b;
+  color: white;
+  border-color: #d97706;
+}
+
+.canvas-btn.save-btn {
+  background: #10b981;
+  color: white;
+  border-color: #059669;
+}
+
+.canvas-btn.save-btn:hover {
+  background: #059669;
+}
+
+.canvas-btn.cancel-btn {
+  background: #ef4444;
+  color: white;
+  border-color: #dc2626;
+}
+
+.canvas-btn.cancel-btn:hover {
+  background: #dc2626;
+}
+
+/* Formatting toolbar */
+.format-toolbar {
+  position: sticky;
+  top: 0;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 8px;
+  margin-bottom: 12px;
+  display: none;
+  flex-wrap: wrap;
+  gap: 4px;
+  z-index: 12;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.format-toolbar.visible {
+  display: flex;
+}
+
+.format-btn {
+  padding: 4px 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.2s;
+}
+
+.format-btn:hover {
+  background: #f3f4f6;
+}
+
+.format-btn.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #2563eb;
+}
+
+.auto-save-indicator {
+  position: absolute;
+  top: 70px;
+  right: 8px;
+  background: #10b981;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  z-index: 11;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.auto-save-indicator.visible {
+  opacity: 1;
+}
+.uploaded-files {
+      max-height: 120px;
       overflow-y: auto;
-    }
-    .reasoning-box {
-      border-left-color: #8b5cf6;
-    }
-    .expert-box {
-      border-left-color: #10b981;
-    }
-    .markdown-content {
-      white-space: pre-wrap;
-      word-wrap: break-word;
-      line-height: 1.6;
-    }
-    .markdown-content h1, .markdown-content h2, .markdown-content h3 {
-      margin: 0.8rem 0 0.4rem 0;
-      color: #1f2937;
-      font-weight: 600;
-    }
-    .markdown-content h1 { font-size: 1.1rem; }
-    .markdown-content h2 { font-size: 1.05rem; }
-    .markdown-content h3 { font-size: 1rem; }
-    .markdown-content ul, .markdown-content ol {
-      margin: 0.5rem 0;
-      padding-left: 1.5rem;
-    }
-    .markdown-content li {
-      margin: 0.2rem 0;
-    }
-    .markdown-content p {
-      margin: 0.5rem 0;
-    }
-    .markdown-content code {
-      background: #e5e7eb;
-      padding: 0.2rem 0.4rem;
-      border-radius: 0.25rem;
-      font-size: 0.85rem;
-    }
-    .markdown-content strong {
-      font-weight: 600;
-      color: #374151;
-    }
-    .markdown-content em {
-      font-style: italic;
-      color: #6b7280;
-    }
-    .typing-indicator {
-      display: inline-block;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #3b82f6;
-      animation: typing 1.4s infinite ease-in-out;
-    }
-    .typing-indicator:nth-child(1) { animation-delay: -0.32s; }
-    .typing-indicator:nth-child(2) { animation-delay: -0.16s; }
-    @keyframes typing {
-      0%, 80%, 100% { transform: scale(0); opacity: 0.5; }
-      40% { transform: scale(1); opacity: 1; }
-    }
-    .stream-cursor {
-      display: inline-block;
-      width: 2px;
-      height: 1.2em;
-      background: #3b82f6;
-      animation: blink 1s infinite;
-      margin-left: 2px;
-    }
-    @keyframes blink {
-      0%, 50% { opacity: 1; }
-      51%, 100% { opacity: 0; }
-    }
-    .message-container {
-      animation: slideIn 0.3s ease-out;
-    }
-    @keyframes slideIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .answer-section {
-      background: #fefefe;
-      padding: 1rem;
-      border-radius: 0.5rem;
-      border: 1px solid #f3f4f6;
-      margin-top: 0.5rem;
-    }
-    .python-code-block {
-      position: relative;
-      margin: 1rem 0;
       border: 1px solid #e5e7eb;
-      border-radius: 0.5rem;
-      overflow: hidden;
-    }
-    .python-code-header {
-      background: #374151;
-      color: white;
-      padding: 0.5rem 1rem;
-      font-size: 0.85rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .python-code-content {
-      background: #1f2937;
-      color: #f9fafb;
-      padding: 1rem;
-      font-family: 'Courier New', monospace;
-      font-size: 0.9rem;
-      overflow-x: auto;
-    }
-    .run-button {
-      background: #10b981;
-      color: white;
-      border: none;
-      padding: 0.25rem 0.75rem;
-      border-radius: 0.25rem;
-      cursor: pointer;
-      font-size: 0.8rem;
-      transition: background 0.2s;
-    }
-    .run-button:hover {
-      background: #059669;
-    }
-    .run-button:disabled {
-      background: #6b7280;
-      cursor: not-allowed;
-    }
-    .python-output {
-      background: #111827;
-      color: #10b981;
-      padding: 1rem;
-      border-top: 1px solid #374151;
-      font-family: 'Courier New', monospace;
-      font-size: 0.85rem;
-      white-space: pre-wrap;
-      max-height: 200px;
-      overflow-y: auto;
-    }
-    .loading-indicator {
-      color: #fbbf24;
+      border-radius: 8px;
+      padding: 8px;
+      margin-top: 8px;
+      background: #f9fafb;
       display: none;
     }
-  </style>
-</head>
-<body class="bg-gradient-to-br from-blue-50 to-indigo-100 font-sans min-h-screen">
-
-  <div class="max-w-4xl mx-auto p-6">
-    <div class="text-center mb-8">
-      <h1 class="text-4xl font-bold text-blue-800 mb-2">🦷 DentalGPT</h1>
-      <p class="text-blue-600">Trợ lý ảo nha khoa thông minh</p>
-    </div>
-    
-    <div id="chat-box" class="bg-white/90 backdrop-blur-sm shadow-2xl rounded-xl p-6 h-[600px] overflow-y-auto space-y-4 border border-white/20">
-      <div class="text-gray-500 text-sm text-center py-8">
-        <div class="text-2xl mb-2">👋</div>
-        Xin chào! Tôi là DentalGPT. Hãy đặt câu hỏi về nha khoa...
-      </div>
-    </div>
-
-    <div class="mt-6 bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-white/20">
-      <div class="flex items-center gap-3 mb-3">
-        <input 
-          id="user-input" 
-          type="text" 
-          placeholder="Nhập câu hỏi về nha khoa..." 
-          class="flex-1 p-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all"
-          onkeydown="handleKeyPress(event)"
-        >
-        <button 
-          onclick="sendMessage('normal')" 
-          class="bg-blue-600 text-white px-6 py-3 rounded-xl hover:bg-blue-700 transition-all shadow-md hover:shadow-lg transform hover:scale-105"
-          id="send-btn"
-        >
-          Gửi
-        </button>
-      </div>
-      
-      <div class="flex gap-2 mb-3">
-        <button 
-          onclick="sendMessage('reason')" 
-          class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-all text-sm shadow-md hover:shadow-lg transform hover:scale-105"
-        >
-          🧠 Suy luận
-        </button>
-        <button 
-          onclick="sendMessage('deep_reason')" 
-          class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-all text-sm shadow-md hover:shadow-lg transform hover:scale-105"
-        >
-          🔬 Suy luận sâu
-        </button>
-        <button 
-          onclick="sendMessage('agentic')" 
-          class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-all text-sm shadow-md hover:shadow-lg transform hover:scale-105"
-        >
-          🔬 agentic
-        </button>
-        <button 
-          onclick="clearChat()" 
-          class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition-all text-sm shadow-md hover:shadow-lg transform hover:scale-105"
-        >
-          🗑️ Xóa
-        </button>
-      </div>
-
-      <div class="flex gap-4 text-xs text-gray-600">
-        <div class="flex items-center gap-1">
-          <label>Tokens:</label>
-          <input id="max_tokens" type="number" value="1024" class="w-16 border border-gray-300 px-2 py-1 rounded text-center">
-        </div>
-        <div class="flex items-center gap-1">
-          <label>Temp:</label>
-          <input id="temperature" type="number" step="0.1" value="0.1" class="w-16 border border-gray-300 px-2 py-1 rounded text-center">
-        </div>
-        <div class="flex items-center gap-1">
-          <label>Top P:</label>
-          <input id="top_p" type="number" step="0.1" value="0.9" class="w-16 border border-gray-300 px-2 py-1 rounded text-center">
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    const apiUrl = "http://localhost:8000/DentalGPT/chatbot/";
-    let isGenerating = false;
-    let currentBotMessage = null;
-    let streamBuffer = "";
-    let pyodide = null;
-
-    // Initialize Pyodide
-    async function initPyodide() {
-      if (!pyodide) {
-        try {
-          pyodide = await loadPyodide();
-          console.log("Pyodide initialized successfully");
-        } catch (error) {
-          console.error("Failed to initialize Pyodide:", error);
-        }
-      }
-      return pyodide;
+    .uploaded-files.visible {
+      display: block;
+    }
+    .file-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 8px;
+      margin: 2px 0;
+      background: white;
+      border-radius: 6px;
+      border: 1px solid #e5e7eb;
+      font-size: 13px;
+    }
+    .file-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+      min-width: 0;
+    }
+    .file-icon {
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .file-name {
+      font-weight: 500;
+      color: #374151;
+      overflow: hidden;
+      white-space: nowrap;
+      max-width: 200px;
+    }
+    .file-size {
+      color: #6b7280;
+      font-size: 11px;
+      margin-left: 4px;
+    }
+    .remove-file {
+      color: #ef4444;
+      cursor: pointer;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+    .remove-file:hover {
+      background: #fee2e2;
+    }
+    .file-upload-area {
+      position: relative;
+    }
+    .upload-summary {
+      font-size: 12px;
+      color: #6b7280;
+      margin-top: 4px;
+    }
+    /* Thay thế CSS cho input area */
+    footer {
+      position: relative; /* Thêm position relative */
     }
 
-    // Python Code Runner
-    async function runPythonCode(code, outputElement, buttonElement) {
-      if (!pyodide) {
-        await initPyodide();
-      }
+    .input-wrapper {
+      position: relative;
+      flex: 1;
+    }
+
+    /* Icon upload file - dính với input */
+    .file-upload-icon {
+      position: absolute;
+      right: 100px; /* Tăng khoảng cách để chừa chỗ cho tools icon */
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      background: white;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #e5e7eb;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .file-upload-icon:hover {
+      background: #f3f4f6;
+      border-color: #3b82f6;
+      color: #3b82f6;
+    }
+
+    /* Icon tools - ngay bên cạnh upload icon */
+    .tools-icon {
+      position: absolute;
+      right: 60px; /* Ngay bên cạnh upload icon */
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      background: white;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #e5e7eb;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .tools-icon:hover {
+      background: #f3f4f6;
+      border-color: #3b82f6;
+      color: #3b82f6;
+    }
+
+    .tools-icon:hover {
+      background: #f3f4f6;
+      border-color: #3b82f6;
+      color: #3b82f6;
+    }
+
+    /* Dropdown tools - căn chỉnh lại theo icon tools */
+    #tools-dropdown {
+      position: absolute;
+      top: -200px; /* Hiển thị phía trên icon */
+      right: 60px; /* Align với tools icon */
+      width: 200px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      border: 1px solid #e5e7eb;
+      z-index: 20;
+    }
+
+    /* Uploaded files list - dính với input */
+    .uploaded-files {
+      position: absolute;
+      bottom: 100%;
+      left: 0;
+      right: 0;
+      margin-bottom: 8px;
+      z-index: 15;
+    }
+    .warning-message {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  background: #fef3c7;
+  border: 1px solid #f59e0b;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 8px;
+  color: #92400e;
+  font-size: 14px;
+  display: none;
+  z-index: 20;
+  animation: slideDown 0.3s ease-out;
+}
+
+.warning-message.visible {
+  display: block;
+}
+
+.warning-message .close-warning {
+  float: right;
+  cursor: pointer;
+  font-weight: bold;
+  color: #92400e;
+  margin-left: 8px;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+
+</head>
+<body class="h-screen w-screen overflow-hidden font-sans bg-gradient-to-br from-blue-50 to-indigo-100">
+
+  <!-- Main layout -->
+  <div class="flex h-full">
+
+    <!-- Main Chat Panel -->
+    <div class="flex-1 flex flex-col">
+      <!-- Header -->
+      <header class="p-6 bg-white shadow-lg rounded-b-2xl z-10 flex items-center justify-between border-b border-gray-200">
+        <div class="flex items-center gap-4">
+          <img src="https://cdn.haitrieu.com/wp-content/uploads/2021/10/Logo-DH-Thuy-Loi.png" alt="Logo" class="h-12 w-auto">
+          <div>
+            <h1 class="text-3xl font-extrabold text-blue-700 flex items-center gap-2">🦷 DentalGPT</h1>
+            <p class="text-base text-blue-500">Trợ lý nha khoa thông minh</p>
+          </div>
+        </div>
+        <div class="relative">
+          <button id="settings-btn" class="p-2 text-gray-500 hover:text-blue-600 rounded-full">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+          </button>
+          <div id="pdf-loading" class="pdf-processing">
+            <div class="flex items-center">
+              <div class="pdf-spinner"></div>
+              <span>Đang tạo PDF...</span>
+            </div>
+          </div>
+          <div id="settings-panel" class="hidden absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-xl z-20 p-4 border border-gray-200 transform transition-all duration-200 origin-top-right">
+            <h3 class="font-medium text-gray-700 mb-3">Cấu hình trợ lý ảo</h3>
+            <div class="space-y-3 text-sm">
+              <div>
+                <label class="block text-gray-600 mb-1">Số từ tối đa</label>
+                <input id="max_tokens" type="number" min="1" max="4096" value="1024" class="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-400">
+              </div>
+              <div>
+                <label class="block text-gray-600 mb-1">Mức độ sáng tạo</label>
+                <input id="temperature" type="number" step="0.1" min="0" max="2" value="0.1" class="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-400">
+              </div>
+              <div>
+                <label class="block text-gray-600 mb-1">Độ chắc chắn</label>
+                <input id="top_p" type="number" step="0.1" min="0" max="1" value="0.9" class="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-400">
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Chat content -->
+      <main id="chat-box" class="flex-1 overflow-y-auto p-8 space-y-6 bg-white rounded-2xl m-4 shadow-lg transition-all duration-300">
+        <div class="text-center text-gray-400">
+          <div class="text-4xl mb-2 animate-bounce">👋</div>
+          <p class="text-lg">Xin chào! Tôi là <span class="font-bold text-blue-700">DentalGPT</span>. Hãy đặt câu hỏi về nha khoa...</p>
+        </div>
+        <!-- Tin nhắn sẽ được render ở đây, có thể thêm avatar cho bot/user -->
+      </main>
+
+      <!-- Input area -->
+      <footer class="p-6 border-t border-gray-300 bg-white rounded-t-2xl shadow-lg">
+        <!-- Input area -->
+        <div class="flex items-center gap-3">
+          <div class="input-wrapper">
+            <div class="file-upload-area">
+              <!-- Input chính -->
+              <input id="user-input" type="text" placeholder="Nhập câu hỏi..." class="w-full px-5 py-3 pr-32 border rounded-2xl shadow focus:outline-none focus:ring-2 focus:ring-blue-400 text-base" onkeydown="handleKeyPress(event)" />
+              
+              <!-- Icon upload file - dính với input -->
+              <div class="file-upload-icon" id="file-upload-btn" title="Tải lên file PDF hoặc hình ảnh">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                </svg>
+                <input id="file-input" type="file" multiple accept=".pdf,.jpg,.jpeg,.png" class="hidden" />
+              </div>
+              
+              <!-- Tools icon - ngay bên cạnh upload icon -->
+              <div class="tools-icon" id="tools-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                </svg>
+              </div>
+              
+              <!-- Tools dropdown -->
+              <div id="tools-dropdown" class="hidden">
+                <div class="py-1">
+                  <button onclick="sendMessage('reason')" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">🧠 Suy luận</button>
+                  <button onclick="sendMessage('deep_reason')" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">🔬 Suy luận sâu</button>
+                  <button onclick="sendMessage('agentic')" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">🧬 Agentic</button>
+                  <button onclick="clearChat()" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">🗑️ Xóa chat</button>
+                  <button id="search-toggle-btn" onclick="toggleSearch()" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">🔎 Tìm kiếm</button>
+                </div>
+              </div>
+              
+              <!-- Danh sách file đã upload -->
+              <div id="uploaded-files" class="uploaded-files">
+                <div class="upload-summary">
+                  <span id="file-count">0 file đã chọn</span>
+                  <button id="clear-all-files" class="text-red-500 hover:text-red-700 text-xs ml-2 underline" style="display: none;">Xóa tất cả</button>
+                </div>
+                <div id="file-list"></div>
+              </div>
+              <div id="warning-message" class="warning-message">
+                <span id="warning-text"></span>
+                <span class="close-warning" onclick="hideWarning()">×</span>
+              </div>
+            </div>
+          </div>
       
-      if (!pyodide) {
-        outputElement.textContent = "Lỗi: Không thể khởi tạo Python runner";
+      <!-- Nút gửi -->
+      <button onclick="sendMessage('normal')" id="send-btn" class="flex items-center gap-2 px-7 py-3 bg-blue-600 text-white rounded-2xl hover:bg-blue-700 transition text-lg font-semibold shadow">
+        <span>Gửi</span>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </footer>
+
+
+  <!-- Tools dropdown -->
+  <div id="tools-dropdown" class="hidden">
+    <div class="py-1">
+      <button onclick="sendMessage('reason')" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">🧠 Suy luận</button>
+      <button onclick="sendMessage('deep_reason')" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">🔬 Suy luận sâu</button>
+      <button onclick="sendMessage('agentic')" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">🧬 Agentic</button>
+      <button onclick="clearChat()" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">🗑️ Xóa chat</button>
+      <button id="search-toggle-btn" onclick="toggleSearch()" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">🔎 Tìm kiếm</button>
+    </div>
+  </div>
+      <script>
+        // Toggle tools dropdown
+        document.getElementById('tools-btn').addEventListener('click', function(e) {
+          e.stopPropagation();
+          document.getElementById('tools-dropdown').classList.toggle('hidden');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function() {
+          document.getElementById('tools-dropdown').classList.add('hidden');
+        });
+        // Thêm biến global để lưu trữ file
+        let uploadedFiles = [];
+        // File upload handling
+        document.getElementById('file-upload-btn').addEventListener('click', function() {
+        document.getElementById('file-input').click();
+      });
+
+      document.getElementById('file-input').addEventListener('change', function(e) {
+      const files = Array.from(e.target.files);
+      if (!files || files.length === 0) return;
+
+      // Kiểm tra xung đột với search
+      if (isSearchEnabled) {
+        showWarning('⚠️ Vui lòng tắt chức năng tìm kiếm trước khi upload file.');
+        e.target.value = ''; // Clear input
         return;
       }
 
-      buttonElement.disabled = true;
-      buttonElement.textContent = "Đang chạy...";
+      // Validate file types
+      const allowedTypes = ['.pdf', '.jpg', '.jpeg', '.png'];
+      const invalidFiles = files.filter(file => {
+        const ext = '.' + file.name.split('.').pop().toLowerCase();
+        return !allowedTypes.includes(ext);
+      });
+
+      if (invalidFiles.length > 0) {
+        alert(`Chỉ chấp nhận file PDF và hình ảnh (JPG, PNG). File không hợp lệ: ${invalidFiles.map(f => f.name).join(', ')}`);
+        return;
+      }
+
+      // Validate file size (max 50MB per file)
+      const maxSize = 50 * 1024 * 1024; // 50MB
+      const oversizedFiles = files.filter(file => file.size > maxSize);
       
-      // Show loading
-      const loadingIndicator = buttonElement.parentElement.querySelector('.loading-indicator');
-      loadingIndicator.style.display = 'inline';
+      if (oversizedFiles.length > 0) {
+        alert(`File quá lớn (tối đa 50MB). File vượt quá: ${oversizedFiles.map(f => f.name).join(', ')}`);
+        return;
+      }
+
+      // Add files to uploaded list
+      files.forEach(file => {
+        // Check if file already exists
+        const exists = uploadedFiles.some(f => f.name === file.name && f.size === file.size);
+        if (!exists) {
+          uploadedFiles.push(file);
+        }
+      });
+
+      // Update UI
+      updateFileList();
       
-      try {
-        // Capture stdout
-        pyodide.runPython(`
-import sys
-from io import StringIO
-sys.stdout = StringIO()
-        `);
-        
-        // Run the user code
-        pyodide.runPython(code);
-        
-        // Get the output
-        const output = pyodide.runPython("sys.stdout.getvalue()");
-        
-        outputElement.textContent = output || "Chương trình chạy thành công (không có output)";
-        outputElement.style.display = 'block';
-        
-      } catch (error) {
-        outputElement.textContent = `Lỗi: ${error.message}`;
-        outputElement.style.display = 'block';
-      } finally {
-        buttonElement.disabled = false;
-        buttonElement.textContent = "Chạy";
-        loadingIndicator.style.display = 'none';
-      }
-    }
+      // Clear file input
+      e.target.value = '';
+    });
 
-    // Chat Template Class để quản lý rendering
-    class ChatTemplate {
-      constructor() {
-        this.sections = {
-          reasoning_cot: { 
-            title: "🧠 Quá trình suy luận", 
-            content: "", 
-            visible: false,
-            badge: "SUY LUẬN",
-            icon: "🤔"
-          },
-          experting: { 
-            title: "👨‍🔬 Phân tích chuyên gia", 
-            content: "", 
-            visible: false,
-            badge: "CHUYÊN GIA",
-            icon: "🔬"
-          },
-          answer: { 
-            title: "", 
-            content: "", 
-            visible: true 
-          }
-        };
+      // Function to update file list UI
+      function updateFileList() {
+      const fileListEl = document.getElementById('file-list');
+      const uploadedFilesEl = document.getElementById('uploaded-files');
+      const fileCountEl = document.getElementById('file-count');
+      const clearAllBtn = document.getElementById('clear-all-files');
+
+      if (uploadedFiles.length === 0) {
+        uploadedFilesEl.classList.remove('visible');
+        
+        // Enable lại search khi không có file
+        const searchBtn = document.getElementById('search-toggle-btn');
+        searchBtn.style.opacity = '1';
+        searchBtn.style.pointerEvents = 'auto';
+        return;
       }
 
-      reset() {
-        Object.keys(this.sections).forEach(key => {
-          this.sections[key].content = "";
-          this.sections[key].visible = key === 'answer';
-        });
-      }
+      // Disable search khi có file
+      const searchBtn = document.getElementById('search-toggle-btn');
+      searchBtn.style.opacity = '0.5';
+      searchBtn.style.pointerEvents = 'none';
 
-      updateSection(sectionName, content) {
-        if (this.sections[sectionName]) {
-          this.sections[sectionName].content = content;
-        }
-      }
+      uploadedFilesEl.classList.add('visible');
+      fileCountEl.textContent = `${uploadedFiles.length} file đã chọn`;
+      clearAllBtn.style.display = uploadedFiles.length > 0 ? 'inline' : 'none';
 
-      render() {
-        let html = "";
-        
-        // Render collapsible sections với ô riêng biệt
-        Object.entries(this.sections).forEach(([key, section]) => {
-          if (key !== 'answer' && section.content.trim()) {
-            html += this.renderCollapsibleSection(key, section);
-          }
-        });
-
-        // Render answer section
-        if (this.sections.answer.content.trim()) {
-          html += this.renderAnswerSection(this.sections.answer.content);
-        }
-
-        return html;
-      }
-
-      renderCollapsibleSection(key, section) {
-        const extraClass = key === 'reasoning_cot' ? 'reasoning-box' : 'expert-box';
-        const hasContent = section.content.trim() !== '';
+      fileListEl.innerHTML = uploadedFiles.map((file, index) => {
+        const icon = getFileIcon(file.name);
+        const size = formatFileSize(file.size);
         
         return `
-          <div class="content-container">
-            <div class="collapsible" data-section="${key}">
-              <span class="arrow">▶</span>
-              <span class="section-badge">${section.badge}</span>
-              <span>${section.title}</span>
-              ${hasContent ? '<span class="text-xs text-blue-500 ml-auto">Click để xem chi tiết</span>' : ''}
+          <div class="file-item" data-index="${index}">
+            <div class="file-info">
+              <span class="file-icon">${icon}</span>
+              <span class="file-name" title="${file.name}">${file.name}</span>
+              <span class="file-size">${size}</span>
             </div>
-            <div class="content-box ${extraClass}" data-content="${key}">
-              <div class="markdown-content">${this.markdownToHtml(section.content)}</div>
-            </div>
+            <button class="remove-file" onclick="removeFile(${index})" title="Xóa file">×</button>
           </div>
         `;
-      }
+      }).join('');
+    }
 
-      renderAnswerSection(content) {
-        return `
-          <div class="answer-section">
-            <div class="flex items-center gap-2 mb-3">
-              <span class="text-lg">💡</span>
-              <span class="font-semibold text-gray-700">Câu trả lời</span>
-            </div>
-            <div class="markdown-content prose max-w-none">
-              ${this.markdownToHtml(content)}
-            </div>
-          </div>
-        `;
-      }
-
-      markdownToHtml(text) {
-        try {
-          let html = marked.parse(text);
-          // Process Python code blocks
-          html = this.processPythonCodeBlocks(html);
-          return html;
-        } catch (e) {
-          return text.replace(/\n/g, '<br>');
+      // Function to get file icon
+      function getFileIcon(filename) {
+        const ext = filename.split('.').pop().toLowerCase();
+        switch (ext) {
+          case 'pdf': return '📄';
+          case 'jpg':
+          case 'jpeg':
+          case 'png': return '🖼️';
+          default: return '📎';
         }
       }
 
-      processPythonCodeBlocks(html) {
-        // Regex để tìm code blocks Python
-        const pythonCodeRegex = /<pre><code class="language-python">([\s\S]*?)<\/code><\/pre>/g;
-        
-        return html.replace(pythonCodeRegex, (match, code) => {
-          const decodedCode = this.decodeHtml(code.trim());
-          const blockId = 'python-' + Math.random().toString(36).substr(2, 9);
-          
-          return `
-            <div class="python-code-block">
-              <div class="python-code-header">
-                <span>🐍 Python Code</span>
-                <div>
-                  <button class="run-button" onclick="executeCode('${blockId}')">Chạy</button>
-                  <span class="loading-indicator">⏳</span>
-                </div>
-              </div>
-              <div class="python-code-content">
-                <pre id="${blockId}">${this.escapeHtml(decodedCode)}</pre>
-              </div>
-              <div class="python-output" id="${blockId}-output" style="display:none;"></div>
-            </div>
-          `;
-        });
+      // Function to format file size
+      function formatFileSize(bytes) {
+        if (bytes === 0) return '0 B';
+        const k = 1024;
+        const sizes = ['B', 'KB', 'MB', 'GB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
       }
 
-      decodeHtml(html) {
-        const txt = document.createElement("textarea");
-        txt.innerHTML = html;
-        return txt.value;
+      // Function to remove file
+      function removeFile(index) {
+        uploadedFiles.splice(index, 1);
+        updateFileList();
       }
 
-      escapeHtml(text) {
-        const div = document.createElement('div');
-        div.textContent = text;
-        return div.innerHTML;
-      }
+      // Function to clear all files
+      document.getElementById('clear-all-files').addEventListener('click', function() {
+        uploadedFiles = [];
+        updateFileList();
+      });
+
+      </script>
+    </div>
+
+  </div>
+
+  <!-- JS logic -->
+  <script>const apiUrl = "http://localhost:8000/DentalGPT/chatbot/";
+let isGenerating = false;
+let currentBotMessage = null;
+let streamBuffer = "";
+let pyodide = null;
+let isSearchEnabled = false;
+
+function toggleSearch() {
+  // Kiểm tra xung đột trước khi bật search
+  if (!isSearchEnabled && uploadedFiles.length > 0) {
+    showWarning('⚠️ Vui lòng xóa tất cả file trước khi bật chức năng tìm kiếm.');
+    return;
+  }
+  
+  isSearchEnabled = !isSearchEnabled;
+  const btn = document.getElementById('search-toggle-btn');
+  
+  if (isSearchEnabled) {
+    btn.innerHTML = '✅ Search ON';
+    btn.classList.add('bg-green-600', 'hover:bg-green-700');
+    btn.classList.remove('bg-transparent', 'hover:bg-gray-100');
+    
+    // Disable file upload khi search bật
+    const fileUploadIcon = document.getElementById('file-upload-btn');
+    fileUploadIcon.style.opacity = '0.5';
+    fileUploadIcon.style.pointerEvents = 'none';
+    fileUploadIcon.title = 'Tắt tìm kiếm để sử dụng upload file';
+  } else {
+    btn.innerHTML = '🔎 Tìm kiếm';
+    btn.classList.remove('bg-green-600', 'hover:bg-green-700');
+    btn.classList.add('bg-transparent', 'hover:bg-gray-100');
+    
+    // Enable lại file upload
+    const fileUploadIcon = document.getElementById('file-upload-btn');
+    fileUploadIcon.style.opacity = '1';
+    fileUploadIcon.style.pointerEvents = 'auto';
+    fileUploadIcon.title = 'Tải lên file PDF hoặc hình ảnh';
+  }
+}
+// Initialize Pyodide with matplotlib support
+async function initPyodide() {
+  if (!pyodide) {
+    try {
+      pyodide = await loadPyodide();
+      // Load required packages
+      await pyodide.loadPackage("micropip");
+      await pyodide.runPythonAsync(`
+        import micropip
+        await micropip.install([
+          'matplotlib',
+          'numpy',
+          'pandas',
+          'seaborn'
+        ])
+      `);
+      console.log("Pyodide initialized successfully with matplotlib");
+    } catch (error) {
+      console.error("Failed to initialize Pyodide:", error);
     }
+  }
+  return pyodide;
+}
 
-    const template = new ChatTemplate();
+// Auto-execute Python code and return result HTML
+async function autoExecutePythonCode(code) {
+  if (!pyodide) {
+    await initPyodide();
+  }
 
-    // Global function to execute Python code
-    window.executeCode = async function(blockId) {
-      const codeElement = document.getElementById(blockId);
-      const outputElement = document.getElementById(blockId + '-output');
-      const buttonElement = codeElement.parentElement.parentElement.querySelector('.run-button');
-      
-      const code = codeElement.textContent;
-      await runPythonCode(code, outputElement, buttonElement);
+  if (!pyodide) {
+    return `<div class="python-error">Lỗi: Không thể khởi tạo Python runner</div>`;
+  }
+
+  // try {
+  // Set up matplotlib backend and capture system
+  await pyodide.runPythonAsync(`
+    import matplotlib
+    matplotlib.use('AGG')  # Use non-interactive backend
+    import matplotlib.pyplot as plt
+    import io
+    import base64
+    import sys
+    from io import StringIO
+    
+    import numpy as np
+    import pandas as pd
+    import seaborn as sns
+
+    # Capture stdout for text output
+    sys.stdout = StringIO()
+    
+    # Clear any existing plots
+    plt.clf()
+  `);
+
+  // Run the user code
+  await pyodide.runPythonAsync(code);
+
+  // Get text output
+  const textOutput = await pyodide.runPythonAsync("sys.stdout.getvalue()");
+
+  // Try to get plot output
+  let imageOutput = null;
+  try {
+    const hasPlot = await pyodide.runPythonAsync(`
+      import matplotlib.pyplot as plt
+      len(plt.get_fignums()) > 0
+    `);
+
+    if (hasPlot) {
+      imageOutput = await pyodide.runPythonAsync(`
+        import matplotlib.pyplot as plt
+        import io
+        import base64
+
+        buf = io.BytesIO()
+        plt.savefig(buf, format='png', dpi=150, bbox_inches='tight')
+        buf.seek(0)
+        encoded = base64.b64encode(buf.read()).decode('utf-8')
+        plt.close()
+        encoded
+      `);
+    }
+  } catch (plotError) {
+    console.log("No plot to save:", plotError);
+  }
+
+  // Build result HTML
+  let resultHtml = '';
+
+  if (imageOutput) {
+    resultHtml = `
+      <div class="python-result">
+        <div class="python-result-content">
+          <div class="python-plot-output">
+            <img src="data:image/png;base64,${imageOutput}" alt="Generated Plot" />
+          </div>
+        </div>
+      </div>
+    `;
+  } else if (textOutput && textOutput.trim()) {
+    resultHtml = `
+      <div class="python-result">
+        <div class="python-result-header">
+          <span>🐍</span>
+          <span>Kết quả Python</span>
+        </div>
+        <div class="python-result-content">
+          <div class="python-text-output">${textOutput}</div>
+        </div>
+      </div>
+    `;
+  } else {
+    resultHtml = `
+      <div class="python-result">
+        <div class="python-result-header">
+          <span>✅</span>
+          <span>Python đã chạy thành công</span>
+        </div>
+        <div class="python-result-content">
+          <div class="text-green-600 text-sm">Chương trình đã chạy thành công (không có output)</div>
+        </div>
+      </div>
+    `;
+  }
+
+  return resultHtml;
+
+  // } catch (error) {
+  //   return `
+  //     <div class="python-result">
+  //       <div class="python-result-header">
+  //         <span>❌</span>
+  //         <span>Lỗi Python</span>
+  //       </div>
+  //       <div class="python-result-content">
+  //         <div class="python-error">Lỗi: ${error.message}</div>
+  //       </div>
+  //     </div>
+  //   `;
+  // }
+}
+
+// Chat Template Class to manage rendering
+class ChatTemplate {
+  constructor() {
+    this.sections = {
+      reasoning_cot: { 
+        title: "🧠 Quá trình suy luận", 
+        content: "", 
+        visible: false,
+        badge: "SUY LUẬN",
+        icon: "🤔"
+      },
+      experting: { 
+        title: "👨‍🔬 Phân tích chuyên gia", 
+        content: "", 
+        visible: false,
+        badge: "CHUYÊN GIA",
+        icon: "🔬"
+      },
+      answer: { 
+        title: "", 
+        content: "", 
+        visible: true 
+      }
     };
+  }
 
-    function handleKeyPress(event) {
-      if (event.key === 'Enter' && !event.shiftKey) {
-        event.preventDefault();
-        if (!isGenerating) {
-          sendMessage('normal');
-        }
+  reset() {
+    Object.keys(this.sections).forEach(key => {
+      this.sections[key].content = "";
+      this.sections[key].visible = key === 'answer';
+    });
+  }
+
+  updateSection(sectionName, content) {
+    if (this.sections[sectionName]) {
+      this.sections[sectionName].content = content;
+    }
+  }
+
+  async render() {
+    let html = "";
+    
+    // Render collapsible sections with separate boxes
+    for (const [key, section] of Object.entries(this.sections)) {
+      if (key !== 'answer' && section.content.trim()) {
+        html += await this.renderCollapsibleSection(key, section);
       }
     }
 
-    function clearChat() {
-      document.getElementById("chat-box").innerHTML = `
-        <div class="text-gray-500 text-sm text-center py-8">
-          <div class="text-2xl mb-2">👋</div>
-          Xin chào! Tôi là DentalGPT. Hãy đặt câu hỏi về nha khoa...
+    // Render answer section
+    if (this.sections.answer.content.trim()) {
+      html += await this.renderAnswerSection(this.sections.answer.content);
+    }
+
+    return html;
+  }
+
+  async renderCollapsibleSection(key, section) {
+    const extraClass = key === 'reasoning_cot' ? 'reasoning-box' : 'expert-box';
+    const hasContent = section.content.trim() !== '';
+    
+    return `
+      <div class="content-container">
+        <div class="collapsible" data-section="${key}">
+          <span class="arrow">▶</span>
+          <span class="section-badge">${section.badge}</span>
+          <span>${section.title}</span>
+          ${hasContent ? '<span class="text-xs text-blue-500 ml-auto">Click để xem chi tiết</span>' : ''}
+        </div>
+        <div class="content-box ${extraClass}" data-content="${key}">
+          <div class="markdown-content">${await this.markdownToHtml(section.content)}</div>
+        </div>
+      </div>
+    `;
+  }
+
+  async renderAnswerSection(content) {
+    return `
+      <div class="answer-section">
+        <div class="markdown-content prose max-w-none">
+          ${await this.markdownToHtml(content)}
+        </div>
+      </div>
+    `;
+  }
+
+  async markdownToHtml(text) {
+    try {
+      let html = marked.parse(text);
+      // Process Python code blocks - auto-run and replace with results
+      html = await this.processPythonCodeBlocks(html);
+      return html;
+    } catch (e) {
+      return text.replace(/\n/g, '<br>');
+    }
+  }
+
+  async processPythonCodeBlocks(html) {
+    // Regex to find Python code blocks
+    const pythonCodeRegex = /<pre><code class="language-python">([\s\S]*?)<\/code><\/pre>/g;
+    // Process all matches
+    const matches = [...html.matchAll(pythonCodeRegex)];
+    for (const match of matches) {
+      const fullMatch = match[0];
+      const code = match[1].trim();
+      const decodedCode = this.decodeHtml(code);
+
+      // Show loading state first
+      const loadingHtml = `
+        <div class="python-execution-container">
+          <div class="python-loading">
+            <div class="spinner"></div>
+            <span>Đang chạy code Python...</span>
+          </div>
         </div>
       `;
-      // Reset section states
-      sectionStates = {};
-    }
 
-    function appendMessage(text, isUser) {
-      const chatBox = document.getElementById("chat-box");
-      
-      // Clear welcome message if exists
-      if (chatBox.children.length === 1 && chatBox.children[0].classList.contains('text-center')) {
-        chatBox.innerHTML = '';
-      }
+      // Replace with loading first
+      html = html.replace(fullMatch, loadingHtml);
 
-      const msg = document.createElement("div");
-      msg.className = `message-container flex ${isUser ? 'justify-end' : 'justify-start'} mb-4`;
-      
-      if (isUser) {
-        msg.innerHTML = `
-          <div class="bg-blue-600 text-white p-4 rounded-2xl max-w-[75%] shadow-lg">
-            <div class="whitespace-pre-wrap">${escapeHtml(text)}</div>
+      // Execute the code and get result
+      let resultHtml = "";
+      try {
+        const resultHtml = await autoExecutePythonCode(decodedCode);
+        // Replace loading with result
+        html = html.replace(loadingHtml, resultHtml);
+      } catch (error) {
+        // resultHtml = `
+        //   <div class="python-result">
+        //     <div class="python-result-header">
+        //       <span>❌</span>
+        //       <span>Lỗi Python</span>
+        //     </div>
+        //     <div class="python-result-content">
+        //       <div class="python-error">Lỗi: ${error.message || "Không có biểu đồ hoặc output."}</div>
+        //     </div>
+        //   </div>
+        // `;
+        resultHtml = `
+          <div class="python-result">
+            <div class="python-result-header">
+              <span class="animate-pulse">🖌️</span>
+              <span>Đang vẽ biểu đồ...</span>
+            </div>
+            <div class="python-result-content">
+              <div class="python-error text-yellow-600">
+                ⏳ Đang xử lý: ${error.message || "Không có biểu đồ hoặc output."}
+              </div>
+            </div>
           </div>
         `;
-      } else {
-        const botContent = document.createElement("div");
-        botContent.className = "bg-gray-50 border border-gray-200 text-gray-900 p-4 rounded-2xl max-w-[90%] shadow-lg";
-        
-        if (text === "") {
-          // Show typing indicator
-          botContent.innerHTML = `
-            <div class="flex items-center gap-2">
-              <span class="typing-indicator"></span>
-              <span class="typing-indicator"></span>
-              <span class="typing-indicator"></span>
-              <span class="text-sm text-gray-500 ml-2">Đang suy nghĩ...</span>
-            </div>
-          `;
-        } else {
-          botContent.innerHTML = text;
-        }
-        
-        msg.appendChild(botContent);
-        currentBotMessage = botContent;
       }
-      
-      chatBox.appendChild(msg);
-      chatBox.scrollTop = chatBox.scrollHeight;
-      
-      return isUser ? null : currentBotMessage;
+      // Luôn thay thế loadingHtml bằng resultHtml (dù thành công hay lỗi)
+      html = html.replace(loadingHtml, resultHtml);
     }
+    return html;
+  }
 
-    function escapeHtml(text) {
-      const div = document.createElement('div');
-      div.textContent = text;
-      return div.innerHTML;
+  decodeHtml(html) {
+    const txt = document.createElement("textarea");
+    txt.innerHTML = html;
+    return txt.value;
+  }
+
+  escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+}
+
+const template = new ChatTemplate();
+
+function handleKeyPress(event) {
+  if (event.key === 'Enter' && !event.shiftKey) {
+    event.preventDefault();
+    if (!isGenerating) {
+      sendMessage('normal');
     }
+  }
+}
 
-    function parseStreamingResponse(rawText) {
-      // Remove control tags
-      let text = rawText.replace(/<｜[^｜]*｜>/g, "");
-      
-      // Extract sections using regex - improved for incomplete tags
-      const sections = {
-        reasoning_cot: extractSection(text, 'reasoning_cot'),
-        experting: extractSection(text, 'experting'),
-        answer: extractSection(text, 'answer')
-      };
+function clearChat() {
+  document.getElementById("chat-box").innerHTML = `
+    <div class="text-gray-500 text-sm text-center py-8">
+      <div class="text-2xl mb-2">👋</div>
+      Xin chào! Tôi là DentalGPT. Hãy đặt câu hỏi về nha khoa...
+    </div>
+  `;
+  // Reset section states
+  sectionStates = {};
+}
 
-      // Update template
-      template.reset();
-      Object.entries(sections).forEach(([key, content]) => {
-        if (content) {
-          template.updateSection(key, content);
-        }
-      });
+function appendMessage(text, isUser) {
+  const chatBox = document.getElementById("chat-box");
+  
+  // Clear welcome message if exists
+  if (chatBox.children.length === 1 && chatBox.children[0].classList.contains('text-center')) {
+    chatBox.innerHTML = '';
+  }
 
-      return template.render();
+  const msg = document.createElement("div");
+  msg.className = `message-container flex ${isUser ? 'justify-end' : 'justify-start'} mb-4`;
+  
+  if (isUser) {
+    msg.innerHTML = `
+      <div class="bg-blue-600 text-white p-4 rounded-2xl max-w-[75%] shadow-lg">
+        <div class="whitespace-pre-wrap">${escapeHtml(text)}</div>
+      </div>
+    `;
+  } else {
+    const botContent = document.createElement("div");
+    botContent.className = "bg-gray-50 border border-gray-200 text-gray-900 p-4 rounded-2xl max-w-[90%] shadow-lg";
+    
+    if (text === "") {
+      // Show typing indicator
+      botContent.innerHTML = `
+        <div class="flex items-center gap-2">
+          <span class="typing-indicator"></span>
+          <span class="typing-indicator"></span>
+          <span class="typing-indicator"></span>
+          <span class="text-sm text-gray-500 ml-2">Đang suy nghĩ...</span>
+        </div>
+      `;
+    } else {
+      botContent.innerHTML = text;
     }
+    
+    msg.appendChild(botContent);
+    currentBotMessage = botContent;
+  }
+  
+  chatBox.appendChild(msg);
+  chatBox.scrollTop = chatBox.scrollHeight;
+  
+  return isUser ? null : currentBotMessage;
+}
 
-    function extractSection(text, sectionName) {
-      // Try to find complete section first
-      const completeRegex = new RegExp(`<${sectionName}>([\\s\\S]*?)<\\/${sectionName}>`, 'g');
-      const completeMatch = text.match(completeRegex);
-      
-      if (completeMatch) {
-        return completeMatch[0].replace(new RegExp(`<\\/?${sectionName}>`, 'g'), '').trim();
-      }
-      
-      // If no complete section, try to find incomplete/streaming section
-      const incompleteRegex = new RegExp(`<${sectionName}>(([\\s\\S]*?)(?=<\\/|$))`, 'g');
-      const incompleteMatch = text.match(incompleteRegex);
-      
-      if (incompleteMatch) {
-        return incompleteMatch[0].replace(new RegExp(`<${sectionName}>`, 'g'), '').trim();
-      }
-      
-      return "";
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+function extractSection(text, sectionName) {
+  // Try to find complete section first
+  const completeRegex = new RegExp(`<${sectionName}>([\\s\\S]*?)<\\/${sectionName}>`, 'g');
+  const completeMatch = text.match(completeRegex);
+  
+  if (completeMatch) {
+    return completeMatch[0].replace(new RegExp(`<\\/?${sectionName}>`, 'g'), '').trim();
+  }
+  
+  // If no complete section, try to find incomplete/streaming section
+  const incompleteRegex = new RegExp(`<${sectionName}>(([\\s\\S]*?)(?=<\\/|$))`, 'g');
+  const incompleteMatch = text.match(incompleteRegex);
+  
+  if (incompleteMatch) {
+    return incompleteMatch[0].replace(new RegExp(`<${sectionName}>`, 'g'), '').trim();
+  }
+  
+  return "";
+}
+
+// Global state to track section visibility
+let sectionStates = {};
+
+function bindCollapsibleEvents() {
+  // Use event delegation on the chat box to handle dynamic content
+  const chatBox = document.getElementById("chat-box");
+  
+  // Remove existing listener if any
+  chatBox.removeEventListener('click', handleCollapsibleClick);
+  
+  // Add event listener with delegation
+  chatBox.addEventListener('click', handleCollapsibleClick);
+}
+
+function handleCollapsibleClick(e) {
+  // Check if clicked element is a collapsible or its child
+  const collapsible = e.target.closest('.collapsible');
+  if (!collapsible) return;
+  
+  e.preventDefault();
+  e.stopPropagation();
+  
+  const sectionKey = collapsible.dataset.section;
+  const contentBox = collapsible.parentElement.querySelector('.content-box[data-content="' + sectionKey + '"]');
+  const arrow = collapsible.querySelector('.arrow');
+  
+  if (contentBox && arrow) {
+    // Toggle state
+    const currentState = sectionStates[sectionKey] || false;
+    const newState = !currentState;
+    sectionStates[sectionKey] = newState;
+    
+    // Apply state
+    if (newState) {
+      contentBox.classList.add('visible');
+      arrow.textContent = '▼';
+      collapsible.classList.add('open');
+    } else {
+      contentBox.classList.remove('visible');
+      arrow.textContent = '▶';
+      collapsible.classList.remove('open');
     }
+  }
+}
 
-    // Global state to track section visibility
-    let sectionStates = {};
-
-    function bindCollapsibleEvents() {
-      // Use event delegation on the chat box to handle dynamic content
-      const chatBox = document.getElementById("chat-box");
-      
-      // Remove existing listener if any
-      chatBox.removeEventListener('click', handleCollapsibleClick);
-      
-      // Add event listener with delegation
-      chatBox.addEventListener('click', handleCollapsibleClick);
-    }
-
-    function handleCollapsibleClick(e) {
-      // Check if clicked element is a collapsible or its child
-      const collapsible = e.target.closest('.collapsible');
-      if (!collapsible) return;
-      
-      e.preventDefault();
-      e.stopPropagation();
-      
-      const sectionKey = collapsible.dataset.section;
-      const contentBox = collapsible.parentElement.querySelector('.content-box[data-content="' + sectionKey + '"]');
+function applySectionStates() {
+  // Apply saved states to all sections
+  Object.keys(sectionStates).forEach(sectionKey => {
+    const isOpen = sectionStates[sectionKey];
+    const collapsible = currentBotMessage ? currentBotMessage.querySelector(`.collapsible[data-section="${sectionKey}"]`) : null;
+    const contentBox = currentBotMessage ? currentBotMessage.querySelector(`.content-box[data-content="${sectionKey}"]`) : null;
+    
+    if (collapsible && contentBox) {
       const arrow = collapsible.querySelector('.arrow');
-      
-      if (contentBox && arrow) {
-        // Toggle state
-        const currentState = sectionStates[sectionKey] || false;
-        const newState = !currentState;
-        sectionStates[sectionKey] = newState;
-        
-        // Apply state
-        if (newState) {
-          contentBox.classList.add('visible');
-          arrow.textContent = '▼';
-          collapsible.classList.add('open');
-        } else {
-          contentBox.classList.remove('visible');
-          arrow.textContent = '▶';
-          collapsible.classList.remove('open');
-        }
+      if (isOpen) {
+        contentBox.classList.add('visible');
+        arrow.textContent = '▼';
+        collapsible.classList.add('open');
+      } else {
+        contentBox.classList.remove('visible');
+        arrow.textContent = '▶';
+        collapsible.classList.remove('open');
       }
     }
+  });
+}
 
-    function applySectionStates() {
-      // Apply saved states to all sections
-      Object.keys(sectionStates).forEach(sectionKey => {
-        const isOpen = sectionStates[sectionKey];
-        const collapsible = currentBotMessage ? currentBotMessage.querySelector(`.collapsible[data-section="${sectionKey}"]`) : null;
-        const contentBox = currentBotMessage ? currentBotMessage.querySelector(`.content-box[data-content="${sectionKey}"]`) : null;
-        
-        if (collapsible && contentBox) {
-          const arrow = collapsible.querySelector('.arrow');
-          if (isOpen) {
-            contentBox.classList.add('visible');
-            arrow.textContent = '▼';
-            collapsible.classList.add('open');
-          } else {
-            contentBox.classList.remove('visible');
-            arrow.textContent = '▶';
-            collapsible.classList.remove('open');
-          }
-        }
+async function parseStreamingResponse(rawText) {
+  // Remove control tags
+  let text = rawText.replace(/<｜[^｜]*｜>/g, "");
+  
+  // Extract sections using regex - improved for incomplete tags
+  const sections = {
+    reasoning_cot: extractSection(text, 'reasoning_cot'),
+    experting: extractSection(text, 'experting'),
+    answer: extractSection(text, 'answer')
+  };
+
+  // Update template
+  template.reset();
+  Object.entries(sections).forEach(([key, content]) => {
+    if (content) {
+      template.updateSection(key, content);
+    }
+  });
+
+  return await template.render();
+}
+
+async function sendMessage(mode = "normal") {
+  if (isGenerating) return;
+
+  const input = document.getElementById("user-input");
+  const prompt = input.value.trim();
+  if (!prompt) return;
+  if (checkConflict()) {
+      return;
+    }
+  // Nếu có file, upload trước khi gửi
+  let filePaths = [];
+  if (uploadedFiles.length > 0) {
+    try {
+      const formData = new FormData();
+      uploadedFiles.forEach(file => {
+        formData.append('files', file);
       });
+
+      const uploadResponse = await fetch('http://localhost:8000/DentalGPT/upload_files/', {
+        method: 'POST',
+        body: formData
+      });
+
+      if (!uploadResponse.ok) {
+        const errorData = await uploadResponse.json();
+        throw new Error(errorData.detail || 'Upload failed');
+      }
+
+      const result = await uploadResponse.json();
+      filePaths = result.file_paths;
+      
+      // Clear uploaded files after successful upload
+      uploadedFiles = [];
+      updateFileList();
+      
+    } catch (error) {
+      alert(`Lỗi upload file: ${error.message}`);
+      return;
+    }
+  }
+
+  isGenerating = true;
+  const sendBtn = document.getElementById("send-btn");
+  sendBtn.textContent = "Đang xử lý...";
+  sendBtn.disabled = true;
+
+  appendMessage(prompt, true);
+  input.value = "";
+  currentBotMessage = appendMessage("", false);
+
+  const params = {
+    prompt: prompt,
+    file_paths: filePaths,
+    max_new_tokens: parseInt(document.getElementById("max_tokens").value),
+    temperature: parseFloat(document.getElementById("temperature").value),
+    top_p: parseFloat(document.getElementById("top_p").value),
+    top_k: 50,
+    repetition_penalty: 1.0,
+    do_sample: true,
+    mode: mode,
+    module: isSearchEnabled ? "search_all" : null
+  };
+
+  try {
+    const response = await fetch(apiUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(params)
+    });
+
+    if (!response.ok) {
+      throw new Error(`Server error: ${response.statusText}`);
     }
 
-    async function sendMessage(mode = "normal") {
-      if (isGenerating) return;
-      const input = document.getElementById("user-input");
-      const prompt = input.value.trim();
-      if (!prompt) return;
+    if (mode === "agentic") {
+      // Clear typing indicator
+      currentBotMessage.innerHTML = "";
 
-      isGenerating = true;
-      const sendBtn = document.getElementById("send-btn");
-      sendBtn.textContent = "Đang xử lý...";
-      sendBtn.disabled = true;
+      const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+    let agenticText = "";
 
-      // Hiển thị user message
-      appendMessage(prompt, true);
-      input.value = "";
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      agenticText += decoder.decode(value, { stream: true });
+    }
 
-      // Mở typing indicator
-      currentBotMessage = appendMessage("", false);
+    const canvasId = `agentic-canvas-${Date.now()}`;
+    const canvasHtml = `
+      <div class="answer-section border-2 border-blue-600 bg-blue-50 p-4 rounded-xl shadow-lg agentic-canvas" id="${canvasId}">
+        <div class="canvas-toolbar">
+          <button class="canvas-btn edit-btn" onclick="toggleEditMode(this)" title="Chỉnh sửa">
+            ✏️ Chỉnh sửa
+          </button>
+          <button class="canvas-btn save-btn" onclick="saveCanvas(this)" title="Lưu" style="display: none;">
+            💾 Lưu
+          </button>
+          <button class="canvas-btn cancel-btn" onclick="cancelEdit(this)" title="Hủy" style="display: none;">
+            ❌ Hủy
+          </button>
+          <button class="canvas-btn" onclick="selectAllCanvas(this)" title="Chọn tất cả">
+            📋 Chọn tất cả
+          </button>
+          <button class="canvas-btn" onclick="exportCanvasToPDF(this)" title="Xuất PDF">
+            📄 Xuất PDF
+          </button>
+        </div>
+        <div class="edit-mode-indicator" style="display: none;">
+          ĐANG CHỈNH SỬA
+        </div>
+        <div class="auto-save-indicator">
+          Đã lưu tự động
+        </div>
+        <div class="format-toolbar">
+          <button class="format-btn" onclick="formatText('bold')" title="Đậm">
+            <b>B</b>
+          </button>
+          <button class="format-btn" onclick="formatText('italic')" title="Nghiêng">
+            <i>I</i>
+          </button>
+          <button class="format-btn" onclick="formatText('underline')" title="Gạch chân">
+            <u>U</u>
+          </button>
+          <span style="border-left: 1px solid #d1d5db; margin: 0 4px;"></span>
+          <button class="format-btn" onclick="formatText('insertOrderedList')" title="Danh sách số">
+            1. 2. 3.
+          </button>
+          <button class="format-btn" onclick="formatText('insertUnorderedList')" title="Danh sách">
+            • • •
+          </button>
+          <span style="border-left: 1px solid #d1d5db; margin: 0 4px;"></span>
+          <button class="format-btn" onclick="formatText('justifyLeft')" title="Căn trái">
+            ⬅️
+          </button>
+          <button class="format-btn" onclick="formatText('justifyCenter')" title="Căn giữa">
+            ↔️
+          </button>
+          <button class="format-btn" onclick="formatText('justifyRight')" title="Căn phải">
+            ➡️
+          </button>
+        </div>
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-lg">🔷</span>
+          <span class="font-bold text-blue-800">Agentic Canvas</span>
+        </div>
+        <div class="markdown-content prose max-w-none canvas-content" data-original-content="">
+          ${await template.markdownToHtml(agenticText)}
+        </div>
+      </div>
+    `;
+      // Render canvas HTML
 
-      const params = {
-        prompt,
-        max_new_tokens: parseInt(document.getElementById("max_tokens").value),
-        temperature: parseFloat(document.getElementById("temperature").value),
-        top_p: parseFloat(document.getElementById("top_p").value),
-        top_k: 50,
-        repetition_penalty: 1.0,
-        do_sample: true,
-        mode
-      };
+    currentBotMessage.innerHTML = canvasHtml;
+      
+    } else {
+      // Handle streaming response for normal mode
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder("utf-8");
+      streamBuffer = "";
+      
+      // Reset section states for new conversation
+      sectionStates = {};
 
-      try {
-        const response = await fetch(apiUrl, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(params)
-        });
+      while (true) {
+        const { value, done } = await reader.read();
+        if (done) break;
 
-        if (!response.ok) {
-          throw new Error(`Server error: ${response.statusText}`);
-        }
+        const chunk = decoder.decode(value, { stream: true });
+        streamBuffer += chunk;
+        
+        // Parse and render the accumulated content
+        const parsedContent = await parseStreamingResponse(streamBuffer);
+        currentBotMessage.innerHTML = parsedContent + '<span class="stream-cursor"></span>';
+        
+        // Apply saved section states after content update
+        applySectionStates();
 
-        if (mode === "agentic") {
-          // 1) Xóa typing indicator
-          currentBotMessage.innerHTML = "";
+        // Auto scroll
+        const chatBox = document.getElementById("chat-box");
+        chatBox.scrollTop = chatBox.scrollHeight;
+        
+        // Small delay for smooth streaming effect
+        await new Promise(resolve => setTimeout(resolve, 30));
+      }
 
-          // 2) Lấy JSON
-          const { response: agenticText } = await response.json();
-
-
-          // 4) Hiển thị canvas “strong” thứ hai
-          const canvasHtml = `
-            <div class="answer-section border-2 border-blue-600 bg-blue-50 p-4 rounded-xl shadow-lg">
-              <div class="font-bold text-blue-800 mb-2">🔷 Agentic Canvas</div>
-              <div class="markdown-content prose max-w-none">${marked.parse(agenticText)}</div>
-            </div>`;
-          document.getElementById("chat-box").insertAdjacentHTML("beforeend", canvasHtml);
-          
-        } else {
-          // Giữ nguyên logic streaming cũ cho các mode khác
-          const reader = response.body.getReader();
-          const decoder = new TextDecoder("utf-8");
-          streamBuffer = "";
-          while (true) {
-            const { value, done } = await reader.read();
-            if (done) break;
-            const chunk = decoder.decode(value, { stream: true });
-            streamBuffer += chunk;
-            const parsedContent = parseStreamingResponse(streamBuffer);
-            currentBotMessage.innerHTML = parsedContent + '<span class="stream-cursor"></span>';
-            applySectionStates();
-            document.getElementById("chat-box").scrollTop = document.getElementById("chat-box").scrollHeight;
-            await new Promise(r => setTimeout(r, 30));
-          }
-          // Hoàn thiện
-          currentBotMessage.innerHTML = parseStreamingResponse(streamBuffer);
-          applySectionStates();
-        }
-
-      } catch (error) {
-        if (currentBotMessage) {
-          currentBotMessage.innerHTML = `
-            <div class="text-red-600 flex items-center gap-2">
-              <span>⚠️</span>
-              <span>Đã xảy ra lỗi: ${error.message}</span>
-            </div>`;
-        }
-        console.error(error);
-      } finally {
-        isGenerating = false;
-        sendBtn.textContent = "Gửi";
-        sendBtn.disabled = false;
+      // Remove cursor and finalize
+      if (currentBotMessage) {
+        const finalContent = await parseStreamingResponse(streamBuffer);
+        currentBotMessage.innerHTML = finalContent;
+        applySectionStates();
       }
     }
 
+  } catch (error) {
+    if (currentBotMessage) {
+      currentBotMessage.innerHTML = `
+        <div class="text-red-600 flex items-center gap-2">
+          <span>⚠️</span>
+          <span>Đã xảy ra lỗi khi kết nối đến máy chủ: ${error.message}</span>
+        </div>
+      `;
+    }
+    console.error("Error:", error);
+  } finally {
+    isGenerating = false;
+    sendBtn.textContent = "Gửi";
+    sendBtn.disabled = false;
+  }
+}
+function selectAllCanvas(button) {
+  const canvas = button.closest('.agentic-canvas');
+  const content = canvas.querySelector('.canvas-content');
+  
+  if (window.getSelection) {
+    const selection = window.getSelection();
+    const range = document.createRange();
+    range.selectNodeContents(content);
+    selection.removeAllRanges();
+    selection.addRange(range);
+  } else if (document.selection) {
+    const range = document.body.createTextRange();
+    range.moveToElementText(content);
+    range.select();
+  }
+}
 
-    // Initialize
-    document.addEventListener('DOMContentLoaded', function() {
-      document.getElementById('user-input').focus();
-      // Initialize event delegation for collapsibles
-      bindCollapsibleEvents();
-      // Initialize Pyodide in background
-      initPyodide();
+async function exportCanvasToPDF(button) {
+  const canvas = button.closest('.agentic-canvas');
+  const loading = document.getElementById('pdf-loading');
+  
+  try {
+    // Hiển thị loading
+    loading.style.display = 'block';
+    
+    // Tạo clone để xử lý
+    const clone = canvas.cloneNode(true);
+    clone.style.position = 'absolute';
+    clone.style.left = '-9999px';
+    clone.style.top = '0';
+    clone.style.width = '800px';
+    clone.style.background = 'white';
+    clone.style.padding = '20px';
+    
+    // Ẩn toolbar trong clone
+    const toolbar = clone.querySelector('.canvas-toolbar');
+    if (toolbar) toolbar.style.display = 'none';
+    
+    document.body.appendChild(clone);
+    
+    // Tạo canvas từ HTML
+    const canvas2d = await html2canvas(clone, {
+      scale: 2,
+      useCORS: true,
+      backgroundColor: '#ffffff',
+      width: 840,
+      height: clone.offsetHeight + 40
     });
-  </script>
+    
+    // Tạo PDF
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF('p', 'mm', 'a4');
+    
+    const imgData = canvas2d.toDataURL('image/png');
+    const imgWidth = 210; // A4 width in mm
+    const pageHeight = 297; // A4 height in mm
+    const imgHeight = (canvas2d.height * imgWidth) / canvas2d.width;
+    let heightLeft = imgHeight;
+    
+    let position = 0;
+    
+    // Thêm trang đầu tiên
+    pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+    heightLeft -= pageHeight;
+    
+    // Thêm các trang tiếp theo nếu cần
+    while (heightLeft >= 0) {
+      position = heightLeft - imgHeight;
+      pdf.addPage();
+      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+    }
+    
+    // Lưu PDF
+    const timestamp = new Date().toISOString().slice(0, 19).replace(/:/g, '-');
+    pdf.save(`DentalGPT_Agentic_Canvas_${timestamp}.pdf`);
+    
+    // Cleanup
+    document.body.removeChild(clone);
+    
+  } catch (error) {
+    console.error('Lỗi tạo PDF:', error);
+    alert('Có lỗi xảy ra khi tạo PDF. Vui lòng thử lại.');
+  } finally {
+    loading.style.display = 'none';
+  }
+}
+// Initialize
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('user-input').focus();
+  // Initialize event delegation for collapsibles
+  bindCollapsibleEvents();
+  // Initialize Pyodide in background
+  initPyodide();
+  
+  // Toggle settings panel with animation
+  const settingsBtn = document.getElementById('settings-btn');
+  const settingsPanel = document.getElementById('settings-panel');
+  
+  settingsBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    settingsPanel.classList.toggle('hidden');
+    if (!settingsPanel.classList.contains('hidden')) {
+      settingsPanel.classList.remove('opacity-0', 'scale-95');
+      settingsPanel.classList.add('opacity-100', 'scale-100');
+    } else {
+      settingsPanel.classList.remove('opacity-100', 'scale-100');
+      settingsPanel.classList.add('opacity-0', 'scale-95');
+    }
+  });
+  
+  // Close settings when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!settingsPanel.contains(e.target) && e.target !== settingsBtn) {
+      settingsPanel.classList.add('hidden');
+      settingsPanel.classList.remove('opacity-100', 'scale-100');
+      settingsPanel.classList.add('opacity-0', 'scale-95');
+    }
+  });
+});
+// 3. Thêm các function mới cho chỉnh sửa
+let editingSessions = new Map();
+
+function toggleEditMode(button) {
+  const canvas = button.closest('.agentic-canvas');
+  const content = canvas.querySelector('.canvas-content');
+  const editIndicator = canvas.querySelector('.edit-mode-indicator');
+  const formatToolbar = canvas.querySelector('.format-toolbar');
+  const saveBtn = canvas.querySelector('.save-btn');
+  const cancelBtn = canvas.querySelector('.cancel-btn');
+  
+  if (content.contentEditable === 'true') {
+    // Tắt chế độ chỉnh sửa
+    exitEditMode(canvas);
+  } else {
+    // Bật chế độ chỉnh sửa
+    enterEditMode(canvas);
+  }
+}
+
+function enterEditMode(canvas) {
+  const content = canvas.querySelector('.canvas-content');
+  const editBtn = canvas.querySelector('.edit-btn');
+  const editIndicator = canvas.querySelector('.edit-mode-indicator');
+  const formatToolbar = canvas.querySelector('.format-toolbar');
+  const saveBtn = canvas.querySelector('.save-btn');
+  const cancelBtn = canvas.querySelector('.cancel-btn');
+  
+  // Lưu nội dung gốc
+  content.dataset.originalContent = content.innerHTML;
+  
+  // Bật contentEditable
+  content.contentEditable = 'true';
+  content.focus();
+  
+  // Cập nhật UI
+  editBtn.classList.add('edit-active');
+  editBtn.innerHTML = '✏️ Đang sửa';
+  editIndicator.style.display = 'block';
+  formatToolbar.classList.add('visible');
+  saveBtn.style.display = 'inline-flex';
+  cancelBtn.style.display = 'inline-flex';
+  
+  // Thêm event listeners
+  content.addEventListener('input', handleAutoSave);
+  content.addEventListener('keydown', handleKeydown);
+  
+  // Lưu session
+  editingSessions.set(canvas.id, {
+    originalContent: content.innerHTML,
+    autoSaveTimer: null
+  });
+}
+
+function exitEditMode(canvas) {
+  const content = canvas.querySelector('.canvas-content');
+  const editBtn = canvas.querySelector('.edit-btn');
+  const editIndicator = canvas.querySelector('.edit-mode-indicator');
+  const formatToolbar = canvas.querySelector('.format-toolbar');
+  const saveBtn = canvas.querySelector('.save-btn');
+  const cancelBtn = canvas.querySelector('.cancel-btn');
+  
+  // Tắt contentEditable
+  content.contentEditable = 'false';
+  
+  // Cập nhật UI
+  editBtn.classList.remove('edit-active');
+  editBtn.innerHTML = '✏️ Chỉnh sửa';
+  editIndicator.style.display = 'none';
+  formatToolbar.classList.remove('visible');
+  saveBtn.style.display = 'none';
+  cancelBtn.style.display = 'none';
+  
+  // Xóa event listeners
+  content.removeEventListener('input', handleAutoSave);
+  content.removeEventListener('keydown', handleKeydown);
+  
+  // Xóa session
+  const session = editingSessions.get(canvas.id);
+  if (session && session.autoSaveTimer) {
+    clearTimeout(session.autoSaveTimer);
+  }
+  editingSessions.delete(canvas.id);
+}
+
+function saveCanvas(button) {
+  const canvas = button.closest('.agentic-canvas');
+  const content = canvas.querySelector('.canvas-content');
+  const autoSaveIndicator = canvas.querySelector('.auto-save-indicator');
+  
+  // Xóa nội dung gốc đã lưu
+  content.dataset.originalContent = content.innerHTML;
+  
+  // Hiển thị thông báo đã lưu
+  autoSaveIndicator.classList.add('visible');
+  setTimeout(() => {
+    autoSaveIndicator.classList.remove('visible');
+  }, 2000);
+  
+  // Thoát chế độ chỉnh sửa
+  exitEditMode(canvas);
+  
+  console.log('Canvas đã được lưu:', content.innerHTML);
+}
+
+function cancelEdit(button) {
+  const canvas = button.closest('.agentic-canvas');
+  const content = canvas.querySelector('.canvas-content');
+  
+  // Khôi phục nội dung gốc
+  content.innerHTML = content.dataset.originalContent;
+  
+  // Thoát chế độ chỉnh sửa
+  exitEditMode(canvas);
+}
+
+function handleAutoSave(event) {
+  const canvas = event.target.closest('.agentic-canvas');
+  const session = editingSessions.get(canvas.id);
+  
+  if (session) {
+    // Hủy timer cũ
+    if (session.autoSaveTimer) {
+      clearTimeout(session.autoSaveTimer);
+    }
+    
+    // Tạo timer mới để auto-save sau 2 giây
+    session.autoSaveTimer = setTimeout(() => {
+      const autoSaveIndicator = canvas.querySelector('.auto-save-indicator');
+      autoSaveIndicator.classList.add('visible');
+      setTimeout(() => {
+        autoSaveIndicator.classList.remove('visible');
+      }, 1500);
+    }, 2000);
+  }
+}
+
+function handleKeydown(event) {
+  // Ctrl+S để lưu
+  if (event.ctrlKey && event.key === 's') {
+    event.preventDefault();
+    const canvas = event.target.closest('.agentic-canvas');
+    const saveBtn = canvas.querySelector('.save-btn');
+    saveCanvas(saveBtn);
+  }
+  
+  // Esc để hủy
+  if (event.key === 'Escape') {
+    event.preventDefault();
+    const canvas = event.target.closest('.agentic-canvas');
+    const cancelBtn = canvas.querySelector('.cancel-btn');
+    cancelEdit(cancelBtn);
+  }
+}
+
+function formatText(command) {
+  document.execCommand(command, false, null);
+}
+
+// Cập nhật function selectAllCanvas
+function selectAllCanvas(button) {
+  const canvas = button.closest('.agentic-canvas');
+  const content = canvas.querySelector('.canvas-content');
+  
+  if (window.getSelection) {
+    const selection = window.getSelection();
+    const range = document.createRange();
+    range.selectNodeContents(content);
+    selection.removeAllRanges();
+    selection.addRange(range);
+  } else if (document.selection) {
+    const range = document.body.createTextRange();
+    range.moveToElementText(content);
+    range.select();
+  }
+}
+function showWarning(message) {
+  const warningEl = document.getElementById('warning-message');
+  const warningText = document.getElementById('warning-text');
+  warningText.textContent = message;
+  warningEl.classList.add('visible');
+  
+  // Tự động ẩn sau 5 giây
+  setTimeout(() => {
+    hideWarning();
+  }, 5000);
+}
+
+// Hàm ẩn cảnh báo
+function hideWarning() {
+  const warningEl = document.getElementById('warning-message');
+  warningEl.classList.remove('visible');
+}
+
+// Hàm kiểm tra xung đột
+function checkConflict() {
+  const hasFiles = uploadedFiles.length > 0;
+  const hasSearch = isSearchEnabled;
+  
+  if (hasFiles && hasSearch) {
+    showWarning('⚠️ Không thể sử dụng đồng thời tìm kiếm và upload file. Vui lòng chọn một chức năng.');
+    return true;
+  }
+  return false;
+}
+</script>
 </body>
 </html>
