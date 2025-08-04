@@ -51,8 +51,8 @@ Tran, D., & Cao, V. (2025). *DentalGPT: A Multi-Expert Transformer Model for Den
 
 ## Demo & Usage
 
-> Coming soon...
-
+**Try the live demo user interface here:**  
+[https://nvcoing.github.io/DentalGPT/](https://nvcoing.github.io/DentalGPT/)
 ---
 
 ## Tech Stack
